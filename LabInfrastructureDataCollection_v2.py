@@ -138,7 +138,7 @@ st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
     #Load the template
-    with open(data_template, 'rb') as handle:
+    with open("/mount/src/labinfrastructure/Template/DataTemplate.pkl", 'rb') as handle:
         Data = pickle.load(handle)
 
     
