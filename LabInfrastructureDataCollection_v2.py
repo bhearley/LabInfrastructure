@@ -235,7 +235,13 @@ if st.button('Submit'):
         new_file = "/mount/src/labinfrastructure/NewFiles/" + new_filename
 
         #--Save to the Data Path
-        with open("/mount/src/labinfrastructure/NewFiles/DataTemplate.pkl", 'wb') as handle:
+        with open("/mount/src/labinfrastructure/NewFiles/New.pkl", 'wb') as handle:
             pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+        repo = Repo(r'bhearley/LabInfrastructure')
+        repo.git.add(update=True)
+        repo.index.commit('COMMIT_MESSAGE')
+        origin = repo.remote(name='origin')
+        origin.push()
 
 
