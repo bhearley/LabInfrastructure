@@ -19,6 +19,7 @@ import streamlit as st
 
 # Set Paths
 home = os.getcwd()
+print(home)
 data_path = "./NewFiles"
 data_template = "./Template/DataTemplate.pkl"
 
