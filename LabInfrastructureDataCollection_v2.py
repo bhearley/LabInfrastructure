@@ -19,7 +19,9 @@ import streamlit as st
 
 # Set Paths
 home = os.getcwd()
-data_path = r'C:\Users\bhearley\Box\LabInfrastructureData'
+#data_path = r'C:\Users\bhearley\Box\LabInfrastructureData'
+data_path = "./"
+data_template = "./Templates/DataTemplate.pkl"
 
 #----------------------------------------------------------------
 #   CREATE THE APP
@@ -137,7 +139,7 @@ st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
     # Load the template
-    data_template = os.path.join(data_path,'Template','DataTemplate.pkl')
+    #data_template = os.path.join(data_path,'Template','DataTemplate.pkl')
     with open(data_template, 'rb') as handle:
         Data = pickle.load(handle)
 
