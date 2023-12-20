@@ -235,16 +235,12 @@ if st.button('Submit'):
         new_file = "/mount/src/labinfrastructure/NewFiles/" + new_filename
 
         #--Save to the Data Path
-        with open(r"C:\Users\bhearley\Documents\New.pkl", 'wb') as handle:
+        with open(new_filename, 'wb') as handle:
             pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-        with open(r"C:\Users\bhearley\Documents\NewTxt.txt", 'w') as f: 
-            f.write('NewEntry')
-
-
-        # repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
-        # repo.index.commit('my commit description')
-        # origin = repo.remote('origin')
-        # origin.push()
+        repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
+        repo.index.commit('my commit description')
+        origin = repo.remote('origin')
+        origin.push()
 
 
