@@ -19,8 +19,7 @@ import streamlit as st
 
 # Set Paths
 home = os.getcwd()
-#data_path = r'C:\Users\bhearley\Box\LabInfrastructureData'
-data_path = "./"
+data_path = "./NewFiles"
 data_template = "./Template/DataTemplate.pkl"
 
 #----------------------------------------------------------------
