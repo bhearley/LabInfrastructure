@@ -138,7 +138,7 @@ cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",
 st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
-    # Load the template
+    #Load the template
     #data_template = os.path.join(data_path,'Template','DataTemplate.pkl')
     with open(data_template, 'rb') as handle:
         Data = pickle.load(handle)
