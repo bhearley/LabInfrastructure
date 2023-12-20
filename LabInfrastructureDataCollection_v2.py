@@ -235,7 +235,7 @@ if st.button('Submit'):
         new_file = "/mount/src/labinfrastructure/NewFiles/" + new_filename
 
         #--Save to the Data Path
-        with open("New.pkl", 'wb') as handle:
+        with open("/mount/src/labinfrastructure/New.pkl", 'wb') as handle:
             pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         repo = Repo('/mount/src/labinfrastructure')  # if repo is CWD just do '.'
