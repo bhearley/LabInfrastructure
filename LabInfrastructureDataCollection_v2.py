@@ -19,8 +19,8 @@ import streamlit as st
 
 # Set Paths
 home = os.getcwd()
-# data_template = "./Template/DataTemplate.pkl"
-data_template= os.path.join(home,'Template','DataTemplate.pkl')
+data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
+# data_template= os.path.join(home,'Template','DataTemplate.pkl')
 
 #----------------------------------------------------------------
 #   CREATE THE APP
