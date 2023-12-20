@@ -21,7 +21,7 @@ import streamlit as st
 home = os.getcwd()
 data_path = "./NewFiles"
 # data_template = "./Template/DataTemplate.pkl"
-data_template= ps.path.join(home,'Template','DataTemplate.pkl')
+data_template= os.path.join(home,'Template','DataTemplate.pkl')
 
 #----------------------------------------------------------------
 #   CREATE THE APP
