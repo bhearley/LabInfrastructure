@@ -21,7 +21,7 @@ import streamlit as st
 home = os.getcwd()
 #data_path = r'C:\Users\bhearley\Box\LabInfrastructureData'
 data_path = "./"
-data_template = "./Templates/DataTemplate.pkl"
+data_template = "./Template/DataTemplate.pkl"
 
 #----------------------------------------------------------------
 #   CREATE THE APP
