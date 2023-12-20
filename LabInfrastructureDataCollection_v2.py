@@ -16,6 +16,7 @@ import os
 import pandas as pd
 import pickle
 import streamlit as st
+from git import Repo
 
 # Set Paths
 home = os.getcwd()
