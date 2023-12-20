@@ -238,6 +238,7 @@ if st.button('Submit'):
         with open('/mount/src/labinfrastructure/New.pkl', 'wb') as handle:
             pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+        repo = Repo('/mount/src/labinfrastructure')
         repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
         repo.index.commit('my commit description')
         origin = repo.remote('origin')
