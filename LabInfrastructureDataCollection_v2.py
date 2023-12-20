@@ -231,7 +231,7 @@ if st.button('Submit'):
         os.chdir(data_path)
         files_all = glob.glob('*.pkl')
         new_filename = 'New_Data_' + str(len(files_all)) + '.pkl'
-        new_file = os.path.join(data_path,new_filename)
+        new_file = "/mount/src/labinfrastructure/NewFiles/" + new_filename
 
         #--Save to the Data Path
         with open(new_file, 'wb') as handle:
