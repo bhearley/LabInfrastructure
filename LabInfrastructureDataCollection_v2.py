@@ -239,10 +239,14 @@ if st.button('Submit'):
             pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
         repo = Repo('/mount/src/labinfrastructure')  # if repo is CWD just do '.'
-
-        repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
-        repo.index.commit('my commit description')
-        origin = repo.remote('origin')
+        repo.git.add(update=True)
+        repo.index.commit('COMMIT_MESSAGE')
+        origin = repo.remote(name='origin')
         origin.push()
+
+        # repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
+        # repo.index.commit('my commit description')
+        # origin = repo.remote('origin')
+        # origin.push()
 
 
