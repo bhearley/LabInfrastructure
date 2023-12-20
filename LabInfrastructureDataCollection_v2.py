@@ -240,7 +240,7 @@ if st.button('Submit'):
 
         repo = Repo('/mount/src/labinfrastructure')  # if repo is CWD just do '.'
 
-        repo.index.add(['New.pkl'])
+        repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
         repo.index.commit('my commit description')
         origin = repo.remote('origin')
         origin.push()
