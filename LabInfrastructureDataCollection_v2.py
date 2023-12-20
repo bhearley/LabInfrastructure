@@ -238,6 +238,9 @@ if st.button('Submit'):
         with open(r"C:\Users\bhearley\Documents\New.pkl", 'wb') as handle:
             pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+        with open(r"C:\Users\bhearley\Documents\NewTxt.txt", 'wb') as f: 
+            f.write('NewEntry')
+
 
         # repo.index.add(['/mount/src/labinfrastructure/New.pkl'])
         # repo.index.commit('my commit description')
