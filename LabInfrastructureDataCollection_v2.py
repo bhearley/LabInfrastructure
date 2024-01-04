@@ -40,7 +40,7 @@ asset_name = st.text_input("Labratory/Capability Name:",value="")
 # Create Input for Asset Description
 asset_desc = st.text_area("Labratory/Capability Description:",value="")
 
-# Create Input for Describing Challegen in Sustaining
+# Create Input for Describing Challegne in Sustaining
 challenge_desc = st.text_area("Challenge in sustaining this capablity:",value="")
 
 # Create Input for Age
@@ -52,7 +52,7 @@ condition = st.selectbox('Condition:',
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
-st.subheader('Current Mission/Projet Utilization')
+st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
 proj_rows = st.number_input('Number of Projects', min_value=0, max_value=10)
 grid = st.columns(3)
