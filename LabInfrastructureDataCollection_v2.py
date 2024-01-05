@@ -143,13 +143,13 @@ for r in range(down_rows):
 #Create Divider for Down Time History
 st.subheader('Cost')
 # Create Input for Cost of Replacement
-cost_rep = st.number_input("Cost of Replacement ($):",min_value=0.00,max_value=None,step=1000,value=0)
+cost_rep = st.number_input("Cost of Replacement ($):",min_value=0,max_value=None,step=1000,value=0)
 
 # Create Input for Cost of Service Contracts
-cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0.00,max_value=None,step=1000,value=0)
+cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0)
 
 # Create Input for Annual Expenses to operate and sustain the lab
-cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0.00,max_value=None,step=1000,value=0)
+cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0)
 
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
