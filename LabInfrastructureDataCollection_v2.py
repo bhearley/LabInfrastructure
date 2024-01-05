@@ -28,7 +28,7 @@ data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
 #   Create the streamlit app for data collection
 
 # Set the page configuration
-st. set_page_config(layout="wide")
+st.set_page_config(layout="wide")
 
 # Create the Title
 st.title("NASA GRC Lab Infrastructure Data Collection")
