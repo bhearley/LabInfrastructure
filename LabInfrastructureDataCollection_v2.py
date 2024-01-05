@@ -40,6 +40,9 @@ asset_name = st.text_input("Labratory/Capability Name:",value="")
 # Create Input for Asset Description
 asset_desc = st.text_area("Labratory/Capability Description:",value="")
 
+# Create Input for Asset Name
+asset_link = st.text_input("Labratory/Capability Website:",value="")
+
 # Create Input for Describing Challegne in Sustaining
 challenge_desc = st.text_area("Challenge in sustaining this capablity:",value="")
 
