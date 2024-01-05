@@ -58,11 +58,12 @@ condition = st.selectbox('Condition:',
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
 proj_rows = st.number_input('Number of Projects', min_value=0, max_value=10)
-grid = st.columns(4)
+grid = st.columns(5)
 proj_util = [None,None,None,None,None,None,None,None,None,None] #Store the projects
 wbs_util = [None,None,None,None,None,None,None,None,None,None] #Store the project WBS
 use_util = [None,None,None,None,None,None,None,None,None,None] #Store the use for each project
 risk = [None,None,None,None,None,None,None,None,None,None] #Store the risk
+impact_util = [None,None,None,None,None,None,None,None,None,None] #Store the use for each project
 def add_row(row):
     with grid[0]:
         if row == 0:
@@ -81,9 +82,14 @@ def add_row(row):
             use_util[row]=st.number_input('', step=0.5, key=f'input_col3{row}')
     with grid[3]:
         if row == 0:
-            risk[row]=st.selectbox('Risk to Projects', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
         else:
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
+    with grid[4]:
+        if row == 0:
+            impact_util[row]=st.text_input('Impact to Project if Capability is Lost', key=f'input_col5{row}')
+        else:
+            impact_util[row]=st.text_input('', key=f'input_col5{row}')
 for r in range(proj_rows):
     add_row(r)
 
@@ -109,24 +115,24 @@ desc_dt = [None,None,None,None,None,None,None,None,None,None] #Store a descripti
 def add_row2(row):
     with grid2[0]:
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', key=f'input_col5{row}')
+            date_dt[row]=st.date_input('Start Date', key=f'input_col6{row}')
         else:
-            date_dt[row]=st.date_input('',key=f'input_col5{row}')
+            date_dt[row]=st.date_input('',key=f'input_col6{row}')
     with grid2[1]:
         if row == 0:
-            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col6{row}')
+            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col7{row}')
         else:
-            time_dt[row]=st.number_input('', step=0.5, key=f'input_col6{row}')
+            time_dt[row]=st.number_input('', step=0.5, key=f'input_col7{row}')
     with grid2[2]:
         if row == 0:
-            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col7{row}')
+            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col8{row}')
         else:
-            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col7{row}')
+            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col8{row}')
     with grid2[3]:
         if row == 0:
-            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col8{row}')
+            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col9{row}')
         else:
-            desc_dt[row]=st.text_input('', value='',key=f'input_col8{row}')
+            desc_dt[row]=st.text_input('', value='',key=f'input_col9{row}')
 for r in range(down_rows):
     add_row2(r)
 
