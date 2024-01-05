@@ -71,19 +71,19 @@ def add_row(row):
             proj_util[row]=st.text_input('', key=f'input_col1{row}')
     with grid[1]:
         if row == 0:
-            wbs_util[row]=st.text_input('WBS Number', key=f'input_col2{row}')
+            wbs_util[row]=st.text_input('WBS Number', key=f'input_col8{row}')
         else:
-            wbs_util[row]=st.text_input('', key=f'input_col2{row}')
+            wbs_util[row]=st.text_input('', key=f'input_col8{row}')
     with grid[2]:
         if row == 0:
-            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col3{row}')
+            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col2{row}')
         else:
-            use_util[row]=st.number_input('', step=0.5, key=f'input_col3{row}')
+            use_util[row]=st.number_input('', step=0.5, key=f'input_col2{row}')
     with grid[3]:
         if row == 0:
-            risk[row]=st.selectbox('Risk to Projects', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
+            risk[row]=st.selectbox('Risk to Projects', ('High', 'Moderate', 'Low'),key=f'input_col3{row}')
         else:
-            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
+            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col3{row}')
 for r in range(proj_rows):
     add_row(r)
 
