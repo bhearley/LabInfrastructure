@@ -56,6 +56,9 @@ age = st.number_input("Age (years):",min_value=0,max_value=None,value=0)
 condition = st.selectbox('Condition:',
     ('Excellent', 'Good', 'Fair','Poor')) #Options
 
+# Create File Uploader
+uploaded_files = st.file_uploader("Upload Documents/Images", accept_multiple_files=True)
+
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
 st.subheader('Current Mission/Project Utilization')
