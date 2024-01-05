@@ -69,7 +69,7 @@ def add_row(row):
             proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col1{row}')
         else:
             proj_util[row]=st.text_input('', key=f'input_col1{row}')
-    with grid[0]:
+    with grid[1]:
         if row == 0:
             wbs_util[row]=st.text_input('WBS Number', key=f'input_col1{row}')
         else:
