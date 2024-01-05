@@ -44,7 +44,7 @@ asset_desc = st.text_area("Labratory/Capability Description:",value="")
 asset_link = st.text_input("Labratory/Capability Website:",value="")
 
 # Create Input for Describing Challegne in Sustaining
-challenge_desc = st.text_area("Challenge in sustaining this capablity:",value="")
+challenge_desc = st.text_area("Challenges in sustaining this capablity:",value="")
 
 # Create Input for Age
 age = st.number_input("Age (years):",min_value=0,max_value=None,value=0)
@@ -58,8 +58,9 @@ condition = st.selectbox('Condition:',
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
 proj_rows = st.number_input('Number of Projects', min_value=0, max_value=10)
-grid = st.columns(3)
+grid = st.columns(4)
 proj_util = [None,None,None,None,None,None,None,None,None,None] #Store the projects
+wbs_util = [None,None,None,None,None,None,None,None,None,None] #Store the project WBS
 use_util = [None,None,None,None,None,None,None,None,None,None] #Store the use for each project
 risk = [None,None,None,None,None,None,None,None,None,None] #Store the risk
 def add_row(row):
@@ -68,12 +69,17 @@ def add_row(row):
             proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col1{row}')
         else:
             proj_util[row]=st.text_input('', key=f'input_col1{row}')
-    with grid[1]:
+    with grid[0]:
+        if row == 0:
+            wbs_util[row]=st.text_input('WBS Number', key=f'input_col1{row}')
+        else:
+            wbs_util[row]=st.text_input('', key=f'input_col1{row}')
+    with grid[2]:
         if row == 0:
             use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col2{row}')
         else:
             use_util[row]=st.number_input('', step=0.5, key=f'input_col2{row}')
-    with grid[2]:
+    with grid[3]:
         if row == 0:
             risk[row]=st.selectbox('Risk to Projects', ('High', 'Moderate', 'Low'),key=f'input_col3{row}')
         else:
