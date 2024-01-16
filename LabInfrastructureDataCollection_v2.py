@@ -35,16 +35,16 @@ st.title("NASA GRC Lab Infrastructure Data Collection")
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
-st.subheader('Labratory/Capability Information')
+st.subheader('Laboratory/Capability Information')
 
 # Create Input for Asset Name
-asset_name = st.text_input("Labratory/Capability Name:",value="")
+asset_name = st.text_input("Laboratory/Capability Name:",value="")
 
 # Create Input for Asset Description
-asset_desc = st.text_area("Labratory/Capability Description:",value="")
+asset_desc = st.text_area("Laboratory/Capability Description:",value="")
 
 # Create Input for Asset Name
-asset_link = st.text_input("Labratory/Capability Website:",value="")
+asset_link = st.text_input("Laboratory/Capability Website:",value="")
 
 # Create Input for Describing Challegne in Sustaining
 challenge_desc = st.text_area("Challenges in sustaining this capablity:",value="")
@@ -55,6 +55,53 @@ age = st.number_input("Age (years):",min_value=0,max_value=None,value=0)
 # Create Input for Condition
 condition = st.selectbox('Condition:',
     ('Excellent', 'Good', 'Fair','Poor')) #Options
+
+# Create Input for Assets
+asset_rows = st.number_input('Number of Assets', min_value=0, max_value=50)
+grid = st.columns(5)
+asset_name = [] #Store the asset name
+asset_age = [] #Store the asset age
+asset_cond = [] #Store the asset condition
+asset_cost = [] #Store the asset cost of replacement
+asset_imp = [] #Store the asset impact description
+def add_row_asset(row):
+    with grid[0]:
+        while len(asset_name) < row:
+            asset_name.append(None)
+        if row == 0:
+            asset_name[row]=st.text_input('Asset Name', key=f'input_col1{row}')
+        else:
+            asset_name[row]=st.text_input('', key=f'input_col1{row}')
+    with grid[1]:
+        while len(asset_age) < row:
+            asset_age.append(None)
+        if row == 0:
+            asset_age[row]=st.number_input('Asset Age (yrs)', step=0.5, key=f'input_col2{row}')
+        else:
+            asset_age[row]=st.number_input('', step=0.5, key=f'input_col2{row}')
+    with grid[2]:
+        while len(asset_cond) < row:
+            asset_cond.append(None)
+        if row == 0:
+            asset_cond[row]=st.selectbox('Asset Condition', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col3{row}')
+        else:
+            asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col3{row}')
+    with grid[3]:
+        while len(asset_cost) < row:
+            asset_cost.append(None)
+        if row == 0:
+            asset_cost[row]=st.number_input('Cost of Replacement ($)', step=1000, key=f'input_col4{row}')
+        else:
+            asset_cost[row]=st.number_input('', step=1000, key=f'input_col4{row}')
+    with grid[4]:
+        while len(asset_imp) < row:
+            asset_imp.append(None)
+        if row == 0:
+            asset_imp[row]=st.text_input('Impact if Lost', key=f'input_col5{row}')
+        else:
+            asset_imp[row]=st.text_input('', key=f'input_col5{row}')
+for r in range(asset_rows):
+    add_row_asset(r)
 
 # Create File Uploader
 uploaded_files = st.file_uploader("Upload Documents/Images", accept_multiple_files=True)
@@ -73,29 +120,29 @@ impact_util = [None,None,None,None,None,None,None,None,None,None] #Store the use
 def add_row(row):
     with grid[0]:
         if row == 0:
-            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col1{row}')
+            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col6{row}')
         else:
-            proj_util[row]=st.text_input('', key=f'input_col1{row}')
+            proj_util[row]=st.text_input('', key=f'input_col6{row}')
     with grid[1]:
         if row == 0:
-            wbs_util[row]=st.text_input('WBS Number', key=f'input_col2{row}')
+            wbs_util[row]=st.text_input('WBS Number', key=f'input_col7{row}')
         else:
-            wbs_util[row]=st.text_input('', key=f'input_col2{row}')
+            wbs_util[row]=st.text_input('', key=f'input_col7{row}')
     with grid[2]:
         if row == 0:
-            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col3{row}')
+            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col8{row}')
         else:
-            use_util[row]=st.number_input('', step=0.5, key=f'input_col3{row}')
+            use_util[row]=st.number_input('', step=0.5, key=f'input_col8{row}')
     with grid[3]:
         if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
         else:
-            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col4{row}')
+            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
     with grid[4]:
         if row == 0:
-            impact_util[row]=st.text_input('Impact to Project if Capability is Lost', key=f'input_col5{row}')
+            impact_util[row]=st.text_input('Impact to Project if Capability is Lost', key=f'input_col10{row}')
         else:
-            impact_util[row]=st.text_input('', key=f'input_col5{row}')
+            impact_util[row]=st.text_input('', key=f'input_col10{row}')
 for r in range(proj_rows):
     add_row(r)
 
@@ -121,24 +168,24 @@ desc_dt = [None,None,None,None,None,None,None,None,None,None] #Store a descripti
 def add_row2(row):
     with grid2[0]:
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', key=f'input_col6{row}')
+            date_dt[row]=st.date_input('Start Date', key=f'input_col11{row}')
         else:
-            date_dt[row]=st.date_input('',key=f'input_col6{row}')
+            date_dt[row]=st.date_input('',key=f'input_col11{row}')
     with grid2[1]:
         if row == 0:
-            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col7{row}')
+            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col12{row}')
         else:
-            time_dt[row]=st.number_input('', step=0.5, key=f'input_col7{row}')
+            time_dt[row]=st.number_input('', step=0.5, key=f'input_col12{row}')
     with grid2[2]:
         if row == 0:
-            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col8{row}')
+            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col13{row}')
         else:
-            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col8{row}')
+            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col13{row}')
     with grid2[3]:
         if row == 0:
-            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col9{row}')
+            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col14{row}')
         else:
-            desc_dt[row]=st.text_input('', value='',key=f'input_col9{row}')
+            desc_dt[row]=st.text_input('', value='',key=f'input_col14{row}')
 for r in range(down_rows):
     add_row2(r)
 
@@ -177,8 +224,8 @@ if st.button('Submit'):
                challenge_desc,
                hist,
                impact]
-    req_txt_d = ['Labratory/Capability Name:',
-                'Labratory/Capability Description:',
+    req_txt_d = ['Laboratory/Capability Name:',
+                'Laboratory/Capability Description:',
                 'Challenge in sustaining this capablity:',
                 'History of capability utilization:',
                 'Major impact and contributions this capability has made possible:'
