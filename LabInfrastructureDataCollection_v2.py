@@ -31,7 +31,7 @@ data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
 st.set_page_config(layout="wide")
 
 # Create the Title
-st.title("NASA GRC Lab Infrastructure Data Collection")
+st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
