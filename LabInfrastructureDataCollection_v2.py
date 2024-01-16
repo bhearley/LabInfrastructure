@@ -66,35 +66,35 @@ asset_cost = [] #Store the asset cost of replacement
 asset_imp = [] #Store the asset impact description
 def add_row_asset(row):
     with grid[0]:
-        while len(asset_name) < row:
+        while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
             asset_name[row]=st.text_input('Asset Name', key=f'input_col1{row}')
         else:
             asset_name[row]=st.text_input('', key=f'input_col1{row}')
     with grid[1]:
-        while len(asset_age) < row:
+        while len(asset_age) < row+1:
             asset_age.append(None)
         if row == 0:
             asset_age[row]=st.number_input('Asset Age (yrs)', step=0.5, key=f'input_col2{row}')
         else:
             asset_age[row]=st.number_input('', step=0.5, key=f'input_col2{row}')
     with grid[2]:
-        while len(asset_cond) < row:
+        while len(asset_cond) < row+1:
             asset_cond.append(None)
         if row == 0:
             asset_cond[row]=st.selectbox('Asset Condition', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col3{row}')
         else:
             asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col3{row}')
     with grid[3]:
-        while len(asset_cost) < row:
+        while len(asset_cost) < row+1:
             asset_cost.append(None)
         if row == 0:
             asset_cost[row]=st.number_input('Cost of Replacement ($)', step=1000, key=f'input_col4{row}')
         else:
             asset_cost[row]=st.number_input('', step=1000, key=f'input_col4{row}')
     with grid[4]:
-        while len(asset_imp) < row:
+        while len(asset_imp) < row+1:
             asset_imp.append(None)
         if row == 0:
             asset_imp[row]=st.text_input('Impact if Lost', key=f'input_col5{row}')
