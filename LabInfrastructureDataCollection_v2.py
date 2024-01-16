@@ -103,6 +103,9 @@ def add_row_asset(row):
 for r in range(asset_rows):
     add_row_asset(r)
 
+# Create Input for Sustainment Funding Source
+sust_funding = st.text_area("Sustainment Funding Source:",value="")
+
 # Create File Uploader
 uploaded_files = st.file_uploader("Upload Documents/Images", accept_multiple_files=True)
 
