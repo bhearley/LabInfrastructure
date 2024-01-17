@@ -59,7 +59,7 @@ condition = st.selectbox('Condition:',
     ('Excellent', 'Good', 'Fair','Poor')) #Options
 
 # Create Input for Assets
-asset_rows = st.number_input('Number of Assets', min_value=0, max_value=50)
+asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
 grid = st.columns(5)
 asset_name = [] #Store the asset name
 asset_age = [] #Store the asset age
@@ -109,7 +109,7 @@ for r in range(asset_rows):
 sust_funding = st.text_area("Sustainment Funding Source:",value="")
 
 # Create File Uploader
-uploaded_files = st.file_uploader("Upload Documents/Images", accept_multiple_files=True)
+uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
@@ -145,7 +145,7 @@ def add_row(row):
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
     with grid[4]:
         if row == 0:
-            impact_util[row]=st.text_input('Impact to Project if Laboratory\Capability is Lost', key=f'input_col10{row}')
+            impact_util[row]=st.text_input('Impact if Laboratory\Capability is Lost', key=f'input_col10{row}')
         else:
             impact_util[row]=st.text_input('', key=f'input_col10{row}')
 for r in range(proj_rows):
@@ -153,7 +153,7 @@ for r in range(proj_rows):
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
-st.subheader('Utilization History an Impact')
+st.subheader('Utilization History and Impact')
 # Create Input for History of Capability Utilization
 hist = st.text_area("History of capability utilization:",value="")
 
@@ -162,9 +162,9 @@ impact = st.text_area("Major impact and contributions this capability has made p
 
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
-st.subheader('History of Down Time Due to Maintanence or Failure')
+st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
-down_rows = st.number_input('Number of Rows', min_value=0, max_value=10)
+down_rows = st.number_input('Number of Rows:', min_value=0, max_value=10)
 grid2 = st.columns(4)
 date_dt = [None,None,None,None,None,None,None,None,None,None] #Store date the asset went down
 time_dt = [None,None,None,None,None,None,None,None,None,None] #Store the time down
