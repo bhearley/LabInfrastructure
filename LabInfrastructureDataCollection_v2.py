@@ -145,7 +145,7 @@ def add_row(row):
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
     with grid[4]:
         if row == 0:
-            impact_util[row]=st.text_input('Impact if Laboratory\Capability is Lost', key=f'input_col10{row}')
+            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_col10{row}')
         else:
             impact_util[row]=st.text_input('', key=f'input_col10{row}')
 for r in range(proj_rows):
