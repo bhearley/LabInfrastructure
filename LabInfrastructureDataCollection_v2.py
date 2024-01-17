@@ -18,6 +18,7 @@ import pickle
 import streamlit as st
 #from streamlit_gsheets import GSheetsConnection
 from git import Repo
+import datetime
 
 # Set Paths
 home = os.getcwd()
@@ -48,10 +49,10 @@ asset_desc = st.text_area("Laboratory/Capability Description:",value="")
 asset_link = st.text_input("Laboratory/Capability Website:",value="")
 
 # Create Input for Describing Challegne in Sustaining
-challenge_desc = st.text_area("Challenges in sustaining this capablity:",value="")
+challenge_desc = st.text_area("Challenges in sustaining this laboratory/capability:",value="")
 
 # Create Input for Age
-age = st.number_input("Age (years):",min_value=0,max_value=None,value=0)
+age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0)
 
 # Create Input for Condition
 condition = st.selectbox('Condition:',
@@ -144,7 +145,7 @@ def add_row(row):
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
     with grid[4]:
         if row == 0:
-            impact_util[row]=st.text_input('Impact to Project if Capability is Lost', key=f'input_col10{row}')
+            impact_util[row]=st.text_input('Impact to Project if Laboratory\Capability is Lost', key=f'input_col10{row}')
         else:
             impact_util[row]=st.text_input('', key=f'input_col10{row}')
 for r in range(proj_rows):
@@ -172,9 +173,9 @@ desc_dt = [None,None,None,None,None,None,None,None,None,None] #Store a descripti
 def add_row2(row):
     with grid2[0]:
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', key=f'input_col11{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col11{row}')
         else:
-            date_dt[row]=st.date_input('',key=f'input_col11{row}')
+            date_dt[row]=st.date_input('', mindate=min_value.date(1950, 1, 1), key=f'input_col11{row}')
     with grid2[1]:
         if row == 0:
             time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col12{row}')
@@ -197,7 +198,7 @@ for r in range(down_rows):
 #Create Divider for Down Time History
 st.subheader('Cost')
 # Create Input for Cost of Replacement
-cost_rep = st.number_input("Cost of Replacement ($):",min_value=0,max_value=None,step=1000,value=0)
+cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=0)
 
 # Create Input for Cost of Service Contracts
 cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0)
