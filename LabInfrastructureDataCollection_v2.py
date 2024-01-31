@@ -203,9 +203,9 @@ def add_row(row):
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
-            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col14{row}')
+            use_util[row]=st.number_input('Project Use (%)', min_value=0, max_value=100, step=0.5, key=f'input_col14{row}')
         else:
-            use_util[row]=st.number_input('', step=0.5, key=f'input_col14{row}')
+            use_util[row]=st.number_input('', min_value=0, max_value=100, step=0.5, key=f'input_col14{row}')
     # -- Risk to Project
     with grid[3]:
         while len(risk) < row+1:
@@ -249,24 +249,24 @@ desc_dt = [None,None,None,None,None,None,None,None,None,None] #Store a descripti
 def add_row2(row):
     with grid2[0]:
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col11{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col17{row}')
         else:
-            date_dt[row]=st.date_input('', mindate=min_value.date(1950, 1, 1), key=f'input_col11{row}')
+            date_dt[row]=st.date_input('', mindate=min_value.date(1950, 1, 1), key=f'input_col17{row}')
     with grid2[1]:
         if row == 0:
-            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col12{row}')
+            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col18{row}')
         else:
-            time_dt[row]=st.number_input('', step=0.5, key=f'input_col12{row}')
+            time_dt[row]=st.number_input('', step=0.5, key=f'input_col18{row}')
     with grid2[2]:
         if row == 0:
-            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col13{row}')
+            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col19{row}')
         else:
-            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col13{row}')
+            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col19{row}')
     with grid2[3]:
         if row == 0:
-            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col14{row}')
+            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col20{row}')
         else:
-            desc_dt[row]=st.text_input('', value='',key=f'input_col14{row}')
+            desc_dt[row]=st.text_input('', value='',key=f'input_col20{row}')
 for r in range(down_rows):
     add_row2(r)
 
