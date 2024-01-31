@@ -294,6 +294,35 @@ cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_val
 # Create Input for Annual Expenses to operate and sustain the lab
 cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0)
 
+# Create Input for Incurred Cost Due to Downtown
+cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0)
+
+# Create Input for Labor Division
+labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50)
+grid5 = st.columns(2)
+division = [] #Store division
+labor_pct = [] #Store the labor percentrate
+
+def add_row5(row):
+    # -- Start Date for Time Down
+    with grid5[0]:
+        while len(division) < row+1:
+            division.append(None)
+        if row == 0:
+            division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_col21{row}')
+        else:
+            division[row]=st.date_input('', ('Code F','Code L'), key=f'input_col21{row}')
+    # -- Time Down
+    with grid5[1]:
+        while len(labor_pct) < row+1:
+            labor_pct.append(None)
+        if row == 0:
+            labor_pct[row]=st.number_input('Labor Cost (%)',min_value=0,max_value=100, step=0.5, key=f'input_col22{row}')
+        else:
+            labor_pct[row]=st.number_input('',min_value=0,max_value=100 step=0.5, key=f'input_col22{row}')
+for r in range(labor_rows):
+    add_row5(r)
+
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
 st.subheader('')
