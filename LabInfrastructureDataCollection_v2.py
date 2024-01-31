@@ -61,7 +61,7 @@ condition = st.selectbox('Condition:',
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
 #grid = st.columns([0.075,0.05,0.05,0.08,0.125,0.085,0.11,0.075,0.1,0.125,0.125])
-grid = st.columns([0.125,0.075,0.05,0.08,0.08,0.075,0.08,0.15,0.1,0.06,0.125])
+grid = st.columns([0.125,0.075,0.05,0.08,0.08,0.05,0.07,0.125,0.1,0.11,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -135,7 +135,7 @@ def add_row_asset(row):
         while len(asset_imp) < row+1:
             asset_imp.append(None)
         if row == 0:
-            asset_imp[row]=st.text_input('Impact if Lost', key=f'input_col8{row}')
+            asset_imp[row]=st.text_input('Impact \n \n  if Lost', key=f'input_col8{row}')
         else:
             asset_imp[row]=st.text_input('', key=f'input_col8{row}')
     # -- Associated Software
@@ -143,7 +143,7 @@ def add_row_asset(row):
         while len(asset_software) < row+1:
             asset_software.append(None)
         if row == 0:
-            asset_software[row]=st.text_input('Associated Software', key=f'input_col9{row}')
+            asset_software[row]=st.text_input('Associated \n \n Software', key=f'input_col9{row}')
         else:
             asset_software[row]=st.text_input('', key=f'input_col9{row}')
     # -- IT/computer hardware repalcement
@@ -151,14 +151,14 @@ def add_row_asset(row):
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
-            asset_itrep[row]=st.selectbox('IT Hardware Repalcement?', ('Yes','No'),key=f'input_col10{row}')
+            asset_itrep[row]=st.selectbox('IT Hardware \n \n  Repalcement?', ('Yes','No'),key=f'input_col10{row}')
         else:
             asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_col10{row}')
     with grid[10]:
         while len(asset_repdesc) < row+1:
             asset_repdesc.append(None)
         if row == 0:
-            asset_repdesc[row]=st.text_input('Part or Full Replacement?', key=f'input_col11{row}')
+            asset_repdesc[row]=st.text_input('Part or Full \n \n Replacement?', key=f'input_col11{row}')
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_col11{row}')
 for r in range(asset_rows):
