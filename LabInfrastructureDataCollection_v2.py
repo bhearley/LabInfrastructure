@@ -78,7 +78,7 @@ def add_row_asset(row):
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
-            asset_name[row]=st.text_input('Asset Name', key=f'input_col1{row}')
+            asset_name[row]=st.text_input('Asset  \n \n \n Name', key=f'input_col1{row}')
         else:
             asset_name[row]=st.text_input('', key=f'input_col1{row}')
     # -- Asset Location    
@@ -210,8 +210,8 @@ def add_row(row):
         while len(risk) < row+1:
             risk.append(None)
         if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time.\n ' +
-                                                                                       'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time.\n ' +
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
+                                                                                       'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time. \n \n \n ' +
                                                                                        'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_col15{row}')
         else:
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col15{row}')
