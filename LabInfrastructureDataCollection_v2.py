@@ -240,29 +240,41 @@ impact = st.text_area("Major impact and contributions this capability has made p
 #Create Divider for Down Time History
 st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
-down_rows = st.number_input('Number of Rows:', min_value=0, max_value=10)
+down_rows = st.number_input('Number of Rows:', min_value=0, max_value=50)
 grid2 = st.columns(4)
-date_dt = [None,None,None,None,None,None,None,None,None,None] #Store date the asset went down
-time_dt = [None,None,None,None,None,None,None,None,None,None] #Store the time down
-unit_dt = [None,None,None,None,None,None,None,None,None,None] #Store the unit for time down
-desc_dt = [None,None,None,None,None,None,None,None,None,None] #Store a description for the time down
+date_dt = [] #Store date the asset went down
+time_dt = [] #Store the time down
+unit_dt = [] #Store the unit for time down
+desc_dt = [] #Store a description for the time down
 def add_row2(row):
+    # -- Start Date for Time Down
     with grid2[0]:
+        while len(date_dt) < row+1:
+            date_dt.append(None)
         if row == 0:
             date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col17{row}')
         else:
-            date_dt[row]=st.date_input('', mindate=min_value.date(1950, 1, 1), key=f'input_col17{row}')
+            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col17{row}')
+    # -- Time Down
     with grid2[1]:
+        while len(time_dt) < row+1:
+            time_dt.append(None)
         if row == 0:
             time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col18{row}')
         else:
             time_dt[row]=st.number_input('', step=0.5, key=f'input_col18{row}')
+    # -- Unit of Time Down
     with grid2[2]:
+        while len(unit_dt) < row+1:
+            unit_dt.append(None)
         if row == 0:
             unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col19{row}')
         else:
             unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col19{row}')
+    # -- Additonal Notes for Time Down
     with grid2[3]:
+        while len(desc_dt) < row+1:
+            desc_dt.append(None)
         if row == 0:
             desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col20{row}')
         else:
