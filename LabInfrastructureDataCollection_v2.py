@@ -20,6 +20,10 @@ import streamlit as st
 from git import Repo
 import datetime
 
+# Test Load the Dictionary
+with open('Test.pkl', 'rb') as handle:
+    Data_In = pickle.load(handle)
+
 # Set Paths
 home = os.getcwd()
 data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
@@ -33,7 +37,7 @@ data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
 st.set_page_config(layout="wide")
 
 # Create the Title
-st.title("NASA GRC Laboratory Infrastructure Data Collection")
+st.title("NASA GRC Laboratory Infrastructure Data Collection     " + str(Data_In))
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
