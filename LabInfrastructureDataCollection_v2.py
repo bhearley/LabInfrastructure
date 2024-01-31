@@ -380,9 +380,5 @@ if st.button('Submit'):
         pickle.dump(Data_Out, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     
-    #Load the template
-    with open("/mount/src/labinfrastructure/Template/DataTemplate.pkl", 'rb') as handle:
-        Data = pickle.load(handle)
-
-    
-
+    text_contents = '''This is \n some text'''
+    st.download_button('Download some text', text_contents)
