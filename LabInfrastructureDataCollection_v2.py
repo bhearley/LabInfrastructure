@@ -317,9 +317,9 @@ def add_row5(row):
         while len(labor_pct) < row+1:
             labor_pct.append(None)
         if row == 0:
-            labor_pct[row]=st.number_input('Labor Cost (%)',min_value=0,max_value=100, step=0.5, key=f'input_col22{row}')
+            labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0, max_value=100, step=0.5, key=f'input_col22{row}')
         else:
-            labor_pct[row]=st.number_input('',min_value=0,max_value=100 step=0.5, key=f'input_col22{row}')
+            labor_pct[row]=st.number_input('', min_value=0, max_value=100, step=0.5, key=f'input_col22{row}')
 for r in range(labor_rows):
     add_row5(r)
 
