@@ -203,9 +203,9 @@ def add_row(row):
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
-            use_util[row]=st.number_input('Project Use (%)', min_value=0, max_value=100, step=0.5, key=f'input_col14{row}')
+            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col14{row}')
         else:
-            use_util[row]=st.number_input('', min_value=0, max_value=100, step=0.5, key=f'input_col14{row}')
+            use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col14{row}')
     # -- Risk to Project
     with grid[3]:
         while len(risk) < row+1:
