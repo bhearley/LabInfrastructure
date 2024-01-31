@@ -78,7 +78,7 @@ def add_row_asset(row):
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
-            asset_name[row]=st.text_input('Asset  \n \n \n Name', key=f'input_col1{row}')
+            asset_name[row]=st.text_input('Asset  \n \n \Name', key=f'input_col1{row}')
         else:
             asset_name[row]=st.text_input('', key=f'input_col1{row}')
     # -- Asset Location    
