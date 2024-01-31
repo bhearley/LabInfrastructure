@@ -354,7 +354,7 @@ def add_row5(row):
         if row == 0:
             division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_col25{row}')
         else:
-            division[row]=st.date_input('', ('Code F','Code L'), key=f'input_col25{row}')
+            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_col25{row}')
     # -- Time Down
     with grid5[1]:
         while len(labor_pct) < row+1:
