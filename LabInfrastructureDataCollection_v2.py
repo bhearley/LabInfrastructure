@@ -60,7 +60,7 @@ condition = st.selectbox('Condition:',
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
-grid = st.columns(11)
+grid = st.columns([0.05,0.05,0.05,0.05,0.05,0.15,0.15,0.05,0.1,0.15,0.15])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -78,7 +78,7 @@ def add_row_asset(row):
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
-            asset_name[row]=st.text_input('Asset Name                   .', key=f'input_col1{row}')
+            asset_name[row]=st.text_input('Asset Name', key=f'input_col1{row}')
         else:
             asset_name[row]=st.text_input('', key=f'input_col1{row}')
     # -- Asset Location    
