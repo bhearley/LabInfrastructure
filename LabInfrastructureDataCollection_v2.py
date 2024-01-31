@@ -78,7 +78,7 @@ def add_row_asset(row):
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
-            asset_name[row]=st.text_input('Asset \n Name \n', key=f'input_col1{row}')
+            asset_name[row]=st.text_input('Asset Name                   ', key=f'input_col1{row}')
         else:
             asset_name[row]=st.text_input('', key=f'input_col1{row}')
     # -- Asset Location    
@@ -150,7 +150,7 @@ def add_row_asset(row):
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
-            asset_itrep[row]=st.selectbox('IT/computer Hardware Repalcement?', ('Yes','No'),key=f'input_col10{row}')
+            asset_itrep[row]=st.selectbox('IT Hardware Repalcement?', ('Yes','No'),key=f'input_col10{row}')
         else:
             asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_col10{row}')
     with grid[10]:
