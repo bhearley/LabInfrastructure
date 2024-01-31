@@ -173,39 +173,54 @@ uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_fi
 #Create Divider for Name and Description
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
-proj_rows = st.number_input('Number of Projects', min_value=0, max_value=10)
+proj_rows = st.number_input('Number of Projects', min_value=0, max_value=50)
 grid = st.columns(5)
-proj_util = [None,None,None,None,None,None,None,None,None,None] #Store the projects
-wbs_util = [None,None,None,None,None,None,None,None,None,None] #Store the project WBS
-use_util = [None,None,None,None,None,None,None,None,None,None] #Store the use for each project
-risk = [None,None,None,None,None,None,None,None,None,None] #Store the risk
-impact_util = [None,None,None,None,None,None,None,None,None,None] #Store the use for each project
+proj_util = [] #Store the projects
+wbs_util = [] #Store the project WBS
+use_util = [] #Store the use for each project
+risk = [] #Store the risk
+impact_util = [] #Store the use for each project
 def add_row(row):
+    # -- Project Name
     with grid[0]:
+        while len(proj_util) < row+1:
+            proj_util.append(None)
         if row == 0:
-            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col6{row}')
+            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col12{row}')
         else:
-            proj_util[row]=st.text_input('', key=f'input_col6{row}')
+            proj_util[row]=st.text_input('', key=f'input_col12{row}')
+    # -- WBS Number
     with grid[1]:
+        while len(wbs_util) < row+1:
+            wbs_util.append(None)
         if row == 0:
-            wbs_util[row]=st.text_input('WBS Number', key=f'input_col7{row}')
+            wbs_util[row]=st.text_input('WBS Number', key=f'input_col13{row}')
         else:
-            wbs_util[row]=st.text_input('', key=f'input_col7{row}')
+            wbs_util[row]=st.text_input('', key=f'input_co13{row}')
+    # -- Project Use
     with grid[2]:
+        while len(use_util) < row+1:
+            use_util.append(None)
         if row == 0:
             use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col8{row}')
         else:
             use_util[row]=st.number_input('', step=0.5, key=f'input_col8{row}')
+    # -- Risk to Project
     with grid[3]:
+        while len(risk) < row+1:
+            risk.append(None)
         if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col14{row}')
         else:
-            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col9{row}')
+            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col14{row}')
+    # -- Impact to Project
     with grid[4]:
+        while len(impact_util) < row+1:
+            impact_util.append(None)
         if row == 0:
-            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_col10{row}')
+            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_col15{row}')
         else:
-            impact_util[row]=st.text_input('', key=f'input_col10{row}')
+            impact_util[row]=st.text_input('', key=f'input_col15{row}')
 for r in range(proj_rows):
     add_row(r)
 
