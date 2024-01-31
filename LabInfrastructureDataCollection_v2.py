@@ -202,25 +202,25 @@ def add_row(row):
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
-            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col8{row}')
+            use_util[row]=st.number_input('Use (hours/week)', step=0.5, key=f'input_col14{row}')
         else:
-            use_util[row]=st.number_input('', step=0.5, key=f'input_col8{row}')
+            use_util[row]=st.number_input('', step=0.5, key=f'input_col14{row}')
     # -- Risk to Project
     with grid[3]:
         while len(risk) < row+1:
             risk.append(None)
         if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col14{row}')
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),key=f'input_col15{row}')
         else:
-            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col14{row}')
+            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col15{row}')
     # -- Impact to Project
     with grid[4]:
         while len(impact_util) < row+1:
             impact_util.append(None)
         if row == 0:
-            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_col15{row}')
+            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_col16{row}')
         else:
-            impact_util[row]=st.text_input('', key=f'input_col15{row}')
+            impact_util[row]=st.text_input('', key=f'input_col16{row}')
 for r in range(proj_rows):
     add_row(r)
 
