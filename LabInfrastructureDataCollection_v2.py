@@ -210,7 +210,9 @@ def add_row(row):
         while len(risk) < row+1:
             risk.append(None)
         if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='Test Help Feature.',key=f'input_col15{row}')
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. ' +
+                                                                                       'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time.' +
+                                                                                       'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_col15{row}')
         else:
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col15{row}')
     # -- Impact to Project
