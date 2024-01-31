@@ -299,7 +299,7 @@ cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_
 
 # Create Input for Labor Division
 labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50)
-grid5 = st.beta_columns([0.1,0.3,0.3,0.3])
+grid5 = st.columns(2)
 division = [] #Store division
 labor_pct = [] #Store the labor percentrate
 
