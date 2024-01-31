@@ -60,7 +60,8 @@ condition = st.selectbox('Condition:',
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
-grid = st.columns([0.075,0.05,0.05,0.08,0.125,0.085,0.11,0.075,0.1,0.125,0.125])
+#grid = st.columns([0.075,0.05,0.05,0.08,0.125,0.085,0.11,0.075,0.1,0.125,0.125])
+grid = st.columns([0.125,0.075,0.05,0.08,0.08,0.075,0.08,0.15,0.1,0.06,0.125])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -78,7 +79,7 @@ def add_row_asset(row):
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
-            asset_name[row]=st.text_input('Asset  \n \n Name', key=f'input_col1{row}')
+            asset_name[row]=st.text_input('Asset \n \n Name', key=f'input_col1{row}')
         else:
             asset_name[row]=st.text_input('', key=f'input_col1{row}')
     # -- Asset Location    
@@ -86,7 +87,7 @@ def add_row_asset(row):
         while len(asset_loc) < row+1:
             asset_loc.append(None)
         if row == 0:
-            asset_loc[row]=st.text_input('Location', key=f'input_col2{row}')
+            asset_loc[row]=st.text_input('Location  \n \n (Bldg/Rm)', key=f'input_col2{row}')
         else:
             asset_loc[row]=st.text_input('', key=f'input_col2{row}')
     # -- Asset Age
@@ -94,7 +95,7 @@ def add_row_asset(row):
         while len(asset_age) < row+1:
             asset_age.append(None)
         if row == 0:
-            asset_age[row]=st.number_input('Age (yrs)', step=0.5, key=f'input_col3{row}')
+            asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, key=f'input_col3{row}')
         else:
             asset_age[row]=st.number_input('', step=0.5, key=f'input_col3{row}')
     # -- Asset Date of Entry
@@ -102,7 +103,7 @@ def add_row_asset(row):
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.date_input('Date of Entry', min_value=datetime.date(1950, 1, 1), key=f'input_col4{row}')
+            asset_date_in[row]=st.date_input('Date of  \n \n  Entry', min_value=datetime.date(1950, 1, 1), key=f'input_col4{row}')
         else:
             asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_col4{row}')
     # -- Asset Date of Obsolescence
@@ -110,7 +111,7 @@ def add_row_asset(row):
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            asset_date_out[row]=st.date_input('Exp. Date of Obsolescence', min_value=datetime.date(1950, 1, 1), key=f'input_col5{row}')
+            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), key=f'input_col5{row}')
         else:
             asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_col5{row}')
     # -- Asset Condition
@@ -118,7 +119,7 @@ def add_row_asset(row):
         while len(asset_cond) < row+1:
             asset_cond.append(None)
         if row == 0:
-            asset_cond[row]=st.selectbox('Condition', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col6{row}')
+            asset_cond[row]=st.selectbox('Asset  \n \n  Condition', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col6{row}')
         else:
             asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col6{row}')
     # -- Asset Cost of Replacement
@@ -126,7 +127,7 @@ def add_row_asset(row):
         while len(asset_cost) < row+1:
             asset_cost.append(None)
         if row == 0:
-            asset_cost[row]=st.number_input('Replacement Cost ($)', step=1000, key=f'input_col7{row}')
+            asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, key=f'input_col7{row}')
         else:
             asset_cost[row]=st.number_input('', step=1000, key=f'input_col7{row}')
     # -- Asset Impact if Lost
