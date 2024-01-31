@@ -375,105 +375,14 @@ for r in range(labor_rows):
 st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
+    Data_Out = Data_In + 1
+    with open('Test.pkl', 'wb') as handle:
+        pickle.dump(Data_Out, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    
     #Load the template
     with open("/mount/src/labinfrastructure/Template/DataTemplate.pkl", 'rb') as handle:
         Data = pickle.load(handle)
 
     
-#----------------------------------------------------------------------------------
-    # DATA VALIDATION
-    # Ensure Data is correct before writing
-
-    # Set the error flag
-    err_flag = 0 #Only write data if error flag is 0 after validation
-
-    # Required Text Attributes
-    req_txt = [asset_name,
-               asset_desc,
-               challenge_desc,
-               hist,
-               impact]
-    req_txt_d = ['Laboratory/Capability Name:',
-                'Laboratory/Capability Description:',
-                'Challenge in sustaining this capablity:',
-                'History of capability utilization:',
-                'Major impact and contributions this capability has made possible:'
-                ]
-
-    for j in range(len(req_txt)):
-        if req_txt[j] == '':
-            st.error(req_txt_d[j] + ' is required.')
-            err_flag=1
-
-    # Required Point Attributes
-    req_pnt = [age,
-               cost_rep,
-               cost_serv,
-               cost_ann]
-    req_pnt_d = ['Age (years)',
-                 'Cost of Replacement ($):',
-                 'Cost of Service Contracts ($):',
-                 'Annual Cost to Operate and Sustain the Lab ($/yr):'
-                 ]
-    for j in range(len(req_pnt)):
-        if req_pnt[j] == 0:
-            st.error(req_pnt_d[j] + ' is required.')
-            err_flag=1
-    
-
-    # Write the Data
-    if err_flag == 0:
-        #-- Populate the Data
-        Data['Name'] = asset_name
-        Data['Description'] = asset_desc
-        Data['Challenge'] = challenge_desc
-        Data['Age'] = age
-        Data['Condition'] = condition
-
-        proj_write = []
-        util_write = []
-        risk_write = []
-        for k in range(proj_rows):
-            proj_write.append(proj_util[k])
-            util_write.append(use_util[k])
-            risk_write.append(risk[k])
-
-        Data['Projects'] = proj_write
-        Data['Utilization'] = util_write
-        Data['Risk'] = risk_write
-
-        Data['History'] = hist
-        Data['Impact'] = asset_desc
-
-        date_write = []
-        time_write = []
-        unit_write = []
-        desc_write = []
-        for k in range(down_rows):
-            date_write.append(date_dt[k])
-            time_write.append(time_dt[k])
-            unit_write.append(unit_dt[k])
-            desc_write.append(desc_dt[k])
-
-
-        Data['DownTimeDates'] = date_write
-        Data['DownTimeTimes'] = time_dt
-        Data['DownTimeUnits'] = unit_write
-        Data['DownTimeDescs'] = desc_write
-
-        Data['ReplacementCost'] = cost_rep
-        Data['ServiceContractCost'] = cost_serv
-        Data['AnnualExpenseCost'] = cost_ann
-
-        #--Get the new file name
-        os.chdir("/mount/src/labinfrastructure/NewFiles/")
-        files_all = glob.glob('*.pkl')
-        new_filename = 'New_Data_' + str(len(files_all)) + '.pkl'
-        new_file = "/mount/src/labinfrastructure/NewFiles/" + new_filename
-
-        #--Save to the Data Path
-        with open('/mount/src/labinfrastructure/New.pkl', 'wb') as handle:
-            pickle.dump(Data, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-        st.write(Data)
 
