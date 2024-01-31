@@ -61,7 +61,7 @@ condition = st.selectbox('Condition:',
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
 #grid = st.columns([0.075,0.05,0.05,0.08,0.125,0.085,0.11,0.075,0.1,0.125,0.125])
-grid = st.columns([0.125,0.075,0.05,0.08,0.08,0.05,0.07,0.125,0.1,0.11,0.1])
+grid = st.columns([0.125,0.075,0.05,0.08,0.08,0.09,0.07,0.125,0.1,0.07,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -135,7 +135,7 @@ def add_row_asset(row):
         while len(asset_imp) < row+1:
             asset_imp.append(None)
         if row == 0:
-            asset_imp[row]=st.text_input('Impact \n \n  if Lost', key=f'input_col8{row}')
+            asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_col8{row}')
         else:
             asset_imp[row]=st.text_input('', key=f'input_col8{row}')
     # -- Associated Software
