@@ -167,6 +167,49 @@ for r in range(asset_rows):
 # Create Input for Sustainment Funding Source
 sust_funding = st.text_area("Sustainment Funding Source:",value="")
 
+# Additional Information on Funding
+fund_rows = st.number_input('Number of Rows:', min_value=0, max_value=50)
+grid2 = st.columns(4)
+fund_src = [] #Store funding source
+start_fund = [] #Store the start date of funding
+end_fund = [] #Store the end date of funding
+fund_amt = [] #Store the funding amount
+def add_row2(row):
+    # -- Funding Source
+    with grid2[0]:
+        while len(fund_src) < row+1:
+            fund_src.append(None)
+        if row == 0:
+            fund_src[row]=st.text_input('Funding Source', value='',key=f'input_col12{row}')
+        else:
+            fund_src[row]=st.text_input('', value='',key=f'input_col12{row}')
+    # -- Start Date of Funding
+    with grid2[1]:
+        while len(start_fund) < row+1:
+            start_fund.append(None)
+        if row == 0:
+            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col13{row}')
+        else:
+            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col13{row}')
+    # -- End Date of Funding
+    with grid2[2]:
+        while len(end_fund) < row+1:
+            end_fund.append(None)
+        if row == 0:
+            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), key=f'input_col13{row}')
+        else:
+            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col13{row}')
+    # -- Funding Amount
+    with grid2[3]:
+        while len(fund_amt) < row+1:
+            fund_amt.append(None)
+        if row == 0:
+            fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_col14{row}')
+        else:
+            fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_col14{row}')
+for r in range(fund_rows):
+    add_row2(r)
+
 # Create File Uploader
 uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
 
@@ -175,15 +218,15 @@ uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_fi
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
 proj_rows = st.number_input('Number of Projects', min_value=0, max_value=50)
-grid = st.columns(5)
+grid3 = st.columns(5)
 proj_util = [] #Store the projects
 wbs_util = [] #Store the project WBS
 use_util = [] #Store the use for each project
 risk = [] #Store the risk
 impact_util = [] #Store the use for each project
-def add_row(row):
+def add_row3(row):
     # -- Project Name
-    with grid[0]:
+    with grid3[0]:
         while len(proj_util) < row+1:
             proj_util.append(None)
         if row == 0:
@@ -191,7 +234,7 @@ def add_row(row):
         else:
             proj_util[row]=st.text_input('', key=f'input_col12{row}')
     # -- WBS Number
-    with grid[1]:
+    with grid3[1]:
         while len(wbs_util) < row+1:
             wbs_util.append(None)
         if row == 0:
@@ -199,7 +242,7 @@ def add_row(row):
         else:
             wbs_util[row]=st.text_input('', key=f'input_co13{row}')
     # -- Project Use
-    with grid[2]:
+    with grid3[2]:
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
@@ -207,7 +250,7 @@ def add_row(row):
         else:
             use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col14{row}')
     # -- Risk to Project
-    with grid[3]:
+    with grid3[3]:
         while len(risk) < row+1:
             risk.append(None)
         if row == 0:
@@ -217,7 +260,7 @@ def add_row(row):
         else:
             risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col15{row}')
     # -- Impact to Project
-    with grid[4]:
+    with grid3[4]:
         while len(impact_util) < row+1:
             impact_util.append(None)
         if row == 0:
@@ -225,7 +268,7 @@ def add_row(row):
         else:
             impact_util[row]=st.text_input('', key=f'input_col16{row}')
 for r in range(proj_rows):
-    add_row(r)
+    add_row3(r)
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
@@ -241,14 +284,14 @@ impact = st.text_area("Major impact and contributions this capability has made p
 st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
 down_rows = st.number_input('Number of Rows:', min_value=0, max_value=50)
-grid2 = st.columns(4)
+grid4 = st.columns(4)
 date_dt = [] #Store date the asset went down
 time_dt = [] #Store the time down
 unit_dt = [] #Store the unit for time down
 desc_dt = [] #Store a description for the time down
-def add_row2(row):
+def add_row4(row):
     # -- Start Date for Time Down
-    with grid2[0]:
+    with grid4[0]:
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
@@ -256,7 +299,7 @@ def add_row2(row):
         else:
             date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col17{row}')
     # -- Time Down
-    with grid2[1]:
+    with grid4[1]:
         while len(time_dt) < row+1:
             time_dt.append(None)
         if row == 0:
@@ -264,7 +307,7 @@ def add_row2(row):
         else:
             time_dt[row]=st.number_input('', step=0.5, key=f'input_col18{row}')
     # -- Unit of Time Down
-    with grid2[2]:
+    with grid4[2]:
         while len(unit_dt) < row+1:
             unit_dt.append(None)
         if row == 0:
@@ -272,7 +315,7 @@ def add_row2(row):
         else:
             unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col19{row}')
     # -- Additonal Notes for Time Down
-    with grid2[3]:
+    with grid4[3]:
         while len(desc_dt) < row+1:
             desc_dt.append(None)
         if row == 0:
@@ -280,7 +323,7 @@ def add_row2(row):
         else:
             desc_dt[row]=st.text_input('', value='',key=f'input_col20{row}')
 for r in range(down_rows):
-    add_row2(r)
+    add_row4(r)
 
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
