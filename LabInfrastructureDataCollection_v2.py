@@ -384,12 +384,12 @@ if st.button('Submit'):
     # -- Asset Information
     if asset_rows > 0:
         data_out = data_out + 'Assets \n'
-        data_out = data_out + 'Asset Name \t Location (Bldg/Rm) \t Age (yrs) \t Date of Entry \t Expected Date of Obsolescence \t ' +
-                              'Asset Condition \t Replacement Cost ($) \t Impact to Capability if Lost \t Associated Software \t ' +
+        data_out = data_out + 'Asset Name \t Location (Bldg/Rm) \t Age (yrs) \t Date of Entry \t Expected Date of Obsolescence \t ' + \
+                              'Asset Condition \t Replacement Cost ($) \t Impact to Capability if Lost \t Associated Software \t ' + \
                               'IT Hardware Repalcement? \t Part or Full Replacement? \n'
         for w in range(asset_rows):
-            data_out = data_out + asset_name[w] +'\t' + asset_loc[w] + '\t' +  str(asset_age[w]) + '\t' + str(asset_date_in[w])  + '\t' +  
-                       str(asset_date_out[w]) + '\t' +  asset_cond[w] + '\t' + str(asset_cost[w]) + '\t' +  asset_imp[w] + '\t' + 
+            data_out = data_out + asset_name[w] +'\t' + asset_loc[w] + '\t' +  str(asset_age[w]) + '\t' + str(asset_date_in[w])  + '\t' + \
+                       str(asset_date_out[w]) + '\t' +  asset_cond[w] + '\t' + str(asset_cost[w]) + '\t' +  asset_imp[w] + '\t' + \
                        asset_software[w] + '\t' + asset_itrep[w] + '\t' + asset_repdesc[w] +'\n' 
     
 
