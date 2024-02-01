@@ -220,13 +220,13 @@ def read_data():
             data = data + lines[k]
         data= data.split('\n')
         data_all = []
-        for k in range(num_div):
+        for k in range(num_fund):
             data_line = data[k]
             data_line = data_line.split('\t')
             data_line[1] = float(data_line[3])
             data_all.append(data_line)
 
-        for k in range(num_div):
+        for k in range(num_fund):
             st.session_state[f'input_col12{k}'] = data_all[k][0]
             date1 = data_all[k][1].split('-')
             st.session_state[f'input_col13{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
