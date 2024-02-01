@@ -20,10 +20,6 @@ import streamlit as st
 from git import Repo
 import datetime
 
-# Test Load the Dictionary
-with open('Test.pkl', 'rb') as handle:
-    Data_In = pickle.load(handle)
-
 # Set Paths
 home = os.getcwd()
 data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
@@ -37,29 +33,29 @@ data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
 st.set_page_config(layout="wide")
 
 # Create the Title
-st.title("NASA GRC Laboratory Infrastructure Data Collection     " + str(Data_In))
+st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
 st.subheader('Laboratory/Capability Information')
 
 # Create Input for Asset Name
-asset_name = st.text_input("Laboratory/Capability Name:",value="")
+lab_name = st.text_input("Laboratory/Capability Name:",value="")
 
 # Create Input for Asset Description
-asset_desc = st.text_area("Laboratory/Capability Description:",value="")
+lab_desc = st.text_area("Laboratory/Capability Description:",value="")
 
 # Create Input for Asset Name
-asset_link = st.text_input("Laboratory/Capability Website:",value="")
+lab_link = st.text_input("Laboratory/Capability Website:",value="")
 
 # Create Input for Describing Challegne in Sustaining
-challenge_desc = st.text_area("Challenges in sustaining this laboratory/capability:",value="")
+lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value="")
 
 # Create Input for Age
-age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0)
+lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0)
 
 # Create Input for Condition
-condition = st.selectbox('Condition:',
+lab_condition = st.selectbox('Condition:',
     ('Excellent', 'Good', 'Fair','Poor')) #Options
 
 # Create Input for Assets
@@ -371,14 +367,22 @@ for r in range(labor_rows):
     add_row5(r)
 
 #----------------------------------------------------------------------------------
-#Create Divider for Down Time History
+# Submit Button
 st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
-    Data_Out = Data_In + 1
-    with open('Test.pkl', 'wb') as handle:
-        pickle.dump(Data_Out, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    # Write the Text File
+    # -- Laboratory/Capability Information
+    data_out = 'Laboratory/Capability Name: ' + lab_name + '\n'
+    data_out = data_out + 'Laboratory/Capability Description: ' + lab_desc + '\n'
+    data_out = data_out + 'Laboratory/Capability Website: ' + lab_link + '\n'
+    data_out = data_out + 'Challenges in sustaining this laboratory/capability: ' + lab_chal + '\n'
+    data_out = data_out + 'Age (yrs): ' + str(lab_age) + '\n'
+    data_out = data_out + 'Condition: ' + lab_condition + '\n'
+    
 
     
-    text_contents = '''This is \n some text'''
-    st.download_button('Download some text', text_contents)
+
+    
+
+    st.download_button('Download Data File (Temporary)', data_out)
