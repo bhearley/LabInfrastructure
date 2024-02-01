@@ -32,9 +32,9 @@ for j in range(len(files)):
     with open(files[j]) as f:
         lines = f.readlines()
     idx = lines[0].find(':')
-    files.append(lines[0][idx+1:]
+    files_disp.append(lines[0][idx+1:]
 
-
+os.chdir(home)
 #----------------------------------------------------------------
 #   CREATE THE APP
 #   Create the streamlit app for data collection
