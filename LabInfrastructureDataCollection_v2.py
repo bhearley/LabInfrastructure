@@ -22,8 +22,18 @@ import datetime
 
 # Set Paths
 home = os.getcwd()
-data_template = "/mount/src/labinfrastructure/Template/DataTemplate.pkl"
-# data_template= os.path.join(home,'Template','DataTemplate.pkl')
+existing_files = os.path.join(home,'NewFiles')
+
+# Get the names of the existing files
+#os.chdir(existing_files)
+#files = glob.glob('*.txt')
+#file_disp = []
+#for j in range(len(files)):
+#    with open(files[j]) as f:
+#        lines = f.readlines()
+
+#    files.append(
+
 
 #----------------------------------------------------------------
 #   CREATE THE APP
@@ -392,7 +402,7 @@ if st.button('Submit'):
     # Write the Text File
     # -- Laboratory/Capability Information
     data_out = 'Laboratory/Capability Name: ' + lab_name + '\n'
-    data_out = 'Point of Contact: ' + poc + '\n'
+    data_out = data_ot + 'Point of Contact: ' + poc + '\n'
     data_out = data_out + 'Laboratory/Capability Description: ' + lab_desc + '\n'
     data_out = data_out + 'Laboratory/Capability Website: ' + lab_link + '\n'
     data_out = data_out + 'Challenges in sustaining this laboratory/capability: ' + lab_chal + '\n'
