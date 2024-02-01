@@ -187,7 +187,7 @@ def read_data():
             data_line = data[k]
             data_line = data_line.split('\t')
             data_line[2] = float(data_line[2])
-            data_line[2] = int(data_line[2])
+            data_line[6] = int(data_line[6])
             data_all.append(data_line)
 
         for k in range(num_assets):
