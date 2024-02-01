@@ -28,8 +28,8 @@ History of capability utilization: History description.
 Major impact and contributions this capability has made possible: List of impacts from this capability
 Number of Failures: 2
 Asset 	 Start Date 	 Time Down 	 Unit 	 Additional Notes 
-Entire Lab/Capability	2024-01-01	5.0	Days  Loss of power for the entire lab
-Asset 2	2024-02-01	3.0	Weeks  Broken part that needed to be replaced
+Entire Lab/Capability	2024-01-01	5.0	Days Loss of power for the entire lab
+Asset 2	2024-02-01	3.0	Weeks Broken part that needed to be replaced
 
 Estimated Cost to Replace Entire Laboratory/Capability ($): 100000
 Cost of Service Contracts ($): 200000
