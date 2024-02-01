@@ -27,7 +27,7 @@ existing_files = os.path.join(home,'NewFiles')
 # Get the names of the existing files
 os.chdir(existing_files)
 files = glob.glob('*.txt')
-file_disp = ['New']
+files_disp = ['New']
 for j in range(len(files)):
     with open(files[j]) as f:
         lines = f.readlines()
