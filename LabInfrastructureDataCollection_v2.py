@@ -46,7 +46,7 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Save State Option                 
-lab_condition = st.selectbox('Create New Entry or Load Previous:',files) #Options                 
+lab_condition = st.selectbox('Create New Entry or Load Previous:',files_disp) #Options                 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
 st.subheader('Laboratory/Capability Information')
