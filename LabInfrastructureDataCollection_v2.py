@@ -432,9 +432,9 @@ if st.button('Submit'):
     # -- History of Down Time
     data_out = data_out + 'Number of Failures: ' + str(down_rows) + '\n'
     if down_rows > 0:
-        data_out = data_out + 'Start Date \t Time Down \t Unit \t Additional Notes \n'
+        data_out = data_out + 'Asset \t Start Date \t Time Down \t Unit \t Additional Notes \n'
         for w in range(down_rows):
-            data_out = data_out + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + desc_dt[w] +'\n'
+            data_out = data_out + asset_dt[w] + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + desc_dt[w] +'\n'
         data_out = data_out + '\n'
 
     # -- Cost
