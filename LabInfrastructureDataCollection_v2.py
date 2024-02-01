@@ -66,6 +66,7 @@ def read_data():
         st.session_state.asset_num = 0
         st.session_state.fund_num = 0
         st.session_state.proj_num = 0
+        st.session_state.dt_num = 0
     else:
     
         # Read the file
@@ -262,6 +263,34 @@ def read_data():
             st.session_state[f'input_col19{k}'] = data_all[k][3]
             st.session_state[f'input_col20{k}'] = data_all[k][4]
 
+        # -- Read Down Time Table
+        key = 'Number of Failures:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+                line_num = i
+        num_dt  = int(val)
+        st.session_state.dt_num = num_dt
+        
+        data = ''
+        for k in range(line_num+2,line_num+2+num_dt):
+            data = data + lines[k]
+        data= data.split('\n')
+        data_all = []
+        for k in range(num_dt):
+            data_line = data[k]
+            data_line = data_line.split('\t')
+            data_line[2] = float(data_line[2])
+            data_all.append(data_line)
+
+        for k in range(num_dt):
+            st.session_state[f'input_col21{k}'] = data_all[k][0]
+            date1 = data_all[k][1].split('-')
+            st.session_state[f'input_col22{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+            st.session_state[f'input_col23{k}'] = data_all[k][2]
+            st.session_state[f'input_col24{k}'] = data_all[k][3]
+            st.session_state[f'input_col25{k}'] = data_all[k][4]
+        
         # -- Read Divisons Table
         key = 'Number of Divisions (Labor Costs):'
         for i in range(len(lines)):
