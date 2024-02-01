@@ -194,8 +194,10 @@ def read_data():
             st.session_state[f'input_col1{k}'] = data_all[k][0]
             st.session_state[f'input_col2{k}'] = data_all[k][1]
             st.session_state[f'input_col3{k}'] = data_all[k][2]
-            st.session_state[f'input_col4{k}'] = date.datetime(data_all[k][3])
-            st.session_state[f'input_col5{k}'] = date.datetime(data_all[k][4])
+            date1 = data_all[k][3].split('-')
+            st.session_state[f'input_col4{k}'] = date.datetime(int(date1[0]),int(date1[1]),int(date1[2]))
+            date2 = data_all[k][4].split('-')
+            st.session_state[f'input_col5{k}'] = date.datetime(int(date2[0]),int(date2[1]),int(date2[2]))
             st.session_state[f'input_col6{k}'] = data_all[k][5]
             st.session_state[f'input_col7{k}'] = data_all[k][6]
             st.session_state[f'input_col8{k}'] = data_all[k][7]
