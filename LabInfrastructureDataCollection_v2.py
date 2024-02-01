@@ -258,7 +258,7 @@ def read_data():
 
         for k in range(num_proj):
             st.session_state[f'input_col16{k}'] = data_all[k][0]
-            st.session_state[f'input_col17{k}'] = data_all[k][0]
+            st.session_state[f'input_col17{k}'] = data_all[k][1]
             st.session_state[f'input_col18{k}'] = data_all[k][2]
             st.session_state[f'input_col19{k}'] = data_all[k][3]
             st.session_state[f'input_col20{k}'] = data_all[k][4]
@@ -536,7 +536,7 @@ def add_row3(row):
         if row == 0:
             wbs_util[row]=st.text_input('WBS Number', key=f'input_col17{row}')
         else:
-            wbs_util[row]=st.text_input('', key=f'input_co17{row}')
+            wbs_util[row]=st.text_input('', key=f'input_col17{row}')
     # -- Project Use
     with grid3[2]:
         while len(use_util) < row+1:
