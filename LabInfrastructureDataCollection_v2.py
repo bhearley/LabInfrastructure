@@ -55,7 +55,7 @@ inc_cost_read = '0'
 def read_data():
     # Find the File
     for i in range(len(files_disp)):
-        if lab_condition == files_disp[i]:
+        if lab_load == files_disp[i]:
             file_read = files[i]
 
     # Read the file
@@ -173,7 +173,7 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Save State Option                 
-lab_condition = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data) 
+lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data) 
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
