@@ -168,6 +168,30 @@ def read_data():
                 val  = lines[i][len(key)+1:len(lines[i])-1]
         st.session_state.cost_inc  = int(val)
 
+        # -- Read Divisons Table
+        key = 'Number of Divisions (Labor Costs):'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+                line_num = i
+        num_div  = int(val)
+        st.session_state.labor_num = num_div
+        
+        data = ''
+        for k in range(line_num+2,line_num+2+num_div):
+            data = data + lines[k]
+        data= data.split('\n')
+        data_all = []
+        for k in range(num_div):
+            data_line = data[k]
+            data_line = data_line.split('\t')
+            data_line[1] = float(data_line[1])
+            data_all.append(data_line)
+
+        for k in range(num_div):
+            st.session_state[f'input_col26{k}'] = data_all[k][0]
+            st.session_state[f'input_col27{k}'] = data_all[k][1]
+
 
 #----------------------------------------------------------------
 #   CREATE THE APP
