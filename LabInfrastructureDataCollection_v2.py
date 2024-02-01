@@ -258,7 +258,7 @@ def read_data():
 
         for k in range(num_proj):
             st.session_state[f'input_col16{k}'] = data_all[k][0]
-            st.session_state[f'input_col17{k}'] = str(data_all[k][1])
+            st.session_state[f'input_col17{k}'] = data_all[k][0]
             st.session_state[f'input_col18{k}'] = data_all[k][2]
             st.session_state[f'input_col19{k}'] = data_all[k][3]
             st.session_state[f'input_col20{k}'] = data_all[k][4]
