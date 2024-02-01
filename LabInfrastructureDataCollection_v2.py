@@ -402,7 +402,7 @@ if st.button('Submit'):
     # Write the Text File
     # -- Laboratory/Capability Information
     data_out = 'Laboratory/Capability Name: ' + lab_name + '\n'
-    data_out = data_ot + 'Point of Contact: ' + poc + '\n'
+    data_out = data_out + 'Point of Contact: ' + poc + '\n'
     data_out = data_out + 'Laboratory/Capability Description: ' + lab_desc + '\n'
     data_out = data_out + 'Laboratory/Capability Website: ' + lab_link + '\n'
     data_out = data_out + 'Challenges in sustaining this laboratory/capability: ' + lab_chal + '\n'
