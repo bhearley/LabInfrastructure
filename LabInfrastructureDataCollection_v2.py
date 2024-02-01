@@ -58,10 +58,11 @@ def read_data():
     flag =0
 
     # Find the File
-    for i in range(len(files_disp)):
-        if lab_load == files_disp[i]:
-            file_read = files[i]
-            flag = 1
+    if  lab_load != 'New':
+        for i in range(len(files_disp)):
+            if lab_load == files_disp[i]:
+                file_read = files[i]
+                flag = 1
             
     if flag == 0:
         lab_name_read = ''
