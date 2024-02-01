@@ -342,7 +342,7 @@ cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_
 
 # Create Input for Labor Division
 labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50)
-grid5 = st.columns(2)
+grid5 = st.columns([0.3,0.3,0.4])
 division = [] #Store division
 labor_pct = [] #Store the labor percentrate
 
@@ -382,8 +382,8 @@ if st.button('Submit'):
     data_out = data_out + '\n'
 
     # -- Asset Information
+    data_out = data_out + 'Number of Assets: ' + str(asset_rows) + '\n'
     if asset_rows > 0:
-        data_out = data_out + 'Assets \n'
         data_out = data_out + 'Asset Name \t Location (Bldg/Rm) \t Age (yrs) \t Date of Entry \t Expected Date of Obsolescence \t ' + \
                               'Asset Condition \t Replacement Cost ($) \t Impact to Capability if Lost \t Associated Software \t ' + \
                               'IT Hardware Repalcement? \t Part or Full Replacement? \n'
@@ -391,10 +391,47 @@ if st.button('Submit'):
             data_out = data_out + asset_name[w] +'\t' + asset_loc[w] + '\t' +  str(asset_age[w]) + '\t' + str(asset_date_in[w])  + '\t' + \
                        str(asset_date_out[w]) + '\t' +  asset_cond[w] + '\t' + str(asset_cost[w]) + '\t' +  asset_imp[w] + '\t' + \
                        asset_software[w] + '\t' + asset_itrep[w] + '\t' + asset_repdesc[w] +'\n' 
-    
+        data_out = data_out + '\n'
+        
+    # -- Funding Information
+    data_out = data_out + 'Sustainment Funding Source: ' + sust_funding + ' \n'
+    data_out = data_out + 'Number of Funding Sources: ' + str(fund_rows) + '\n'
+    if fund_rows > 0:
+        data_out = data_out + 'Funding Source \t Funding Start Date \t Funding End Date \t Funding Amount per Year ($) \n'
+        for w in range(fund_rows):
+            data_out = data_out + fund_src[w] +'\t' + str(start_fund[w]) +'\t' + str(end_fund[w]) +'\t' + str(fund_amt[w]) + '\n'
+        data_out = data_out + '\n'
+        
+    # -- Projects
+    data_out = data_out + 'Number of Projects: ' + str(proj_rows) + '\n'
+    if proj_rows > 0:
+        data_out = data_out + 'Mission/Project Name \t WBS Number \t Project Use (%) \t Risk to Project \t Impact if Laboratory/Capability is Lost \n'
+        for w in range(proj_rows):
+            data_out = data_out + proj_util[w] + '\t' + wbs_util[w] + '\t' + str(use_util[w]) + '\t' + risk[w] + '\t' + impact_util[w]
+        data_out = data_out + '\n'
 
-    
+    # -- Utilization History and Impact
+    data_out = data_out + 'History of capability utilization: ' + hist + '\n'
+    data_out = data_out + 'Major impact and contributions this capability has made possible: ' + impact + '\n'
 
-    
+    # -- History of Down Time
+    data_out = data_out + 'Number of Failures: ' + str(down_rows) + '\n'
+    if down_rows > 0:
+        data_out = data_out + 'Start Date \t Time Down \t Unit \t Additional Notes \n'
+        for w in range(down_rows):
+            data_out = data_out + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + desc_dt[w] +'\n'
+        data_out = data_out + '\n'
 
-    st.download_button('Download Data File (Temporary)', data_out)
+    # -- Cost
+    data_out = data_out + 'Estimated Cost to Replace Entire Laboratory/Capability ($): ' + str(cost_rep) + '\n'
+    data_out = data_out + 'Cost of Service Contracts ($): ' + str(cost_serv) + '\n'
+    data_out = data_out + 'Annual Cost to Operate and Sustain the Lab ($/yr): ' + str(cost_ann) + '\n'
+    data_out = data_out + 'Incurred Cost For Downtime ($/yr): ' + str(cost_inc) + '\n'
+    data_out = data_out + 'Number of Divisions (Labor Costs): ' + str(labor_rows) + '\n'
+    if labor_rows > 0:
+        data_out = data_out + 'Directorate \t Labor Cost (%) \n'
+        for w in range(labor_rows):
+            data_out = data_out + division[w] + '\t' + str(labor_pct[w]) + '\n'
+        data_out = data_out + '\n'
+    
+    st.download_button('Download Data File (Temporary)', data_out, filename = lab_name + '.txt')
