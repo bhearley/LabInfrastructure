@@ -20,7 +20,9 @@ ESM	2024-01-01	2034-12-31	100000
 
 Number of Projects: 3
 Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
-Project 1	123456	25.0	Moderate	Can replace, but it will be  fairly expensive and may take a long timeProject 2	555555	10.0	Low	Can replace it somewhere else in Cleveland for low cost if necessaryProject 3	246810	50.0	High	Entire project will be delayed
+Project 1	123456	25.0	Moderate	Can replace, but it will be  fairly expensive and may take a long time
+Project 2	555555	10.0	Low	Can replace it somewhere else in Cleveland for low cost if necessaryProject 3	246810	50.0	High	Entire project will be delayed
+
 History of capability utilization: History description.
 Major impact and contributions this capability has made possible: List of impacts from this capability
 Number of Failures: 2
