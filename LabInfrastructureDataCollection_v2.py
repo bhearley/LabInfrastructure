@@ -168,6 +168,40 @@ def read_data():
                 val  = lines[i][len(key)+1:len(lines[i])-1]
         st.session_state.cost_inc  = int(val)
 
+        # -- Asset Table
+        key = 'Number of Assets:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+                line_num = i
+        num_assets  = int(val)
+        st.session_state.asset_num = num_assets
+        
+        data = ''
+        for k in range(line_num+2,line_num+2+num_assets):
+            data = data + lines[k]
+        data= data.split('\n')
+        data_all = []
+        for k in range(num_assets):
+            data_line = data[k]
+            data_line = data_line.split('\t')
+            data_line[2] = float(data_line[2])
+            data_line[2] = int(data_line[2])
+            data_all.append(data_line)
+
+        for k in range(num_assets):
+            st.session_state[f'input_col1{k}'] = data_all[k][0]
+            st.session_state[f'input_col2{k}'] = data_all[k][1]
+            st.session_state[f'input_col3{k}'] = data_all[k][2]
+            st.session_state[f'input_col4{k}'] = data_all[k][3]
+            st.session_state[f'input_col5{k}'] = data_all[k][4]
+            st.session_state[f'input_col6{k}'] = data_all[k][5]
+            st.session_state[f'input_col7{k}'] = data_all[k][6]
+            st.session_state[f'input_col8{k}'] = data_all[k][7]
+            st.session_state[f'input_col9{k}'] = data_all[k][8]
+            st.session_state[f'input_col10{k}'] = data_all[k][9]
+            st.session_state[f'input_col11{k}'] = data_all[k][10]
+
         # -- Read Divisons Table
         key = 'Number of Divisions (Labor Costs):'
         for i in range(len(lines)):
@@ -233,8 +267,7 @@ cond_opts = ['Excellent','Good','Fair','Poor']
 lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 # Create Input for Assets
-asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
-#grid = st.columns([0.075,0.05,0.05,0.08,0.125,0.085,0.11,0.075,0.1,0.125,0.125])
+asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50, key='asset_num')
 grid = st.columns([0.125,0.075,0.05,0.08,0.08,0.09,0.07,0.125,0.1,0.07,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
