@@ -449,4 +449,4 @@ if st.button('Submit'):
             data_out = data_out + division[w] + '\t' + str(labor_pct[w]) + '\n'
         data_out = data_out + '\n'
     
-    st.download_button('Download Data File (Temporary)', data_out, filename = lab_name + '.txt')
+    st.download_button('Download Data File (Temporary)', data_out, file_name = lab_name + '.txt')
