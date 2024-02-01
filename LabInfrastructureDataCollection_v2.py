@@ -206,7 +206,7 @@ def read_data():
             st.session_state[f'input_col10{k}'] = data_all[k][9]
             st.session_state[f'input_col11{k}'] = data_all[k][10]
 
-        # -- Read Divisons Table
+        # -- Read Funding Table
         key = 'Number of Funding Sources:'
         for i in range(len(lines)):
             if key in lines[i]:
@@ -223,7 +223,7 @@ def read_data():
         for k in range(num_fund):
             data_line = data[k]
             data_line = data_line.split('\t')
-            data_line[1] = float(data_line[3])
+            data_line[3] = float(data_line[3])
             data_all.append(data_line)
 
         for k in range(num_fund):
