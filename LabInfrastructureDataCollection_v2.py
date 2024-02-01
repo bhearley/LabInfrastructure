@@ -65,7 +65,7 @@ def read_data():
                 flag = 1
             
     if flag == 0:
-        lab_name_read = ''
+        st.session_state.name = ''
         poc_read = ''
         lab_desc_read= ''
         lab_link_read = ''
