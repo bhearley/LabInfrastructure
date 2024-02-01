@@ -63,6 +63,7 @@ def read_data():
         st.session_state.cost_ann = 0
         st.session_state.cost_inc = 0
         st.session_state.labor_num = 0
+        st.session_state.asset_num = 0
     else:
     
         # Read the file
