@@ -284,44 +284,59 @@ impact = st.text_area("Major impact and contributions this capability has made p
 st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
 down_rows = st.number_input('Number of Rows:', min_value=0, max_value=50)
-grid4 = st.columns(4)
+grid4 = st.columns(5)
+asset_dt = [] #Store the associated Asset
 date_dt = [] #Store date the asset went down
 time_dt = [] #Store the time down
 unit_dt = [] #Store the unit for time down
 desc_dt = [] #Store a description for the time down
+
 def add_row4(row):
-    # -- Start Date for Time Down
+    # -- Set the Options
+    options_dt = ['Entire Lab/Capability']
+    for k in range(len(asset_name)):
+        option_dt.append(asset_name[k])
+        
+    # -- Asset that went down
     with grid4[0]:
+        while len(asset_dt) < row+1:
+            asset_dt.append(None)
+        if row == 0:
+            asset_dt[row]=st.selectbox('Asset', options_dt, key=f'input_col21{row}')
+        else:
+            asset_dt[row]=st.selectbox('', options_dt, key=f'input_col21{row}')
+    # -- Start Date for Time Down
+    with grid4[1]:
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col21{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col22{row}')
         else:
-            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col21{row}')
+            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col22{row}')
     # -- Time Down
-    with grid4[1]:
+    with grid4[2]:
         while len(time_dt) < row+1:
             time_dt.append(None)
         if row == 0:
-            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col22{row}')
+            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col23{row}')
         else:
-            time_dt[row]=st.number_input('', step=0.5, key=f'input_col22{row}')
+            time_dt[row]=st.number_input('', step=0.5, key=f'input_col23{row}')
     # -- Unit of Time Down
-    with grid4[2]:
+    with grid4[3]:
         while len(unit_dt) < row+1:
             unit_dt.append(None)
         if row == 0:
-            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col23{row}')
+            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col24{row}')
         else:
-            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col23{row}')
+            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col24{row}')
     # -- Additonal Notes for Time Down
-    with grid4[3]:
+    with grid4[4]:
         while len(desc_dt) < row+1:
             desc_dt.append(None)
         if row == 0:
-            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col24{row}')
+            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col25{row}')
         else:
-            desc_dt[row]=st.text_input('', value='',key=f'input_col24{row}')
+            desc_dt[row]=st.text_input('', value='',key=f'input_col25{row}')
 for r in range(down_rows):
     add_row4(r)
 
@@ -352,17 +367,17 @@ def add_row5(row):
         while len(division) < row+1:
             division.append(None)
         if row == 0:
-            division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_col25{row}')
+            division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_col26{row}')
         else:
-            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_col25{row}')
+            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_col26{row}')
     # -- Time Down
     with grid5[1]:
         while len(labor_pct) < row+1:
             labor_pct.append(None)
         if row == 0:
-            labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col26{row}')
+            labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col27{row}')
         else:
-            labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col26{row}')
+            labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col27{row}')
 for r in range(labor_rows):
     add_row5(r)
 
