@@ -36,6 +36,7 @@ for j in range(len(files)):
 os.chdir(home)
 
 # Preallocate Names
+
 lab_name_read = ''
 poc_read = ''
 lab_desc_read= ''
@@ -56,8 +57,6 @@ def read_data():
     # Set Flag
     flag =0
 
-    print(lab_load)
-    
     # Find the File
     for i in range(len(files_disp)):
         if lab_load == files_disp[i]:
@@ -92,6 +91,7 @@ def read_data():
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
         lab_name_read  = val
+        st.session_state.name = lab_name_read
         
         # -- Point of Contact
         key = 'Point of Contact:'
@@ -203,7 +203,7 @@ lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_chang
 st.subheader('Laboratory/Capability Information')
 
 # Create Input for Asset Name
-lab_name = st.text_input("Laboratory/Capability Name:",value=lab_name_read)
+lab_name = st.text_input("Laboratory/Capability Name:",value=lab_name_read,key='name')
 
 # Create Input for Point of Contact
 poc = st.text_input("Point of Contact:",value=poc_read)
