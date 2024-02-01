@@ -56,7 +56,7 @@ def read_data():
     # Set Flag
     flag =0
 
-    prnit(lab_load)
+    print(lab_load)
     
     # Find the File
     for i in range(len(files_disp)):
