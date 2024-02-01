@@ -42,6 +42,9 @@ st.subheader('Laboratory/Capability Information')
 # Create Input for Asset Name
 lab_name = st.text_input("Laboratory/Capability Name:",value="")
 
+# Create Input for Asset Name
+poc = st.text_input("Point of Contact:",value="")
+
 # Create Input for Asset Description
 lab_desc = st.text_area("Laboratory/Capability Description:",value="")
 
@@ -389,6 +392,7 @@ if st.button('Submit'):
     # Write the Text File
     # -- Laboratory/Capability Information
     data_out = 'Laboratory/Capability Name: ' + lab_name + '\n'
+    data_out = 'Point of Contact: ' + poc + '\n'
     data_out = data_out + 'Laboratory/Capability Description: ' + lab_desc + '\n'
     data_out = data_out + 'Laboratory/Capability Website: ' + lab_link + '\n'
     data_out = data_out + 'Challenges in sustaining this laboratory/capability: ' + lab_chal + '\n'
@@ -434,7 +438,7 @@ if st.button('Submit'):
     if down_rows > 0:
         data_out = data_out + 'Asset \t Start Date \t Time Down \t Unit \t Additional Notes \n'
         for w in range(down_rows):
-            data_out = data_out + asset_dt[w] + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + desc_dt[w] +'\n'
+            data_out = data_out + asset_dt[w] + '\t' + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + desc_dt[w] +'\n'
         data_out = data_out + '\n'
 
     # -- Cost
