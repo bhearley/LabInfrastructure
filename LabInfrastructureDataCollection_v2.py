@@ -22,7 +22,7 @@ import datetime
 
 # Set Paths
 home = os.getcwd()
-existing_files = os.path.join(home,'NewFiles')
+existing_files = "/mount/src/labinfrastructure/NewFiles/"
 
 # Get the names of the existing files
 os.chdir(existing_files)
