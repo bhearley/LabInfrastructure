@@ -46,13 +46,17 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Save State Option                 
-lab_condition = st.selectbox('Create New Entry or Load Previous:',files_disp) #Options                 
+lab_condition = st.selectbox('Create New Entry or Load Previous:',files_disp) 
+if lab_condition == 'New':
+    val1 = ''
+else:
+    val1 = 'name'
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
 st.subheader('Laboratory/Capability Information')
 
 # Create Input for Asset Name
-lab_name = st.text_input("Laboratory/Capability Name:",value="")
+lab_name = st.text_input("Laboratory/Capability Name:",value=val1)
 
 # Create Input for Asset Name
 poc = st.text_input("Point of Contact:",value="")
