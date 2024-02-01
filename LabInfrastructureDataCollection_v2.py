@@ -579,7 +579,7 @@ impact = st.text_area("Major impact and contributions this capability has made p
 #Create Divider for Down Time History
 st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
-down_rows = st.number_input('Number of Rows:', min_value=0, max_value=50)
+down_rows = st.number_input('Number of Rows:', min_value=0, max_value=50, key = 'dt_num')
 grid4 = st.columns(5)
 asset_dt = [] #Store the associated Asset
 date_dt = [] #Store date the asset went down
@@ -731,7 +731,7 @@ if st.button('Submit'):
     if down_rows > 0:
         data_out = data_out + 'Asset \t Start Date \t Time Down \t Unit \t Additional Notes \n'
         for w in range(down_rows):
-            data_out = data_out + asset_dt[w] + '\t' + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + desc_dt[w] +'\n'
+            data_out = data_out + asset_dt[w] + '\t' + str(date_dt[w]) + '\t' + str(time_dt[w]) + '\t' + unit_dt[w] + '\t' + desc_dt[w] +'\n'
         data_out = data_out + '\n'
 
     # -- Cost
