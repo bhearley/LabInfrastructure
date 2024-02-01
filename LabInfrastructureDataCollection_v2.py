@@ -65,6 +65,7 @@ def read_data():
         st.session_state.labor_num = 0
         st.session_state.asset_num = 0
         st.session_state.fund_num = 0
+        st.session_state.proj_num = 0
     else:
     
         # Read the file
@@ -234,6 +235,33 @@ def read_data():
             st.session_state[f'input_col14{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
             st.session_state[f'input_col15{k}'] = data_all[k][3]
         
+        # -- Read Project Table
+        key = 'Number of Projects:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+                line_num = i
+        num_proj  = int(val)
+        st.session_state.proj_num = num_proj
+        
+        data = ''
+        for k in range(line_num+2,line_num+2+num_proj):
+            data = data + lines[k]
+        data= data.split('\n')
+        data_all = []
+        for k in range(num_proj):
+            data_line = data[k]
+            data_line = data_line.split('\t')
+            data_line[2] = float(data_line[2])
+            data_all.append(data_line)
+
+        for k in range(num_proj):
+            st.session_state[f'input_col16{k}'] = data_all[k][0]
+            st.session_state[f'input_col17{k}'] = data_all[k][1]
+            st.session_state[f'input_col18{k}'] = data_all[k][2]
+            st.session_state[f'input_col19{k}'] = data_all[k][3]
+            st.session_state[f'input_col20{k}'] = data_all[k][4]
+
         # -- Read Divisons Table
         key = 'Number of Divisions (Labor Costs):'
         for i in range(len(lines)):
@@ -456,7 +484,7 @@ uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_fi
 #Create Divider for Name and Description
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
-proj_rows = st.number_input('Number of Projects', min_value=0, max_value=50)
+proj_rows = st.number_input('Number of Projects', min_value=0, max_value=50, key = 'proj_num')
 grid3 = st.columns(5)
 proj_util = [] #Store the projects
 wbs_util = [] #Store the project WBS
@@ -662,7 +690,7 @@ if st.button('Submit'):
     if proj_rows > 0:
         data_out = data_out + 'Mission/Project Name \t WBS Number \t Project Use (%) \t Risk to Project \t Impact if Laboratory/Capability is Lost \n'
         for w in range(proj_rows):
-            data_out = data_out + proj_util[w] + '\t' + wbs_util[w] + '\t' + str(use_util[w]) + '\t' + risk[w] + '\t' + impact_util[w]
+            data_out = data_out + proj_util[w] + '\t' + wbs_util[w] + '\t' + str(use_util[w]) + '\t' + risk[w] + '\t' + impact_util[w] + '\n'
         data_out = data_out + '\n'
 
     # -- Utilization History and Impact
