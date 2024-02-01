@@ -53,113 +53,133 @@ inc_cost_read = '0'
 
 # Create Function to Read the Data
 def read_data():
+    # Set Flag
+    flag =0
     # Find the File
     for i in range(len(files_disp)):
         if lab_load == files_disp[i]:
             file_read = files[i]
-
-    # Read the file
-    with open(file_read) as f:
-        lines = f.readlines()
-
-    # Parse Data
-    # -- Laboratory/Capability Name
-    key = 'Laboratory/Capability Name:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    lab_name_read  = val
+            flag = 1
+            
+    if flag == 0:
+        lab_name_read = ''
+        poc_read = ''
+        lab_desc_read= ''
+        lab_link_read = ''
+        lab_chal_read = ''
+        lab_age_read = '0'
+        lab_cond_read = ''
+        sust_funding_read = ''
+        hist_read = ''
+        impact_read = ''
+        rep_cost_read = '0'
+        serv_cost_read = '0'
+        ann_cost_read = '0'
+        inc_cost_read = '0'
+    else:
     
-    # -- Point of Contact
-    key = 'Point of Contact:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    poc_read  = val
+        # Read the file
+        with open(file_read) as f:
+            lines = f.readlines()
     
-    # -- Laboratory/Capability Description
-    key = 'Laboratory/Capability Description:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    lab_desc_read  = val
-    
-    # -- Laboratory/Capability Website
-    key = 'Laboratory/Capability Website:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    lab_link_read  = val
-    
-    # -- Challenges in sustaining this laboratory/capability
-    key = 'Challenges in sustaining this laboratory/capability:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    lab_chal_read  = val
-    
-    # -- Age (yrs):
-    key = 'Age (yrs):'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    lab_age_read  = val
-    
-    # -- Condition:
-    key = 'Condition:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    lab_cond_read  = val
-    
-    # -- Sustainment Funding Source:
-    key = 'Sustainment Funding Source:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    sust_funding_read  = val
-    
-    # -- History of capability utilization:
-    key = 'History of capability utilization:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    hist_read  = val
-    
-    # -- Major impact and contributions this capability has made possible:
-    key = 'Major impact and contributions this capability has made possible:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    impact_read  = val
-    
-    # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
-    key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    rep_cost_read  = val
-    
-    # -- Cost of Service Contracts ($):
-    key = 'Cost of Service Contracts ($):'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    serv_cost_read  = val
-    
-    # -- Cost of Service Contracts ($):
-    key = 'Annual Cost to Operate and Sustain the Lab ($/yr):'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    ann_cost_read  = val
-    
-    # -- Cost of Service Contracts ($):
-    key = 'Incurred Cost For Downtime ($/yr):'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-    inc_cost_read  = val
+        # Parse Data
+        # -- Laboratory/Capability Name
+        key = 'Laboratory/Capability Name:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        lab_name_read  = val
+        
+        # -- Point of Contact
+        key = 'Point of Contact:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        poc_read  = val
+        
+        # -- Laboratory/Capability Description
+        key = 'Laboratory/Capability Description:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        lab_desc_read  = val
+        
+        # -- Laboratory/Capability Website
+        key = 'Laboratory/Capability Website:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        lab_link_read  = val
+        
+        # -- Challenges in sustaining this laboratory/capability
+        key = 'Challenges in sustaining this laboratory/capability:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        lab_chal_read  = val
+        
+        # -- Age (yrs):
+        key = 'Age (yrs):'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        lab_age_read  = val
+        
+        # -- Condition:
+        key = 'Condition:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        lab_cond_read  = val
+        
+        # -- Sustainment Funding Source:
+        key = 'Sustainment Funding Source:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        sust_funding_read  = val
+        
+        # -- History of capability utilization:
+        key = 'History of capability utilization:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        hist_read  = val
+        
+        # -- Major impact and contributions this capability has made possible:
+        key = 'Major impact and contributions this capability has made possible:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        impact_read  = val
+        
+        # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
+        key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        rep_cost_read  = val
+        
+        # -- Cost of Service Contracts ($):
+        key = 'Cost of Service Contracts ($):'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        serv_cost_read  = val
+        
+        # -- Cost of Service Contracts ($):
+        key = 'Annual Cost to Operate and Sustain the Lab ($/yr):'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        ann_cost_read  = val
+        
+        # -- Cost of Service Contracts ($):
+        key = 'Incurred Cost For Downtime ($/yr):'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        inc_cost_read  = val
 
 
 #----------------------------------------------------------------
