@@ -35,23 +35,6 @@ for j in range(len(files)):
     files_disp.append(lines[0][idx+1:])
 os.chdir(home)
 
-# Preallocate Names
-
-lab_name_read = ''
-poc_read = ''
-lab_desc_read= ''
-lab_link_read = ''
-lab_chal_read = ''
-lab_age_read = '0'
-lab_cond_read = ''
-sust_funding_read = ''
-hist_read = ''
-impact_read = ''
-rep_cost_read = '0'
-serv_cost_read = '0'
-ann_cost_read = '0'
-inc_cost_read = '0'
-
 # Create Function to Read the Data
 def read_data():
     # Set Flag
@@ -66,19 +49,19 @@ def read_data():
             
     if flag == 0:
         st.session_state.name = ''
-        poc_read = ''
-        lab_desc_read= ''
-        lab_link_read = ''
-        lab_chal_read = ''
-        lab_age_read = '0'
-        lab_cond_read = ''
-        sust_funding_read = ''
-        hist_read = ''
-        impact_read = ''
-        rep_cost_read = '0'
-        serv_cost_read = '0'
-        ann_cost_read = '0'
-        inc_cost_read = '0'
+        st.session_state.poc = ''
+        st.session_state.desc = ''
+        st.session_state.link = ''
+        st.session_state.chal = ''
+        st.session_state.age = 0
+        st.session_state.cond = 'Excellent'
+        st.session_state.sust = ''
+        st.session_state.hist = ''
+        st.session_state.impact = ''
+        st.session_state.cost_rep = 0
+        st.session_state.cost_serv = 0
+        st.session_state.cost_ann = 0
+        st.session_state.cost_inc = 0
     else:
     
         # Read the file
@@ -91,99 +74,98 @@ def read_data():
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        lab_name_read  = val
-        st.session_state.name = lab_name_read
+        st.session_state.name = val
         
         # -- Point of Contact
         key = 'Point of Contact:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        poc_read  = val
+        st.session_state.poc = val
         
         # -- Laboratory/Capability Description
         key = 'Laboratory/Capability Description:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        lab_desc_read  = val
+        st.session_state.desc  = val
         
         # -- Laboratory/Capability Website
         key = 'Laboratory/Capability Website:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        lab_link_read  = val
+        st.session_state.link = val
         
         # -- Challenges in sustaining this laboratory/capability
         key = 'Challenges in sustaining this laboratory/capability:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        lab_chal_read  = val
+        st.session_state.chal = val
         
         # -- Age (yrs):
         key = 'Age (yrs):'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        lab_age_read  = val
+        st.session_state.age = int(val)
         
         # -- Condition:
         key = 'Condition:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        lab_cond_read  = val
+        st.session_state.cond  = val
         
         # -- Sustainment Funding Source:
         key = 'Sustainment Funding Source:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        sust_funding_read  = val
+        st.session_state.sust  = val
         
         # -- History of capability utilization:
         key = 'History of capability utilization:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        hist_read  = val
+        st.session_state.hist  = val
         
         # -- Major impact and contributions this capability has made possible:
         key = 'Major impact and contributions this capability has made possible:'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        impact_read  = val
+        st.session_state.impact  = val
         
         # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
         key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        rep_cost_read  = val
+        st.session_state.cost_rep  = int(val)
         
         # -- Cost of Service Contracts ($):
         key = 'Cost of Service Contracts ($):'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        serv_cost_read  = val
+        st.session_state.cost_serv  = int(val)
         
         # -- Cost of Service Contracts ($):
         key = 'Annual Cost to Operate and Sustain the Lab ($/yr):'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        ann_cost_read  = val
+        st.session_state.cost_ann  = int(val)
         
         # -- Cost of Service Contracts ($):
         key = 'Incurred Cost For Downtime ($/yr):'
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        inc_cost_read  = val
+        st.session_state.cost_inc  = int(val)
 
 
 #----------------------------------------------------------------
@@ -204,22 +186,22 @@ lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_chang
 st.subheader('Laboratory/Capability Information')
 
 # Create Input for Asset Name
-lab_name = st.text_input("Laboratory/Capability Name:",value=lab_name_read,key='name')
+lab_name = st.text_input("Laboratory/Capability Name:",value='',key='name')
 
 # Create Input for Point of Contact
-poc = st.text_input("Point of Contact:",value=poc_read)
+poc = st.text_input("Point of Contact:",value='', key = 'poc')
 
 # Create Input for Asset Description
-lab_desc = st.text_area("Laboratory/Capability Description:",value=lab_desc_read)
+lab_desc = st.text_area("Laboratory/Capability Description:",value='',key='desc')
 
 # Create Input for Asset Website
-lab_link = st.text_input("Laboratory/Capability Website:",value=lab_link_read)
+lab_link = st.text_input("Laboratory/Capability Website:",value='',key='link')
 
 # Create Input for Describing Challegne in Sustaining
-lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value=lab_chal_read)
+lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value='',key='chal')
 
 # Create Input for Age
-lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=int(lab_age_read))
+lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0,key='age')
 
 # Create Input for Condition
 cond_opts = ['Excellent','Good','Fair','Poor']
@@ -227,7 +209,7 @@ if lab_cond_read in cond_opts:
     lab_cond_idx = cond_opts.index(lab_cond_read)
 else:
     lab_cond_idx = 0
-lab_condition = st.selectbox('Condition:',cond_opts,index = lab_cond_idx)
+lab_condition = st.selectbox('Condition:',cond_opts,index = lab_cond_idx,key='cond')
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
@@ -336,7 +318,7 @@ for r in range(asset_rows):
     add_row_asset(r)
 
 # Create Input for Sustainment Funding Source
-sust_funding = st.text_area("Sustainment Funding Source:",value=sust_funding_read)
+sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
 
 # Additional Information on Funding
 fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=50)
@@ -445,10 +427,10 @@ for r in range(proj_rows):
 #Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
 # Create Input for History of Capability Utilization
-hist = st.text_area("History of capability utilization:",value=hist_read)
+hist = st.text_area("History of capability utilization:",value='',key='hist')
 
 # Create Input for Major Impact and Contributions
-impact = st.text_area("Major impact and contributions this capability has made possible:",value=impact_read)
+impact = st.text_area("Major impact and contributions this capability has made possible:",value='',key='impact')
 
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
@@ -515,16 +497,16 @@ for r in range(down_rows):
 #Create Divider for Down Time History
 st.subheader('Cost')
 # Create Input for Cost of Replacement
-cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=int(rep_cost_read))
+cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_rep')
 
 # Create Input for Cost of Service Contracts
-cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=int(serv_cost_read))
+cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_serv')
 
 # Create Input for Annual Expenses to operate and sustain the lab
-cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=int(ann_cost_read))
+cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_ann')
 
 # Create Input for Incurred Cost Due to Downtown
-cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=int(inc_cost_read))
+cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_inc'))
 
 # Create Input for Labor Division
 labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50)
