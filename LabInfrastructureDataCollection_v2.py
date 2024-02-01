@@ -295,7 +295,7 @@ def add_row4(row):
     # -- Set the Options
     options_dt = ['Entire Lab/Capability']
     for k in range(len(asset_name)):
-        option_dt.append(asset_name[k])
+        options_dt.append(asset_name[k])
         
     # -- Asset that went down
     with grid4[0]:
