@@ -62,6 +62,7 @@ def read_data():
         st.session_state.cost_serv = 0
         st.session_state.cost_ann = 0
         st.session_state.cost_inc = 0
+        st.session_state.labor_num = 0
     else:
     
         # Read the file
@@ -505,7 +506,7 @@ cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",
 cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_inc')
 
 # Create Input for Labor Division
-labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50)
+labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50,key = 'labor_num')
 grid5 = st.columns([0.3,0.3,0.4])
 division = [] #Store division
 labor_pct = [] #Store the labor percentrate
