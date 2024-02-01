@@ -25,14 +25,14 @@ home = os.getcwd()
 existing_files = os.path.join(home,'NewFiles')
 
 # Get the names of the existing files
-#os.chdir(existing_files)
-#files = glob.glob('*.txt')
-#file_disp = []
-#for j in range(len(files)):
-#    with open(files[j]) as f:
-#        lines = f.readlines()
-
-#    files.append(
+os.chdir(existing_files)
+files = glob.glob('*.txt')
+file_disp = ['New']
+for j in range(len(files)):
+    with open(files[j]) as f:
+        lines = f.readlines()
+    idx = lines[0].find(':')
+    files.append(lines[0][idx+1:]
 
 
 #----------------------------------------------------------------
@@ -45,6 +45,8 @@ st.set_page_config(layout="wide")
 # Create the Title
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
+# Create Save State Option                 
+lab_condition = st.selectbox('Create New Entry or Load Previous:',files) #Options                 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
 st.subheader('Laboratory/Capability Information')
