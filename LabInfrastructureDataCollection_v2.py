@@ -33,8 +33,135 @@ for j in range(len(files)):
         lines = f.readlines()
     idx = lines[0].find(':')
     files_disp.append(lines[0][idx+1:])
-
 os.chdir(home)
+
+# Preallocate Names
+lab_name_read = ''
+poc_read = ''
+lab_desc_read= ''
+lab_link_read = ''
+lab_chal_read = ''
+lab_age_read = '0'
+lab_cond_read = ''
+sust_funding_read = ''
+hist_read = ''
+impact_read = ''
+rep_cost_read = '0'
+serv_cost_read = '0'
+ann_cost_read = '0'
+inc_cost_read = '0'
+
+# Create Function to Read the Data
+def read_data():
+    # Find the File
+    for i in range(len(files_disp)):
+        if lab_condition == files_disp[i]:
+            file_read = files[i]
+
+    # Read the file
+    with open(file_read) as f:
+        lines = f.readlines()
+
+    # Parse Data
+    # -- Laboratory/Capability Name
+    key = 'Laboratory/Capability Name:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    lab_name_read  = val
+    
+    # -- Point of Contact
+    key = 'Point of Contact:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    poc_read  = val
+    
+    # -- Laboratory/Capability Description
+    key = 'Laboratory/Capability Description:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    lab_desc_read  = val
+    
+    # -- Laboratory/Capability Website
+    key = 'Laboratory/Capability Website:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    lab_link_read  = val
+    
+    # -- Challenges in sustaining this laboratory/capability
+    key = 'Challenges in sustaining this laboratory/capability:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    lab_chal_read  = val
+    
+    # -- Age (yrs):
+    key = 'Age (yrs):'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    lab_age_read  = val
+    
+    # -- Condition:
+    key = 'Condition:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    lab_cond_read  = val
+    
+    # -- Sustainment Funding Source:
+    key = 'Sustainment Funding Source:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    sust_funding_read  = val
+    
+    # -- History of capability utilization:
+    key = 'History of capability utilization:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    hist_read  = val
+    
+    # -- Major impact and contributions this capability has made possible:
+    key = 'Major impact and contributions this capability has made possible:'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    impact_read  = val
+    
+    # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
+    key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    rep_cost_read  = val
+    
+    # -- Cost of Service Contracts ($):
+    key = 'Cost of Service Contracts ($):'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    serv_cost_read  = val
+    
+    # -- Cost of Service Contracts ($):
+    key = 'Annual Cost to Operate and Sustain the Lab ($/yr):'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    ann_cost_read  = val
+    
+    # -- Cost of Service Contracts ($):
+    key = 'Incurred Cost For Downtime ($/yr):'
+    for i in range(len(lines)):
+        if key in lines[i]:
+            val  = lines[i][len(key)+1:len(lines[i])-1]
+    inc_cost_read  = val
+
+
 #----------------------------------------------------------------
 #   CREATE THE APP
 #   Create the streamlit app for data collection
@@ -46,36 +173,37 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Save State Option                 
-lab_condition = st.selectbox('Create New Entry or Load Previous:',files_disp) 
-if lab_condition == 'New':
-    val1 = ''
-else:
-    val1 = 'name'
+lab_condition = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data) 
+
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
 st.subheader('Laboratory/Capability Information')
 
 # Create Input for Asset Name
-lab_name = st.text_input("Laboratory/Capability Name:",value=val1)
+lab_name = st.text_input("Laboratory/Capability Name:",value=lab_name_read)
 
-# Create Input for Asset Name
-poc = st.text_input("Point of Contact:",value="")
+# Create Input for Point of Contact
+poc = st.text_input("Point of Contact:",value=poc_read)
 
 # Create Input for Asset Description
-lab_desc = st.text_area("Laboratory/Capability Description:",value="")
+lab_desc = st.text_area("Laboratory/Capability Description:",value=lab_desc_read)
 
-# Create Input for Asset Name
-lab_link = st.text_input("Laboratory/Capability Website:",value="")
+# Create Input for Asset Website
+lab_link = st.text_input("Laboratory/Capability Website:",value=lab_link_read)
 
 # Create Input for Describing Challegne in Sustaining
-lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value="")
+lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value=lab_chal_read)
 
 # Create Input for Age
-lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0)
+lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=int(lab_age_read))
 
 # Create Input for Condition
-lab_condition = st.selectbox('Condition:',
-    ('Excellent', 'Good', 'Fair','Poor')) #Options
+cond_opts = ['Excellent','Good','Fair','Poor']
+if lab_cond_read in cond_opts:
+    lab_cond_idx = cond_opts.index(lab_cond_read)
+else:
+    lab_cond_idx = 0
+lab_condition = st.selectbox('Condition:',cond_opts,index = lab_cond_idx)
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50)
@@ -184,7 +312,7 @@ for r in range(asset_rows):
     add_row_asset(r)
 
 # Create Input for Sustainment Funding Source
-sust_funding = st.text_area("Sustainment Funding Source:",value="")
+sust_funding = st.text_area("Sustainment Funding Source:",value=sust_funding_read)
 
 # Additional Information on Funding
 fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=50)
@@ -293,10 +421,10 @@ for r in range(proj_rows):
 #Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
 # Create Input for History of Capability Utilization
-hist = st.text_area("History of capability utilization:",value="")
+hist = st.text_area("History of capability utilization:",value=hist_read)
 
 # Create Input for Major Impact and Contributions
-impact = st.text_area("Major impact and contributions this capability has made possible:",value="")
+impact = st.text_area("Major impact and contributions this capability has made possible:",value=impact_read)
 
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
@@ -363,16 +491,16 @@ for r in range(down_rows):
 #Create Divider for Down Time History
 st.subheader('Cost')
 # Create Input for Cost of Replacement
-cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=0)
+cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=int(rep_cost_read))
 
 # Create Input for Cost of Service Contracts
-cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0)
+cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=int(serv_cost_read))
 
 # Create Input for Annual Expenses to operate and sustain the lab
-cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0)
+cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=int(ann_cost_read))
 
 # Create Input for Incurred Cost Due to Downtown
-cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0)
+cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=int(inc_cost_read))
 
 # Create Input for Labor Division
 labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50)
