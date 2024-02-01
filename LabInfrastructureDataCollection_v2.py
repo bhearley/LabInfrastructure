@@ -213,7 +213,7 @@ def read_data():
                 val  = lines[i][len(key)+1:len(lines[i])-1]
                 line_num = i
         num_fund  = int(val)
-        st.session_state.labor_num = num_fund
+        st.session_state.fund_num  = num_fund
         
         data = ''
         for k in range(line_num+2,line_num+2+num_fund):
