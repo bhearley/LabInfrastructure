@@ -58,11 +58,10 @@ def read_data():
     flag =0
 
     # Find the File
-    if  lab_load != 'New':
-        for i in range(len(files_disp)):
-            if lab_load == files_disp[i]:
-                file_read = files[i]
-                flag = 1
+    for i in range(len(files_disp)):
+        if st.session_state.load == files_disp[i]:
+            file_read = files[i]
+            flag = 1
             
     if flag == 0:
         lab_name_read = ''
@@ -197,7 +196,7 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Save State Option                 
-lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data) 
+lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data, key = 'load') 
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
