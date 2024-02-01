@@ -64,6 +64,7 @@ def read_data():
         st.session_state.cost_inc = 0
         st.session_state.labor_num = 0
         st.session_state.asset_num = 0
+        st.session_state.fund_num = 0
     else:
     
         # Read the file
@@ -205,6 +206,34 @@ def read_data():
             st.session_state[f'input_col10{k}'] = data_all[k][9]
             st.session_state[f'input_col11{k}'] = data_all[k][10]
 
+        # -- Read Divisons Table
+        key = 'Number of Funding Sources:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+                line_num = i
+        num_fund  = int(val)
+        st.session_state.labor_num = num_fund
+        
+        data = ''
+        for k in range(line_num+2,line_num+2+num_fund):
+            data = data + lines[k]
+        data= data.split('\n')
+        data_all = []
+        for k in range(num_div):
+            data_line = data[k]
+            data_line = data_line.split('\t')
+            data_line[1] = float(data_line[3])
+            data_all.append(data_line)
+
+        for k in range(num_div):
+            st.session_state[f'input_col12{k}'] = data_all[k][0]
+            date1 = data_all[k][1].split('-')
+            st.session_state[f'input_col13{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+            date2 = data_all[k][2].split('-')
+            st.session_state[f'input_col14{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+            st.session_state[f'input_col15{k}'] = data_all[k][3]
+        
         # -- Read Divisons Table
         key = 'Number of Divisions (Labor Costs):'
         for i in range(len(lines)):
@@ -378,7 +407,7 @@ for r in range(asset_rows):
 sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
 
 # Additional Information on Funding
-fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=50)
+fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=50,key='fund_num')
 grid2 = st.columns(4)
 fund_src = [] #Store funding source
 start_fund = [] #Store the start date of funding
