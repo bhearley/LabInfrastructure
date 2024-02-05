@@ -53,7 +53,7 @@ def read_data():
         st.session_state.desc = ''
         st.session_state.link = ''
         st.session_state.chal = ''
-        st.session_state.lab_age = 0
+        st.session_state.lab_age_k = 0
         st.session_state.cond = 'Excellent'
         st.session_state.sust = ''
         st.session_state.hist = ''
@@ -114,7 +114,7 @@ def read_data():
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.lab_age = int(val)
+        st.session_state.lab_age_k = int(val)
         
         # -- Condition:
         key = 'Condition:'
@@ -349,7 +349,7 @@ lab_link = st.text_input("Laboratory/Capability Website:",value='',key='link')
 lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value='',key='chal')
 
 # Create Input for Age
-lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0,key='lab_age')
+lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0,key='lab_age_k')
 
 # Create Input for Condition
 cond_opts = ['Excellent','Good','Fair','Poor']
