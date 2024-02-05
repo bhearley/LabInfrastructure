@@ -70,7 +70,7 @@ def read_data():
     else:
     
         # Read the file
-        with open(file_read) as f:
+        with open(os.path.join(existing_files,file_read)) as f:
             lines = f.readlines()
     
         # Parse Data
