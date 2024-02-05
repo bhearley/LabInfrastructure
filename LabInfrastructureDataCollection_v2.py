@@ -747,3 +747,4 @@ if st.button('Submit'):
         data_out = data_out + '\n'
     
     st.download_button('Download Data File (Temporary)', data_out, file_name = lab_name + '.txt')
+    st.text('Upload the *.txt file to: https://nasagov.app.box.com/f/dcb7f4527bb345998aec063aa8d33109')
