@@ -1,0 +1,30 @@
+Laboratory/Capability Name: Micro-focus CT/ Digital Radiography
+Point of Contact: Richard Rauser / Richard Martin
+Laboratory/Capability Description: The Micro-focus CT/ Digital Radiography laboratory produces high resolution computed tomography (CT) data and digital radiography data of various materials of interest to multiple NASA branches. This is accomplished using 2 system, a 225kV high-resolution system, and a 300kV wide-field system. These systems are able to detect indications such as voids and inclusions down to the 1um level. Data is used to assess material quality, identify manufacturing defects, and monitor damage progression in materials subjected to thermal and mechanical loads.
+Laboratory/Capability Website: 
+Challenges in sustaining this laboratory/capability: 
+Age (yrs): 10
+Condition: Excellent
+
+Number of Assets: 8
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+COMPUTER, MICRO High Resolution Reconstruction	6/11	5.0	2024-02-16	2027-02-01	Excellent	80000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI CT Reconstruction software	Yes	Partial replacement possible, but would likely result in reduced capability.
+SYSTEM, XRAY Acquisition computer and motion control	6/11	10.0	2024-02-16	2024-02-01	Excellent	80000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI CT acquisition software	Yes	Partial replacement possible, but would likely result in reduced capability.
+XRAY SYSTEM X-ray tube and detector	6/11	10.0	2024-02-16	2032-02-02	Excellent	600000	Xray  tube and detector are critical to facility operation.. Loss would result in facility shutdown.	Tube and detector control software and drivers	No	X-ray Tube or Detector can be replaced as needed.
+COMPUTER, MICRO Wide-Field Reconstruction	6/6	6.0	2024-02-16	2024-02-16	Excellent	80000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI Reconstruction software	Yes	Partial replacement possible, but would likely result in reduced capability.
+SYSTEM, XRAY Acquisition computer and motion control for Wide-Field System	6/6	9.0	2024-02-16	2024-02-16	Excellent	60000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI CT acquisition software	Yes	Partial replacement possible, but would likely result in reduced capability.
+TUBE, XRAY 300kV for Wide-Field System	6/6	6.0	2024-02-16	2024-02-16	Excellent	150000	Xray  tube is critical to facility operation.. Loss would result in facility shutdown.	Tube control software and drivers	No	Full
+DETECTOR, DIGITAL XRAY for Wide-Field System	6/6	8.0	2024-02-16	2024-02-16	Excellent	200000	Xray  detector s critical to facility operation.. Loss would result in facility shutdown.	Detector control software and drivers	No	Full
+COMPUTER, MICRO Legacy Reconstruction Computer	6/6	13.0	2024-02-16	2026-02-02	Fair	80000	No impact. Redundant system for reconstruction.	NSI Reconstruction software	Yes	Full
+
+Sustainment Funding Source:  
+Number of Funding Sources: 0
+Number of Projects: 0
+History of capability utilization: The micro-focus CT facility has been instrumental in supporting high-profile, NASA wide projects.  These include inspection and qualification of Sterling Engine components, European Service Module fuel lines and other critical hardware.  The facility also supports much of the metallic and composite materials development effort for the Research and Engineering Directorate. 
+Major impact and contributions this capability has made possible: 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 2000000
+Cost of Service Contracts ($): 12000
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
