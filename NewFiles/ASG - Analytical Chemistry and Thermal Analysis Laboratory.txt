@@ -1,0 +1,39 @@
+Laboratory/Capability Name: ASG - Analytical Chemistry and Thermal Analysis Laboratory
+Point of Contact: current, Dereck Johnson (to May 3 2024) - future, Mike Kulis
+Laboratory/Capability Description: The lab provides total elemental analysis of inorganic materials, mostly alloys and ceramics, from major constituents to ppm level impurities.  It can also provide metals content of certain organic materials.  Carbon, sulfur, nitrogen, and oxygen can also be determined in inorganic materials, whether present as interstitials or as carbides, nitrides and oxides.  In thermal analysis, heats of transition, specific heat, weight change as a function of temperature, and coefficient of thermal expansion can be determined from room temperature to 1500 C. 
+Laboratory/Capability Website: none (website efforts were abandoned in the 2000's)
+Challenges in sustaining this laboratory/capability: The infrastructure in Bldg 105 is not always conducive to making precise measurements in this lab, or having continuity of operation.  From condensation or steam valve leaks through the drop ceiling, to electrical power issues, to HVAC room climate problems, to an inoperative elevator, we are having to interrupt work for facilities fixes or come up with workarounds.  The fact that ASG as a whole does not have a baseline funding stream and must completely depend on the projects to pay their fair share creates issues of getting dollars in time to pay bills such as for WYE's and service contracts, as well as an inability to line up funding for major investments.    WRT lab age below, 1992-93 was the last major rehab in this lab, installing new fume hoods and revamping the HVAC and drop ceiling.   In 2018 a partial rehab was done to move equipment in from Bldg 51 and rework a small partition of the lab for thermal analysis space. 
+Age (yrs): 32
+Condition: Good
+
+Number of Assets: 6
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+ICP Spectrometer	105-214	1.5	2022-11-18	2034-02-16	Excellent	150000	no elemental analysis 	yes 	Yes	full
+nitrogen-oxygen analyzer	105-214	8.0	2016-02-29	2030-02-15	Good	80000	no N-O analysis	yes	Yes	part
+carbon-sulfur analyzer	105-214	6.0	2018-01-10	2032-02-16	Good	80000	no C-S analysis	yes	Yes	part
+DSC-TGA calorimeter	105-214	7.5	2016-09-28	2030-02-15	Good	65000	no heats of transition, no thermogravimetry	yes	Yes	full
+DSC calorimeter	105-214	15.0	2009-03-09	2025-02-14	Fair	65000	no specific heats	yes	Yes	full
+pushrod dilatometer	105-214	23.0	2001-06-01	2024-02-16	Fair	75000	no CTE measurement	yes	Yes	full
+
+Sustainment Funding Source: We have no level of sustained, baseline funding.  We depend on projects estimating their usage of ASG and building it into their budget requests, or projects paying after using ASG services.   
+Number of Funding Sources: 0
+Number of Projects: 5
+Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
+GCD-RAAMBO	264925.04.29.22	30.0	High	cannot characterize start materials or evaluate AM builds in relation to target comp.
+TTT-SMA	109492.02.03.05.02.06	20.0	High	cannot show target composition is reached, cannot measure CTE
+TTT-ODS	109492.02.03.09.02.03	10.0	High	cannot confirm cast composition nor level of oxide loading
+AATT-Magnetic Materials	081876.02.03.10.01.01.02	20.0	High	cannot confirm melt spun ribbon composition, cant measure melting range of VIM heats
+GCD-ORCA	264925.04.28.22	5.0	High	no feedback on AM build quality, no CTE measurement 
+
+History of capability utilization: Pre-pandemic, the Chemical/Thermal analysis lab was used by all of the traditional "materials" branches in LM (LMA, LMC, LME, LMN, some LMT) as well as certain researchers in "structures" branches or those outside the division that may be working with LM staff on a particular project.  Then there is the occasional "mystery" sample from a test that produced an unexpected deposit or coating in the furnace/chamber.  In the return to onsite work era, the customer base has narrowed considerably to where the large majority of projects supported are LMA involved.  Is this coincidence, or is there some reason to think the changes in work culture brought about by the pandemic have had an effect? 
+Major impact and contributions this capability has made possible: This lab has provided materials characterization data to help researchers understand the effects of processing parameters, starting material quality, and composition tolerance on the whole materials development enterprise.  This has helped lead to success stories such as the GRCop alloys' use in rocket launches.   In certain cases there are key pieces of data provided that inform the decision as to mission suitability, such as the CTE measurements of depleted uranium-molybdenum alloy for the Kilopower project.  
+Number of Failures: 2
+Asset 	 Start Date 	 Time Down 	 Unit 	 Additional Notes 
+DSC calorimeter	2019-06-03	12.0	Months	does not include Covid shutdown
+ICP Spectrometer	2021-10-18	13.0	Months	time btw delivery new ICP and installation because of delays in site prep (Covid hindered)
+
+Estimated Cost to Replace Entire Laboratory/Capability ($): 1000000
+Cost of Service Contracts ($): 70000
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
