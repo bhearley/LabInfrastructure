@@ -1,0 +1,40 @@
+Laboratory/Capability Name: Micro-focus CT/ Digital Radiography
+Point of Contact: Richard Rauser / Richard Martin
+Laboratory/Capability Description: The Micro-focus CT/ Digital Radiography laboratory produces high resolution computed tomography (CT) data and digital radiography data of various materials of interest to multiple NASA branches. This is accomplished using 2 system, a 225kV high-resolution system, and a 300kV wide-field system. These systems are able to detect indications such as voids and inclusions down to the 1um level. Data is used to assess material quality, identify manufacturing defects, and monitor damage progression in materials subjected to thermal and mechanical loads.
+Laboratory/Capability Website: None.
+Challenges in sustaining this laboratory/capability: The CT systems are getting old and potential hardware problems could render the facility useless without a reliable source of support funds. The fact that ASG as a whole does not have a baseline funding stream and must completely depend on the projects to pay their fair share creates issues of getting dollars in time to pay bills such as for WYE's and service contracts, as well as an inability to line up funding for major investments.    
+Age (yrs): 10
+Condition: Fair
+
+Number of Assets: 8
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+COMPUTER, MICRO High Resolution Reconstruction	6/11	5.0	2024-02-16	2027-02-01	Fair	80000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI CT Reconstruction software	Yes	Partial replacement possible, but would likely result in reduced capability.
+SYSTEM, XRAY Acquisition computer and motion control	6/11	10.0	2024-02-16	2025-02-01	Fair	80000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI CT acquisition software	Yes	Partial replacement possible, but would likely result in reduced capability.
+XRAY SYSTEM X-ray tube and detector	6/11	10.0	2024-02-16	2032-02-02	Fair	600000	Xray  tube and detector are critical to facility operation.. Loss would result in facility shutdown.	Tube and detector control software and drivers	No	X-ray Tube or Detector can be replaced as needed.
+COMPUTER, MICRO Wide-Field Reconstruction	6/6	6.0	2024-02-16	2027-02-01	Fair	80000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI Reconstruction software	Yes	Partial replacement possible, but would likely result in reduced capability.
+SYSTEM, XRAY Acquisition computer and motion control for Wide-Field System	6/6	9.0	2024-02-16	2027-02-01	Fair	60000	Computer system is critical to facility operation.. Loss would result in facility shutdown.	NSI CT acquisition software	Yes	Partial replacement possible, but would likely result in reduced capability.
+TUBE, XRAY 300kV for Wide-Field System	6/6	6.0	2024-02-16	2032-02-01	Fair	150000	Xray  tube is critical to facility operation.. Loss would result in facility shutdown.	Tube control software and drivers	No	Full
+DETECTOR, DIGITAL XRAY for Wide-Field System	6/6	8.0	2024-02-16	2032-02-01	Fair	200000	Xray  detector s critical to facility operation.. Loss would result in facility shutdown.	Detector control software and drivers	No	Full
+COMPUTER, MICRO Legacy Reconstruction Computer	6/6	13.0	2024-02-16	2025-02-01	Fair	80000	No impact. Redundant system for reconstruction.	NSI Reconstruction software	Yes	Full
+
+Sustainment Funding Source:  We have no level of sustained, baseline funding.  We depend on projects estimating their usage of ASG and building it into their budget requests, or projects paying after using ASG services.    
+Number of Funding Sources: 0
+Number of Projects: 5
+Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
+GCD-RAAMBO	264925.04.29.22	27.0	Moderate	Characterization of AM hardware quality can't be assessed for parameter optimization.
+GCD-ORCA	264925.04.28.22	26.0	Moderate	Characterization of AM hardware quality can't be assessed for parameter optimization.
+ GRC-CONVERTOR DEVELOPMENT	138494.04.19.01.02	10.0	Moderate	Quality of heater heads could not be determined. Failure analysis would be difficult or impossible.
+TTT-ENDURING DISCIPLINES M&S VISIONS	109492.02.03.05.06.01	15.0	Moderate	Characterization of AM hardware quality can't be assessed for parameter optimization.
+GRC-AM CMC COMBUSTER	698154.04.03.01.02.04	15.0	Moderate	Fundamental understanding of CMC failure subjected to high-temperature SPLCF cannot be determined.
+
+History of capability utilization: The micro-focus CT facility has been instrumental in supporting high-profile, NASA wide projects.  These include inspection and qualification of Sterling Engine components, European Service Module fuel lines and other critical hardware.  The facility also supports much of the metallic and composite materials development effort for the Research and Engineering Directorate. Specifically, the CT facility regularly supports work from LMA, LMC, LMN, and LME.
+Major impact and contributions this capability has made possible: A recent major contribution includes the CT inspection of a propellant line for the European Service Module. Cracks detected in the line prevented a major issue with the Artemis-V flight. Additionally, a significant effort has been made in the inspection of Sterling Heater Heads to identify any changes in performance during testing and to assess initial quality.
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 2200000
+Cost of Service Contracts ($): 12000
+Annual Cost to Operate and Sustain the Lab ($/yr): 200000
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 1
+Directorate 	 Labor Cost (%) 
+Code L	100.0
+
