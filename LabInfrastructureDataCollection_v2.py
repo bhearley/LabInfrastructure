@@ -407,7 +407,7 @@ def add_row_asset(row):
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.date_input('Date of  \n \n  Entry', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
+            asset_date_in[row]=st.date_input('Asset Date  \n \n of Entry', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset ws acquired.', key=f'input_cold{row}')
         else:
             asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
     # -- Asset Date of Obsolescence
@@ -415,9 +415,9 @@ def add_row_asset(row):
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), help = 'Expected date of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
+            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'Expected date of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
-            asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_cole{row}')
+            asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cole{row}')
     # -- Asset Condition
     with grid[5]:
         while len(asset_cond) < row+1:
@@ -495,17 +495,17 @@ def add_row2(row):
         while len(start_fund) < row+1:
             start_fund.append(None)
         if row == 0:
-            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_colm{row}')
+            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_colm{row}')
+            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}')
     # -- End Date of Funding
     with grid2[2]:
         while len(end_fund) < row+1:
             end_fund.append(None)
         if row == 0:
-            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), key=f'input_coln{row}')
+            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
         else:
-            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_coln{row}')
+            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}')
     # -- Funding Amount
     with grid2[3]:
         while len(fund_amt) < row+1:
@@ -617,9 +617,9 @@ def add_row4(row):
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_colv{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colv{row}')
         else:
-            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_colv{row}')
+            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}')
     # -- Time Down
     with grid4[2]:
         while len(time_dt) < row+1:
