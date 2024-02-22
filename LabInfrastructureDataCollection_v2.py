@@ -327,7 +327,7 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Instructions
-st.markdown('The NASA GRC Laboratory Infrastucture Data Collection Tool is used to capture the current state an associated assets of a given laboratory or capability.')
+st.markdown('The NASA GRC Laboratory Infrastucture Data Collection Tool is used to capture the current state an associated assets of a given laboratory or capability. For each laboratory or capability, fill out the items below that best capture the current state and associated assets that total over $200K. The information entered in this collection tool will be used to advocate for additional funding to improve the state of NASA GRC Labs.')
 
 # Create Save State Option                 
 lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data, key = 'load') 
