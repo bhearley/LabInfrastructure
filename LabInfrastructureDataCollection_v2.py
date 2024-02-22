@@ -194,19 +194,19 @@ def read_data():
             data_all.append(data_line)
 
         for k in range(num_assets):
-            st.session_state[f'input_col1{k}'] = data_all[k][0]
-            st.session_state[f'input_col2{k}'] = data_all[k][1]
-            st.session_state[f'input_col3{k}'] = data_all[k][2]
+            st.session_state[f'input_cola{k}'] = data_all[k][0]
+            st.session_state[f'input_colb{k}'] = data_all[k][1]
+            st.session_state[f'input_colc{k}'] = data_all[k][2]
             date1 = data_all[k][3].split('-')
-            st.session_state[f'input_col4{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+            st.session_state[f'input_cold{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
             date2 = data_all[k][4].split('-')
-            st.session_state[f'input_col5{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
-            st.session_state[f'input_col6{k}'] = data_all[k][5]
-            st.session_state[f'input_col7{k}'] = data_all[k][6]
-            st.session_state[f'input_col8{k}'] = data_all[k][7]
-            st.session_state[f'input_col9{k}'] = data_all[k][8]
-            st.session_state[f'input_col10{k}'] = data_all[k][9]
-            st.session_state[f'input_col11{k}'] = data_all[k][10]
+            st.session_state[f'input_cole{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+            st.session_state[f'input_colf{k}'] = data_all[k][5]
+            st.session_state[f'input_colg{k}'] = data_all[k][6]
+            st.session_state[f'input_colh{k}'] = data_all[k][7]
+            st.session_state[f'input_coli{k}'] = data_all[k][8]
+            st.session_state[f'input_colk{k}'] = data_all[k][9]
+            st.session_state[f'input_colk{k}'] = data_all[k][10]
 
         # -- Read Funding Table
         key = 'Number of Funding Sources:'
@@ -378,88 +378,88 @@ def add_row_asset(row):
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
-            asset_name[row]=st.text_input('Asset \n \n Name', key=f'input_cola{row}_a')
+            asset_name[row]=st.text_input('Asset \n \n Name', key=f'input_cola{row}')
         else:
-            asset_name[row]=st.text_input('', key=f'input_cola{row}_a')
+            asset_name[row]=st.text_input('', key=f'input_cola{row}')
     # -- Asset Location    
     with grid[1]:
         while len(asset_loc) < row+1:
             asset_loc.append(None)
         if row == 0:
-            asset_loc[row]=st.text_input('Location  \n \n (Bldg/Rm)', key=f'input_col2{row}_a')
+            asset_loc[row]=st.text_input('Location  \n \n (Bldg/Rm)', key=f'input_colb{row}')
         else:
-            asset_loc[row]=st.text_input('', key=f'input_col2{row}_a')
+            asset_loc[row]=st.text_input('', key=f'input_colb{row}')
     # -- Asset Age
     with grid[2]:
         while len(asset_age) < row+1:
             asset_age.append(None)
         if row == 0:
-            asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, key=f'input_col3{row}_a')
+            asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, key=f'input_colc{row}')
         else:
-            asset_age[row]=st.number_input('', step=0.5, key=f'input_col3{row}_a')
+            asset_age[row]=st.number_input('', step=0.5, key=f'input_colc{row}')
     # -- Asset Date of Entry
     with grid[3]:
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.date_input('Date of  \n \n  Entry', min_value=datetime.date(1950, 1, 1), key=f'input_col4{row}_a')
+            asset_date_in[row]=st.date_input('Date of  \n \n  Entry', min_value=datetime.date(1950, 1, 1), key=f'input_cold{row}')
         else:
-            asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_col4{row}_a')
+            asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_cold{row}')
     # -- Asset Date of Obsolescence
     with grid[4]:
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), key=f'input_col5{row}_a')
+            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), key=f'input_cole{row}')
         else:
-            asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_col5{row}_a')
+            asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_cole{row}')
     # -- Asset Condition
     with grid[5]:
         while len(asset_cond) < row+1:
             asset_cond.append(None)
         if row == 0:
-            asset_cond[row]=st.selectbox('Asset  \n \n  Condition', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col6{row}_a')
+            asset_cond[row]=st.selectbox('Asset  \n \n  Condition', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}')
         else:
-            asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_col6{row}_a')
+            asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}')
     # -- Asset Cost of Replacement
     with grid[6]:
         while len(asset_cost) < row+1:
             asset_cost.append(None)
         if row == 0:
-            asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, key=f'input_col7{row}_a')
+            asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, key=f'input_colg{row}')
         else:
-            asset_cost[row]=st.number_input('', step=1000, key=f'input_col7{row}_a')
+            asset_cost[row]=st.number_input('', step=1000, key=f'input_colg{row}')
     # -- Asset Impact if Lost
     with grid[7]:
         while len(asset_imp) < row+1:
             asset_imp.append(None)
         if row == 0:
-            asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_col8{row}_a')
+            asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_colh{row}')
         else:
-            asset_imp[row]=st.text_input('', key=f'input_col8{row}_a')
+            asset_imp[row]=st.text_input('', key=f'input_colh{row}')
     # -- Associated Software
     with grid[8]:
         while len(asset_software) < row+1:
             asset_software.append(None)
         if row == 0:
-            asset_software[row]=st.text_input('Associated \n \n Software', key=f'input_col9{row}_a')
+            asset_software[row]=st.text_input('Associated \n \n Software', key=f'input_coli{row}')
         else:
-            asset_software[row]=st.text_input('', key=f'input_col9{row}_a')
+            asset_software[row]=st.text_input('', key=f'input_coli{row}')
     # -- IT/computer hardware repalcement
     with grid[9]:
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
-            asset_itrep[row]=st.selectbox('IT Hardware \n \n  Repalcement?', ('Yes','No'),key=f'input_col10{row}_a')
+            asset_itrep[row]=st.selectbox('IT Hardware \n \n  Repalcement?', ('Yes','No'),key=f'input_colj{row}')
         else:
-            asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_col10{row}_a')
+            asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_colj{row}')
     with grid[10]:
         while len(asset_repdesc) < row+1:
             asset_repdesc.append(None)
         if row == 0:
-            asset_repdesc[row]=st.text_input('Part or Full \n \n Replacement?', key=f'input_col11{row}_a')
+            asset_repdesc[row]=st.text_input('Part or Full \n \n Replacement?', key=f'input_colk{row}')
         else:
-            asset_repdesc[row]=st.text_input('', key=f'input_col11{row}_a')
+            asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
 for r in range(asset_rows):
     add_row_asset(r)
 
