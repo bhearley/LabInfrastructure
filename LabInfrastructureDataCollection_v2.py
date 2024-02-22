@@ -229,12 +229,12 @@ def read_data():
             data_all.append(data_line)
 
         for k in range(num_fund):
-            st.session_state[f'input_col12{k}'] = data_all[k][0]
+            st.session_state[f'input_coll{k}'] = data_all[k][0]
             date1 = data_all[k][1].split('-')
-            st.session_state[f'input_col13{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+            st.session_state[f'input_colm{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
             date2 = data_all[k][2].split('-')
-            st.session_state[f'input_col14{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
-            st.session_state[f'input_col15{k}'] = data_all[k][3]
+            st.session_state[f'input_coln{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+            st.session_state[f'input_colo{k}'] = data_all[k][3]
         
         # -- Read Project Table
         key = 'Number of Projects:'
@@ -257,11 +257,11 @@ def read_data():
             data_all.append(data_line)
 
         for k in range(num_proj):
-            st.session_state[f'input_col16{k}'] = data_all[k][0]
-            st.session_state[f'input_col17{k}'] = data_all[k][1]
-            st.session_state[f'input_col18{k}'] = data_all[k][2]
-            st.session_state[f'input_col19{k}'] = data_all[k][3]
-            st.session_state[f'input_col20{k}'] = data_all[k][4]
+            st.session_state[f'input_colp{k}'] = data_all[k][0]
+            st.session_state[f'input_colq{k}'] = data_all[k][1]
+            st.session_state[f'input_colr{k}'] = data_all[k][2]
+            st.session_state[f'input_cols{k}'] = data_all[k][3]
+            st.session_state[f'input_colt{k}'] = data_all[k][4]
 
         # -- Read Down Time Table
         key = 'Number of Failures:'
@@ -284,12 +284,12 @@ def read_data():
             data_all.append(data_line)
 
         for k in range(num_dt):
-            st.session_state[f'input_col21{k}'] = data_all[k][0]
+            st.session_state[f'input_colu{k}'] = data_all[k][0]
             date1 = data_all[k][1].split('-')
-            st.session_state[f'input_col22{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-            st.session_state[f'input_col23{k}'] = data_all[k][2]
-            st.session_state[f'input_col24{k}'] = data_all[k][3]
-            st.session_state[f'input_col25{k}'] = data_all[k][4]
+            st.session_state[f'input_colv{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+            st.session_state[f'input_colw{k}'] = data_all[k][2]
+            st.session_state[f'input_colx{k}'] = data_all[k][3]
+            st.session_state[f'input_coly{k}'] = data_all[k][4]
         
         # -- Read Divisons Table
         key = 'Number of Divisions (Labor Costs):'
@@ -312,8 +312,8 @@ def read_data():
             data_all.append(data_line)
 
         for k in range(num_div):
-            st.session_state[f'input_col26{k}'] = data_all[k][0]
-            st.session_state[f'input_col27{k}'] = data_all[k][1]
+            st.session_state[f'input_colz{k}'] = data_all[k][0]
+            st.session_state[f'input_colaa{k}'] = data_all[k][1]
 
 
 #----------------------------------------------------------------
@@ -479,33 +479,33 @@ def add_row2(row):
         while len(fund_src) < row+1:
             fund_src.append(None)
         if row == 0:
-            fund_src[row]=st.text_input('Funding Source', value='',key=f'input_col12{row}')
+            fund_src[row]=st.text_input('Funding Source', value='',key=f'input_coll{row}')
         else:
-            fund_src[row]=st.text_input('', value='',key=f'input_col12{row}')
+            fund_src[row]=st.text_input('', value='',key=f'input_coll{row}')
     # -- Start Date of Funding
     with grid2[1]:
         while len(start_fund) < row+1:
             start_fund.append(None)
         if row == 0:
-            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col13{row}')
+            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col13{row}')
+            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_colm{row}')
     # -- End Date of Funding
     with grid2[2]:
         while len(end_fund) < row+1:
             end_fund.append(None)
         if row == 0:
-            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), key=f'input_col14{row}')
+            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), key=f'input_coln{row}')
         else:
-            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col14{row}')
+            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_coln{row}')
     # -- Funding Amount
     with grid2[3]:
         while len(fund_amt) < row+1:
             fund_amt.append(None)
         if row == 0:
-            fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_col15{row}')
+            fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
         else:
-            fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_col15{row}')
+            fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
 for r in range(fund_rows):
     add_row2(r)
 
@@ -529,25 +529,25 @@ def add_row3(row):
         while len(proj_util) < row+1:
             proj_util.append(None)
         if row == 0:
-            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_col16{row}')
+            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_colp{row}')
         else:
-            proj_util[row]=st.text_input('', key=f'input_col16{row}')
+            proj_util[row]=st.text_input('', key=f'input_colp{row}')
     # -- WBS Number
     with grid3[1]:
         while len(wbs_util) < row+1:
             wbs_util.append(None)
         if row == 0:
-            wbs_util[row]=st.text_input('WBS Number', key=f'input_col17{row}')
+            wbs_util[row]=st.text_input('WBS Number', key=f'input_colq{row}')
         else:
-            wbs_util[row]=st.text_input('', key=f'input_col17{row}')
+            wbs_util[row]=st.text_input('', key=f'input_colq{row}')
     # -- Project Use
     with grid3[2]:
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
-            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col18{row}')
+            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
         else:
-            use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col18{row}')
+            use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
     # -- Risk to Project
     with grid3[3]:
         while len(risk) < row+1:
@@ -555,17 +555,17 @@ def add_row3(row):
         if row == 0:
             risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
                                                                                        'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time. \n \n \n ' +
-                                                                                       'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_col19{row}')
+                                                                                       'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_cols{row}')
         else:
-            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_col19{row}')
+            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_cols{row}')
     # -- Impact to Project
     with grid3[4]:
         while len(impact_util) < row+1:
             impact_util.append(None)
         if row == 0:
-            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_col20{row}')
+            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_colt{row}')
         else:
-            impact_util[row]=st.text_input('', key=f'input_col20{row}')
+            impact_util[row]=st.text_input('', key=f'input_colt{row}')
 for r in range(proj_rows):
     add_row3(r)
 
@@ -601,41 +601,41 @@ def add_row4(row):
         while len(asset_dt) < row+1:
             asset_dt.append(None)
         if row == 0:
-            asset_dt[row]=st.selectbox('Asset', options_dt, key=f'input_col21{row}')
+            asset_dt[row]=st.selectbox('Asset', options_dt, key=f'input_colu{row}')
         else:
-            asset_dt[row]=st.selectbox('', options_dt, key=f'input_col21{row}')
+            asset_dt[row]=st.selectbox('', options_dt, key=f'input_colu{row}')
     # -- Start Date for Time Down
     with grid4[1]:
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_col22{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1), key=f'input_colv{row}')
         else:
-            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_col22{row}')
+            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), key=f'input_colv{row}')
     # -- Time Down
     with grid4[2]:
         while len(time_dt) < row+1:
             time_dt.append(None)
         if row == 0:
-            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_col23{row}')
+            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_colw{row}')
         else:
-            time_dt[row]=st.number_input('', step=0.5, key=f'input_col23{row}')
+            time_dt[row]=st.number_input('', step=0.5, key=f'input_colw{row}')
     # -- Unit of Time Down
     with grid4[3]:
         while len(unit_dt) < row+1:
             unit_dt.append(None)
         if row == 0:
-            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_col24{row}')
+            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
         else:
-            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_col24{row}')
+            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
     # -- Additonal Notes for Time Down
     with grid4[4]:
         while len(desc_dt) < row+1:
             desc_dt.append(None)
         if row == 0:
-            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_col25{row}')
+            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_coly{row}')
         else:
-            desc_dt[row]=st.text_input('', value='',key=f'input_col25{row}')
+            desc_dt[row]=st.text_input('', value='',key=f'input_coly{row}')
 for r in range(down_rows):
     add_row4(r)
 
@@ -666,17 +666,17 @@ def add_row5(row):
         while len(division) < row+1:
             division.append(None)
         if row == 0:
-            division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_col26{row}')
+            division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_colz{row}')
         else:
-            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_col26{row}')
+            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_colz{row}')
     # -- Time Down
     with grid5[1]:
         while len(labor_pct) < row+1:
             labor_pct.append(None)
         if row == 0:
-            labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col27{row}')
+            labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
         else:
-            labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_col27{row}')
+            labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
 for r in range(labor_rows):
     add_row5(r)
 
