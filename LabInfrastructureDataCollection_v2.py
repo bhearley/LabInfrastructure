@@ -540,7 +540,7 @@ def add_row3(row):
         while len(wbs_util) < row+1:
             wbs_util.append(None)
         if row == 0:
-            wbs_util[row]=st.text_input('WBS Number', key=f'input_colq{row}')
+            wbs_util[row]=st.text_input('WBS Number', help = 'Enter the 6 Digit WBS Number', key=f'input_colq{row}')
         else:
             wbs_util[row]=st.text_input('', key=f'input_colq{row}')
     # -- Project Use
