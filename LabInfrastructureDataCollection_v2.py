@@ -442,7 +442,7 @@ def add_row_asset(row):
         while len(asset_software) < row+1:
             asset_software.append(None)
         if row == 0:
-            asset_software[row]=st.text_input('Associated \n \n Software', key=f'input_coli{row}')
+            asset_software[row]=st.text_input('Associated Software / \n \n  Required OS', key=f'input_coli{row}')
         else:
             asset_software[row]=st.text_input('', key=f'input_coli{row}')
     # -- IT/computer hardware repalcement
