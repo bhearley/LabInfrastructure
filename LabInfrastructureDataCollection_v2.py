@@ -326,6 +326,10 @@ st.set_page_config(layout="wide")
 # Create the Title
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
+# Create Instructions
+st.text('The NASA GRC Laboratory Infrastucture Data Collection Tool is used to capture the current state an associated assets of a given laboratory or capability.
+        ')
+
 # Create Save State Option                 
 lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data, key = 'load') 
 
