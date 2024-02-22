@@ -420,7 +420,7 @@ def add_row_asset(row):
         if row == 0:
             asset_cond[row]=st.selectbox('Asset  \n \n  Condition',  ('Excellent', 'Good', 'Fair', 'Poor'), help='Excellent - No current issues with the asset. \n \n \n ' +
                                                                                        'Good - Only minor issues with the asset that can be easily fixed. \n \n \n ' +
-                                                                                       'Fair - Asset is still in a working condition, but is near end of life. \n \n \n' +,
+                                                                                       'Fair - Asset is still in a working condition, but is near end of life. \n \n \n' +
                                                                                        'Poor - Asset has many issues/doesn't operate properly', key=f'input_colf{row}')
         else:
             asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}')
