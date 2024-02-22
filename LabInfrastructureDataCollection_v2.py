@@ -330,9 +330,9 @@ st.title("NASA GRC Laboratory Infrastructure Data Collection")
 st.markdown('The NASA GRC Laboratory Infrastucture Data Collection Tool is used to capture the current state an associated assets of a given ' + 
             'laboratory or capability. The information entered in this collection tool will be used to advocate for additional ' +
             'funding to improve the state of NASA GRC Labs. \n \n \n' +
-            'For each laboratory or capability: \n\n  ' +
-             '   Enter assets that are over $200K \n\n' 
-             '   Enter the total costs for an asset made of multiple components that may need replacement \n\n')
+            'For each laboratory or capability \n\n  ' +
+             '  - Enter assets that are over $200K \n\n' 
+             '  - Enter the total costs for an asset made of multiple components that may need replacement \n\n')
 
 # Create Save State Option                 
 lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data, key = 'load') 
