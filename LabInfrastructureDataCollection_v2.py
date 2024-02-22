@@ -410,7 +410,7 @@ def add_row_asset(row):
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), key=f'input_cole{row}')
+            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), help = 'Expected date of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
             asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), key=f'input_cole{row}')
     # -- Asset Condition
