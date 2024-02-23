@@ -1,0 +1,41 @@
+Laboratory/Capability Name: Metallography and Optical Microscopy Laboratory
+Point of Contact: Laura Wilson
+Laboratory/Capability Description: Metallography--perform sample preparation for metal, ceramic, polymer, and composite materials that are to be examined under optical and electron microscopy
+Optical Microscopy--perform surface characterization through inverted and upright optical microscopes, microhardness, and surface profilometry
+Laboratory/Capability Website: n/a
+Challenges in sustaining this laboratory/capability: Age of equipment - IT upgrades causing obsolete equipment
+Wear of equipment due to regular use
+Consumable costs for supplies
+Age of facility - hoods showing corrosion, countertops/sinks and cabinets worn, floors worn with missing/broken tiles
+
+Age (yrs): 29
+Condition: Fair
+
+Number of Assets: 14
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Struers Grinder / Polisher		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Struers Grinder / Polisher		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Stuers Grinder / Polisher		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Allied HighTech MultiPrep		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Struers Saw - Disotom 5		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Stuers Saw - Accutom		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Nikon Stereoscope / Olympus Camera		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Nikon Inverted Microscope / Olympus Camera		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Stuers Hardness Tester - DuraScan		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Zygo Optical Profilometer - NexView 2		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Stuers Hot Mounting Press		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+
+Sustainment Funding Source: User project charges 
+Number of Funding Sources: 0
+Number of Projects: 0
+History of capability utilization: 
+Major impact and contributions this capability has made possible: 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 0
+Cost of Service Contracts ($): 0
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0

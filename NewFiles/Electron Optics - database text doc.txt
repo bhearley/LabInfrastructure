@@ -1,0 +1,47 @@
+Laboratory/Capability Name: Electron Optics Laboratory
+Point of Contact: Elizabeth Young-Dohe
+Laboratory/Capability Description: Scanning Electron Microscopy, Transmission Electron Microscopy and associated sample preparation equipment.  
+Laboratory/Capability Website: none
+Challenges in sustaining this laboratory/capability: Yearly Service Contract Costs
+Age of equipment - Equipment not under contract, or under service no parts contracts due to lack of new parts available in the market
+Facilities - Regular temperature issues within the laboratory, minimizing the capabilities of the equipment
+Age (yrs): 29
+Condition: Fair
+
+Number of Assets: 10
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Tescan MAIA3 SEM		0.0	2024-02-23	2024-02-23	Good	0			Yes	
+Zeiss Auriga FIB-SEM		0.0	2024-02-23	2024-02-23	Fair	0			Yes	
+Hitachi S4700		0.0	2024-02-23	2024-02-23	Fair	0			Yes	
+Hitachi II S4700		0.0	2024-02-23	2024-02-23	Fair	0			Yes	
+FEI (Thermo) Talos F200S		0.0	2024-02-23	2024-02-23	Good	0			Yes	
+JEOL 6400		0.0	2024-02-23	2024-02-23	Fair	0			Yes	
+Oxford Aztec EBSD/EDS Detector System (on Tescan scope)		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+EDAX EBSD/EDS System (on Zeiss)		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+Gatan Ion Mill		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+		0.0	2024-02-23	2024-02-23	Excellent	0			Yes	
+
+Sustainment Funding Source: None 
+Number of Funding Sources: 3
+Funding Source 	 Funding Start Date 	 Funding End Date 	 Funding Amount per Year ($) 
+Walk in User Fees	2024-02-23	2024-02-23	0
+	2024-02-23	2024-02-23	0
+	2024-02-23	2024-02-23	0
+
+Number of Projects: 4
+Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
+		0.0	High	
+		0.0	High	
+		0.0	High	
+		0.0	High	
+
+History of capability utilization: 
+Major impact and contributions this capability has made possible: GRX810 Alloy Development
+Multiple NESC Investigation Studies:  ULA Anomaly Investigation, SpX Draco Truster Failures
+ 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 8500000
+Cost of Service Contracts ($): 0
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
