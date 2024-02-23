@@ -407,7 +407,7 @@ def add_row_asset(row):
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.date_input('Asset Date  \n \n of Entry', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset ws acquired.', key=f'input_cold{row}')
+            asset_date_in[row]=st.date_input('Asset Date  \n \n of Entry', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
         else:
             asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
     # -- Asset Date of Obsolescence
