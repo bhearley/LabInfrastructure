@@ -42,6 +42,8 @@ for q in range(len(files_all)):
         if val[0:3] not in Branch:
             Branch.append(val[0:3])
     
+Div.sort()
+Branch.sort()
 
 # Filter Criteria - By Branch or Division
 filt_opts = ['','Division', 'Branch']
