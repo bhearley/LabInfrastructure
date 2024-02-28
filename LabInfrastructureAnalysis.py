@@ -52,10 +52,10 @@ filt_opt1 = st.selectbox('Filter by:',filt_opts,key='filt_opt1')
 
 Div_Disp = []
 for k in range(len(Div)):
-    Div_Disp[k] = True
+    Div_Disp.append(True)
 Branch_Disp = []
 for k in range(len(Branch)):
-    Branch_Disp[k] = True
+    Branch_Disp.append(True)
 
 if filt_opt1 == 'Division':
     for j in range(len(Div)):
