@@ -512,7 +512,7 @@ def add_row_asset(row):
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
-            asset_itrep[row]=st.selectbox('Inlcudes \n \n  IT Hardware?', ('Yes','No'),, help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
+            asset_itrep[row]=st.selectbox('Inlcudes \n \n  IT Hardware?', ('Yes','No'), help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
         else:
             asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_colj{row}')
     with grid[10]:
