@@ -51,3 +51,7 @@ if filt_opt1 == 'Division':
     st.checkbox('All', value=True, key='div_all', label_visibility="visible")
     for j in range(len(Div)):
         st.checkbox(Div[j], value=True, key='div_' + str(j), label_visibility="visible")
+if filt_opt1 == 'Branch':
+    st.checkbox('All', value=True, key='div_all', label_visibility="visible")
+    for j in range(len(Branch)):
+        st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
