@@ -217,7 +217,7 @@ def read_data():
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
                 flag = 1
-        if flag = 1:
+        if flag == 1:
             st.session_state.cost_inc  = int(val)
 
         # -- Asset Table
