@@ -55,3 +55,6 @@ if filt_opt1 == 'Division':
 if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
         st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
+
+asset_slider = st.slider(label, min_value=0, max_value=None, value=None, step=1000)
+
