@@ -336,7 +336,7 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
             'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
             '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. (i.e. a Scanning Electron Microscope) \n\n' + 
-            '  - For each laboratory enter assets with a value over $100K \n\n' + )
+            '  - For each laboratory enter assets with a value over $100K \n\n')
 
 # Create Save State Option                 
 lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data, key = 'load') 
