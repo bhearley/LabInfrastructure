@@ -51,6 +51,7 @@ def read_data():
     if flag == 0:
         st.session_state.name = ''
         st.session_state.poc = ''
+        st.session_state.branch = ''
         st.session_state.desc = ''
         st.session_state.link = ''
         st.session_state.chal = ''
@@ -134,52 +135,73 @@ def read_data():
         
         # -- Age (yrs):
         key = 'Age (yrs):'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.lab_age_k = int(val)
+                flag = 1
+        if flag == 1:
+            st.session_state.lab_age_k = int(val)
         
         # -- Condition:
         key = 'Condition:'
+        fag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.cond  = val
+                flag = 1
+        if flag = 1:
+            st.session_state.cond  = val
         
         # -- Sustainment Funding Source:
         key = 'Sustainment Funding Source:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.sust  = val
+                flag = 1
+        if flag == 1:
+            st.session_state.sust  = val
         
         # -- History of capability utilization:
         key = 'History of capability utilization:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.hist  = val
+                flag = 1
+        if flag == 1:
+            st.session_state.hist  = val
         
         # -- Major impact and contributions this capability has made possible:
         key = 'Major impact and contributions this capability has made possible:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.impact  = val
+                flag = 1
+        if flag == 1:
+            st.session_state.impact  = val
         
         # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
         key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.cost_rep  = int(val)
+                flag = 1
+        if flag == 1:
+            st.session_state.cost_rep  = int(val)
         
         # -- Cost of Service Contracts ($):
         key = 'Cost of Service Contracts ($):'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.cost_serv  = int(val)
+                flag = 1
+        if flag == 1:
+            st.session_state.cost_serv  = int(val)
         
         # -- Cost of Service Contracts ($):
         key = 'Annual Cost to Operate and Sustain the Lab ($/yr):'
@@ -190,10 +212,13 @@ def read_data():
         
         # -- Cost of Service Contracts ($):
         key = 'Incurred Cost For Downtime ($/yr):'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.cost_inc  = int(val)
+                flag = 1
+        if flag = 1:
+            st.session_state.cost_inc  = int(val)
 
         # -- Asset Table
         key = 'Number of Assets:'
@@ -436,7 +461,7 @@ def add_row_asset(row):
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.date_input('Acquistion  \n \n Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
+            asset_date_in[row]=st.date_input('Acquistion  \n \n Year', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
         else:
             asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
     # -- Asset Date of Obsolescence
@@ -444,7 +469,7 @@ def add_row_asset(row):
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            asset_date_out[row]=st.date_input('Expected Date of Obsolescence', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'Expected date of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
+            asset_date_out[row]=st.date_input('Expected Year of Obsolescence', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'Expected date of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
             asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cole{row}')
     # -- Asset Condition
@@ -487,14 +512,14 @@ def add_row_asset(row):
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
-            asset_itrep[row]=st.selectbox('IT Hardware \n \n  Repalcement?', ('Yes','No'),key=f'input_colj{row}')
+            asset_itrep[row]=st.selectbox('Inlcudes \n \n  IT Hardware?', ('Yes','No'),, help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
         else:
             asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_colj{row}')
     with grid[10]:
         while len(asset_repdesc) < row+1:
             asset_repdesc.append(None)
         if row == 0:
-            asset_repdesc[row]=st.text_input('Part or Full \n \n Replacement?', key=f'input_colk{row}')
+            asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
 for r in range(asset_rows):
