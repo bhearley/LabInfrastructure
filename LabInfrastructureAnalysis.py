@@ -56,5 +56,5 @@ if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
         st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
-asset_slider = st.slider('Total Asset Value Range', min_value=0, max_value=None, value=value=((0, 1000000), (0,100000))), step=1000)
+asset_slider = st.slider('Total Asset Value Range', 0.0, 100.0, (25.0, 75.0))
 
