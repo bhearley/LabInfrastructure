@@ -44,4 +44,4 @@ filt_opt1 = st.selectbox('Filter by:',filt_opts,key='filt_opt1')
 if filt_opt1 == 'Division':
     st.checkbox('All', value=True, key='div_all', label_visibility="visible")
     for j in range(len(Div)):
-        st.checkbox(Dv[j], value=True, key='div_' + str(j), label_visibility="visible")
+        st.checkbox(Div[j], value=True, key='div_' + str(j), label_visibility="visible")
