@@ -150,7 +150,7 @@ def read_data():
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
                 flag = 1
-        if flag = 1:
+        if flag == 1:
             st.session_state.cond  = val
         
         # -- Sustainment Funding Source:
