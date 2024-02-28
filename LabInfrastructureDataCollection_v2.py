@@ -327,12 +327,15 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create Instructions
-st.markdown('The NASA GRC Laboratory Infrastucture Data Collection Tool is used to capture the current state an associated assets of a given ' + 
-            'laboratory or capability. The information entered in this collection tool will be used to advocate for additional ' +
-            'funding to improve the state of NASA GRC Labs. \n \n \n' +
-            'For each laboratory or capability:  \n\n' +
-            '  - Enter assets that are over $200K \n\n' 
-            '  - Enter the total costs for an asset made of multiple components that may need replacement \n\n')
+st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will capture the current state of GRC capabilities. ' +
+            'This information is necessary to assess the overall state of our infrastructure and assets and will be used to develop ' +
+            'strategic plans for laboratory investment. \n \n \n' 
+            'Please complete each of the fields below for Laboratory assets.  \n\n' +
+            '  - A Laboratory is defined as a dedicated facility, or dedicated infrastructure, for performing a specific type of testing, ' +
+            'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
+            'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
+            '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. (i.e. a Scanning Electron Microscope) \n\n' + 
+            '  - For each laboratory enter assets with a value over $100K \n\n' + )
 
 # Create Save State Option                 
 lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_change = read_data, key = 'load') 
