@@ -88,6 +88,13 @@ def read_data():
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
         st.session_state.poc = val
+
+        # -- Point of Contact
+        key = 'Branch:'
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+        st.session_state.branch = val
         
         # -- Laboratory/Capability Description
         key = 'Laboratory/Capability Description:'
@@ -343,13 +350,16 @@ lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_chang
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
-st.subheader('Laboratory/Capability Information')
+st.subheader('LaboratoryInformation')
 
 # Create Input for Asset Name
-lab_name = st.text_input("Laboratory/Capability Name:",value='',key='name')
+lab_name = st.text_input("Laboratory Name:",value='',key='name')
 
 # Create Input for Point of Contact
 poc = st.text_input("Point of Contact:",value='', key = 'poc')
+
+# Create Input for Branch
+branch = st.text_input("Branch:",value='', key = 'branch')
 
 # Create Input for Asset Description
 lab_desc = st.text_area("Laboratory/Capability Description:",value='',key='desc')
@@ -701,6 +711,7 @@ if st.button('Submit'):
     # -- Laboratory/Capability Information
     data_out = 'Laboratory/Capability Name: ' + lab_name + '\n'
     data_out = data_out + 'Point of Contact: ' + poc + '\n'
+    data_out = data_out + 'Branch: ' + branch + '\n'
     data_out = data_out + 'Laboratory/Capability Description: ' + lab_desc + '\n'
     data_out = data_out + 'Laboratory/Capability Website: ' + lab_link + '\n'
     data_out = data_out + 'Challenges in sustaining this laboratory/capability: ' + lab_chal + '\n'
