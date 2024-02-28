@@ -45,16 +45,24 @@ for q in range(len(files_all)):
 Div.sort()
 Branch.sort()
 
+
 # Filter Criteria - By Branch or Division
 filt_opts = ['','Division', 'Branch']
 filt_opt1 = st.selectbox('Filter by:',filt_opts,key='filt_opt1')
 
+Div_Disp = []
+for k in range(len(Div)):
+    Div_Disp[k] = True
+Branch_Disp = []
+for k in range(len(Branch)):
+    Branch_Disp[k] = True
+
 if filt_opt1 == 'Division':
     for j in range(len(Div)):
-        st.checkbox(Div[j], value=True, key='div_' + str(j), label_visibility="visible")
+        Div_Disp[j] = st.checkbox(Div[j], value=True, key='div_' + str(j), label_visibility="visible")
 if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
-        st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
+        Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
 asset_slider = st.slider('Total Asset Value Range', 0, 1000000, (250000, 750000), step = 1000)
 grid = st.columns(4)
