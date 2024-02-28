@@ -101,7 +101,7 @@ def read_data():
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-                flag = 1:
+                flag = 1
         if flag == 1:
             st.session_state.branch = val
         
