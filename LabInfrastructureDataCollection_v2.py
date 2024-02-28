@@ -368,7 +368,7 @@ cond_opts = ['Excellent','Good','Fair','Poor']
 lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 # Create Input for Assets
-asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=50, key='asset_num')
+asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
 grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
@@ -479,7 +479,7 @@ for r in range(asset_rows):
 sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
 
 # Additional Information on Funding
-fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=50,key='fund_num')
+fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=None,key='fund_num')
 grid2 = st.columns(4)
 fund_src = [] #Store funding source
 start_fund = [] #Store the start date of funding
@@ -528,7 +528,7 @@ uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_fi
 #Create Divider for Name and Description
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
-proj_rows = st.number_input('Number of Projects', min_value=0, max_value=50, key = 'proj_num')
+proj_rows = st.number_input('Number of Projects', min_value=0, max_value=None, key = 'proj_num')
 grid3 = st.columns(5)
 proj_util = [] #Store the projects
 wbs_util = [] #Store the project WBS
@@ -594,7 +594,7 @@ impact = st.text_area("Major impact and contributions this capability has made p
 #Create Divider for Down Time History
 st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
-down_rows = st.number_input('Number of Rows:', min_value=0, max_value=50, key = 'dt_num')
+down_rows = st.number_input('Number of Rows:', min_value=0, max_value=None, key = 'dt_num')
 grid4 = st.columns(5)
 asset_dt = [] #Store the associated Asset
 date_dt = [] #Store date the asset went down
@@ -667,7 +667,7 @@ cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",
 cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_inc')
 
 # Create Input for Labor Division
-labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=50,key = 'labor_num')
+labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
 grid5 = st.columns([0.3,0.3,0.4])
 division = [] #Store division
 labor_pct = [] #Store the labor percentrate
