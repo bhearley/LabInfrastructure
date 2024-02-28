@@ -37,8 +37,10 @@ for q in range(len(files_all)):
 
     if len(val) == 3:
         Direc = val[0]
-        Div.append(val[0:2])
-        Branch.append(val[0:3])
+        if val[0:2] not in Div:
+            Div.append(val[0:2])
+        if val[0:3] not in Branch:
+            Branch.append(val[0:3])
     
 
 # Filter Criteria - By Branch or Division
