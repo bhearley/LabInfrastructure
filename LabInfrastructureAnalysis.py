@@ -39,4 +39,4 @@ for q in range(len(files_all)):
 
 # Filter Criteria - By Branch or Division
 filt_opts = ['Division', 'Branch']
-lab_condition = st.selectbox('Filter by:',filt_opts,key='filt_opt1')
+filt_opt1 = st.selectbox('Filter by:',filt_opts,key='filt_opt1')
