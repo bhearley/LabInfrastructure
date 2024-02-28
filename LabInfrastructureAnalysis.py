@@ -21,6 +21,9 @@ st.subheader('Set Filter Criteria')
 os.chdir(data_path)
 files_all = glob.glob('*.txt')
 
+Div = []
+Branch = []
+
 for q in range(len(files_all)):
     # Read the Text File
     with open(os.path.join(data_path,files_all[q])) as f:
@@ -34,8 +37,9 @@ for q in range(len(files_all)):
 
     if len(val) == 3:
         Direc = val[0]
-        Div = val[0:2]
-        Branch = val[0:3]
+        Div.append(val[0:2])
+        Branch.apend([0:3])
+    
 
 # Filter Criteria - By Branch or Division
 filt_opts = ['','Division', 'Branch']
