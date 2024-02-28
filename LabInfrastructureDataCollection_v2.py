@@ -476,7 +476,7 @@ def add_row_asset(row):
             #asset_date_out[row]=st.date_input('Expected Year of Obsolescence', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
             asset_date_out[row]=st.number_input('Expected Year of Obsolescence', step = 1, min_value = 0, max_value = 3000, help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
-            asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cole{row}')
+            #asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cole{row}')
             asset_date_out[row]=st.number_input('', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}')
     # -- Asset Condition
     with grid[5]:
