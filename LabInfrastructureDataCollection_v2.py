@@ -245,10 +245,12 @@ def read_data():
             st.session_state[f'input_cola{k}'] = data_all[k][0]
             st.session_state[f'input_colb{k}'] = data_all[k][1]
             st.session_state[f'input_colc{k}'] = data_all[k][2]
-            date1 = data_all[k][3].split('-')
-            st.session_state[f'input_cold{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-            date2 = data_all[k][4].split('-')
-            st.session_state[f'input_cole{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+            #date1 = data_all[k][3].split('-')
+            #st.session_state[f'input_cold{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+            #date2 = data_all[k][4].split('-')
+            #st.session_state[f'input_cole{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+            #st.session_state[f'input_cold{k}'] = int(data_all[k][2])
+            #st.session_state[f'input_cole{k}'] = int(data_all[k][3])
             st.session_state[f'input_colf{k}'] = data_all[k][5]
             st.session_state[f'input_colg{k}'] = data_all[k][6]
             st.session_state[f'input_colh{k}'] = data_all[k][7]
@@ -461,9 +463,11 @@ def add_row_asset(row):
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.date_input('Acquistion  \n \n Year', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
+            #asset_date_in[row]=st.date_input('Acquistion  \n \n Year', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
+            asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 1900, max_value = 3000, help = 'The date the asset was acquired.', key=f'input_cold{row}')
         else:
-            asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
+            #asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
+            asset_date_in[row]=st.number_input('', step = 1, min_value = 1900, max_value = 3000, help = 'The date the asset was acquired.', key=f'input_cold{row}')
     # -- Asset Date of Obsolescence
     with grid[4]:
         while len(asset_date_out) < row+1:
