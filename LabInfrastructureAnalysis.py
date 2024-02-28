@@ -57,4 +57,12 @@ if filt_opt1 == 'Branch':
         st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
 asset_slider = st.slider('Total Asset Value Range', 0, 1000000, (250000, 750000), step = 1000)
-
+grid = st.columns(4)
+with grid[0]:
+    asset_chk1 = st.checkbox('Poor', value=True)
+with grid[1]:
+    asset_chk2 = st.checkbox('Fair', value=True)
+with grid[2]:
+    asset_chk13 = st.checkbox('Good', value=True)
+with grid[3]:
+    asset_chk4 = st.checkbox('Excellent', value=True)
