@@ -77,38 +77,53 @@ def read_data():
         # Parse Data
         # -- Laboratory/Capability Name
         key = 'Laboratory/Capability Name:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.name = val
+                flag = 1
+        if flag == 1:
+            st.session_state.name = val
         
         # -- Point of Contact
         key = 'Point of Contact:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.poc = val
+                flag = 1
+        if flag == 1:
+            st.session_state.poc = val
 
-        # -- Point of Contact
+        # -- Branch
         key = 'Branch:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.branch = val
+                flag = 1:
+        if flag == 1:
+            st.session_state.branch = val
         
         # -- Laboratory/Capability Description
         key = 'Laboratory/Capability Description:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.desc  = val
+                flag = 1
+        if flag == 1:
+            st.session_state.desc  = val
         
         # -- Laboratory/Capability Website
         key = 'Laboratory/Capability Website:'
+        flag = 0
         for i in range(len(lines)):
             if key in lines[i]:
                 val  = lines[i][len(key)+1:len(lines[i])-1]
-        st.session_state.link = val
+                flag = 1
+        if flag == 1:
+            st.session_state.link = val
         
         # -- Challenges in sustaining this laboratory/capability
         key = 'Challenges in sustaining this laboratory/capability:'
