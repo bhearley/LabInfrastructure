@@ -36,3 +36,7 @@ for q in range(len(files_all)):
         Direc = val[0]
         Div = val[0:2]
         Branch = val[0:3]
+
+# Filter Criteria - By Branch or Division
+filt_opts = ['Division', 'Branch']
+lab_condition = st.selectbox('Filter by:',filt_opts,key='filt_opt1')
