@@ -64,7 +64,7 @@ if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
         Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
-asset_slider = st.slider('Total Asset Value Range ($)', 0, 1000000, (250000, 750000), step = 1000)
+asset_slider = st.slider('Total Asset Value Range ($)', 0, 1000000, (0, 1000000), step = 1000)
 grid = st.columns(4)
 with grid[0]:
     asset_chk1 = st.checkbox('Poor', value=True)
@@ -75,41 +75,30 @@ with grid[2]:
 with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
 
-rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 1000000, (250000, 750000), step = 1000)
+rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 1000000, (0, 1000000), step = 1000)
 
 if st.button('Filter Data'):
     # Get List of Divisions
-    test_div = ''
     Div_List = []
     for j in range(len(Div_Disp)):
         if Div_Disp[j] == True:
             Div_List.append(Div[j])
-            test_div = test_div + Div[j]
-    st.markdown(test_div)
 
     # Get List of Divisions
-    test_brnch = ''
     Branch_List = []
     for j in range(len(Branch_Disp)):
         if Branch_Disp[j] == True:
             Branch_List.append(Branch[j])
-            test_brnch = test_brnch + Branch[j]
-    st.markdown(test_brnch)
-
     
     # Get List of Asset Criteria
     Asset_Cond_List = []
-    test = ''
     if asset_chk1 == True:
         Asset_Cond_List.append('Poor')
-        test = test + 'Poor '
     if asset_chk2 == True:
         Asset_Cond_List.append('Fair')
-        test = test + 'Fair '
     if asset_chk3 == True:
         Asset_Cond_List.append('Good')
-        test = test + 'Good '
     if asset_chk4 == True:
         Asset_Cond_List.append('Excellent')
-        test = test + 'Excellent '
-    st.markdown(test)
+
+    st.markdown(str(asset_slider[0]))
