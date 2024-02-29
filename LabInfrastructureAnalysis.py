@@ -78,6 +78,16 @@ with grid[3]:
 rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 1000000, (250000, 750000), step = 1000)
 
 if st.button('Filter Data'):
+    # Get List of Divisions
+    test_div = ''
+    Div_List = []
+    for j in range(len(Div_Disp)):
+        if Div_Disp[j] == True:
+            Div_List.append(Div[j])
+            test_div = test_div + Div[j]
+    st.markdown(test_div)
+
+    
     # Get List of Asset Criteria
     Asset_Cond_List = []
     test = ''
