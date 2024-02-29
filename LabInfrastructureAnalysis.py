@@ -9,7 +9,6 @@ import docx
 # Set Paths
 home = os.getcwd()
 data_path = "/mount/src/labinfrastructure/Final/"
-temp=1
 
 # Set the page configuration
 st.set_page_config(layout="wide")
@@ -67,7 +66,7 @@ if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
         Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
-asset_slider = st.slider('Total Asset Value Range ($)', 0, 1000000, (0, 1000000), step = 1000)
+asset_slider = st.slider('Total Asset Value Range ($)', 0, 100000000, (0, 100000000), step = 10000)
 grid = st.columns(4)
 with grid[0]:
     asset_chk1 = st.checkbox('Poor', value=True)
@@ -78,7 +77,7 @@ with grid[2]:
 with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
 
-rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 1000000, (0, 1000000), step = 1000)
+rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 100000000, (0, 100000000), step = 10000)
 
 if st.button('Filter Data'):
     # Get List of Divisions
@@ -232,7 +231,7 @@ if st.button('Filter Data'):
     run1.bold = True
 
     # Loop Through Divisions
-    divisions = list(files_dict.keys())
+    divisions = list(FilesOut.keys())
     divisions.sort()
 
     for d in range(len(divisions)):
@@ -245,7 +244,7 @@ if st.button('Filter Data'):
         run_lab1.bold = True
 
         # Get list of branches
-        branches = list(files_dict[divisions[d]].keys())
+        branches = list(FilesOut[divisions[d]].keys())
         branches.sort()
 
         for b in range(len(branches)):
@@ -255,10 +254,12 @@ if st.button('Filter Data'):
             run_lab1.bold = True
 
             # Get List of files
-            files = files_dict[divisions[d]][branches[b]]
+            files = FilesOut[divisions[d]][branches[b]]
             files.sort()
 
             for q in range(len(files)):
+                st.markdown(files[q])
+
                 # Read the Text File
                 with open(os.path.join(data_path,files[q])) as f:
                     lines = f.readlines()
@@ -666,9 +667,17 @@ if st.button('Filter Data'):
     # Save the Document
     doc.save('Lab Data Output.docx')
 
-    btn = st.download_button(
-            label="Download Report",
-            data=file,
-            file_name='Lab Data Output.docx'
-            )
-    
+    import io
+    doc_download = doc
+
+    bio = io.BytesIO()
+    doc_download.save(bio)
+    if doc_download:
+        st.download_button(
+            label="Click here to download",
+            data=bio.getvalue(),
+            file_name='Lab Data Output.docx',
+            mime="docx"
+        )
+
+
