@@ -87,6 +87,15 @@ if st.button('Filter Data'):
             test_div = test_div + Div[j]
     st.markdown(test_div)
 
+    # Get List of Divisions
+    test_brnch = ''
+    Branch_List = []
+    for j in range(len(Branch_Disp)):
+        if Branch_Disp[j] == True:
+            Branch_List.append(Branch[j])
+            test_brnch = test_brnch + Branch[j]
+    st.markdown(test_brnch)
+
     
     # Get List of Asset Criteria
     Asset_Cond_List = []
