@@ -80,12 +80,17 @@ rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 1000000, (250000, 
 if st.button('Filter Data'):
     # Get List of Asset Criteria
     Asset_Cond_List = []
+    test = ''
     if asset_chk1 == True:
         Asset_Cond_List.append('Poor')
+        test = test + 'Poor '
     if asset_chk1 == True:
         Asset_Cond_List.append('Fair')
+        test = test + 'Fair '
     if asset_chk1 == True:
         Asset_Cond_List.append('Good')
+        test = test + 'Good '
     if asset_chk1 == True:
         Asset_Cond_List.append('Excellent')
-    st.markdown(Assed_Cond_List)
+        test = test + 'Excellent '
+    st.markdown(test)
