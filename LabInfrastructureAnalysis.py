@@ -2,6 +2,8 @@
 import streamlit as st
 import os
 import glob
+
+os.system('pip install python-docx')
 import docx
 
 
