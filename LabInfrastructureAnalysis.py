@@ -84,13 +84,13 @@ if st.button('Filter Data'):
     if asset_chk1 == True:
         Asset_Cond_List.append('Poor')
         test = test + 'Poor '
-    if asset_chk1 == True:
+    if asset_chk2 == True:
         Asset_Cond_List.append('Fair')
         test = test + 'Fair '
-    if asset_chk1 == True:
+    if asset_chk3 == True:
         Asset_Cond_List.append('Good')
         test = test + 'Good '
-    if asset_chk1 == True:
+    if asset_chk4 == True:
         Asset_Cond_List.append('Excellent')
         test = test + 'Excellent '
     st.markdown(test)
