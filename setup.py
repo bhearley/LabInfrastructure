@@ -8,6 +8,6 @@ setup(
     packages = find_packages(),
     install_requires = [
         # Github Private Repository
-        'LabInfrastructure @ git+https://github.com/bhearley/LabInfrastructure.git'
+        #'LabInfrastructure @ git+https://github.com/bhearley/LabInfrastructure.git'
     ]
 )
