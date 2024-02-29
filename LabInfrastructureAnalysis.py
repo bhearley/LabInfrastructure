@@ -109,6 +109,8 @@ if st.button('Filter Data'):
              'AssetVal':[asset_slider[0], asset_slider[1]],
              'RepCost':[rep_slider[0],rep_slider[1]]}
 
+    FilesOut = {}
+    
     # Get Organized List of Records
     for q in range(len(files_all)):
         # Read the Text File
