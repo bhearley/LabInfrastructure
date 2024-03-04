@@ -1,0 +1,63 @@
+Laboratory/Capability Name: Electron Optics Laboratory
+Point of Contact: Elizabeth Young-Dohe
+Branch: LMA
+Laboratory/Capability Description: Scanning Electron Microscopy, Transmission Electron Microscopy and associated sample preparation equipment.  Characterization of materials through microstructural evaluation and phase identification.  Critical to new materials development, failure analysis and support of ongoing programs and projects.  
+Laboratory/Capability Website: none
+Challenges in sustaining this laboratory/capability: Yearly Service Contract Costs.  Age of equipment and facilities.  Facilities temperature/humidity controls.  Facilities vibration control.  Multiple pieces of high dollar equipment is aged well past the state of the art (SOA) life.  Service of equipment is becoming difficult due to vendor capabilities to source parts when needed.  
+Age (yrs): 29
+Condition: Fair
+
+Number of Assets: 12
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Tescan MAIA3 SEM	8	0.0	2016	2027	Good	1000000	No secondary large chamber scope available for failure analysis (NESC impact), no capability for EBSD work		Yes	yes, but with long lead times
+Zeiss Auriga FIB-SEM	16	0.0	2010	2024	Poor	2000000	Loss of method to prepare TEM foils - resulting in loss of capability in for the TEM (which is the newer and the only TEM at NASA).  Essentially without this tool we loose not only this capability, but the capability of the TEM also. 		Yes	occasionally
+Hitachi S4700	7	0.0	1997	2015	Fair	750000	User capabilty to investigate materials developments - for all projects. 		Yes	occasionally
+Hitachi II S4700	14	0.0	2000	2020	Fair	750000	User capability for research into Aerogels		Yes	occasionally
+FEI (Thermo) Talos F200S	15	0.0	2015	2030	Good	3000000	Only TEM at NASA - would loose ability to investigate materials on atomic scale.  		Yes	yes
+JEOL 6400 SEM	14	0.0	1993	2018	Fair	750000	Large chamber fractography capability		Yes	no, vendor will service if parts can be found
+Oxford Aztec EBSD/EDS Detector System (on Tescan scope)	8	0.0	2016	2025	Fair	200000	No EBSD for microstructural investigations, no capability to investigate EDS (chemistry) of materials under investigation.  System is beginning to show software/hardware hiccups - re-starts of hardware, and restarts of scans are becoming more common. 		Yes	occasionally
+EDAX EBSD/EDS System (on Zeiss)	8	0.0	2010	2023	Poor	200000	Currently operates intermittently - does not communicate properly with Zeiss system regularly.  		Yes	occasionally
+Gatan Ion Mill	10	0.0	1992	2018	Poor	175000	Inoperable - all TEM foils must be done on the Zeiss at this point, which is also failing.		No	No
+JEOL 8210 Microprobe	9	0.0	2002	2018	Poor	1000000	Inoperable for many years, no light element analysis capable.  		Yes	Vendor will no longer service, parts are not available
+Quorum EMS150 Sputter Coater	10	0.0	2014	2029	Good	35000	Turn table motor recently failed and coatings are inconsistent, without this tool non-conductive samples cannot be coated and imaged in the various SEMs.		No	long lead times
+JEOL 6100 SEM	12	0.0	1992	2023	Poor	600000	inoperable since 2023		No	Vendor will no longer service, parts are not available
+
+Sustainment Funding Source: None  
+Number of Funding Sources: 3
+Funding Source 	 Funding Start Date 	 Funding End Date 	 Funding Amount per Year ($) 
+Walk in User Fees	2000-02-01	2024-03-01	20000
+	2024-02-23	2024-02-23	0
+	2024-02-23	2024-02-23	0
+
+Number of Projects: 4
+Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
+		0.0	High	
+		0.0	High	
+		0.0	High	
+		0.0	High	
+
+History of capability utilization: Any materials project through the LM division (and others) typically requires at least some amount of time in the electron microscopy laboratory.  GRX810 would not have been able to be developed, along with other Glenn development projects such as SMA work without the electon microscopy laboratory.  This laboratory has been used extensively for NESC/CCP investigations on SpX Draco projects, ULA Centaur Anomaly, Gateway Wiring Harness Red Plague.  Significant work in SiC-SiC and associated coating development utilizes this laboratory - including investigation of CMAS effects, coating development, and coating/composite interface interactions.  Additive manufactured refractory and superalloy projects use this laboratory to investigate the effect of processing on the properties and resulting fracture surfaces from testing .  Both polymer and ceramic aerogel projects use this resource heavily.   
+Major impact and contributions this capability has made possible: GRX810 Alloy Development
+SMA Developments
+SpX Draco Ti-Dome CCP Failure investigations
+Polymer and Ceramic Aerogel Projects
+SiC-SiC composite, coatings, and joining 
+ULA Centaur Anomaly Investigation
+
+Number of Failures: 9
+Asset 	 Start Date 	 Time Down 	 Unit 	 Additional Notes 
+Tescan MAIA3 SEM	2023-07-03	13.0	Days	Multiple scan module failures due to fan failing in electronics cabinet.  Fan was on backorder for multiple weeks from manufacturer - desk fans were used in place.  Scan modules failed a second time (were replaced under service contract).  The concern with this equipment is vendor response time along with capability to get components when needed.  This is the system most heavily used in the laboratory.  We regularly wait weeks for vendor response when issues arise.  The system as a whole has been plagued with vacuum, emitter and other issues since installation in 2017.
+Gatan Ion Mill	2017-03-03	5.0	Years	Start date is estimated, this system has not functioned for many years.   This is a capability that allows for the polishing of (non-site specific) TEM samples and has not worked for many years
+Entire Lab/Capability	2018-03-03	9.0	Years	Laboratory regularly exceeds the temperature requirements for most of the equipment.  Floor tiles are cracked/broken/missing in multiple rooms.  The sinks and hoods are in poor repair.  Multiple pieces of equipment are well past their expected life and are only still working due to the diligence of staff and vendor service contracts.  
+Zeiss Auriga FIB-SEM	2022-11-01	3.0	Years	Estimated Start - Equipment has exceeded its lifetime, it is still used as it is the only method to do site specific TEM samples in the laboratory to utilize the Talos-TEM system.  Vendor changed to a service only contract and parts as can be sourced contract in 2023.  Time to prepare TEM foils on this system is 4 - 5x what a new system would be - requiring extensive highly trained  staff time to perform research.  Cannot do advanced FIB work with this system to push forward SOA research.  We continue to bandaid this system, because we cannot do the research without it - with the help of the very capable vendor.  But, we are one failed system, or electronics board from losing this capability.  Main control board was replaced in July 2023, this was one of only a handful available in the world.  Gas Injection system power supply replaced in February 2024 - these are becoming harder to source. 
+JEOL 8210 Microprobe	2024-03-03	5.0	Years	This system has not worked and has been inoperable for many years - we do not have the ability to probe light elements without this tool.  Cost to upgrade one of the other systems with a SXES/WDS system for light elements is in excess of $300k, and would be going on an aged system.  Cost to replace this system is >$1M.
+Quorum EMS150 Sputter Coater	2024-03-03	4.0	Months	Currently can still coat, but turntable is broken and the system does not coat evenly.  Lead time from vendor has been long and they cannot tell us a delivery date. 
+JEOL 6100 SEM	2024-03-03	6.0	Months	Inoperable - cannot be repaird
+Hitachi S4700	2024-03-03	6.0	Months	Regularly down due to chiller and vacuum issues
+Hitachi II S4700	2024-03-03	6.0	Months	Regularly down due to chiller issues
+
+Estimated Cost to Replace Entire Laboratory/Capability ($): 10000000
+Cost of Service Contracts ($): 275000
+Annual Cost to Operate and Sustain the Lab ($/yr): 325000
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
