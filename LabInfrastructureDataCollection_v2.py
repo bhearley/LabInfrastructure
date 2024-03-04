@@ -245,12 +245,12 @@ def read_data():
             st.session_state[f'input_cola{k}'] = data_all[k][0]
             st.session_state[f'input_colb{k}'] = data_all[k][1]
             st.session_state[f'input_colc{k}'] = data_all[k][2]
-            #date1 = data_all[k][3].split('-')
+            date1 = data_all[k][3].split('-')
             #st.session_state[f'input_cold{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-            #date2 = data_all[k][4].split('-')
+            date2 = data_all[k][4].split('-')
             #st.session_state[f'input_cole{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
-            st.session_state[f'input_cold{k}'] = int(data_all[k][2])
-            st.session_state[f'input_cole{k}'] = int(data_all[k][3])
+            st.session_state[f'input_cold{k}'] = int(data1[0])
+            st.session_state[f'input_cole{k}'] = int(data2[0])
             st.session_state[f'input_colf{k}'] = data_all[k][5]
             st.session_state[f'input_colg{k}'] = data_all[k][6]
             st.session_state[f'input_colh{k}'] = data_all[k][7]
