@@ -388,6 +388,7 @@ if st.button('Filter Data'):
                             row[k].text = data_all[j][k]
                     table.style = 'Light Grid Accent 4'
 
+                    # Set Font Fize
                     for row in table.rows:
                         for cell in row.cells:
                             paragraphs = cell.paragraphs
@@ -396,6 +397,13 @@ if st.button('Filter Data'):
                                     font = run.font
                                     font.size= Pt(10)
                                     font.name = 'Times New Roman'
+
+                    # Set Column Widths
+                    col_widths =  [0.85,0.79,0.44,0.63,0.94,0.75,0.94,1.19,0.81,1,0.94]
+                    for k in range(11):
+                        for cell in table.columns[k].cells:
+                            cell.width = Inches(col_widths[k])
+                    
                     run_lab1 = doc.add_paragraph().add_run('')
 
                     change_orientation()
