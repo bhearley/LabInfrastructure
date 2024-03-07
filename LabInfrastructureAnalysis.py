@@ -21,7 +21,7 @@ st.markdown('Set the filter criteria and generate a Word Document report summari
 
 #Create Divider for Name and Description
 st.subheader('Set Filter Criteria')
-st.markdown('Only select labs from specific divisions or branches (check all that apply)')
+st.markdown('\n \n Only select labs from specific divisions or branches (check all that apply)')
 
 # Get List of Divisions and Branches
 os.chdir(data_path)
@@ -70,7 +70,7 @@ if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
         Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
-st.markdown('Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the checkboxes to only add an assets value to the total for the lab if it meets that condition.')
+st.markdown('\n \n Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the checkboxes to only add an assets value to the total for the lab if it meets that condition.')
 asset_slider = st.slider('Total Asset Value Range ($)', 0, 100000000, (0, 100000000), step = 10000)
 grid = st.columns(4)
 with grid[0]:
@@ -82,10 +82,10 @@ with grid[2]:
 with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
 
-st.markdown('Only select labs whose total replacement cost is within a certain range.')
+st.markdown('\n \n Only select labs whose total replacement cost is within a certain range.')
 rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 100000000, (0, 100000000), step = 10000)
 
-st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
+st.markdown('\n \n Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
 if st.button('Filter Data'):
     # Get List of Divisions
     Div_List = []
