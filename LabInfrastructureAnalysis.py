@@ -400,9 +400,9 @@ if st.button('Filter Data'):
 
                     # Set Column Widths
                     col_widths =  [0.85,0.79,0.44,0.63,0.94,0.75,0.94,1.19,0.81,1,0.94]
-                    for k in range(11):
-                        for cell in table.columns[k].cells:
-                            cell.width = Inches(col_widths[k])
+                    for row in table.rows:
+                        for k in range(11):
+                            row.cells[k].width = Inches(col_widths[k])
                     
                     run_lab1 = doc.add_paragraph().add_run('')
 
