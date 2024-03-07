@@ -206,10 +206,6 @@ if st.button('Filter Data'):
     import matplotlib.pyplot as plt
     from docx.shared import Inches
 
-    # Set Paths
-    home = os.getcwd()
-    data_path = r'C:\Users\bhearley\Box\Lab Infrastructure Data Collection\Final'
-
     # Utility Function
     def change_orientation():
         current_section = doc.sections[-1]
