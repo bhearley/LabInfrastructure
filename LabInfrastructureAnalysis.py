@@ -456,6 +456,17 @@ if st.button('Filter Data'):
                         for k in range(4):
                             row[k].text = data_all[j][k]
                     table.style = 'Light Grid Accent 4'
+
+                    # Set Font Fize
+                    for row in table.rows:
+                        for cell in row.cells:
+                            paragraphs = cell.paragraphs
+                            for paragraph in paragraphs:
+                                for run in paragraph.runs:
+                                    font = run.font
+                                    font.size= Pt(10)
+                                    font.name = 'Times New Roman'
+                                    
                     run_lab1 = doc.add_paragraph().add_run('')
 
                 # HEADER: Current Mission/Project Utilization
@@ -503,6 +514,16 @@ if st.button('Filter Data'):
                             else:
                                 row[k].text = data_all[j][k]
                     table.style = 'Light Grid Accent 4'
+
+                    # Set Font Fize
+                    for row in table.rows:
+                        for cell in row.cells:
+                            paragraphs = cell.paragraphs
+                            for paragraph in paragraphs:
+                                for run in paragraph.runs:
+                                    font = run.font
+                                    font.size= Pt(10)
+                                    font.name = 'Times New Roman'
 
                     # Create Pie Chart
                     labels = []
@@ -584,6 +605,16 @@ if st.button('Filter Data'):
                         for k in range(5):
                             row[k].text = data_all[j][k]
                     table.style = 'Light Grid Accent 4'
+                    
+                    # Set Font Fize
+                    for row in table.rows:
+                        for cell in row.cells:
+                            paragraphs = cell.paragraphs
+                            for paragraph in paragraphs:
+                                for run in paragraph.runs:
+                                    font = run.font
+                                    font.size= Pt(10)
+                                    font.name = 'Times New Roman'
                     run_lab1 = doc.add_paragraph().add_run('')
 
                 # HEADER: Cost
@@ -661,6 +692,17 @@ if st.button('Filter Data'):
                         for k in range(2):
                             row[k].text = data_all[j][k]
                     table.style = 'Light Grid Accent 4'
+
+                    # Set Font Fize
+                    for row in table.rows:
+                        for cell in row.cells:
+                            paragraphs = cell.paragraphs
+                            for paragraph in paragraphs:
+                                for run in paragraph.runs:
+                                    font = run.font
+                                    font.size= Pt(10)
+                                    font.name = 'Times New Roman'
+                                    
                     run_lab1 = doc.add_paragraph().add_run('')
 
                     # Create Pie Chart
