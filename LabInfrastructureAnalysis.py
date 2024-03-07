@@ -452,7 +452,7 @@ if st.button('Filter Data'):
                     run_lab1.font.name = 'Times New Roman'
                     run_lab1.font.size = Pt(11)
                     table2 = doc.add_table(rows=1, cols=4) 
-                    row = table.rows[0].cells 
+                    row = table2.rows[0].cells 
                     row[0].text = 'Funding Source'
                     row[1].text = 'Funding Start Date'
                     row[2].text = 'Funding End Date'
@@ -460,7 +460,7 @@ if st.button('Filter Data'):
 
 
                     for j in range(len(data_all)):
-                        row = table.add_row().cells
+                        row = table2.add_row().cells
                         for k in range(4):
                             row[k].text = data_all[j][k]
                     table2.style = 'Light Grid Accent 4'
@@ -505,8 +505,8 @@ if st.button('Filter Data'):
                     run_lab1 = doc.add_paragraph().add_run('Projects:')
                     run_lab1.font.name = 'Times New Roman'
                     run_lab1.font.size = Pt(11)
-                    table = doc.add_table(rows=1, cols=5) 
-                    row = table.rows[0].cells 
+                    table3 = doc.add_table(rows=1, cols=5) 
+                    row = table3.rows[0].cells 
                     row[0].text = 'Mission/Project Name'
                     row[1].text = 'WBS Number'
                     row[2].text = 'Project Use (%)'
@@ -515,16 +515,16 @@ if st.button('Filter Data'):
 
 
                     for j in range(len(data_all)):
-                        row = table.add_row().cells
+                        row = table3.add_row().cells
                         for k in range(5):
                             if k == 1:
                                 row[k].text = data_all[j][k][0:6]
                             else:
                                 row[k].text = data_all[j][k]
-                    table.style = 'Light Grid Accent 4'
+                    table3.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
-                    for row in table.rows:
+                    for row in table3.rows:
                         for cell in row.cells:
                             paragraphs = cell.paragraphs
                             for paragraph in paragraphs:
@@ -600,8 +600,8 @@ if st.button('Filter Data'):
                     run_lab1 = doc.add_paragraph().add_run('Previous Laboratory/Asset Failures:')
                     run_lab1.font.name = 'Times New Roman'
                     run_lab1.font.size = Pt(11)
-                    table = doc.add_table(rows=1, cols=5) 
-                    row = table.rows[0].cells 
+                    table4 = doc.add_table(rows=1, cols=5) 
+                    row = table4.rows[0].cells 
                     row[0].text = 'Asset'
                     row[1].text = 'Start Date'
                     row[2].text = 'Time Down'
@@ -609,13 +609,13 @@ if st.button('Filter Data'):
                     row[4].text = 'Additional Notes'
 
                     for j in range(len(data_all)):
-                        row = table.add_row().cells
+                        row = table4.add_row().cells
                         for k in range(5):
                             row[k].text = data_all[j][k]
-                    table.style = 'Light Grid Accent 4'
+                    table4.style = 'Light Grid Accent 4'
                     
                     # Set Font Fize
-                    for row in table.rows:
+                    for row in table4.rows:
                         for cell in row.cells:
                             paragraphs = cell.paragraphs
                             for paragraph in paragraphs:
