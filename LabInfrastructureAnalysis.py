@@ -70,7 +70,7 @@ if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
         Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
-st,markdown(' ')
+st.markdown(' ')
 st.markdown('Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the checkboxes to only add an assets value to the total for the lab if it meets that condition.')
 asset_slider = st.slider('Total Asset Value Range ($)', 0, 100000000, (0, 100000000), step = 10000)
 grid = st.columns(4)
