@@ -85,7 +85,7 @@ with grid[3]:
 st.markdown('Only select labs whose total replacement cost is within a certain range.')
 rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 100000000, (0, 100000000), step = 10000)
 
-st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.")
+st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
 if st.button('Filter Data'):
     # Get List of Divisions
     Div_List = []
