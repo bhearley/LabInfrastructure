@@ -256,8 +256,7 @@ if st.button('Filter Data'):
             files.sort()
 
             for q in range(len(files)):
-                st.markdown(files[q])
-
+                
                 # Read the Text File
                 with open(os.path.join(data_path,files[q])) as f:
                     lines = f.readlines()
