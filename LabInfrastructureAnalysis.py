@@ -263,8 +263,7 @@ if st.button('Filter Data'):
                 st.markdown(files[q])
 
                 # Read the Text File
-               # with open(os.path.join(data_path,files[q])) as f:
-                with data_path + '\\'+files[q] as f:
+                with open(os.path.join(data_path,files[q])) as f:
                     lines = f.readlines()
 
                 
