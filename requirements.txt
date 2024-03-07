@@ -1,2 +1,3 @@
 python-docx
 matplotlib
+matplotlib.pyplot
