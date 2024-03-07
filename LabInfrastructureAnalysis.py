@@ -238,7 +238,7 @@ if st.button('Filter Data'):
 
         run_lab1 = doc.add_paragraph().add_run(divisions[d])
         run_lab1.font.name = 'Times New Roman'
-        run_lab1.font.size = Pt(14)
+        run_lab1.font.size = Pt(18)
         run_lab1.bold = True
 
         # Get list of branches
@@ -248,7 +248,7 @@ if st.button('Filter Data'):
         for b in range(len(branches)):
             run_lab1 = doc.add_paragraph().add_run(branches[b])
             run_lab1.font.name = 'Times New Roman'
-            run_lab1.font.size = Pt(12)
+            run_lab1.font.size = Pt(14)
             run_lab1.bold = True
 
             # Get List of files
@@ -270,7 +270,7 @@ if st.button('Filter Data'):
 
                 run_lab1 = doc.add_paragraph().add_run(val)
                 run_lab1.font.name = 'Times New Roman'
-                run_lab1.font.size = Pt(18)
+                run_lab1.font.size = Pt(12)
                 run_lab1.bold = True
 
                 # HEADER: Laboratory/Capability Information
@@ -366,7 +366,7 @@ if st.button('Filter Data'):
 
                     run_lab1 = doc.add_paragraph().add_run('Assets:')
                     run_lab1.font.name = 'Times New Roman'
-                    run_lab1.font.size = Pt(11)
+                    run_lab1.font.size = Pt(10)
 
                     table = doc.add_table(rows=1, cols=11) 
                     row = table.rows[0].cells 
