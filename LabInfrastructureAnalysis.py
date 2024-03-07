@@ -443,7 +443,7 @@ if st.button('Filter Data'):
                     run_lab1 = doc.add_paragraph().add_run('Funding Sources:')
                     run_lab1.font.name = 'Times New Roman'
                     run_lab1.font.size = Pt(11)
-                    table = doc.add_table(rows=1, cols=4) 
+                    table2 = doc.add_table(rows=1, cols=4) 
                     row = table.rows[0].cells 
                     row[0].text = 'Funding Source'
                     row[1].text = 'Funding Start Date'
@@ -455,10 +455,10 @@ if st.button('Filter Data'):
                         row = table.add_row().cells
                         for k in range(4):
                             row[k].text = data_all[j][k]
-                    table.style = 'Light Grid Accent 4'
+                    table2.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
-                    for row in table.rows:
+                    for row in table2.rows:
                         for cell in row.cells:
                             paragraphs = cell.paragraphs
                             for paragraph in paragraphs:
