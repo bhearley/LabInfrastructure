@@ -399,10 +399,14 @@ if st.button('Filter Data'):
                                     font.name = 'Times New Roman'
 
                     # Set Column Widths
+                    table.autofit = False
+                    table.allow_autofit =False
                     col_widths =  [0.85,0.79,0.44,0.63,0.94,0.75,0.94,1.19,0.81,1,0.94]
                     for row in table.rows:
                         for k in range(11):
                             row.cells[k].width = Inches(col_widths[k])
+                    for k in range(11):
+                        table.columns[k].width = Inches(col_widths[k])
                     
                     run_lab1 = doc.add_paragraph().add_run('')
 
