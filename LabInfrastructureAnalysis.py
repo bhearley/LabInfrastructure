@@ -366,7 +366,7 @@ if st.button('Filter Data'):
 
                     run_lab1 = doc.add_paragraph().add_run('Assets:')
                     run_lab1.font.name = 'Times New Roman'
-                    run_lab1.font.size = Pt(10)
+                    run_lab1.font.size = Pt(11)
 
                     table = doc.add_table(rows=1, cols=11) 
                     row = table.rows[0].cells 
@@ -387,6 +387,15 @@ if st.button('Filter Data'):
                         for k in range(11):
                             row[k].text = data_all[j][k]
                     table.style = 'Light Grid Accent 4'
+
+                    for row in table.rows:
+                        for cell in row.cells:
+                            paragraphs = cell.paragraphs
+                            for paragraph in paragraphs:
+                                for run in paragraph.runs:
+                                    font = run.font
+                                    font.size= Pt(10)
+                                    font.name = 'Times New Roman'
                     run_lab1 = doc.add_paragraph().add_run('')
 
                     change_orientation()
