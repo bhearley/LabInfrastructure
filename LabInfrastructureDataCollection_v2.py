@@ -60,6 +60,7 @@ def read_data():
         st.session_state.sust = ''
         st.session_state.hist = ''
         st.session_state.impact = ''
+        st.session_state.tot_imp = ''
         st.session_state.cost_rep = 0
         st.session_state.cost_serv = 0
         st.session_state.cost_ann = 0
@@ -182,6 +183,16 @@ def read_data():
                 flag = 1
         if flag == 1:
             st.session_state.impact  = val
+
+        # -- Overall impact of laboratory/capability is lost::
+        key = 'Overall impact of laboratory/capability is lost:'
+        flag = 0
+        for i in range(len(lines)):
+            if key in lines[i]:
+                val  = lines[i][len(key)+1:len(lines[i])-1]
+                flag = 1
+        if flag == 1:
+            st.session_state.tot_imp  = val
         
         # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
         key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
@@ -339,7 +350,9 @@ def read_data():
             st.session_state[f'input_colv{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
             st.session_state[f'input_colw{k}'] = data_all[k][2]
             st.session_state[f'input_colx{k}'] = data_all[k][3]
-            st.session_state[f'input_coly{k}'] = data_all[k][4]
+            st.session_state[f'input_colyy{k}'] = data_all[k][4]
+            if len(data_all[k]) > 5:
+                st.session_state[f'input_coly{k}'] = data_all[k][5]
         
         # -- Read Divisons Table
         key = 'Number of Divisions (Labor Costs):'
@@ -384,8 +397,8 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             '  - A Laboratory is defined as a dedicated facility, or dedicated infrastructure, for performing a specific type of testing, ' +
             'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
             'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
-            '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. (i.e. a Scanning Electron Microscope) \n\n' + 
-            '  - For each laboratory enter assets with a value over $100K \n\n \n'+
+            '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. (i.e. a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
+            '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or different to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
 # Create Save State Option                 
@@ -393,7 +406,7 @@ lab_load = st.selectbox('Create New Entry or Load Previous:',files_disp,on_chang
 
 #----------------------------------------------------------------------------------
 #Create Divider for Name and Description
-st.subheader('LaboratoryInformation')
+st.subheader('Laboratory Information')
 
 # Create Input for Asset Name
 lab_name = st.text_input("Laboratory Name:",value='',key='name')
@@ -414,7 +427,7 @@ lab_link = st.text_input("Laboratory/Capability Website:",value='',key='link')
 lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value='',key='chal')
 
 # Create Input for Age
-lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0,key='lab_age_k')
+lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,value=0,help='The age of the laboratory/capability (i.e., how long we've had this capability at NASA GRC)',key='lab_age_k')
 
 # Create Input for Condition
 cond_opts = ['Excellent','Good','Fair','Poor']
@@ -647,16 +660,20 @@ hist = st.text_area("History of capability utilization:",value='',key='hist')
 # Create Input for Major Impact and Contributions
 impact = st.text_area("Major impact and contributions this capability has made possible:",value='',key='impact')
 
+# Create Input for Impact if total Capability is Lost
+tot_imp = st.text_area("Overall impact of laboratory/capability is lost:",value='',key='tot_imp')
+
 #----------------------------------------------------------------------------------
 #Create Divider for Down Time History
 st.subheader('History of Down Time Due to Maintenance or Failure')
 # Create Input for Downtime History
-down_rows = st.number_input('Number of Rows:', min_value=0, max_value=None, key = 'dt_num')
-grid4 = st.columns(5)
+down_rows = st.number_input('Number of Rows:', min_value=0, max_value=None, help='Enter the down time history for the entire lab or individual assets relevant to the failure of the lab infrastructure. Consider only failures in the last 5 years.', key = 'dt_num')
+grid4 = st.columns(6)
 asset_dt = [] #Store the associated Asset
 date_dt = [] #Store date the asset went down
 time_dt = [] #Store the time down
 unit_dt = [] #Store the unit for time down
+imp_dt = [] #Store a description for the time down
 desc_dt = [] #Store a description for the time down
 
 def add_row4(row):
@@ -678,9 +695,9 @@ def add_row4(row):
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colv{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(2019, 1, 1),  format="MM/DD/YYYY",  key=f'input_colv{row}')
         else:
-            date_dt[row]=st.date_input('', min_value = datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}')
+            date_dt[row]=st.date_input('', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}')
     # -- Time Down
     with grid4[2]:
         while len(time_dt) < row+1:
@@ -699,6 +716,13 @@ def add_row4(row):
             unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
     # -- Additonal Notes for Time Down
     with grid4[4]:
+        while len(imp_dt) < row+1:
+            imp_dt.append(None)
+        if row == 0:
+            imp_dt[row]=st.text_input('Impact on Mission/Project', value='',key=f'input_colyy{row}')
+        else:
+            imp_dt[row]=st.text_input('', value='',key=f'input_colyy{row}')
+    with grid4[5]:
         while len(desc_dt) < row+1:
             desc_dt.append(None)
         if row == 0:
@@ -754,6 +778,8 @@ for r in range(labor_rows):
 st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
+    st.text('Download the *.txt file and upload to: https://nasagov.app.box.com/f/dcb7f4527bb345998aec063aa8d33109')
+
     # Write the Text File
     # -- Laboratory/Capability Information
     data_out = 'Laboratory/Capability Name: ' + lab_name + '\n'
@@ -820,4 +846,4 @@ if st.button('Submit'):
         data_out = data_out + '\n'
     
     st.download_button('Download Data File (Temporary)', data_out, file_name = lab_name + '.txt')
-    st.text('Upload the *.txt file to: https://nasagov.app.box.com/f/dcb7f4527bb345998aec063aa8d33109')
+    
