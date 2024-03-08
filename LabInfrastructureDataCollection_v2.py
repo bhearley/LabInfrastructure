@@ -775,10 +775,11 @@ for r in range(labor_rows):
 
 #----------------------------------------------------------------------------------
 # Submit Button
+st.markdown('Press "Submit" to generate the output Text File. Download the *.txt file and upload to: https://nasagov.app.box.com/f/dcb7f4527bb345998aec063aa8d33109')
 st.subheader('')
 # Create SUBMIT Button
 if st.button('Submit'):
-    st.text('Download the *.txt file and upload to: https://nasagov.app.box.com/f/dcb7f4527bb345998aec063aa8d33109')
+    
 
     # Write the Text File
     # -- Laboratory/Capability Information
