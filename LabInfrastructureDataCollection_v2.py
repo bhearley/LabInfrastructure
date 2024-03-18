@@ -541,13 +541,6 @@ def add_row_asset(row):
             asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
-#    with grid[11]:
-#        while len(asset_imgs) < row+1:
-#            asset_imgs.append(None)
-#        if row == 0:
-#            asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg{row}')
-#        else:
-#            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg{row}')
 
 for r in range(asset_rows):
     add_row_asset(r)
@@ -559,7 +552,7 @@ asset_imgs = [] #Store the asset images
 asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
 grid_img = st.columns(2)
 
-def add_row_image(row):
+def add_row_img(row):
      # -- Set the Options
     options_dt = []
     for k in range(len(asset_name)):
