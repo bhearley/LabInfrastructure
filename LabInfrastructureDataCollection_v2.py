@@ -567,7 +567,7 @@ def add_row_img(row):
         else:
             asset_dt[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
     # -- Asset image   
-    with grid[1]:
+    with grid_img[1]:
         while len(asset_imgs) < row+1:
             asset_imgs.append(None)
         if row == 0:
