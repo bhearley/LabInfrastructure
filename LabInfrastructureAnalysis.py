@@ -3,11 +3,6 @@ import streamlit as st
 import os
 import glob
 
-#os.system('pip install python-docx')
-#import docx
-
-
-
 # Set Paths
 home = os.getcwd()
 data_path = "/mount/src/labinfrastructure/Final/"
@@ -72,7 +67,13 @@ if filt_opt1 == 'Branch':
 
 st.markdown(' ')
 st.markdown('Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the checkboxes to only add an assets value to the total for the lab if it meets that condition.')
-asset_slider = st.slider('Total Asset Value Range ($)', 0, 100000000, (0, 100000000), step = 10000)
+
+grid_vals1 = st.columns(2)
+with grid_vals1[0]:
+    min_asset_cost = st.number_input('Min. Value of Total Assets', min_value=None, max_value=None, value=0)
+with grid_vals1[1]:
+    max_asset_cost = st.number_input('Max. Value of Total Assets', min_value=None, max_value=None, value=100000000)
+
 grid = st.columns(4)
 with grid[0]:
     asset_chk1 = st.checkbox('Poor', value=True)
@@ -85,7 +86,11 @@ with grid[3]:
 
 st.markdown(' ')
 st.markdown('Only select labs whose total replacement cost is within a certain range.')
-rep_slider = st.slider('Total Replacement Cost Range ($)', 0, 100000000, (0, 100000000), step = 10000)
+grid_vals2 = st.columns(2)
+with grid_vals2[0]:
+    min_tot_cost = st.number_input('Min. Value of Total Replacement Cost', min_value=None, max_value=None, value=0)
+with grid_vals2[1]:
+    max_asset_cost = st.number_input('Max. Value of Total Replacement Cost', min_value=None, max_value=None, value=100000000)
 
 st.markdown(' ')
 st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
@@ -118,8 +123,8 @@ if st.button('Filter Data'):
              'Div':Div_List,
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
-             'AssetVal':[asset_slider[0], asset_slider[1]],
-             'RepCost':[rep_slider[0],rep_slider[1]]}
+             'AssetVal':[min_asset_cost, max_asset_cost],
+             'RepCost':[min_tot_cost,max_tot_cost]}
 
     FilesOut = {}
     
