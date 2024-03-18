@@ -90,7 +90,7 @@ grid_vals2 = st.columns(2)
 with grid_vals2[0]:
     min_tot_cost = st.number_input('Min. Value of Total Replacement Cost', min_value=None, max_value=None, value=0)
 with grid_vals2[1]:
-    max_asset_cost = st.number_input('Max. Value of Total Replacement Cost', min_value=None, max_value=None, value=100000000)
+    max_tot_cost = st.number_input('Max. Value of Total Replacement Cost', min_value=None, max_value=None, value=100000000)
 
 st.markdown(' ')
 st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
@@ -124,7 +124,7 @@ if st.button('Filter Data'):
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
              'AssetVal':[min_asset_cost, max_asset_cost],
-             'RepCost':[min_tot_cost,max_tot_cost]}
+             'RepCost':[min_tot_cost, max_tot_cost]}
 
     FilesOut = {}
     
