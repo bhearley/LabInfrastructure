@@ -565,7 +565,7 @@ def add_row_img(row):
         if row == 0:
             asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')
         else:
-            asset_imgs_lab[row]=st.selectbox('Asset  \n \n  Condition \n \n file', options_dt, key=f'input_colimg1{row}')
+            asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
     # -- Asset image   
     with grid_img[1]:
         while len(asset_imgs) < row+1:
@@ -573,7 +573,7 @@ def add_row_img(row):
         if row == 0:
             asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
         else:
-            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}')
+            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility="collapsed")
 
 for r in range(asset_imgs_num):
     add_row_img(r)
