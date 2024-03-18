@@ -257,16 +257,14 @@ def read_data():
             st.session_state[f'input_colb{k}'] = data_all[k][1]
             st.session_state[f'input_colc{k}'] = data_all[k][2]
             date1 = data_all[k][3].split('-')
-            #st.session_state[f'input_cold{k}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
             date2 = data_all[k][4].split('-')
-            #st.session_state[f'input_cole{k}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
             st.session_state[f'input_cold{k}'] = int(date1[0])
             st.session_state[f'input_cole{k}'] = int(date2[0])
             st.session_state[f'input_colf{k}'] = data_all[k][5]
             st.session_state[f'input_colg{k}'] = data_all[k][6]
             st.session_state[f'input_colh{k}'] = data_all[k][7]
             st.session_state[f'input_coli{k}'] = data_all[k][8]
-            st.session_state[f'input_colk{k}'] = data_all[k][9]
+            st.session_state[f'input_colj{k}'] = data_all[k][9]
             st.session_state[f'input_colk{k}'] = data_all[k][10]
 
         # -- Read Funding Table
@@ -435,7 +433,7 @@ lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
-grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
+grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -447,6 +445,7 @@ asset_imp = [] #Store the asset impact description
 asset_software = [] #Store the asset associated software
 asset_itrep = [] #Store if an IT/Hardware replacement is needed
 asset_repdesc = [] #Store the description on IT/Hardware replacement
+asset_imgs = [] #Store the asset images
 def add_row_asset(row):
     # -- Asset Name
     with grid[0]:
@@ -542,6 +541,21 @@ def add_row_asset(row):
             asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
+    with grid[10]:
+        while len(asset_repdesc) < row+1:
+            asset_repdesc.append(None)
+        if row == 0:
+            asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
+        else:
+            asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
+    with grid[10]:
+        while len(asset_imgs) < row+1:
+            asset_imgs.append(None)
+        if row == 0:
+            asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg{row}')
+        else:
+            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg{row}')
+
 for r in range(asset_rows):
     add_row_asset(r)
 
