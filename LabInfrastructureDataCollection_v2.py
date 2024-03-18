@@ -541,14 +541,7 @@ def add_row_asset(row):
             asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
-    with grid[10]:
-        while len(asset_repdesc) < row+1:
-            asset_repdesc.append(None)
-        if row == 0:
-            asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
-        else:
-            asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
-    with grid[10]:
+    with grid[11]:
         while len(asset_imgs) < row+1:
             asset_imgs.append(None)
         if row == 0:
