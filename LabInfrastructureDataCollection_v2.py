@@ -433,7 +433,7 @@ lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
-grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1,0.1])
+grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -445,7 +445,7 @@ asset_imp = [] #Store the asset impact description
 asset_software = [] #Store the asset associated software
 asset_itrep = [] #Store if an IT/Hardware replacement is needed
 asset_repdesc = [] #Store the description on IT/Hardware replacement
-asset_imgs = [] #Store the asset images
+
 def add_row_asset(row):
     # -- Asset Name
     with grid[0]:
@@ -541,16 +541,49 @@ def add_row_asset(row):
             asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
-    with grid[11]:
-        while len(asset_imgs) < row+1:
-            asset_imgs.append(None)
-        if row == 0:
-            asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg{row}')
-        else:
-            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg{row}')
+#    with grid[11]:
+#        while len(asset_imgs) < row+1:
+#            asset_imgs.append(None)
+#        if row == 0:
+#            asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg{row}')
+#        else:
+#            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg{row}')
 
 for r in range(asset_rows):
     add_row_asset(r)
+
+# Create Input for Asset Images
+asset_imgs_lab = [] #Store the asset images label
+asset_imgs = [] #Store the asset images
+
+asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
+grid_img = st.columns(2)
+
+def add_row_image(row):
+     # -- Set the Options
+    options_dt = []
+    for k in range(len(asset_name)):
+        options_dt.append(asset_name[k])
+        
+    # -- Asset
+    with grid_img[0]:
+        while len(asset_imgs_lab) < row+1:
+            asset_imgs_lab.append(None)
+        if row == 0:
+            asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')
+        else:
+            asset_dt[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
+    # -- Asset image   
+    with grid[1]:
+        while len(asset_imgs) < row+1:
+            asset_imgs.append(None)
+        if row == 0:
+            asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
+        else:
+            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}')
+
+for r in range(asset_imgs_num):
+    add_row_img(r)
 
 # Create Input for Sustainment Funding Source
 sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
