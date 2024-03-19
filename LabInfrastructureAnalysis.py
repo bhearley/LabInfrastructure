@@ -71,7 +71,11 @@ st.markdown('Only select labs whose total asset replacement cost for the specifi
 # Convert String Number to Have Comma Separators
 def convert_num(key):
     if key in st.session_state:
-        test_val = st.session_state[key]
+        raw_val = st.session_state[key]
+        test_val = ''
+        for k in range(len(raw_val)):
+            if raw_val[k] != ',':
+                test_val = test_val + raw_val
         flag = 0
         try:
             float(test_val)
