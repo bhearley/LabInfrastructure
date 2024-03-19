@@ -564,7 +564,7 @@ def add_row_img(row):
             asset_imgs_lab.append(None)
         if row == 0:
             asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')  
-            s = f"<p style='font-size:.1px;'>{'test'}</p>"
+            s = f"<p style='font-size:.01px;'>{'test'}</p>"
             st.markdown(s, unsafe_allow_html=True) 
         else:
             asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
