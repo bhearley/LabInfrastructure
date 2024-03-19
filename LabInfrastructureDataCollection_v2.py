@@ -565,27 +565,18 @@ def add_row_img(row):
         if row == 0:
             asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')
         else:
-            tabs_font_css = """
-            <style>
-            div[class*="stSelectBox"] label {
-              font-size: 18px;
-            }
-
-            div[class*="stSelectBox"] label {
-              font-size: 18px;
-            }
-
-            div[class*="stSelectBox"] label {
-              font-size: 18px;
-            }
-
-            div[class*="stSelectBox"] label {
-              font-size: 18px;
-            }
-            </style>
-            """
-            st.markdown(tabs_font_css, unsafe_allow_html=True)
             asset_imgs_lab[row]=st.selectbox('Asset Image #' + str(row+1), options_dt, key=f'input_colimg1{row}')
+
+            css = '''
+            <style>
+                .stSelectbox [data-testid='stMarkdownContainer'] {
+                    color: yellow;
+                    font-size: 18px;
+                }
+            </style>
+            '''
+            
+            st.markdown(css, unsafe_allow_html=True)
     # -- Asset image   
     with grid_img[1]:
         while len(asset_imgs) < row+1:
