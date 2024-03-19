@@ -589,7 +589,7 @@ css = '''
         width: max-content;
     }
     [data-testid='stFileUploader'] section {
-        padding: 10;
+        padding: 1;
         float: left;
     }
     [data-testid='stFileUploader'] section > input + div {
