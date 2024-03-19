@@ -75,7 +75,7 @@ def convert_num(key):
         test_val = ''
         for k in range(len(raw_val)):
             if raw_val[k] != ',':
-                test_val = test_val + raw_val
+                test_val = test_val + raw_val[k]
         flag = 0
         try:
             float(test_val)
