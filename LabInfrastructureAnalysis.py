@@ -104,17 +104,14 @@ with grid[2]:
 with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
             
-
-test_val = st.text_input('Test', value="1,000,000", key='test_txt', on_change=convert_num('test_txt'))
-
-
 st.markdown(' ')
 st.markdown('Only select labs whose total replacement cost is within a certain range.')
 grid_vals2 = st.columns(2)
 with grid_vals2[0]:
     min_tot_cost = st.number_input('Min. Value of Total Replacement Cost', min_value=None, max_value=None, value=0)
+    min_tot_cost = st.text_input('Min. Value of Total Replacement Cost', value="0", key='min_tot_cost_key', on_change=convert_num('min_tot_cost_key'))
 with grid_vals2[1]:
-    max_tot_cost = st.number_input('Max. Value of Total Replacement Cost', min_value=None, max_value=None, value=100000000)
+    max_tot_cost = st.text_input('Max. Value of Total Replacement Cost', value="1,000,000,000", key='max_tot_cost_key', on_change=convert_num('max_tot_cost_key'))
 
 st.markdown(' ')
 st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
@@ -148,7 +145,7 @@ if st.button('Filter Data'):
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
              'AssetVal':[float(min_asset_cost), float(max_asset_cost)],
-             'RepCost':[min_tot_cost, max_tot_cost]}
+             'RepCost':[float(min_tot_cost), float(max_tot_cost)]}
 
     FilesOut = {}
     
