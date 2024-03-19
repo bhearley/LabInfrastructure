@@ -93,7 +93,7 @@ def convert_num(key):
             float(test_val)
         except ValueError:
             flag = 1
-            
+            st.error('Not a valid number')
         if flag == 0:
             if len(test_val)>3:
                 num = ''
