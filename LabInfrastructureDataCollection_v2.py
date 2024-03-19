@@ -581,7 +581,7 @@ def add_row_img(row):
                     width: max-content;
                 }
                 [data-testid='stFileUploader'] section {
-                    padding: 100;
+                    padding: 0;
                     float: left;
                 }
                 [data-testid='stFileUploader'] section > input + div {
@@ -589,7 +589,7 @@ def add_row_img(row):
                 }
                 [data-testid='stFileUploader'] section + div {
                     float: right;
-                    padding-top: 0;
+                    padding-top: 100;
                 }
             
             </style>
