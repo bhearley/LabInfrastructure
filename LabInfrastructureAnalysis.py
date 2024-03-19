@@ -68,22 +68,6 @@ if filt_opt1 == 'Branch':
 st.markdown(' ')
 st.markdown('Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the checkboxes to only add an assets value to the total for the lab if it meets that condition.')
 
-grid_vals1 = st.columns(2)
-with grid_vals1[0]:
-    min_asset_cost = st.number_input('Min. Value of Total Assets', min_value=None, max_value=None, value=0)
-with grid_vals1[1]:
-    max_asset_cost = st.number_input('Max. Value of Total Assets', min_value=None, max_value=None, value=100000000)
-
-grid = st.columns(4)
-with grid[0]:
-    asset_chk1 = st.checkbox('Poor', value=True)
-with grid[1]:
-    asset_chk2 = st.checkbox('Fair', value=True)
-with grid[2]:
-    asset_chk3 = st.checkbox('Good', value=True)
-with grid[3]:
-    asset_chk4 = st.checkbox('Excellent', value=True)
-
 # Convert String Number to Have Comma Separators
 def convert_num(key):
     if key in st.session_state:
@@ -103,6 +87,22 @@ def convert_num(key):
                     if chk%3 == 0 and k!= len(test_val)-1:
                         num = ',' + num
                 st.session_state[key] = num
+
+grid_vals1 = st.columns(2)
+with grid_vals1[0]:
+    min_asset_cost = st.text_input('Min. Value of Total Assets', value="0", key='min_asset_cost_key', on_change=convert_num('min_asset_cost_key'))
+with grid_vals1[1]:
+    max_asset_cost = st.text_input('Max. Value of Total Assets', value="1,000,000,000", key='max_asset_cost_key', on_change=convert_num('max_asset_cost_key'))
+
+grid = st.columns(4)
+with grid[0]:
+    asset_chk1 = st.checkbox('Poor', value=True)
+with grid[1]:
+    asset_chk2 = st.checkbox('Fair', value=True)
+with grid[2]:
+    asset_chk3 = st.checkbox('Good', value=True)
+with grid[3]:
+    asset_chk4 = st.checkbox('Excellent', value=True)
             
 
 test_val = st.text_input('Test', value="1,000,000", key='test_txt', on_change=convert_num('test_txt'))
@@ -147,7 +147,7 @@ if st.button('Filter Data'):
              'Div':Div_List,
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
-             'AssetVal':[min_asset_cost, max_asset_cost],
+             'AssetVal':[float(min_asset_cost), float(max_asset_cost)],
              'RepCost':[min_tot_cost, max_tot_cost]}
 
     FilesOut = {}
