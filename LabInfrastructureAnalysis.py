@@ -86,7 +86,8 @@ with grid[3]:
 
 
 def convert_num():
-    st.session_state.test_txt = "{:,}".format(st.session_state.test_txt )
+    if st.session_state.test_txt.isnumeric() == True:
+        st.session_state.test_txt = "{:,}".format(st.session_state.test_txt)
 
 test_val = st.text_input('Test', value="", key='test_txt', on_change=convert_num())
 
