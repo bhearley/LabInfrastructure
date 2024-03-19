@@ -570,8 +570,7 @@ def add_row_img(row):
             css = '''
             <style>
                 .stSelectbox [data-testid='stMarkdownContainer'] {
-                    color: yellow;
-                    font-size: 18px;
+                    font-size: 20px;
                 }
             </style>
             '''
