@@ -108,7 +108,6 @@ st.markdown(' ')
 st.markdown('Only select labs whose total replacement cost is within a certain range.')
 grid_vals2 = st.columns(2)
 with grid_vals2[0]:
-    min_tot_cost = st.number_input('Min. Value of Total Replacement Cost', min_value=None, max_value=None, value=0)
     min_tot_cost = st.text_input('Min. Value of Total Replacement Cost', value="0", key='min_tot_cost_key', on_change=convert_num('min_tot_cost_key'))
 with grid_vals2[1]:
     max_tot_cost = st.text_input('Max. Value of Total Replacement Cost', value="1,000,000,000", key='max_tot_cost_key', on_change=convert_num('max_tot_cost_key'))
