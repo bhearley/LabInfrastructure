@@ -86,7 +86,7 @@ with grid[3]:
 
 
 def convert_num():
-    st.session_state.test_val = st.session_state.test_val  + ' add'
+    st.session_state.test_txt = st.session_state.test_txt  + ' add'
 
 test_val = st.text_input('Test', value="", key='test_txt', on_change=convert_num())
 
