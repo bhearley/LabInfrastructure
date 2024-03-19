@@ -84,6 +84,13 @@ with grid[2]:
 with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
 
+
+def convert_num():
+    st.session_state.test_val = test_val + ' add'
+
+test_val = st.text_input(label, value="", key='test_txt', on_change=convert_num)
+
+
 st.markdown(' ')
 st.markdown('Only select labs whose total replacement cost is within a certain range.')
 grid_vals2 = st.columns(2)
