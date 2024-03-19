@@ -93,7 +93,8 @@ def convert_num():
                 num = ''
                 for k in range(len(test_val)):
                     num = test_val[len(test_val)-1-k] + num
-                    if k+1%3 == 0 and k!=len(test_val)-1:
+                    chk = k+1
+                    if chk%3 == 0:
                         num = ',' + num
                 st.session_state.test_txt = num
             
