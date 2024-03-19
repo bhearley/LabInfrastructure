@@ -568,7 +568,7 @@ def add_row_img(row):
             tabs_font_css = """
             <style>
             div[class*="stSelectBox"] label {
-              font-size: 26px;
+              font-size: 18px;
             }
             </style>
             """
