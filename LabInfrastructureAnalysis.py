@@ -94,6 +94,7 @@ with grid_vals1[0]:
 with grid_vals1[1]:
     max_asset_cost = st.text_input('Max. Value of Total Assets', value="1,000,000,000", key='max_asset_cost_key', on_change=convert_num('max_asset_cost_key'))
 
+
 grid = st.columns(4)
 with grid[0]:
     asset_chk1 = st.checkbox('Poor', value=True)
