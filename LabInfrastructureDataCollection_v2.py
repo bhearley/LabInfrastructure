@@ -570,6 +570,18 @@ def add_row_img(row):
             div[class*="stSelectBox"] label {
               font-size: 18px;
             }
+
+            div[class*="stSelectBox"] label {
+              font-size: 18px;
+            }
+
+            div[class*="stSelectBox"] label {
+              font-size: 18px;
+            }
+
+            div[class*="stSelectBox"] label {
+              font-size: 18px;
+            }
             </style>
             """
             st.markdown(tabs_font_css, unsafe_allow_html=True)
