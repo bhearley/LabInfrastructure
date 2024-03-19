@@ -86,9 +86,10 @@ with grid[3]:
 
 
 def convert_num():
-    test_val = st.session_state.test_txt 
-    if test_val.isnumeric() == True and len(test_val)>3:
-        st.session_state.test_txt = "{:,}".format(test_val)
+    if 'test_txt' in st.session_state:
+        test_val = st.session_state.test_txt 
+        if test_val.isnumeric() == True and len(test_val)>3:
+            st.session_state.test_txt = "{:,}".format(test_val)
 
 test_val = st.text_input('Test', value="1,000,000", key='test_txt', on_change=convert_num())
 
