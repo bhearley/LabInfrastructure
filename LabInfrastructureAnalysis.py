@@ -72,10 +72,7 @@ st.markdown('Only select labs whose total asset replacement cost for the specifi
 def convert_num(key):
     if key in st.session_state:
         raw_val = st.session_state[key]
-        test_val = ''
-        for k in range(len(raw_val)):
-            if raw_val[k] != ',':
-                test_val = test_val + raw_val[k]
+        test_val = raw_val.replace(',','')
         flag = 0
         try:
             float(test_val)
@@ -148,8 +145,8 @@ if st.button('Filter Data'):
              'Div':Div_List,
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
-             'AssetVal':[float(min_asset_cost), float(max_asset_cost)],
-             'RepCost':[float(min_tot_cost), float(max_tot_cost)]}
+             'AssetVal':[float(min_asset_cost.replace(',','')), float(max_asset_cost.replace(',',''))],
+             'RepCost':[float(min_tot_cost.replace(',','')), float(max_tot_cost.replace(',',''))]}
 
     FilesOut = {}
     
