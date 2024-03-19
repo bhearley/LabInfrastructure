@@ -564,10 +564,10 @@ def add_row_img(row):
             asset_imgs_lab.append(None)
         if row == 0:
             asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')  
-            s = f"<p style='font-size:.01px;'>{'test'}</p>"
-            st.markdown(s, unsafe_allow_html=True) 
+            #s = f"<p style='font-size:.01px;'>{'test'}</p>"
+            #st.markdown(s, unsafe_allow_html=True) 
         else:
-            asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
+            asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}',label_visibility = "collapsed")
 
     # -- Asset image   
     with grid_img[1]:
@@ -597,7 +597,7 @@ def add_row_img(row):
             
             st.markdown(css, unsafe_allow_html=True)
         else:
-            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}')
+            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
 
 for r in range(asset_imgs_num):
     add_row_img(r)
