@@ -570,7 +570,7 @@ def add_row_img(row):
         else:
             asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
 
-            s = f"<p style='font-size:2px; color:white'>{'TEST'}</p>"
+            s = f"<p style='font-size:0.01px; color:red'>{'TEST'}</p>"
             st.markdown(s, unsafe_allow_html=True)
     # -- Asset image   
     with grid_img[1]:
