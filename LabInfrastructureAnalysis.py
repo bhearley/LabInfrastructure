@@ -88,13 +88,14 @@ with grid[3]:
 def convert_num():
     if 'test_txt' in st.session_state:
         test_val = st.session_state.test_txt 
-        if test_val.isnumeric() == True and len(test_val)>3:
-            num = ''
-            for k in range(len(test_val)):
-                num = test_val[len(test_val)-1-k] + num
-                if k%3 == 0 and k!=len(test_val)-1:
-                    num = ',' + num
-            st.session_state.test_txt = num
+        if test_val.isnumeric() == True:
+            if len(test_val)>3:
+                num = ''
+                for k in range(len(test_val)):
+                    num = test_val[len(test_val)-1-k] + num
+                    if k-2%3 == 0 and k!=len(test_val)-1:
+                        num = ',' + num
+                st.session_state.test_txt = num
             
 
 test_val = st.text_input('Test', value="1,000,000", key='test_txt', on_change=convert_num())
