@@ -87,7 +87,7 @@ with grid[3]:
 
 def convert_num(key):
     if key in st.session_state:
-        test_val = st.session_state.(key)
+        test_val = st.session_state[key]
         if test_val.isnumeric() == True:
             if len(test_val)>3:
                 num = ''
@@ -96,7 +96,7 @@ def convert_num(key):
                     chk = k+1
                     if chk%3 == 0 and k!= len(test_val)-1:
                         num = ',' + num
-                st.session_state.(key) = num
+                st.session_state[key] = num
             
 
 test_val = st.text_input('Test', value="1,000,000", key='test_txt', on_change=convert_num('test_txt'))
