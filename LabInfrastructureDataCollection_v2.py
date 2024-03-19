@@ -587,7 +587,7 @@ def add_row_img(row):
                 }
                 [data-testid='stFileUploader'] section + div {
                     float: right;
-                    padding-top: 0;
+                    padding-top: 2;
                 }
             
             </style>
