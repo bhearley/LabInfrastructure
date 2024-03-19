@@ -575,11 +575,12 @@ def add_row_img(row):
             asset_imgs.append(None)
         if row == 0:
             asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
-            
-            
-            
+            s = f"<p style='font-size:2px;'>{'test'}</p>"
+            st.markdown(s, unsafe_allow_html=True) 
         else:
             asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
+            s = f"<p style='font-size:2px;'>{'test'}</p>"
+            st.markdown(s, unsafe_allow_html=True) 
 
 for r in range(asset_imgs_num):
     add_row_img(r)
