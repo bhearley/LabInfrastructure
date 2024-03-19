@@ -578,6 +578,27 @@ def add_row_img(row):
             asset_imgs.append(None)
         if row == 0:
             asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
+            css = '''
+            <style>
+                [data-testid='stFileUploader'] {
+                    width: max-content;
+                }
+                [data-testid='stFileUploader'] section {
+                    padding: 0;
+                    float: left;
+                }
+                [data-testid='stFileUploader'] section > input + div {
+                    display: none;
+                }
+                [data-testid='stFileUploader'] section + div {
+                    float: right;
+                    padding-top: 0;
+                }
+            
+            </style>
+            '''
+            
+            st.markdown(css, unsafe_allow_html=True)
         else:
             asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility="collapsed")
 
