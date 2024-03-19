@@ -595,7 +595,7 @@ def add_row_img(row):
             
             st.markdown(css, unsafe_allow_html=True)
         else:
-            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility="collapsed")
+            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}')
 
 for r in range(asset_imgs_num):
     add_row_img(r)
