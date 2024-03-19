@@ -84,11 +84,17 @@ with grid[2]:
 with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
 
-
+# Convert String Number to Have Comma Separators
 def convert_num(key):
     if key in st.session_state:
         test_val = st.session_state[key]
-        if test_val.isnumeric() == True:
+        flag = 0
+        try:
+            float(test_val)
+        except ValueError:
+            flag = 1
+            
+        if flag == 0:
             if len(test_val)>3:
                 num = ''
                 for k in range(len(test_val)):
