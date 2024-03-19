@@ -563,7 +563,9 @@ def add_row_img(row):
         while len(asset_imgs_lab) < row+1:
             asset_imgs_lab.append(None)
         if row == 0:
-            asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')            
+            asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')  
+            s = f"<p style='font-size:2px;'>{'test'}</p>"
+            st.markdown(s, unsafe_allow_html=True) 
         else:
             asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}')
 
@@ -587,7 +589,7 @@ def add_row_img(row):
                 }
                 [data-testid='stFileUploader'] section + div {
                     float: right;
-                    padding-top: 2;
+                    padding-top: 0;
                 }
             
             </style>
