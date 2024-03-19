@@ -15,8 +15,8 @@ st.title("NASA GRC Laboratory Infrastructure Data Collection Analysis")
 st.markdown('Set the filter criteria and generate a Word Document report summarizing the information collected on the GRC Lab Infrastructure. \n\n For all questions, please email brandon.l.hearley@nasa.gov')
 
 #Create Divider for Name and Description
-st.subheader('Set Filter Criteria')
-st.markdown('Only select labs from specific divisions or branches (check all that apply).')
+st.subheader('Select Divisions or Branches')
+st.markdown('Only select labs from specific divisions or branches. Use the drop down menu to filter by either division or branch, then check all options you would like in the report.').')
 
 # Get List of Divisions and Branches
 os.chdir(data_path)
@@ -66,7 +66,8 @@ if filt_opt1 == 'Branch':
         Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
 
 st.markdown(' ')
-st.markdown('Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the checkboxes to only add an assets value to the total for the lab if it meets that condition.')
+st.subheader('Select Labs by Asset or Replacement Costs')
+st.markdown('Only select labs whose total asset replacement cost for the specified conditions are within a certain range. Use the two inputs to set the minimum and maximum total value of assets that meet the condition criteria for a lab. Use the checkboxes to select which asset conditions you would like to consider.')
 
 # Convert String Number to Have Comma Separators
 def convert_num(key):
@@ -107,7 +108,7 @@ with grid[3]:
     asset_chk4 = st.checkbox('Excellent', value=True)
             
 st.markdown(' ')
-st.markdown('Only select labs whose total replacement cost is within a certain range.')
+st.markdown('Only select labs whose total replacement cost is within a certain range.  Use the two inputs to set the minimum and maximum total value of assets that meet the condition criteria for a lab.')
 grid_vals2 = st.columns(2)
 with grid_vals2[0]:
     min_tot_cost = st.text_input('Min. Value of Total Replacement Cost', value="0", key='min_tot_cost_key', on_change=convert_num('min_tot_cost_key'))
