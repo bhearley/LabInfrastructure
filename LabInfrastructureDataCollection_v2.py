@@ -567,16 +567,9 @@ def add_row_img(row):
         else:
             asset_imgs_lab[row]=st.selectbox('Asset Image #' + str(row+1), options_dt, key=f'input_colimg1{row}')
 
-            css = '''
-            <style>
-                .stSelectbox [data-testid='stMarkdownContainer'] {
-                    font-size: 45px;
-                    color: red;
-                }
-            </style>
-            '''
+            s = f"<p style='font-size:45px;'>{''}</p>"
             
-            st.markdown(css, unsafe_allow_html=True)
+            st.markdown(s, unsafe_allow_html=True)
     # -- Asset image   
     with grid_img[1]:
         while len(asset_imgs) < row+1:
