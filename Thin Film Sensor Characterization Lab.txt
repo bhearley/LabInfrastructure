@@ -1,0 +1,31 @@
+Laboratory/Capability Name: Thin Film Sensor Characterization Lab
+Point of Contact: John Wrbanek
+Branch: LCS
+Laboratory/Capability Description: Prototype thin film sensors are treated and characterized in air or vacuum environments up to 1700°C.  The characterizations employ practices that have been in use at GRC since 1980. The thin film sensors are typically noble metals, electrolytes, and/or refractory ceramics on substrates of silicon, silicon carbide, quartz, and alumina.
+Laboratory/Capability Website: 
+Challenges in sustaining this laboratory/capability: Lab is located in the basement fire sprinkler maintenance room.  Fire sprinkler system overflow valve can spray water.  Ceiling vents shed mildew.
+Age (yrs): 40
+Condition: Good
+
+Number of Assets: 3
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Vacuum Furnace	77/01	39.0	1985	2045	Excellent	233000	Sensor treatment and characterization to high temperature vacuum 	n/a	No	Yes
+Fatigue Tester	77/01	43.0	1981	2041	Excellent	40000	Sensor treatment and characterization at high temperature and strain	n/a	No	Yes
+Tube Furnace	77/01	0.0	1996	2056	Excellent	42000	Sensor treatment and characterization to extremely high temperature	n/a	No	Yes
+
+Sustainment Funding Source:  
+Number of Funding Sources: 0
+Number of Projects: 3
+Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
+TTT-FEAP-MDAO	109492	33.0	High	No sensor characterization
+HOTTech-21	427922	33.0	High	No sensor characterization
+OCT - Nano-plasmonic sensors	981698	33.0	High	No sensor characterization 
+
+History of capability utilization: 
+Major impact and contributions this capability has made possible: 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 400000
+Cost of Service Contracts ($): 0
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
