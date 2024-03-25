@@ -1,0 +1,21 @@
+Laboratory/Capability Name: Chemical Sensors Testing Facility
+Point of Contact: Gary Hunter/Jennifer Xu
+Branch: LCS
+Laboratory/Capability Description: 
+Laboratory/Capability Website: 
+Challenges in sustaining this laboratory/capability: 
+Age (yrs): 27
+Condition: Fair
+
+Number of Assets: 0
+Sustainment Funding Source:  
+Number of Funding Sources: 0
+Number of Projects: 0
+History of capability utilization: 
+Major impact and contributions this capability has made possible: 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 0
+Cost of Service Contracts ($): 0
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
