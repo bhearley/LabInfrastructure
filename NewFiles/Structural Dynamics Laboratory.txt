@@ -1,0 +1,38 @@
+Laboratory/Capability Name: Structural Dynamics Laboratory
+Point of Contact: Vicente Suarez
+Branch: Structural Dynamics
+Laboratory/Capability Description: The Structural Dynamics Lab (SDL) at NASA Glenn Research Center is the only GRC test lab capable of vibration testing and shock testing hardware for flight qualification. The Structural Dynamics Branch maintains the personnel and expertise needed to conduct testing at the SDL as well as oversee vibration testing, shock testing, modal testing, and model correlation contracted by NASA prime contractors. The SDL supports both NASA space and aeronautics flight hardware customers, however the SDL customer base is not limited to strictly qualifying flight hardware. Research objectives of programs such as In-Situ Resource Utilization (ISRU) and Revolutionary Vertical Lift Technology (RVLT) have also been recently completed at the SDL. Additionally, the training benefits that the SDL provides to the Structural Dynamics testing discipline at GRC should be included in discussions of lab capability. SDL test engineers both lead and support testing at GRC's Armstrong Test Facility (ATF) Mechanical Vibration Facility (MVF). The Mechanical Vibration Facility is the world's most powerful vibration test facility and it has been shown that the expertise needed for successful testing at the MVF is developed at the Structural Dynamics Lab.
+Laboratory/Capability Website: 
+Challenges in sustaining this laboratory/capability: Programs are towards the end of their life-cycle by the time environmental test labs are involved. Due to the short duration in which test labs are involved there is a lack of visibility on the sustainment need of GRC test labs. If the SDL is to maintain full capability outdated equipment and personnel sustainment needs to be addressed.  
+Age (yrs): 50
+Condition: Fair
+
+Number of Assets: 8
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Electrodynamic shaker - C-60	56/113	30.0	0	2	Poor	350000	Loss of rake/probe qualification capability for GRC AETC labs		No	No
+Electrodynamic shaker - LE-4022	56/113	30.0	0	0	Fair	550000	Cost to reconfigure the lab for LE-5022 use only 		No	Yes
+Electrodynamic shaker - LE=5022	56/113	8.0	0	0	Good	550000	Loss of 90% of lab vibration testing capability		No	Yes
+Electrodynamic shaker - V400	56/113	15.0	0	0	Good	200000	Negligible		No	Yes
+Power amplifier - 1	56/114	2.0	0	0	Excellent	500000	Need 1 operational power amplifier to conduct any vibration testing		No	Yes
+Power amplifier - 2	56/114	15.0	0	0	Good	500000	Need 1 operational power amplifier to conduct any vibration testing		No	Yes
+Vibration controller	56/106	15.0	0	0	Good	200000	Loss of all vibration testing capability	VR9500	Yes	No
+Shock testbed	56/113	5.0	0	0	Good	300000	Loss of all shock testing capability		No	Yes
+
+Sustainment Funding Source: N/A 
+Number of Funding Sources: 0
+Number of Projects: 5
+Mission/Project Name 	 WBS Number 	 Project Use (%) 	 Risk to Project 	 Impact if Laboratory/Capability is Lost 
+Aeronautics/HyTEC	698154.06.03.01	0.0	Moderate	Loss of GRC on-site support for rake/probe qualification and acceptance vibration testing
+Science/ISRU	811073.02.50.01.54	0.0	Moderate	Loss of GRC on-site support for vibration testing
+Science/Stirling	138494.04.22.01.04	0.0	Moderate	Loss of GRC on-site support for vibration testing
+Space Technology/Tipping Point - BRACES	209569.04.31.22	0.0	Moderate	Loss of GRC on-site support for vibration testing
+		0.0	High	
+
+History of capability utilization: SDL utilization tracking spreadsheet is attached. 
+Major impact and contributions this capability has made possible: 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 0
+Cost of Service Contracts ($): 0
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
