@@ -1,0 +1,30 @@
+Laboratory/Capability Name: ASG X-ray Diffraction Laboratory
+Point of Contact: Rick Rogers
+Branch: LMA
+Laboratory/Capability Description: The X-ray Diffraction (XRD) lab provided data on the crystalline (or non-crystalline) structure of materials.  Major analysis products are qualitative and quantitative phase ID, residual stress, crystallographic texture, and single crystal orientation.  Multiple hot stages are used for non-ambient data collection.
+Laboratory/Capability Website: none
+Challenges in sustaining this laboratory/capability: None
+Age (yrs): 28
+Condition: Excellent
+
+Number of Assets: 4
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Laue	49/134	21.0	2003	2018	Poor	200000	no single crystal orientation	Windows 2000	Yes	partial
+GADDS	49/134	18.0	2006	2021	Good	600000	significantly reduced residual stress measurement capability	Win10	Yes	partial
+D8 Advance	49/134	15.0	2008	2023	Good	250000	no phase ID	win10	Yes	partial
+Empyrean	49/134	7.0	2017	2032	Excellent	670000	no high temperature or high energy measurements	win10	Yes	yes
+
+Sustainment Funding Source: multiple GRC materials research projects 
+Number of Funding Sources: 0
+Number of Projects: 0
+History of capability utilization: This laboratory is used on a daily basis.  Over 1000 samples per year are run by lab staff and user staff.
+Major impact and contributions this capability has made possible: This lab had provided critical materials characterization data for multiple Space and Aero materials development projects since the 1950's.  In the last several years, it has supported Agency-level NESC failure investigations of multiple space vehicles including SpaceX, Artemis, and ISS.
+Number of Failures: 1
+Asset 	 Start Date 	 Time Down 	 Unit 	 Additional Notes 
+Laue	2023-11-08	120.0	Days	
+
+Estimated Cost to Replace Entire Laboratory/Capability ($): 2000000
+Cost of Service Contracts ($): 36500
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
