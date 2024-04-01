@@ -1,0 +1,29 @@
+Laboratory/Capability Name: Chemical Sensors Testing Facility
+Point of Contact: Gary Hunter/Jennifer Xu
+Branch: LCS
+Laboratory/Capability Description: The Chemical Sensor Testing Facility at NASA GRC has an ability to characterize a wide range of sensor properties under various conditions with previous applications ranging from leak detection, human breath monitoring, and jet engines. This includes characterization of micro sensors as well as nano plasmonic structures. A range of electronic device and optical characterization is available.
+Laboratory/Capability Website: https://www1.grc.nasa.gov/research-and-engineering/chemical-sensors/
+Challenges in sustaining this laboratory/capability:  Previous activity included major sensor development projects for aeronautic and science mission applications. Change in project funding profiles and project priorities has 
+Age (yrs): 27
+Condition: Fair
+
+Number of Assets: 2
+Asset Name 	 Location (Bldg/Rm) 	 Age (yrs) 	 Date of Entry 	 Expected Date of Obsolescence 	 Asset Condition 	 Replacement Cost ($) 	 Impact to Capability if Lost 	 Associated Software 	 IT Hardware Repalcement? 	 Part or Full Replacement? 
+Chemicals Sensors Testing Hood 1	77/20	28.0	1997	0	Good	500000	Inability to characterize a range of chemical sensor sensor technology including optical sensors and high concentration hydrogen sensors	LabVIEW control software	Yes	Yes
+Chemicals Sensors Testing Hood 1	77/20	14.0	2009	0	Good	80000	Inability to characterize a range of chemical sensor sensor technology including those with more toxic species such as CO and NOx	LabVIEW control software	Yes	
+
+Sustainment Funding Source:  Previous activity included major sensor development projects for aeronautic and science mission applications. Change in project funding profiles and project priorities has recently limited funding to low level projects and Space Act Agreements. 
+Number of Funding Sources: 2
+Funding Source 	 Funding Start Date 	 Funding End Date 	 Funding Amount per Year ($) 
+Code T 	2024-03-29	2024-09-30	60000
+	2024-03-29	2024-03-29	0
+
+Number of Projects: 0
+History of capability utilization: 
+Major impact and contributions this capability has made possible: 
+Number of Failures: 0
+Estimated Cost to Replace Entire Laboratory/Capability ($): 0
+Cost of Service Contracts ($): 0
+Annual Cost to Operate and Sustain the Lab ($/yr): 0
+Incurred Cost For Downtime ($/yr): 0
+Number of Divisions (Labor Costs): 0
