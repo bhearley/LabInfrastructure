@@ -570,6 +570,8 @@ if st.button('Filter Data'):
                             float(data_all[j][2])
                             labels.append(data_all[j][0])
                             vals.append(float(data_all[j][2]))
+                        except:
+                            temp=1
 
                     if len(vals) > 0:
                         run_lab1 = doc.add_paragraph().add_run('')
