@@ -566,7 +566,8 @@ if st.button('Filter Data'):
                     labels = []
                     vals = []
                     for j in range(len(data_all)):
-                        try float(data_all[j][2]):
+                        try: 
+                            float(data_all[j][2]):
                             labels.append(data_all[j][0])
                             vals.append(float(data_all[j][2]))
 
