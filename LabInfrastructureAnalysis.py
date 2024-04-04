@@ -576,7 +576,7 @@ if st.button('Filter Data'):
                     if len(vals) > 0:
                         run_lab1 = doc.add_paragraph().add_run('')
                         fig, ax = plt.subplots()
-                        print(vals)
+                        st.write(vals)
                         ax.pie(vals, labels=labels, autopct='%1.0f%%')
                         plt.savefig(os.path.join(data_path,'Project_chart_' + str(q)+'.png'))
                         doc.add_picture(os.path.join(data_path,'Project_chart_' + str(q)+'.png'), width=Inches(4), height=Inches(3))
