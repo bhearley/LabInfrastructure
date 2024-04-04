@@ -566,7 +566,7 @@ if st.button('Filter Data'):
                     labels = []
                     vals = []
                     for j in range(len(data_all)):
-                        if np.isnan(data_all[j][2]) == False:
+                        try float(data_all[j][2]):
                             labels.append(data_all[j][0])
                             vals.append(float(data_all[j][2]))
 
