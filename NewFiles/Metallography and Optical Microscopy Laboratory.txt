@@ -1,5 +1,6 @@
 Laboratory/Capability Name: Metallography and Optical Microscopy Laboratory
 Point of Contact: Laura Wilson
+Branch: LMA
 Laboratory/Capability Description: Metallography--perform sample preparation for metal, ceramic, polymer, and composite materials that are to be examined under optical and electron microscopy
 Optical Microscopy--perform surface characterization through inverted and upright optical microscopes, microhardness, and surface profilometry
 Laboratory/Capability Website: n/a
