@@ -5,7 +5,7 @@ import glob
 
 # Set Paths
 home = os.getcwd()
-data_path = "/mount/src/labinfrastructure/Final/"
+data_path = "/mount/src/labinfrastructure/NewFiles/"
 
 # Set the page configuration
 st.set_page_config(layout="wide")
