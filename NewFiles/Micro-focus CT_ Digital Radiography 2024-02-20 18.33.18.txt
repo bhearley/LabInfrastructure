@@ -1,5 +1,6 @@
 Laboratory/Capability Name: Micro-focus CT/ Digital Radiography
 Point of Contact: Richard Rauser / Richard Martin
+Branch: LMA
 Laboratory/Capability Description: The Micro-focus CT/ Digital Radiography laboratory produces high resolution computed tomography (CT) data and digital radiography data of various materials of interest to multiple NASA branches. This is accomplished using 2 system, a 225kV high-resolution system, and a 300kV wide-field system. These systems are able to detect indications such as voids and inclusions down to the 1um level. Data is used to assess material quality, identify manufacturing defects, and monitor damage progression in materials subjected to thermal and mechanical loads.
 Laboratory/Capability Website: None.
 Challenges in sustaining this laboratory/capability: The CT systems are getting old and potential hardware problems could render the facility useless without a reliable source of support funds. The fact that ASG as a whole does not have a baseline funding stream and must completely depend on the projects to pay their fair share creates issues of getting dollars in time to pay bills such as for WYE's and service contracts, as well as an inability to line up funding for major investments.    
