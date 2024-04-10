@@ -65,7 +65,7 @@ for document in cursor:
             selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab')
 
     if st.button('Load Data'):
-        st.session_state['name'] = 'Test'
+        st.session_state['name'] = st.session_state['selection_lab']
         # Query the database for the record
         st.markdown(selection_lab)
         query = {'Laboratory/Capability Name': selection_lab}
