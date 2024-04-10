@@ -8,7 +8,7 @@ import pymongo
 #    return pymongo.MongoClient(**st.secrets["mongo"])
 
 #client = init_connection()
-client = pymongo.MongoClient(f"mongodb+srv://nasagrc:{st.secrets['MONGODB_PASSWORD']}@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest")
+client = pymongo.MongoClient(f"mongodb+srv://nasagrc:st.secrets['MONGODB_PASSWORD']@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest")
 try:
     client.admin.command('ping')
     st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
