@@ -28,6 +28,7 @@ if st.button('View Data'):
 name = st.text_input("Name:",value='')
 age = st.number_input("Age:",value=0)
 email = st.text_input("Email:", value = '')
+
 if st.button('Add Data'):
     db = client['testdb']
     # Access the 'example_collection' collection
@@ -40,7 +41,6 @@ if st.button('Add Data'):
     }
 
     new_entry = collection.insert_one(new_doc)
-
 
 if st.button('Delete Data'):
     db = client['testdb']
