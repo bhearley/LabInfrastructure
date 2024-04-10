@@ -61,6 +61,7 @@ for k in range(len(branch_list)):
 selection_lab_list = ['']
 
 # Create the Function to get the list of branches
+@st.cache_data(ttl=600)
 def get_selection_lab():
     sel_branch = st.session_state['selection_branch']
     st.markdown(sel_branch)
