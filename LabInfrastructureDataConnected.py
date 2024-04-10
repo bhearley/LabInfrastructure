@@ -42,15 +42,8 @@ def get_data():
 
 # Get All Data in Database
 all_data = get_data()
-
-
-
-# Get List of Existing Records
-db = client['LabData']
-collection = db['LabData']
-cursor = collection.find({})
 Rec_Exist = {}
-for k in range(len(items)):
+for k in range(len(all_data)):
     # Get the current list of all branches
     cur_branch = list(Rec_Exist.keys())
     # -- Add branch if new
