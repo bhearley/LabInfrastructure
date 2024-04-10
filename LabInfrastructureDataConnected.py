@@ -24,12 +24,7 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 
 # Connect to the Database
 uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
-
-st.cache_resource
-
 client = MongoClient(uri, tlsCAFile=certifi.where())
-
-st.cache_data(ttl=600)
 
 # Send a ping to confirm a successful connection
 try:
@@ -69,16 +64,16 @@ for document in cursor:
         with selection_grid[1]:
             selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab')
 
-        if st.button('Load Data'):
-            st.session_state['name'] = 'Test'
-            # Query the database for the record
-            st.markdown(selection_lab)
-            query = {'Laboratory/Capability Name': selection_lab}
-            results = collection.find(query)
-            # Print the matching documents
-            for result in results:
-                st.markdown(result['Laboratory/Capability Name'])
-                st.session_state.name = result['Laboratory/Capability Name']
+    if st.button('Load Data'):
+        st.session_state['name'] = 'Test'
+        # Query the database for the record
+        st.markdown(selection_lab)
+        query = {'Laboratory/Capability Name': selection_lab}
+        results = collection.find(query)
+        # Print the matching documents
+        for result in results:
+            st.markdown(result['Laboratory/Capability Name'])
+            st.session_state.name = result['Laboratory/Capability Name']
                         
 
 #Create Divider for Name and Description
