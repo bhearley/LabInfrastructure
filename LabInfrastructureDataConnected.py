@@ -42,4 +42,11 @@ if st.button('Add Data'):
     new_entry = collection.insert_one(new_doc)
 
 
+if st.button('Delete Data'):
+    db = client['testdb']
+    # Access the 'example_collection' collection
+    collection = db['example_collection']
+    myquery = { "name": name }
+
+    collection.delete_one(myquery)
 
