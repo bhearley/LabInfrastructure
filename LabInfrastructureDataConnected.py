@@ -9,6 +9,12 @@ def init_connection():
 
 client = init_connection()
 
+try:
+    client.admin.command('ping')
+    st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    st.markdown(e)
+
 # Pull data from the collection.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
 #@st.cache_data(ttl=600)
