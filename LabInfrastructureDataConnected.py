@@ -27,7 +27,6 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 # uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
 # client = MongoClient(uri, tlsCAFile=certifi.where())
 
-@st.cache_resource
 def init_connection():
     uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
     return MongoClient(uri, tlsCAFile=certifi.where())
@@ -41,7 +40,6 @@ try:
 except Exception as e:
     print(e)
 
-@st.cache_data(ttl=600)
 def get_data():
     db = client['LabData']
     items = db['LabData'].find()
@@ -58,7 +56,6 @@ for k in range(len(all_data)):
 all_labs.sort()
 
 # Load Data Function
-@st.cache_data(ttl=600)
 def load_data():
     if st.session_state['selection_lab'] != '':
         db = client['LabData']
