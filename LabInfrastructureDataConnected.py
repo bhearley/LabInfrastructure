@@ -29,21 +29,21 @@ for document in cursor:
     # Add record to branch list
     Rec_Exist[document['Branch']].append(document["Laboratory/Capability Name"])
 
-# Initialize Lists
-selection_branch_list  =list(Rec_Exist.keys())
-selection_lab_list = Rec_Exist[0]
-
-# Create the Function to get the list of branches
-def get_selection_lab():
-    selection_lab_list = Rec_Exist[selection_branch]
+    # Initialize Lists
+    selection_branch_list  =list(Rec_Exist.keys())
+    selection_lab_list = Rec_Exist[selection_branch_list[0]]
     
-
-if st.button('Load previous Entry from Database'):
-    selection_grid = st.columns(2)
-    with selection_grid[0]:
-        selection_branch = st.selectbox('Select the Branch:',selection_branch_list,on_change = get_selection_lab, key = 'selection_branch') 
-    with selection_grid[1]:
-        selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab') 
+    # Create the Function to get the list of branches
+    def get_selection_lab():
+        selection_lab_list = Rec_Exist[selection_branch]
+        
+    
+    if st.button('Load previous Entry from Database'):
+        selection_grid = st.columns(2)
+        with selection_grid[0]:
+            selection_branch = st.selectbox('Select the Branch:',selection_branch_list,on_change = get_selection_lab, key = 'selection_branch') 
+        with selection_grid[1]:
+            selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab') 
 
 
 
