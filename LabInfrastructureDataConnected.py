@@ -67,13 +67,13 @@ for document in cursor:
     if st.button('Load Data'):
         st.session_state['name'] = st.session_state['selection_lab']
         # Query the database for the record
-        st.markdown(selection_lab)
-        query = {'Laboratory/Capability Name': selection_lab}
-        results = collection.find(query)
+        #st.markdown(selection_lab)
+        #query = {'Laboratory/Capability Name': selection_lab}
+        #results = collection.find(query)
         # Print the matching documents
-        for result in results:
-            st.markdown(result['Laboratory/Capability Name'])
-            st.session_state.name = result['Laboratory/Capability Name']
+        #for result in results:
+        #    st.markdown(result['Laboratory/Capability Name'])
+        #    st.session_state.name = result['Laboratory/Capability Name']
                         
 
 #Create Divider for Name and Description
