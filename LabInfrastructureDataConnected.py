@@ -65,6 +65,7 @@ for document in cursor:
 
         if st.button('Load Data'):
             # Query the database for the record
+            st.markdown(selection_lab)
             query = {'Laboratory/Capability Name': selection_lab}
             results = collection.find(query)
             # Print the matching documents
