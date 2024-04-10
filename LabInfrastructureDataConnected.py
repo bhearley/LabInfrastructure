@@ -114,10 +114,10 @@ if st.button('Save Data'):
 
     db = client['LabData']
     collection = db['LabData']
-    myquery = { "name": st.session_state["name"] }
+    myquery = { "Laboratory/Capability Name": st.session_state["name"] }
     collection.delete_one(myquery)
 
-    new_entry = collection.replace_one(new_data)
+    new_entry = collection.insert_one(new_data)
 
 
 if st.button('Add Data'):
