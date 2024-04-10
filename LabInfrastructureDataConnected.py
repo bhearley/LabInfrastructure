@@ -76,6 +76,7 @@ def get_selection_lab():
         selection_lab_list = ['']
     else:
         selection_lab_list = Rec_Exist[sel_branch]
+    return selection_lab_list
 
 selection_grid = st.columns(2)
 with selection_grid[0]:
