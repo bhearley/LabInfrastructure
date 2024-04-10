@@ -6,7 +6,23 @@ uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.n
 # Create a new client and connect to the server
 #client = MongoClient(uri)
 
-client = MongoClient(**st.secrets["mongo"])
+client = MongoClient(**st.secrets["mongo1"])
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    st.markdown(e)
+
+client = MongoClient(**st.secrets["mongo2"])
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    st.markdown(e)
+
+client = MongoClient(**st.secrets["mongo3"])
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
