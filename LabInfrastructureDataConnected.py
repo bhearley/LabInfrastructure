@@ -15,4 +15,4 @@ if st.button('Submit'):
             worksheet="Example 1",
             data=['a','b'],
         )
-        st.cache_data.clear()
+    st.cache_data.clear()
