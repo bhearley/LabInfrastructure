@@ -29,7 +29,7 @@ client = MongoClient(uri, tlsCAFile=certifi.where())
 @st.cache_resource
 def init_connection():
     uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
-    return = MongoClient(uri, tlsCAFile=certifi.where())
+    return MongoClient(uri, tlsCAFile=certifi.where())
 
 client = init_connection()
 
