@@ -14,18 +14,15 @@ try:
 except Exception as e:
     st.markdown(e)
 
-client = MongoClient(**st.secrets["mongo2"])
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    st.markdown(e)
+db = client['testdb']
+# Access the 'example_collection' collection
+collection = db['example_collection']
 
-client = MongoClient(**st.secrets["mongo3"])
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    st.markdown(e)
+# Query for documents with age greater than 25
+query = {'name': 'John Doe'}
+results = collection.find(query)
+# Print the matching documents
+for result in results:
+    st.markdown(result)
+
+
