@@ -51,7 +51,7 @@ for k in range(len(all_data)):
         Rec_Exist[all_data[k]["Branch"]] = []
 
     # Add record to branch list
-    Rec_Exist[all_data[k]['Branch']].append(document["Laboratory/Capability Name"])
+    Rec_Exist[all_data[k]['Branch']].append(all_data[k]["Laboratory/Capability Name"])
 
 # Initialize Lists
 branch_list = list(Rec_Exist.keys())
