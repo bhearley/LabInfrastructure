@@ -3,6 +3,9 @@ import pymongo
 
 
 st.markdown(st.secrets["mongo"]["host"])
+st.markdown(st.secrets["mongo"]["port"])
+st.markdown(st.secrets["mongo"]["username"])
+st.markdown(st.secrets["mongo"]["password"])
 
 #@st.cache_resource
 #def init_connection():
