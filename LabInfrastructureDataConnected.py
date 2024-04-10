@@ -35,7 +35,7 @@ except Exception as e:
 
 @st.cache_data(ttl=600)
 def get_data():
-    db = client['LabData;]
+    db = client['LabData']
     items = db['LabData'].find()
     items = list(items)  # make hashable for st.cache_data
     return items
