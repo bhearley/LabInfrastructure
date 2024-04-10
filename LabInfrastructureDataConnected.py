@@ -59,7 +59,7 @@ for document in cursor:
     def get_selection_lab():
         sel_branch = st.session_state['selection_branch']
         if sel_branch == '':
-            selection_lab_list = ''
+            selection_lab_list = ['']
         else:
             selection_lab_list = Rec_Exist[sel_branch]
         
