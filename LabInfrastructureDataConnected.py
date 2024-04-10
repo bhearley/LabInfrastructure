@@ -115,15 +115,13 @@ lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 
 
-if st.button('View Data'):
-    db = client['testdb']
-    # Access the 'example_collection' collection
-    collection = db['example_collection']
+if st.button('Save Data'):
+    # Write the New Data
+    new_data = all_data[0]
+    new_data['Age (yrs)'] = st.session_state['lab_age_k']
+
+    st.markdown(new_data)
     
-    # Query for documents with age greater than 25
-    cursor = collection.find({})
-    for document in cursor:
-        st.markdown(document)
 
 
 if st.button('Add Data'):
