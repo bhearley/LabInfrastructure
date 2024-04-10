@@ -16,14 +16,15 @@ try:
 except Exception as e:
     st.markdown(e)
 
-if st.submit('View Data'):
+if st.button('View Data'):
     db = client['testdb']
     # Access the 'example_collection' collection
     collection = db['example_collection']
     
     # Query for documents with age greater than 25
-    query = {'name': 'John Doe'}
-    results = collection.find(query)
+    cursor = collection.find({})
+    for document in cursor:
+        st.markdown(document)
 
 
 
