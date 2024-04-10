@@ -40,16 +40,17 @@ def get_data():
     items = list(items)  # make hashable for st.cache_data
     return items
 
-items = get_data()
+# Get All Data in Database
+all_data = get_data()
 
-st.markdown(items[0]['Age (yrs)'])
+
 
 # Get List of Existing Records
 db = client['LabData']
 collection = db['LabData']
 cursor = collection.find({})
 Rec_Exist = {}
-for document in cursor:
+for k in range(len(items)):
     # Get the current list of all branches
     cur_branch = list(Rec_Exist.keys())
     # -- Add branch if new
@@ -59,37 +60,36 @@ for document in cursor:
     # Add record to branch list
     Rec_Exist[document['Branch']].append(document["Laboratory/Capability Name"])
 
-    # Initialize Lists
-    branch_list = list(Rec_Exist.keys())
-    selection_branch_list  = ['']
-    for k in range(len(branch_list)):
-        selection_branch_list.append(branch_list[k])
-    selection_lab_list = ['']
-    
-    # Create the Function to get the list of branches
-    def get_selection_lab():
-        sel_branch = st.session_state['selection_branch']
-        if sel_branch == '':
-            selection_lab_list = ['']
-        else:
-            selection_lab_list = Rec_Exist[sel_branch]
-        st.markdown(selection_lab_list)
-        
-    selection_grid = st.columns(2)
-    with selection_grid[0]:
-        selection_branch = st.selectbox('Select the Branch:', selection_branch_list ,on_change = get_selection_lab, key = 'selection_branch') 
-    with selection_grid[1]:
-        selection_lab = st.selectbox('Select the Lab:',selection_lab_list, key = 'selection_lab')
+# Initialize Lists
+branch_list = list(Rec_Exist.keys())
+selection_branch_list  = ['']
+for k in range(len(branch_list)):
+    selection_branch_list.append(branch_list[k])
+selection_lab_list = ['']
 
-    if st.button('Load Data'):
-        if selection_lab != '':
-            # Query the database for the record
-            query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
-            results = collection.find(query)
-            # Write Data
-            for result in results:
-                st.session_state['name'] = result['Laboratory/Capability Name']
-                        
+# Create the Function to get the list of branches
+def get_selection_lab():
+    sel_branch = st.session_state['selection_branch']
+    if sel_branch == '':
+        selection_lab_list = ['']
+    else:
+        selection_lab_list = Rec_Exist[sel_branch]
+
+selection_grid = st.columns(2)
+with selection_grid[0]:
+    selection_branch = st.selectbox('Select the Branch:', selection_branch_list ,on_change = get_selection_lab, key = 'selection_branch') 
+with selection_grid[1]:
+    selection_lab = st.selectbox('Select the Lab:',selection_lab_list, key = 'selection_lab')
+
+if st.button('Load Data'):
+    if selection_lab != '':
+        # Query the database for the record
+        query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
+        results = collection.find(query)
+        # Write Data
+        for result in results:
+            st.session_state['name'] = result['Laboratory/Capability Name']
+                    
 
 #Create Divider for Name and Description
 st.subheader('Laboratory Information')
