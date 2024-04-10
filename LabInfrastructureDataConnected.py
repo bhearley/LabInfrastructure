@@ -3,6 +3,7 @@ import streamlit as st
 from pymongo.mongo_client import MongoClient
 import dns
 import certifi
+from state import provide_state
 
 # Set the page configuration
 st.set_page_config(layout="wide")
@@ -65,7 +66,7 @@ branch_list = list(Rec_Exist.keys())
 selection_branch_list  = ['']
 for k in range(len(branch_list)):
     selection_branch_list.append(branch_list[k])
-selection_lab_list = ['']
+state.inputs = set()
 
 # Create the Function to get the list of branches
 @st.cache_data(ttl=600)
@@ -73,16 +74,16 @@ def get_selection_lab():
     sel_branch = st.session_state['selection_branch']
     st.markdown(sel_branch)
     if sel_branch == '':
-        selection_lab_list = ['']
+        state.inputs = ['']
     else:
-        selection_lab_list = Rec_Exist[sel_branch]
+        state.inputs = Rec_Exist[sel_branch]
     return selection_lab_list
 
 selection_grid = st.columns(2)
 with selection_grid[0]:
     selection_branch = st.selectbox('Select the Branch:', selection_branch_list ,on_change = get_selection_lab, key = 'selection_branch') 
 with selection_grid[1]:
-    selection_lab = st.selectbox('Select the Lab:',selection_lab_list, key = 'selection_lab')
+    selection_lab = st.selectbox('Select the Lab:',list(state.inputs()), key = 'selection_lab')
 
 if st.button('Load Data'):
     if selection_lab != '':
