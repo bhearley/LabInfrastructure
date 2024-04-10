@@ -68,6 +68,12 @@ def load_data():
         # Write Data
         for result in results:
             st.session_state['name'] = result['Laboratory/Capability Name']
+            st.session_state['poc'] = result['Point of Contact']
+            st.session_state['branch'] = result['Branch']
+            st.session_state['desc'] = result['Laboratory/Capability Description']
+            st.session_state['link'] = result['Laboratory/Capability Website']
+            st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
+            st.session_state['lab_age_k'] = result['Age (yrs)']
 
 # Select Lab
 selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
