@@ -1,18 +1,12 @@
 import streamlit as st
-from streamlit_gsheets import GSheetsConnection
+from pymongo.mongo_client import MongoClient
 
-# Create a connection object.
-conn = st.connection("gsheets", type=GSheetsConnection)
-
-df = conn.read()
-
-# Print results.
-for row in df.itertuples():
-    st.write(f"{row.name} has a :{row.pet}:")
-
-if st.button('Submit'):
-    df = conn.create(
-            worksheet="Example 1",
-            data=['a','b'],
-        )
-    st.cache_data.clear()
+uri = "mongodb+srv://nasagrc:<password>@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+# Create a new client and connect to the server
+client = MongoClient(uri)
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
