@@ -69,8 +69,9 @@ for document in cursor:
             results = collection.find(query)
             # Print the matching documents
             for result in results:
-                        st.session_state.name = result['Laboratory/Capability Name']
-                    
+                st.markdown(result['Laboratory/Capability Name'])
+                st.session_state.name = result['Laboratory/Capability Name']
+                        
 
 #Create Divider for Name and Description
 st.subheader('Laboratory Information')
