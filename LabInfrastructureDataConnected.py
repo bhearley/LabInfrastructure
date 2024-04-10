@@ -7,7 +7,7 @@ uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.n
 # Create a new client and connect to the server
 #client = MongoClient(uri)
 
-client = MongoClient(**st.secrets["mongo1"])
+client = MongoClient(**st.secrets["mongo2"])
 #client = MongoClient(uri, tlsCAFile=certifi.where())
 # Send a ping to confirm a successful connection
 try:
