@@ -18,7 +18,7 @@ client = init_connection()
 #    items = list(items)  # make hashable for st.cache_data
 #    return items
 
-3items = get_data()
+#items = get_data()
 
 # Print results.
 #for item in items:
