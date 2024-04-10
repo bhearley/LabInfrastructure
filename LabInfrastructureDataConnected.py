@@ -2,7 +2,7 @@ import streamlit as st
 import pymongo
 
 
-st.markdown(st.secrets["mongo"]["connection_string"]
+st.markdown(st.secrets["mongo"]["connection_string"])
 
 #@st.cache_resource
 #def init_connection():
