@@ -47,11 +47,11 @@ for k in range(len(all_data)):
     # Get the current list of all branches
     cur_branch = list(Rec_Exist.keys())
     # -- Add branch if new
-    if document["Branch"] not in cur_branch:
-        Rec_Exist[document["Branch"]] = []
+    if all_data[k]["Branch"] not in cur_branch:
+        Rec_Exist[all_data[k]["Branch"]] = []
 
     # Add record to branch list
-    Rec_Exist[document['Branch']].append(document["Laboratory/Capability Name"])
+    Rec_Exist[all_data[k]['Branch']].append(document["Laboratory/Capability Name"])
 
 # Initialize Lists
 branch_list = list(Rec_Exist.keys())
