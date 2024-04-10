@@ -61,6 +61,7 @@ all_labs.sort()
 @st.cache_data(ttl=600)
 def load_data():
     if st.session_state['selection_lab'] != '':
+        db = client['LabData']
         # Query the database for the record
         query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
         results = db['LabData'].find(query)
