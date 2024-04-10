@@ -8,7 +8,7 @@ uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.n
 #client = MongoClient(uri)
 
 #client = MongoClient(**st.secrets["mongo1"])
-client = pymongo.MongoClient(uri, tlsCAFile=certifi.where())
+client = MongoClient(uri, tlsCAFile=certifi.where())
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
