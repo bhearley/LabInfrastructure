@@ -24,7 +24,13 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 
 # Connect to the Database
 uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+
+st.cache_resource
+
 client = MongoClient(uri, tlsCAFile=certifi.where())
+
+st.cache_data(ttl=600)
+
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
