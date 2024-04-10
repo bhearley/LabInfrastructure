@@ -117,7 +117,7 @@ if st.button('Save Data'):
     myquery = { "name": st.session_state["name"] }
     collection.delete_one(myquery)
 
-    new_entry = collection.insert_one(new_data)
+    new_entry = collection.replace_one(new_data)
 
 
 if st.button('Add Data'):
