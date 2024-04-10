@@ -50,7 +50,7 @@ for document in cursor:
 
     # Initialize Lists
     selection_branch_list  = ['',list(Rec_Exist.keys())]
-    selection_lab_list = ['', Rec_Exist[selection_branch_list[0]]]
+    selection_lab_list = ['']
     
     # Create the Function to get the list of branches
     def get_selection_lab():
