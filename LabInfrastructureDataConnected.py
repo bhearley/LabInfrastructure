@@ -107,21 +107,17 @@ cond_opts = ['Excellent','Good','Fair','Poor']
 lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 
-
-
-
-
-
-
-
-
 if st.button('Save Data'):
     # Write the New Data
     new_data = all_data[0]
     new_data['Age (yrs)'] = st.session_state['lab_age_k']
 
-    st.markdown(new_data)
-    
+    db = client['LabData']
+    collection = db['LabData']
+    myquery = { "name": st.session_state["name"] }
+    collection.delete_one(myquery)
+
+    new_entry = collection.insert_one(new_data)
 
 
 if st.button('Add Data'):
