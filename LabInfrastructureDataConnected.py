@@ -2,7 +2,7 @@ import streamlit as st
 import pymongo
 
 
-client = pymongo.MongoClient("mongodb+srv://nasagrc:{st.secrets['MONGODB_PASSWORD']}@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest")
+client = pymongo.MongoClient(**st.secrets["mongo"])
 try:
     client.admin.command('ping')
     st.markdown("Pinged your deployment. You successfully connected to MongoDB!")
