@@ -23,8 +23,8 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
 # Connect to the Database
-uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
-client = MongoClient(uri, tlsCAFile=certifi.where())
+# uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+# client = MongoClient(uri, tlsCAFile=certifi.where())
 
 @st.cache_resource
 def init_connection():
