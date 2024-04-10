@@ -1,5 +1,6 @@
 import streamlit as st
 from pymongo.mongo_client import MongoClient
+import dns
 
 uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
 # Create a new client and connect to the server
