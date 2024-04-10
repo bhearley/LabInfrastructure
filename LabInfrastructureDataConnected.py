@@ -11,17 +11,13 @@ def init_connection():
 
 client = init_connection()
 
-# Pull data from the collection.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
-def get_data():
-    db = client.mydb
-    items = db.mycollection.find()
-    items = list(items)  # make hashable for st.cache_data
-    return items
+db = client['testdb']
+# Access the 'example_collection' collection
+collection = db['example_collection']
 
-items = get_data()
-
-# Print results.
-for item in items:
-    st.write(item['name'])
+# Query for documents with age greater than 25
+query = {'name': 'John Doe'}
+results = collection.find(query)
+# Print the matching documents
+for result in results:
+    st.markdown(result['name'])
