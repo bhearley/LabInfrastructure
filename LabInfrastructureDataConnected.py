@@ -24,4 +24,4 @@ items = get_data()
 
 # Print results.
 for item in items:
-    st.write(f"{item['name']})
+    st.write(item['name'])
