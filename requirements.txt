@@ -3,3 +3,4 @@ st-gsheets-connection
 python-docx
 matplotlib
 pymongo==3.10.1
+dns
