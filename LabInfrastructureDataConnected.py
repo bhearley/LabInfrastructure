@@ -49,6 +49,7 @@ def get_data():
     return items
 
 # Get All Data in Database
+all_data = get_data()
 all_labs = ['']
 for k in range(len(all_data)):
     all_labs.append(all_data[k]["Laboratory/Capability Name"])
@@ -57,6 +58,7 @@ for k in range(len(all_data)):
 all_labs.sort()
 
 # Load Data Function
+@st.cache_data(ttl=600)
 def load_data():
     if st.session_state['selection_lab'] != '':
         # Query the database for the record
