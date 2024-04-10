@@ -26,5 +26,18 @@ if st.button('View Data'):
     for document in cursor:
         st.markdown(document)
 
+if st.button('Add Data'):
+    name = st.text_input("Name:",value='')
+    age = st.number_input("Age:",value=0)
+    email = st.text_input("Email:")
+
+    new_doc = {
+    'name': name,
+    'age': age,
+    'email': email
+    }
+
+    new_entry = collection.insert_one(new_doc)
+
 
 
