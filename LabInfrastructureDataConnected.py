@@ -57,7 +57,7 @@ for document in cursor:
     
     # Create the Function to get the list of branches
     def get_selection_lab():
-        sel_branch = st.session_state'selection_branch']
+        sel_branch = st.session_state['selection_branch']
         if sel_branch == '':
             selection_lab_list = ''
         else:
