@@ -25,6 +25,6 @@ query = {'name': 'John Doe'}
 results = collection.find(query)
 # Print the matching documents
 for result in results:
-    st.markdown(result)
+    st.markdown(result['name'])
 
 
