@@ -42,7 +42,7 @@ def get_data():
 
 items = get_data()
 
-st.markdown(items)
+st.markdown(items[0]['Age (yrs)'])
 
 # Get List of Existing Records
 db = client['LabData']
