@@ -1,13 +1,7 @@
 import streamlit as st
 import pymongo
 
-# Initialize connection.
-# Uses st.cache_resource to only run once.
-@st.cache_resource
-#def init_connection():
-#    return pymongo.MongoClient(**st.secrets["mongo"])
 
-#client = init_connection()
 client = pymongo.MongoClient("mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest")
 try:
     client.admin.command('ping')
