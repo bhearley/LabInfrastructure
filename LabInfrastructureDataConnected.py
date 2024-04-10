@@ -1,8 +1,11 @@
 import streamlit as st
-import pymongo
+from streamlit_gsheets import GSheetsConnection
 
-#@st.cache_resource
-#def init_connection():
-#    return pymongo.MongoClient(**st.secrets["mongo"])
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
 
+df = conn.read()
 
+# Print results.
+for row in df.itertuples():
+    st.write(f"{row.name} has a :{row.pet}:")
