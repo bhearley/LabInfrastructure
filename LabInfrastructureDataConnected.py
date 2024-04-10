@@ -64,21 +64,21 @@ for document in cursor:
             selection_lab_list = Rec_Exist[sel_branch]
         
     
-    if st.button('Load Previous Entry from Database'):
-        selection_grid = st.columns(2)
-        with selection_grid[0]:
-            selection_branch = st.selectbox('Select the Branch:',selection_branch_list,on_change = get_selection_lab, key = 'selection_branch') 
-        with selection_grid[1]:
-            selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab')
+
+    selection_grid = st.columns(2)
+    with selection_grid[0]:
+        selection_branch = st.selectbox('Select the Branch:',selection_branch_list,on_change = get_selection_lab, key = 'selection_branch') 
+    with selection_grid[1]:
+        selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab')
 
     if st.button('Load Data'):
-        st.session_state['name'] = st.session_state['selection_lab']
-        # Query the database for the record
-        query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
-        results = collection.find(query)
-        # Write Data
-        for result in results:
-            st.session_state['name'] = result['Laboratory/Capability Name']
+        if selection_lab != '':
+            # Query the database for the record
+            query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
+            results = collection.find(query)
+            # Write Data
+            for result in results:
+                st.session_state['name'] = result['Laboratory/Capability Name']
                         
 
 #Create Divider for Name and Description
