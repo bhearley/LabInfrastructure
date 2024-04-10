@@ -62,14 +62,13 @@ for document in cursor:
             selection_lab_list = ['']
         else:
             selection_lab_list = Rec_Exist[sel_branch]
+        st.markdown(selection_lab_list)
         
-    
-
     selection_grid = st.columns(2)
     with selection_grid[0]:
-        selection_branch = st.selectbox('Select the Branch:',selection_branch_list,on_change = get_selection_lab, key = 'selection_branch') 
+        selection_branch = st.selectbox('Select the Branch:', selection_branch_list ,on_change = get_selection_lab, key = 'selection_branch') 
     with selection_grid[1]:
-        selection_lab = st.selectbox('Select the Branch:',selection_lab_list, key = 'selection_lab')
+        selection_lab = st.selectbox('Select the Lab:',selection_lab_list, key = 'selection_lab')
 
     if st.button('Load Data'):
         if selection_lab != '':
