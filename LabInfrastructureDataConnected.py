@@ -58,13 +58,13 @@ all_labs.sort()
 
 # Load Data Function
 def load_data():
-if st.session_state['selection_lab'] != '':
-    # Query the database for the record
-    query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
-    results = collection.find(query)
-    # Write Data
-    for result in results:
-        st.session_state['name'] = result['Laboratory/Capability Name']
+    if st.session_state['selection_lab'] != '':
+        # Query the database for the record
+        query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
+        results = collection.find(query)
+        # Write Data
+        for result in results:
+            st.session_state['name'] = result['Laboratory/Capability Name']
 
 # Select Lab
 selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
