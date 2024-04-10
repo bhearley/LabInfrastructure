@@ -49,12 +49,19 @@ for document in cursor:
     Rec_Exist[document['Branch']].append(document["Laboratory/Capability Name"])
 
     # Initialize Lists
-    selection_branch_list  = ['',list(Rec_Exist.keys())]
+    branch_list = list(Rec_Exist.keys())
+    selection_branch_list  = ['']
+    for k in range(len(branch_list)):
+        selection_branch_list.append(branch_list[k])
     selection_lab_list = ['']
     
     # Create the Function to get the list of branches
     def get_selection_lab():
-        selection_lab_list = Rec_Exist[selection_branch]
+        sel_branch = st.session_state'selection_branch']
+        if sel_branch == '':
+            selection_lab_list = ''
+        else:
+            selection_lab_list = Rec_Exist[sel_branch]
         
     
     if st.button('Load Previous Entry from Database'):
