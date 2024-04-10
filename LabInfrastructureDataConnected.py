@@ -124,9 +124,7 @@ if st.button('View Data'):
     cursor = collection.find({})
     for document in cursor:
         st.markdown(document)
-name = st.text_input("Name:",value='')
-age = st.number_input("Age:",value=0)
-email = st.text_input("Email:", value = '')
+
 
 if st.button('Add Data'):
     db = client['testdb']
