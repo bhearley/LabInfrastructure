@@ -1,29 +1,25 @@
-# Import Modules
 import streamlit as st
-from pymongo.mongo_client import MongoClient
-uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
-# Create a new client and connect to the server
-client = MongoClient(uri)
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+import pymogno
 
-db = client['testdb']
-# Access the 'example_collection' collection
-collection = db['example_collection']
+# Initialize connection.
+# Uses st.cache_resource to only run once.
+@st.cache_resource
+def init_connection():
+    return pymongo.MongoClient(**st.secrets["mongo"])
 
-# Prepare a document to insert
-#document = {
-#    'name': 'John Doe',
-#    'age': 30,
-#    'email': 'john@example.com'
-#}
+client = init_connection()
 
-# Query for documents with age greater than 25
-query = {'name': 'John Doe'}
-results = collection.find(query)
-for result in results:
-    st.markdown(results)
+# Pull data from the collection.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def get_data():
+    db = client.testdb
+    items = db.mycollection.find()
+    items = list(items)  # make hashable for st.cache_data
+    return items
+
+items = get_data()
+
+# Print results.
+for item in items:
+    st.write(item["name"])
