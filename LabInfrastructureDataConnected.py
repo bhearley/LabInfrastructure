@@ -286,7 +286,7 @@ def add_row_asset(row):
         else:
             asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
 
-for r in range(asset_rows):
+for r in range(int(asset_rows)):
     add_row_asset(r)
 
 # Create Input for Asset Images
@@ -323,7 +323,7 @@ def add_row_img(row):
         else:
             asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
 
-for r in range(asset_imgs_num):
+for r in range(int(asset_imgs_num)):
     add_row_img(r)
 css = '''
 <style>
@@ -389,7 +389,7 @@ def add_row2(row):
             fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
         else:
             fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
-for r in range(fund_rows):
+for r in range(int(fund_rows)):
     add_row2(r)
 
 # Create File Uploader
@@ -449,7 +449,7 @@ def add_row3(row):
         else:
             impact_util[row]=st.text_input('', key=f'input_colt{row}')
             
-for r in range(proj_rows):
+for r in range(int(proj_rows)):
     add_row3(r)
 
 #Create Divider for Name and Description
@@ -530,7 +530,7 @@ def add_row4(row):
             desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_coly{row}')
         else:
             desc_dt[row]=st.text_input('', value='',key=f'input_coly{row}')
-for r in range(down_rows):
+for r in range(int(down_rows)):
     add_row4(r)
 
 
