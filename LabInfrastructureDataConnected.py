@@ -408,7 +408,7 @@ def add_row2(row):
         if row == 0:
             start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('Temp'), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
+            start_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
     # -- End Date of Funding
     with grid2[2]:
         while len(end_fund) < row+1:
