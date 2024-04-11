@@ -598,12 +598,7 @@ for r in range(int(labor_rows)):
 
 
 if st.button('Save Data'):
-    #if st.session_state['selection_lab'] != '':
-    #    # Get a copy of the data structure 
-    #    new_data = all_data[0]
-    #else:
-    #    new_data = {}
-
+    # Create New Document
     new_data = {}
             
     # Write New Data
