@@ -250,8 +250,11 @@ test_text = st.text_area("For Testing",value = '', key='test_area')
 
 
 if st.button('Save Data'):
-    # Get a copy of the data structure 
-    new_data = all_data[0]
+    if st.session_state['selection_lab'] != '':
+        # Get a copy of the data structure 
+        new_data = all_data[0]
+    else:
+        new_data = {}
 
     # Write New Data
     new_data['Laboratory/Capability Name'] = st.session_state['name']
