@@ -404,7 +404,7 @@ def add_row2(row):
         if row == 0:
             fund_src[row]=st.text_input('Funding Source', value='',key=f'input_coll{row}')
         else:
-            fund_src[row]=st.text_input('', value='',key=f'input_coll{row}')
+            fund_src[row]=st.text_input('Funding Source' + str(row), value='',key=f'input_coll{row}',label_visibility = False)
     # -- Start Date of Funding
     with grid2[1]:
         while len(start_fund) < row+1:
@@ -412,7 +412,7 @@ def add_row2(row):
         if row == 0:
             start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}')
+            start_fund[row]=st.date_input('Funding Start Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = False)
     # -- End Date of Funding
     with grid2[2]:
         while len(end_fund) < row+1:
@@ -420,7 +420,7 @@ def add_row2(row):
         if row == 0:
             end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
         else:
-            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}')
+            end_fund[row]=st.date_input('Funding End Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = False)
     # -- Funding Amount
     with grid2[3]:
         while len(fund_amt) < row+1:
@@ -428,7 +428,7 @@ def add_row2(row):
         if row == 0:
             fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
         else:
-            fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
+            fund_amt[row]=st.number_input("Funding Amount per Year ($)" + str(row),min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = False)
 for r in range(int(fund_rows)):
     add_row2(r)
 
