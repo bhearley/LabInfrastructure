@@ -58,8 +58,10 @@ def load_data():
         # Query the database for the record
         query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
         results = db['LabData'].find(query)
+
         # Write Data
         for result in results:
+            st.write(result)
             st.session_state['name'] = result['Laboratory/Capability Name'].strip()
             st.session_state['poc'] = result['Point of Contact'].strip()
             st.session_state['branch'] = result['Branch'].strip()
@@ -69,8 +71,8 @@ def load_data():
             st.session_state['lab_age'] = result['Age (yrs)']
             st.session_state['cond'] = result['Condition'].strip()
             st.session_state['asset_num'] = result['Number of Assets']
-            for m in range(int(result['Number of Assets'])):
-                st.session_state[f'input_cola{m}'] = result['Asset Name'][m]
+            #for m in range(int(result['Number of Assets'])):
+            #    st.session_state[f'input_cola{m}'] = result['Asset Name'][m]
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
