@@ -530,6 +530,7 @@ def add_row4(row):
             desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_coly{row}')
         else:
             desc_dt[row]=st.text_input('', value='',key=f'input_coly{row}')
+                    
 for r in range(int(down_rows)):
     add_row4(r)
 
