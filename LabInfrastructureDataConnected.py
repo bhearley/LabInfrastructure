@@ -297,7 +297,7 @@ def add_row_asset(row):
         if row == 0:
             asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_colh{row}')
         else:
-            asset_imp[row]=st.text_input('', key=f'input_colh{row}',label_visibility = "collapsed")
+            asset_imp[row]=st.text_input('Temp', key=f'input_colh{row}',label_visibility = "collapsed")
     # -- Associated Software
     with grid[8]:
         while len(asset_software) < row+1:
