@@ -593,7 +593,7 @@ def add_row5(row):
             labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
         else:
             labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
-for r in range(labor_rows):
+for r in range(int(labor_rows)):
     add_row5(r)
 
 
