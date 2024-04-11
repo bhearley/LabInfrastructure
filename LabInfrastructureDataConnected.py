@@ -75,7 +75,7 @@ def load_data():
                 st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
                 st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
                 st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
-                st.session_state[f'input_cold{m}'] = result['T1-Asset Condition'][m]
+                st.session_state[f'input_cold{m}'] = result['T1-Acquisition Year'][m]
                 st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
                 st.session_state[f'input_colf{m}'] = result['T1-Asset Condition'][m]
                 st.session_state[f'input_colg{m}'] = result['T1-Replacement Cost ($)'][m]
