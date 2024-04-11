@@ -110,16 +110,23 @@ def load_data():
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
-                    
             st.session_state['dt_num'] = result['Number of Failures']
             for m in range(int(result['Number of Failures'])):
                 st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
                 date1 = result['T5-Start Date'][m].split('-')
                 st.session_state[f'input_colv{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-                st.session_state[f'input_colw{k}'] = result['T5-Time Down'][m]
-                st.session_state[f'input_colx{k}'] = result['T5-Unit'][m]
-                st.session_state[f'input_coly{k}'] = result['T5-Additional Notes'][m]
-                st.session_state[f'input_colyy{k}'] = result['T5-Impact'][m]
+                st.session_state[f'input_colw{m}'] = result['T5-Time Down'][m]
+                st.session_state[f'input_colx{m}'] = result['T5-Unit'][m]
+                st.session_state[f'input_coly{m}'] = result['T5-Additional Notes'][m]
+                st.session_state[f'input_colyy{m}'] = result['T5-Impact'][m]
+            st.session_state['cost_rep'] = result['Estimated Cost to Replace Entire Laboratory/Capability ($)']
+            st.session_state['cost_serv'] = result['Cost of Service Contracts ($)']
+            st.session_state['cost_ann'] = result['Annual Cost to Operate and Sustain the Lab ($/yr)']
+            st.session_state['cost_inc'] = result['Incurred Cost For Downtime ($/yr)']
+            st.session_state['labor_num'] = result['Number of Divisions (Labor Costs)']
+            for m in range(int(result['Number of Divisions (Labor Costs)'])):
+                st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
+                st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
 
     else:
         st.session_state['name'] = ''
@@ -139,6 +146,11 @@ def load_data():
         st.session_state['impact'] = ''
         st.session_state['tot_imp'] = ''
         st.session_state['dt_num'] = 0
+        st.session_state['cost_rep'] = 0
+        st.session_state['cost_serv'] = 0
+        st.session_state['cost_ann'] = 0
+        st.session_state['cost_inc'] = 0
+        st.session_state['labor_num'] = 0
         
 
 #--------------------------------------------------------------------------------------------------------------------------------
@@ -535,6 +547,47 @@ def add_row4(row):
 for r in range(int(down_rows)):
     add_row4(r)
 
+#Create Divider for Down Time History
+st.subheader('Cost')
+
+# Create Input for Cost of Replacement
+cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_rep')
+
+# Create Input for Cost of Service Contracts
+cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_serv')
+
+# Create Input for Annual Expenses to operate and sustain the lab
+cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_ann')
+
+# Create Input for Incurred Cost Due to Downtown
+cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_inc')
+
+# Create Input for Labor Division
+labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
+grid5 = st.columns([0.3,0.3,0.4])
+division = [] #Store division
+labor_pct = [] #Store the labor percentrate
+
+def add_row5(row):
+    # -- Start Date for Time Down
+    with grid5[0]:
+        while len(division) < row+1:
+            division.append(None)
+        if row == 0:
+            division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_colz{row}')
+        else:
+            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_colz{row}')
+    # -- Time Down
+    with grid5[1]:
+        while len(labor_pct) < row+1:
+            labor_pct.append(None)
+        if row == 0:
+            labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
+        else:
+            labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
+for r in range(labor_rows):
+    add_row5(r)
+
 
 if st.button('Save Data'):
     if st.session_state['selection_lab'] != '':
@@ -620,6 +673,16 @@ if st.button('Save Data'):
         new_data['T5-Unit'].append(st.session_state[f'input_colx{k}'])
         new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{k}'])
         new_data['T5-Impact'].append(st.session_state[f'input_colyy{k}'])
+    new_data['Estimated Cost to Replace Entire Laboratory/Capability ($)']= st.session_state['cost_rep']
+    new_data['Cost of Service Contracts ($)'] = st.session_state['cost_serv']
+    new_data['Annual Cost to Operate and Sustain the Lab ($/yr)'] = st.session_state['cost_ann']
+    new_data['Incurred Cost For Downtime ($/yr)'] = st.session_state['cost_inc']
+    new_data['Number of Divisions (Labor Costs)'] = st.session_state['labor_num']
+    new_data['T6-Directorate'] = []
+    new_data['T6-Labor Cost (%)'] = []
+    for m in range(int(st.session_state['labor_num'])):
+        new_data['T6-Directorate'].append(st.session_state[f'input_colz{m}'])
+        new_data['T6-Labor Cost (%)'].apend(st.session_state[f'input_colaa{m}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
