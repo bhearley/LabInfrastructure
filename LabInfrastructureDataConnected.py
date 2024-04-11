@@ -72,7 +72,7 @@ def load_data():
             st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
             st.session_state['lab_age'] = result['Age (yrs)']
                     
-            st.session_state['cond'] = 'Good']
+            st.session_state['cond'] = 'Good'
             st.markdown('--' + results['Condition'] + '--')
     else:
         st.session_state['name'] = ''
