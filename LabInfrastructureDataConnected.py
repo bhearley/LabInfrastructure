@@ -429,7 +429,7 @@ if st.button('Save Data'):
         new_data['T3-Funding Source'].append(st.session_state[f'input_coll{m}'])
         new_data['T3-Funding Start Date'].append(str(st.session_state[f'input_colm{m}']))
         new_data['T3-Funding End Date'].append(str(st.session_state[f'input_coln{m}']))
-        new_data['T3-Funding Amount per Year ($)''].append(st.session_state[f'input_colo{m}'])
+        new_data['T3-Funding Amount per Year ($)'].append(st.session_state[f'input_colo{m}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
