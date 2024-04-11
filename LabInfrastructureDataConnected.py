@@ -1,10 +1,27 @@
-# Import Modues
+#==================================================================================================================================================================
+#   NASA GRC Lab Infrastructure Data Collection Tool
+#   Brandon Hearley - LMS
+#   4/11/2024
+#
+#   PURPOSE: Create a web app (using streamlit) to collect data on the GRC Lab Infrastructure. The data collected is 
+#            stored in a Mongo Database.
+#
+#==================================================================================================================================================================
+# SETUP
+# Import the necessary modules to run the app
+
+# Import Modules
+# -- see requirements.txt for any specified versions need
 import streamlit as st
 from pymongo.mongo_client import MongoClient
 import dns
 import certifi
 import datetime
 import time
+
+#==================================================================================================================================================================
+# GENERAL INFORMATION
+# Set the web app general information not edited by the user
 
 # Set the page configuration
 st.set_page_config(layout="wide")
@@ -20,15 +37,21 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             '  - A Laboratory is defined as a dedicated facility, or dedicated infrastructure, for performing a specific type of testing, ' +
             'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
             'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
-            '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. (i.e. a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
+            '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. ' + 
+            '(i.e. a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
             '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or different to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
+
+#==================================================================================================================================================================
+# DATA POPULATION
+# Set up the database connection and define functions to populate data fields in the web app
 
 # Connect to the Database
 def init_connection():
     uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
     return MongoClient(uri, tlsCAFile=certifi.where())
 
+# Create the Database Client
 client = init_connection()
 
 # Send a ping to confirm a successful connection
@@ -38,6 +61,7 @@ try:
 except Exception as e:
     print(e)
 
+# Read the Database
 def get_data():
     db = client['LabData']
     items = db['LabData'].find()
@@ -46,24 +70,22 @@ def get_data():
 
 # Get All Data in Database
 all_data = get_data()
-all_labs = ['']
+all_labs = [''] #Initialize list of labs to display to user
 for k in range(len(all_data)):
     all_labs.append(all_data[k]["Laboratory/Capability Name"])
-
-# Sort List
-all_labs.sort()
+all_labs.sort() #Sort the list of labs alphabetically
 
 # Load Data Function
+# -- Set the values in the web app from the database when an existing lab is chosen
 def load_data():
+    # Populate the data fields in the web app if an lab is selected
     if st.session_state['selection_lab'] != '':
+        # Get the database
         db = client['LabData']
-        # Query the database for the record
+        # Query the database for the record and get results
         query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
         results = db['LabData'].find(query)
-
-        # Write Data
         for result in results:
-            #st.write(result)
             st.session_state['name'] = result['Laboratory/Capability Name']
             st.session_state['poc'] = result['Point of Contact']
             st.session_state['branch'] = result['Branch']
@@ -102,9 +124,6 @@ def load_data():
                 st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                 st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
             st.session_state['proj_num'] = result['Number of Projects']
-
-
-                    
             for m in range(int(result['Number of Projects'])):
                 st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
                 st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
@@ -112,9 +131,6 @@ def load_data():
                 st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
                 st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
                 print(' Writing Project Row')
-
-
-                    
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
@@ -135,7 +151,8 @@ def load_data():
             for m in range(int(result['Number of Divisions (Labor Costs)'])):
                 st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
                 st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
-
+                
+    # Populate blank entries in the web app if no lab is selected
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
@@ -160,13 +177,12 @@ def load_data():
         st.session_state['cost_inc'] = 0
         st.session_state['labor_num'] = 0
         
-
-#--------------------------------------------------------------------------------------------------------------------------------
-# Create Data Entries
-#
-
-# Select Lab
+# Create Drop Down to select an existing lab record
 selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
+
+#==================================================================================================================================================================
+# GENERAL LAB INFORMATION
+# Create inputs to collect general lab information
 
 #Create Divider for Name and Description
 st.subheader('Laboratory Information')
