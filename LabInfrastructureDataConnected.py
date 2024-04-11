@@ -72,7 +72,7 @@ def load_data():
             st.session_state['cond'] = result['Condition'].strip()
             st.session_state['asset_num'] = result['Number of Assets']
             #for m in range(int(result['Number of Assets'])):
-            #    st.session_state[f'input_cola{m}'] = result['Asset Name'][m]
+            #    st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
