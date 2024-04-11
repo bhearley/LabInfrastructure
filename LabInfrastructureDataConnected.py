@@ -487,9 +487,11 @@ def add_row3(row):
             impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_colt{row}')
         else:
             impact_util[row]=st.text_input('', key=f'input_colt{row}')
-            
+
+print('The number of project rows is :' + str(st.session_state['proj_num']))
 for r in range(int(st.session_state['proj_num'])):
     add_row3(r)
+    print('Adding row #' + str(r))
 
 #Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
