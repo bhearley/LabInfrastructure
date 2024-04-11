@@ -674,7 +674,7 @@ if st.button('Save Data'):
     new_data['T5-Unit'] = []
     new_data['T5-Additional Notes'] = []
     new_data['T5-Impact'] = []
-    for m in range(int(result['Number of Failures'])):
+    for m in range(int(st.session_state['dt_num'])):
         new_data['T5-Asset'].append(st.session_state[f'input_colu{m}'])
         new_data['T5-Start Date'].apepnd(str(st.session_state[f'input_colv{m}']))
         new_data['T5-Time Down'].append(st.session_state[f'input_colw{k}'])
