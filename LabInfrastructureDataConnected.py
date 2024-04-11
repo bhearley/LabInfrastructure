@@ -262,6 +262,30 @@ if st.button('Save Data'):
     new_data['Challenges in sustaining this laboratory/capability'] = st.session_state['chal']
     new_data['Age (yrs)'] = st.session_state['lab_age']
     new_data['Condition'] = st.session_state['cond']
+    new_data['Number of Assets'] = st.session_state['asset_num']
+    new_data['T1-Asset Name'] = []
+    new_data['T1-Location (Bldg/Rm)'] = []
+    new_data['T1-Age (yrs)'] = []
+    new_data['T1-Acquisition Year'] = []
+    new_data['T1-Expected Year of Obsolescence'] = []
+    new_data['T1-Asset Condition'] = []
+    new_data['T1-Replacement Cost ($)'] = []
+    new_data['T1-Impact to Capability if Lost'] = []
+    new_data['T1-Associated Software'] = []
+    new_data['T1-Inlcudes IT Hardware?'] = []
+    new_data['T1-Replacement'] = []
+    for m in range(int(st.session_state['asset_num'])):
+        new_data['T1-Asset Name'].append(st.session_state[f'input_cola{m}']) 
+        new_data['T1-Location (Bldg/Rm)'].append(st.session_state[f'input_colb{m}'])
+        new_data['T1-Age (yrs)'].append(st.session_state[f'input_colc{m}'])
+        new_data['T1-Acquisition Year'].append(st.session_state[f'input_cold{m}'])
+        new_data['T1-Expected Year of Obsolescence'].append(st.session_state[f'input_cole{m}'])
+        new_data['T1-Asset Condition'].append(st.session_state[f'input_colf{m}'])
+        new_data['T1-Replacement Cost ($)'].append(st.session_state[f'input_colg{m}'])
+        new_data['T1-Impact to Capability if Lost'].append(st.session_state[f'input_colh{m}'])
+        new_data['T1-Associated Software'].append(st.session_state[f'input_coli{m}'])
+        new_data['T1-Inlcudes IT Hardware?'].append(st.session_state[f'input_colj{m}'])
+        new_data['T1-Replacement'].append(st.session_state[f'input_colk{m}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
