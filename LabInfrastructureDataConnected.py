@@ -260,21 +260,17 @@ def add_row_asset(row):
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            #asset_date_in[row]=st.date_input('Acquistion  \n \n Year', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
             asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 0, max_value = 3000, help = 'The year the asset was acquired.', key=f'input_cold{row}')
         else:
-            #asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
-            asset_date_in[row]=st.number_input('', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}')
+            asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}',label_visibility = False)
     # -- Asset Date of Obsolescence
     with grid[4]:
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            #asset_date_out[row]=st.date_input('Expected Year of Obsolescence', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
             asset_date_out[row]=st.number_input('Expected Year of Obsolescence', step = 1, min_value = 0, max_value = 3000, help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
-            #asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cole{row}')
-            asset_date_out[row]=st.number_input('', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}')
+            asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}',label_visibility = False)
     # -- Asset Condition
     with grid[5]:
         while len(asset_cond) < row+1:
@@ -285,7 +281,7 @@ def add_row_asset(row):
                                                                                        "Fair - Asset is still in a working condition, but is near end of life. \n \n \n " +
                                                                                        "Poor - Asset has many issues/doesn't operate properly ", key=f'input_colf{row}')
         else:
-            asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}')
+            asset_cond[row]=st.selectbox('Temp', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}',label_visibility = "collapsed")
     # -- Asset Cost of Replacement
     with grid[6]:
         while len(asset_cost) < row+1:
@@ -293,7 +289,7 @@ def add_row_asset(row):
         if row == 0:
             asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, key=f'input_colg{row}')
         else:
-            asset_cost[row]=st.number_input('', step=1000, key=f'input_colg{row}')
+            asset_cost[row]=st.number_input('Temp', step=1000, key=f'input_colg{row}',label_visibility = "collapsed")
     # -- Asset Impact if Lost
     with grid[7]:
         while len(asset_imp) < row+1:
@@ -301,7 +297,7 @@ def add_row_asset(row):
         if row == 0:
             asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_colh{row}')
         else:
-            asset_imp[row]=st.text_input('', key=f'input_colh{row}')
+            asset_imp[row]=st.text_input('', key=f'input_colh{row}',label_visibility = False)
     # -- Associated Software
     with grid[8]:
         while len(asset_software) < row+1:
@@ -309,7 +305,7 @@ def add_row_asset(row):
         if row == 0:
             asset_software[row]=st.text_input('Associated Software / \n \n  Required OS', help = "List any assoicated software or required operating systems, separated by commas, necessary for the asset to operate", key=f'input_coli{row}')
         else:
-            asset_software[row]=st.text_input('', key=f'input_coli{row}')
+            asset_software[row]=st.text_input('Temp', key=f'input_coli{row}',label_visibility = "collapsed")
     # -- IT/computer hardware repalcement
     with grid[9]:
         while len(asset_itrep) < row+1:
@@ -317,14 +313,14 @@ def add_row_asset(row):
         if row == 0:
             asset_itrep[row]=st.selectbox('Inlcudes IT \n \n  Hardware?', ('Yes','No'), help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
         else:
-            asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_colj{row}')
+            asset_itrep[row]=st.selectbox('Temp', ('Yes','No'),key=f'input_colj{row}',label_visibility = "collapsed")
     with grid[10]:
         while len(asset_repdesc) < row+1:
             asset_repdesc.append(None)
         if row == 0:
             asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
         else:
-            asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
+            asset_repdesc[row]=st.text_input('Temp', key=f'input_colk{row}',label_visibility = "collapsed")
 
 for r in range(int(asset_rows)):
     add_row_asset(r)
@@ -351,7 +347,7 @@ def add_row_img(row):
             #s = f"<p style='font-size:.01px;'>{'test'}</p>"
             #st.markdown(s, unsafe_allow_html=True) 
         else:
-            asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}',label_visibility = "collapsed")
+            asset_imgs_lab[row]=st.selectbox('Temp', options_dt, key=f'input_colimg1{row}',label_visibility = "collapsed")
 
     # -- Asset image   
     with grid_img[1]:
@@ -361,7 +357,7 @@ def add_row_img(row):
             asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
 
         else:
-            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
+            asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
 
 for r in range(int(asset_imgs_num)):
     add_row_img(r)
