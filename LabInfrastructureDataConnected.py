@@ -84,6 +84,8 @@ def load_data():
                 st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
                 st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
             st.session_state['asset_img'] = result['Number of Asset Images']
+            for m in range(int(result['Number of Asset Images'])):
+                st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
@@ -255,6 +257,57 @@ asset_imgs = [] #Store the asset images
 asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
 grid_img = st.columns(2)
 
+def add_row_img(row):
+     # -- Set the Options
+    options_dt = []
+    for k in range(len(asset_name)):
+        options_dt.append(asset_name[k])
+        
+    # -- Asset
+    with grid_img[0]:
+        while len(asset_imgs_lab) < row+1:
+            asset_imgs_lab.append(None)
+        if row == 0:
+            asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')  
+            #s = f"<p style='font-size:.01px;'>{'test'}</p>"
+            #st.markdown(s, unsafe_allow_html=True) 
+        else:
+            asset_imgs_lab[row]=st.selectbox('', options_dt, key=f'input_colimg1{row}',label_visibility = "collapsed")
+
+    # -- Asset image   
+    with grid_img[1]:
+        while len(asset_imgs) < row+1:
+            asset_imgs.append(None)
+        if row == 0:
+            asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
+
+        else:
+            asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
+
+
+for r in range(asset_imgs_num):
+    add_row_img(r)
+css = '''
+<style>
+    [data-testid='stFileUploader'] {
+        width: max-content;
+    }
+    [data-testid='stFileUploader'] section {
+        padding: 0;
+        float: left;
+    }
+    [data-testid='stFileUploader'] section > input + div {
+        display: none;
+    }
+    [data-testid='stFileUploader'] section + div {
+        float: right;
+        padding-top: 0;
+    }
+
+</style>
+'''
+st.markdown(css, unsafe_allow_html=True)
+
 test_text = st.text_area("For Testing",value = '', key='test_area')
 
 
@@ -299,6 +352,9 @@ if st.button('Save Data'):
         new_data['T1-Inlcudes IT Hardware?'].append(st.session_state[f'input_colj{m}'])
         new_data['T1-Replacement'].append(st.session_state[f'input_colk{m}'])
     new_data['Number of Asset Images'] = st.session_state['asset_img']
+    for m in range(int(st.session_state['asset_img'])):
+        new_data['T2-Asset'].append(st.session_state[f'input_colimg1{m}'])
+        new_data['T2-Image'].append(st.session_state[f'input_colimg2{m}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
