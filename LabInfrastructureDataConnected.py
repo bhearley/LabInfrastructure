@@ -73,7 +73,7 @@ def load_data():
             st.session_state['lab_age'] = result['Age (yrs)']
                     
             st.session_state['cond'] = 'Good'
-            st.markdown('--' + results['Condition'] + '--')
+            st.markdown('--' + result['Condition'] + '--')
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
