@@ -262,7 +262,7 @@ def add_row_asset(row):
         if row == 0:
             asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 0, max_value = 3000, help = 'The year the asset was acquired.', key=f'input_cold{row}')
         else:
-            asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}',label_visibility = False)
+            asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}',label_visibility = "collapsed")
     # -- Asset Date of Obsolescence
     with grid[4]:
         while len(asset_date_out) < row+1:
@@ -270,7 +270,7 @@ def add_row_asset(row):
         if row == 0:
             asset_date_out[row]=st.number_input('Expected Year of Obsolescence', step = 1, min_value = 0, max_value = 3000, help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
-            asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}',label_visibility = False)
+            asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}',label_visibility = "collapsed")
     # -- Asset Condition
     with grid[5]:
         while len(asset_cond) < row+1:
@@ -297,7 +297,7 @@ def add_row_asset(row):
         if row == 0:
             asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_colh{row}')
         else:
-            asset_imp[row]=st.text_input('', key=f'input_colh{row}',label_visibility = False)
+            asset_imp[row]=st.text_input('', key=f'input_colh{row}',label_visibility = "collapsed")
     # -- Associated Software
     with grid[8]:
         while len(asset_software) < row+1:
@@ -400,7 +400,7 @@ def add_row2(row):
         if row == 0:
             fund_src[row]=st.text_input('Funding Source', value='',key=f'input_coll{row}')
         else:
-            fund_src[row]=st.text_input('Funding Source' + str(row), value='',key=f'input_coll{row}',label_visibility = False)
+            fund_src[row]=st.text_input('Funding Source' + str(row), value='',key=f'input_coll{row}',label_visibility = "collapsed")
     # -- Start Date of Funding
     with grid2[1]:
         while len(start_fund) < row+1:
@@ -408,7 +408,7 @@ def add_row2(row):
         if row == 0:
             start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('Funding Start Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = False)
+            start_fund[row]=st.date_input('Funding Start Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
     # -- End Date of Funding
     with grid2[2]:
         while len(end_fund) < row+1:
@@ -416,7 +416,7 @@ def add_row2(row):
         if row == 0:
             end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
         else:
-            end_fund[row]=st.date_input('Funding End Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = False)
+            end_fund[row]=st.date_input('Funding End Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = "collapsed")
     # -- Funding Amount
     with grid2[3]:
         while len(fund_amt) < row+1:
@@ -424,7 +424,7 @@ def add_row2(row):
         if row == 0:
             fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
         else:
-            fund_amt[row]=st.number_input("Funding Amount per Year ($)" + str(row),min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = False)
+            fund_amt[row]=st.number_input("Funding Amount per Year ($)" + str(row),min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = "collapsed")
 for r in range(int(fund_rows)):
     add_row2(r)
 
