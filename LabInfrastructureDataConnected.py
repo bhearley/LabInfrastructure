@@ -72,7 +72,7 @@ def get_data():
 
 # Get All Data in Database
 all_data = get_data()
-all_labs = [] #Initialize list of labs to display to user
+all_labs = [''] #Initialize list of labs to display to user
 for k in range(len(all_data)):
     all_labs.append(all_data[k]["Laboratory/Capability Name"])
 all_labs.sort() #Sort the list of labs alphabetically
