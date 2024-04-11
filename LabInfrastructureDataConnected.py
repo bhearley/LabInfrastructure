@@ -68,6 +68,7 @@ def load_data():
             st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability'].strip()
             st.session_state['lab_age'] = result['Age (yrs)']
             st.session_state['cond'] = result['Condition'].strip()
+            st.session_state['asset_num'] = 0 = result['Number of Assets']
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
@@ -80,6 +81,7 @@ def load_data():
         st.session_state['chal'] = ''
         st.session_state['lab_age'] = None
         st.session_state['cond'] = 'Excellent'
+        st.session_state['asset_num'] = 0
 
 #--------------------------------------------------------------------------------------------------------------------------------
 # Create Data Entries
