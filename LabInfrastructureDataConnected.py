@@ -72,7 +72,7 @@ def get_data():
 
 # Get All Data in Database
 all_data = get_data()
-all_labs = [''] #Initialize list of labs to display to user
+all_labs = [] #Initialize list of labs to display to user
 for k in range(len(all_data)):
     all_labs.append(all_data[k]["Laboratory/Capability Name"])
 all_labs.sort() #Sort the list of labs alphabetically
@@ -156,60 +156,59 @@ def load_data():
                 st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
 
     # Populate blank entries in the web app if no lab is selected
-    else:
-        st.session_state['name'] = ''
-        st.session_state['poc'] = ''
-        st.session_state['branch'] = ''
-        st.session_state['desc'] = ''
-        st.session_state['link'] = ''
-        st.session_state['chal'] = ''
-        st.session_state['lab_age'] = None
-        st.session_state['cond'] = 'Excellent'
-        st.session_state['asset_num'] = 0
-        st.session_state['asset_img'] = 0
-        st.session_state['sust'] = ''
-        st.session_state['fund_num'] = 0
-        st.session_state['proj_num'] = 0
-        st.session_state['hist'] = ''
-        st.session_state['impact'] = ''
-        st.session_state['tot_imp'] = ''
-        st.session_state['dt_num'] = 0
-        st.session_state['cost_rep'] = 0
-        st.session_state['cost_serv'] = 0
-        st.session_state['cost_ann'] = 0
-        st.session_state['cost_inc'] = 0
-        st.session_state['labor_num'] = 0
+    # else:
+    #     st.session_state['name'] = ''
+    #     st.session_state['poc'] = ''
+    #     st.session_state['branch'] = ''
+    #     st.session_state['desc'] = ''
+    #     st.session_state['link'] = ''
+    #     st.session_state['chal'] = ''
+    #     st.session_state['lab_age'] = None
+    #     st.session_state['cond'] = 'Excellent'
+    #     st.session_state['asset_num'] = 0
+    #     st.session_state['asset_img'] = 0
+    #     st.session_state['sust'] = ''
+    #     st.session_state['fund_num'] = 0
+    #     st.session_state['proj_num'] = 0
+    #     st.session_state['hist'] = ''
+    #     st.session_state['impact'] = ''
+    #     st.session_state['tot_imp'] = ''
+    #     st.session_state['dt_num'] = 0
+    #     st.session_state['cost_rep'] = 0
+    #     st.session_state['cost_serv'] = 0
+    #     st.session_state['cost_ann'] = 0
+    #     st.session_state['cost_inc'] = 0
+    #     st.session_state['labor_num'] = 0
 
-grid_start = st.columns([0.2,0.2,0.6])
-with grid_start[0]:
-    if st.button('Load Previous'):
-        # Create Drop Down to select an existing lab record
-        selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
-with grid_start[1]:
-    if st.button('Clear'):
-        # Create Drop Down to select an existing lab record
-        st.session_state['name'] = ''
-        st.session_state['poc'] = ''
-        st.session_state['branch'] = ''
-        st.session_state['desc'] = ''
-        st.session_state['link'] = ''
-        st.session_state['chal'] = ''
-        st.session_state['lab_age'] = None
-        st.session_state['cond'] = 'Excellent'
-        st.session_state['asset_num'] = 0
-        st.session_state['asset_img'] = 0
-        st.session_state['sust'] = ''
-        st.session_state['fund_num'] = 0
-        st.session_state['proj_num'] = 0
-        st.session_state['hist'] = ''
-        st.session_state['impact'] = ''
-        st.session_state['tot_imp'] = ''
-        st.session_state['dt_num'] = 0
-        st.session_state['cost_rep'] = 0
-        st.session_state['cost_serv'] = 0
-        st.session_state['cost_ann'] = 0
-        st.session_state['cost_inc'] = 0
-        st.session_state['labor_num'] = 0
+if st.button('Clear All Fields'):
+    # Clear Data
+    st.session_state['name'] = ''
+    st.session_state['poc'] = ''
+    st.session_state['branch'] = ''
+    st.session_state['desc'] = ''
+    st.session_state['link'] = ''
+    st.session_state['chal'] = ''
+    st.session_state['lab_age'] = None
+    st.session_state['cond'] = 'Excellent'
+    st.session_state['asset_num'] = 0
+    st.session_state['asset_img'] = 0
+    st.session_state['sust'] = ''
+    st.session_state['fund_num'] = 0
+    st.session_state['proj_num'] = 0
+    st.session_state['hist'] = ''
+    st.session_state['impact'] = ''
+    st.session_state['tot_imp'] = ''
+    st.session_state['dt_num'] = 0
+    st.session_state['cost_rep'] = 0
+    st.session_state['cost_serv'] = 0
+    st.session_state['cost_ann'] = 0
+    st.session_state['cost_inc'] = 0
+    st.session_state['labor_num'] = 0
+
+if st.button('Load Previous'):
+    # Create Drop Down to select an existing lab record
+    selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
+
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
