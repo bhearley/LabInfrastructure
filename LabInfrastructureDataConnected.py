@@ -73,7 +73,7 @@ def load_data():
             st.session_state['lab_age'] = result['Age (yrs)']
                     
             st.session_state['cond'] = 'Good'
-            st.markdown('--' + result['Condition'] + '--')
+            st.session_state['test_area'] = '--' + result['Condition'] + '--'
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
@@ -114,6 +114,8 @@ lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,help="The age 
 # Create Input for Condition
 cond_opts = ['Excellent','Good','Fair','Poor']
 lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
+
+test_text = st.text_area("For Testing",value = '', key='test_area')
 
 
 if st.button('Save Data'):
