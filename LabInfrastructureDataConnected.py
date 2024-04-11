@@ -443,6 +443,7 @@ def add_row3(row):
             impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_colt{row}')
         else:
             impact_util[row]=st.text_input('', key=f'input_colt{row}')
+            
 for r in range(proj_rows):
     add_row3(r)
 
