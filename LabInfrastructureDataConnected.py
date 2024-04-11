@@ -676,7 +676,7 @@ if st.button('Save Data'):
     new_data['T5-Impact'] = []
     for m in range(int(st.session_state['dt_num'])):
         new_data['T5-Asset'].append(st.session_state[f'input_colu{m}'])
-        new_data['T5-Start Date'].apepnd(str(st.session_state[f'input_colv{m}']))
+        new_data['T5-Start Date'].append(str(st.session_state[f'input_colv{m}']))
         new_data['T5-Time Down'].append(st.session_state[f'input_colw{k}'])
         new_data['T5-Unit'].append(st.session_state[f'input_colx{k}'])
         new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{k}'])
@@ -690,7 +690,7 @@ if st.button('Save Data'):
     new_data['T6-Labor Cost (%)'] = []
     for m in range(int(st.session_state['labor_num'])):
         new_data['T6-Directorate'].append(st.session_state[f'input_colz{m}'])
-        new_data['T6-Labor Cost (%)'].apend(st.session_state[f'input_colaa{m}'])
+        new_data['T6-Labor Cost (%)'].append(st.session_state[f'input_colaa{m}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
