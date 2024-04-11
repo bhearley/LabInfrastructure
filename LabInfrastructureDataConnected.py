@@ -121,7 +121,7 @@ test_text = st.text_area("For Testing",value = '', key='test_area')
 if st.button('Save Data'):
     # Write the New Data
     new_data = all_data[0]
-    new_data['Age (yrs)'] = st.session_state['lab_age_k']
+    new_data['Age (yrs)'] = st.session_state['lab_age']
 
     db = client['LabData']
     collection = db['LabData']
