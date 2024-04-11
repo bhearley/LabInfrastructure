@@ -64,16 +64,16 @@ def load_data():
         results = db['LabData'].find(query)
         # Write Data
         for result in results:
-            st.session_state['name'] = result['Laboratory/Capability Name']
-            st.session_state['poc'] = result['Point of Contact']
-            st.session_state['branch'] = result['Branch']
-            st.session_state['desc'] = result['Laboratory/Capability Description']
-            st.session_state['link'] = result['Laboratory/Capability Website']
-            st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
+            st.session_state['name'] = result['Laboratory/Capability Name'].strip()
+            st.session_state['poc'] = result['Point of Contact'].strip()
+            st.session_state['branch'] = result['Branch'].strip()
+            st.session_state['desc'] = result['Laboratory/Capability Description'].strip()
+            st.session_state['link'] = result['Laboratory/Capability Website'].strip()
+            st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability'].strip()
             st.session_state['lab_age'] = result['Age (yrs)']
                     
-            st.session_state['cond'] = 'Good'
-            st.session_state['test_area'] = '--' + result['Condition'] + '--'
+            st.session_state['cond'] = result['Condition'].strip()
+            st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
