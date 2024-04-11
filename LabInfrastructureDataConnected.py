@@ -598,12 +598,14 @@ for r in range(int(labor_rows)):
 
 
 if st.button('Save Data'):
-    if st.session_state['selection_lab'] != '':
-        # Get a copy of the data structure 
-        new_data = all_data[0]
-    else:
-        new_data = {}
+    #if st.session_state['selection_lab'] != '':
+    #    # Get a copy of the data structure 
+    #    new_data = all_data[0]
+    #else:
+    #    new_data = {}
 
+    new_data = {}
+            
     # Write New Data
     new_data['Laboratory/Capability Name'] = st.session_state['name']
     new_data['Point of Contact'] = st.session_state['poc']
