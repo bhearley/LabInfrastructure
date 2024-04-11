@@ -100,6 +100,16 @@ def load_data():
                 date2 = result['T3-Funding End Date'][m].split('-')
                 st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                 st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
+            st.session_state['proj_num'] = result['Number of Projects']
+            for m in range(int(result['Number of Projects'])):
+                st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
+                st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
+                st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
+                st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
+                st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
+
+
+            
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
@@ -119,9 +129,11 @@ def load_data():
         st.session_state['asset_img'] = 0
         st.session_state['sust'] = ''
         st.session_state['fund_num'] = 0
+        st.session_state['proj_num'] = 0
         st.session_state['hist'] = ''
         st.session_state['impact'] = ''
         st.session_state['tot_imp'] = ''
+        
 
 #--------------------------------------------------------------------------------------------------------------------------------
 # Create Data Entries
@@ -379,6 +391,62 @@ for r in range(fund_rows):
 uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
 
 #Create Divider for Name and Description
+st.subheader('Current Mission/Project Utilization')
+# Create Input for Project Utilization and Risk
+proj_rows = st.number_input('Number of Projects', min_value=0, max_value=None, key = 'proj_num')
+grid3 = st.columns(5)
+proj_util = [] #Store the projects
+wbs_util = [] #Store the project WBS
+use_util = [] #Store the use for each project
+risk = [] #Store the risk
+impact_util = [] #Store the use for each project
+def add_row3(row):
+    # -- Project Name
+    with grid3[0]:
+        while len(proj_util) < row+1:
+            proj_util.append(None)
+        if row == 0:
+            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_colp{row}')
+        else:
+            proj_util[row]=st.text_input('', key=f'input_colp{row}')
+    # -- WBS Number
+    with grid3[1]:
+        while len(wbs_util) < row+1:
+            wbs_util.append(None)
+        if row == 0:
+            wbs_util[row]=st.text_input('WBS Number', help = 'Enter the 6 Digit WBS Number', key=f'input_colq{row}')
+        else:
+            wbs_util[row]=st.text_input('', key=f'input_colq{row}')
+    # -- Project Use
+    with grid3[2]:
+        while len(use_util) < row+1:
+            use_util.append(None)
+        if row == 0:
+            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
+        else:
+            use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
+    # -- Risk to Project
+    with grid3[3]:
+        while len(risk) < row+1:
+            risk.append(None)
+        if row == 0:
+            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
+                                                                                       'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time. \n \n \n ' +
+                                                                                       'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_cols{row}')
+        else:
+            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_cols{row}')
+    # -- Impact to Project
+    with grid3[4]:
+        while len(impact_util) < row+1:
+            impact_util.append(None)
+        if row == 0:
+            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_colt{row}')
+        else:
+            impact_util[row]=st.text_input('', key=f'input_colt{row}')
+for r in range(proj_rows):
+    add_row3(r)
+
+#Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
 
 # Create Input for History of Capability Utilization
@@ -439,18 +507,27 @@ if st.button('Save Data'):
         new_data['T2-Image'].append(st.session_state[f'input_colimg2{m}'])
     new_data['Sustainment Funding Source'] = st.session_state['sust']
     new_data['Number of Funding Sources'] = st.session_state['fund_num'] 
-    result['T3-Funding Source'] = []
-    result['T3-T3-Funding Start Date'] = []
-    result['T3-T3-Funding End Date'] = []
-    result['T3-Funding Amount per Year ($)'] = []
-    for m in range(int(result['Number of Funding Sources'])):
+    new_data['T3-Funding Source'] = []
+    new_data['T3-T3-Funding Start Date'] = []
+    new_data['T3-T3-Funding End Date'] = []
+    new_data['T3-Funding Amount per Year ($)'] = []
+    for m in range(int(st.session_state['fund_num'] )):
         new_data['T3-Funding Source'].append(st.session_state[f'input_coll{m}'])
         new_data['T3-Funding Start Date'].append(str(st.session_state[f'input_colm{m}']))
         new_data['T3-Funding End Date'].append(str(st.session_state[f'input_coln{m}']))
         new_data['T3-Funding Amount per Year ($)'].append(st.session_state[f'input_colo{m}'])
-
-
-            
+    new_data['Number of Projects'] = st.session_state['proj_num']
+    new_data['T4-Mission/Project Name'] = []
+    new_data['T4-WBS Number'] = []
+    new_data['T4-Project Use (%)'] = []
+    new_data['T4-Risk to Project'] = []
+    new_data['T4-Impact if Laboratory/Capability is Lost'] = []
+    for m in range(int(st.session_state['proj_num'])):
+        new_data['T4-Mission/Project Name'].append(st.session_state[f'input_colp{m}'])
+        new_data['T4-WBS Number'].append(st.session_state[f'input_colq{m}'])
+        new_data['T4-Project Use (%)'].append(st.session_state[f'input_colr{m}'])
+        new_data['T4-Risk to Project'].append(st.session_state[f'input_cols{m}'])
+        new_data['T4-Impact if Laboratory/Capability is Lost'].append(st.session_state[f'input_colt{m}'])
     new_data['History of capability utilization'] = st.session_state['hist'] 
     new_data['Major impact and contributions this capability has made possible'] = st.session_state['impact']
     new_data['Overall impact of laboratory/capability is lost'] = st.session_state['tot_imp']
