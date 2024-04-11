@@ -3,6 +3,7 @@ import streamlit as st
 from pymongo.mongo_client import MongoClient
 import dns
 import certifi
+import datetime
 
 # Set the page configuration
 st.set_page_config(layout="wide")
@@ -83,9 +84,22 @@ def load_data():
                 st.session_state[f'input_coli{m}'] = result['T1-Associated Software'][m]
                 st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
                 st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
-            st.session_state['asset_img'] = result['Number of Asset Images']
-            for m in range(int(result['Number of Asset Images'])):
-                st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
+
+            # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
+            #st.session_state['asset_img'] = result['Number of Asset Images']
+            #for m in range(int(result['Number of Asset Images'])):
+            #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
+            st.session_state['asset_img'] = 0
+            
+            st.session_state['sust'] = result['Sustainment Funding Source']
+            st.session_state['fund_num'] = result['Number of Funding Sources']
+            for m in range(int(result['Number of Funding Sources'])):
+                st.session_state[f'input_coll{m}'] = result['T3-Funding Source'][m]
+                date1 = result['T3-Funding Start Date'][m].split('-')
+                st.session_state[f'input_colm{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+                date2 = result['T3-Funding End Date'][m].split('-')
+                st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+                st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
@@ -100,6 +114,8 @@ def load_data():
         st.session_state['cond'] = 'Excellent'
         st.session_state['asset_num'] = 0
         st.session_state['asset_img'] = 0
+        st.session_state['sust'] = ''
+        st.session_state['fund_num'] = 0
 
 #--------------------------------------------------------------------------------------------------------------------------------
 # Create Data Entries
@@ -284,7 +300,6 @@ def add_row_img(row):
         else:
             asset_imgs[row]=st.file_uploader('', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
 
-
 for r in range(asset_imgs_num):
     add_row_img(r)
 css = '''
@@ -307,6 +322,55 @@ css = '''
 </style>
 '''
 st.markdown(css, unsafe_allow_html=True)
+
+# Create Input for Sustainment Funding Source
+sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
+
+# Additional Information on Funding
+fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=None,key='fund_num')
+grid2 = st.columns(4)
+fund_src = [] #Store funding source
+start_fund = [] #Store the start date of funding
+end_fund = [] #Store the end date of funding
+fund_amt = [] #Store the funding amount
+def add_row2(row):
+    # -- Funding Source
+    with grid2[0]:
+        while len(fund_src) < row+1:
+            fund_src.append(None)
+        if row == 0:
+            fund_src[row]=st.text_input('Funding Source', value='',key=f'input_coll{row}')
+        else:
+            fund_src[row]=st.text_input('', value='',key=f'input_coll{row}')
+    # -- Start Date of Funding
+    with grid2[1]:
+        while len(start_fund) < row+1:
+            start_fund.append(None)
+        if row == 0:
+            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
+        else:
+            start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}')
+    # -- End Date of Funding
+    with grid2[2]:
+        while len(end_fund) < row+1:
+            end_fund.append(None)
+        if row == 0:
+            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
+        else:
+            end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}')
+    # -- Funding Amount
+    with grid2[3]:
+        while len(fund_amt) < row+1:
+            fund_amt.append(None)
+        if row == 0:
+            fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
+        else:
+            fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
+for r in range(fund_rows):
+    add_row2(r)
+
+# Create File Uploader
+uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
 
 test_text = st.text_area("For Testing",value = '', key='test_area')
 
@@ -355,6 +419,17 @@ if st.button('Save Data'):
     for m in range(int(st.session_state['asset_img'])):
         new_data['T2-Asset'].append(st.session_state[f'input_colimg1{m}'])
         new_data['T2-Image'].append(st.session_state[f'input_colimg2{m}'])
+    new_data['Sustainment Funding Source'] = st.session_state['sust']
+    new_data['Number of Funding Sources'] = st.session_state['fund_num'] 
+    result['T3-Funding Source'] = []
+    result['T3-T3-Funding Start Date'] = []
+    result['T3-T3-Funding End Date'] = []
+    result['T3-Funding Amount per Year ($)'] = []
+    for m in range(int(result['Number of Funding Sources'])):
+        new_data['T3-Funding Source'].append(st.session_state[f'input_coll{m}'])
+        new_data['T3-Funding Start Date'].append(str(st.session_state[f'input_colm{m}']))
+        new_data['T3-Funding End Date'].append(str(st.session_state[f'input_coln{m}']))
+        new_data['T3-Funding Amount per Year ($)''].append(st.session_state[f'input_colo{m}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
