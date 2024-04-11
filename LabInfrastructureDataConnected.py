@@ -400,7 +400,7 @@ def add_row2(row):
         if row == 0:
             fund_src[row]=st.text_input('Funding Source', value='',key=f'input_coll{row}')
         else:
-            fund_src[row]=st.text_input('Funding Source' + str(row), value='',key=f'input_coll{row}',label_visibility = "collapsed")
+            fund_src[row]=st.text_input('Temp', value='',key=f'input_coll{row}',label_visibility = "collapsed")
     # -- Start Date of Funding
     with grid2[1]:
         while len(start_fund) < row+1:
@@ -408,7 +408,7 @@ def add_row2(row):
         if row == 0:
             start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('Funding Start Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
+            start_fund[row]=st.date_input('Temp'), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
     # -- End Date of Funding
     with grid2[2]:
         while len(end_fund) < row+1:
@@ -416,7 +416,7 @@ def add_row2(row):
         if row == 0:
             end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
         else:
-            end_fund[row]=st.date_input('Funding End Date' + str(row), min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = "collapsed")
+            end_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = "collapsed")
     # -- Funding Amount
     with grid2[3]:
         while len(fund_amt) < row+1:
@@ -424,7 +424,7 @@ def add_row2(row):
         if row == 0:
             fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
         else:
-            fund_amt[row]=st.number_input("Funding Amount per Year ($)" + str(row),min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = "collapsed")
+            fund_amt[row]=st.number_input('Temp',min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = "collapsed")
 for r in range(int(fund_rows)):
     add_row2(r)
 
@@ -529,7 +529,7 @@ def add_row4(row):
         if row == 0:
             asset_dt[row]=st.selectbox('Asset', options_dt, key=f'input_colu{row}')
         else:
-            asset_dt[row]=st.selectbox('', options_dt, key=f'input_colu{row}')
+            asset_dt[row]=st.selectbox('Temp', options_dt, key=f'input_colu{row}',label_visibility = "collapsed")
     # -- Start Date for Time Down
     with grid4[1]:
         while len(date_dt) < row+1:
@@ -537,7 +537,7 @@ def add_row4(row):
         if row == 0:
             date_dt[row]=st.date_input('Start Date', min_value=datetime.date(2019, 1, 1),  format="MM/DD/YYYY",  key=f'input_colv{row}')
         else:
-            date_dt[row]=st.date_input('', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}')
+            date_dt[row]=st.date_input('Tepm', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}',label_visibility = "collapsed")
     # -- Time Down
     with grid4[2]:
         while len(time_dt) < row+1:
@@ -545,7 +545,7 @@ def add_row4(row):
         if row == 0:
             time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_colw{row}')
         else:
-            time_dt[row]=st.number_input('', step=0.5, key=f'input_colw{row}')
+            time_dt[row]=st.number_input('Temp', step=0.5, key=f'input_colw{row}',label_visibility = "collapsed")
     # -- Unit of Time Down
     with grid4[3]:
         while len(unit_dt) < row+1:
@@ -553,7 +553,7 @@ def add_row4(row):
         if row == 0:
             unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
         else:
-            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
+            unit_dt[row]=st.selectbox('Temp', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}',label_visibility = "collapsed")
     # -- Additonal Notes for Time Down
     with grid4[4]:
         while len(imp_dt) < row+1:
@@ -561,14 +561,14 @@ def add_row4(row):
         if row == 0:
             imp_dt[row]=st.text_input('Impact on Mission/Project', value='',key=f'input_colyy{row}')
         else:
-            imp_dt[row]=st.text_input('', value='',key=f'input_colyy{row}')
+            imp_dt[row]=st.text_input('Temp', value='',key=f'input_colyy{row}',label_visibility = "collapsed")
     with grid4[5]:
         while len(desc_dt) < row+1:
             desc_dt.append(None)
         if row == 0:
             desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_coly{row}')
         else:
-            desc_dt[row]=st.text_input('', value='',key=f'input_coly{row}')
+            desc_dt[row]=st.text_input('Temp', value='',key=f'input_coly{row}',label_visibility = "collapsed")
                     
 for r in range(int(down_rows)):
     add_row4(r)
@@ -602,7 +602,7 @@ def add_row5(row):
         if row == 0:
             division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_colz{row}')
         else:
-            division[row]=st.selectbox('', ('Code F','Code L'), key=f'input_colz{row}')
+            division[row]=st.selectbox('Temp', ('Code F','Code L'), key=f'input_colz{row}',label_visibility = "collapsed")
     # -- Time Down
     with grid5[1]:
         while len(labor_pct) < row+1:
@@ -610,7 +610,7 @@ def add_row5(row):
         if row == 0:
             labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
         else:
-            labor_pct[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
+            labor_pct[row]=st.number_input('Temp', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}',label_visibility = "collapsed")
 for r in range(int(labor_rows)):
     add_row5(r)
 
