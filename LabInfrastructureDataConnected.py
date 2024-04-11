@@ -440,59 +440,62 @@ st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
 proj_rows = st.number_input('Number of Projects', min_value=0, max_value=None, key = 'proj_num')
 grid3 = st.columns(5)
-proj_util = [] #Store the projects
-wbs_util = [] #Store the project WBS
-use_util = [] #Store the use for each project
-risk = [] #Store the risk
-impact_util = [] #Store the use for each project
-def add_row3(row):
-    # -- Project Name
-    with grid3[0]:
-        while len(proj_util) < row+1:
-            proj_util.append(None)
-        if row == 0:
-            proj_util[row]=st.text_input('Mission/Project Name', key=f'input_colp{row}')
-        else:
-            proj_util[row]=st.text_input('', key=f'input_colp{row}')
-    # -- WBS Number
-    with grid3[1]:
-        while len(wbs_util) < row+1:
-            wbs_util.append(None)
-        if row == 0:
-            wbs_util[row]=st.text_input('WBS Number', help = 'Enter the 6 Digit WBS Number', key=f'input_colq{row}')
-        else:
-            wbs_util[row]=st.text_input('', key=f'input_colq{row}')
-    # -- Project Use
-    with grid3[2]:
-        while len(use_util) < row+1:
-            use_util.append(None)
-        if row == 0:
-            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
-        else:
-            use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
-    # -- Risk to Project
-    with grid3[3]:
-        while len(risk) < row+1:
-            risk.append(None)
-        if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
-                                                                                       'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time. \n \n \n ' +
-                                                                                       'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_cols{row}')
-        else:
-            risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_cols{row}')
-    # -- Impact to Project
-    with grid3[4]:
-        while len(impact_util) < row+1:
-            impact_util.append(None)
-        if row == 0:
-            impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_colt{row}')
-        else:
-            impact_util[row]=st.text_input('', key=f'input_colt{row}')
 
-print('The number of project rows is :' + str(st.session_state['proj_num']))
-for r in range(int(st.session_state['proj_num'])):
-    add_row3(r)
-    print('Adding row #' + str(r))
+def update_proj():
+    proj_util = [] #Store the projects
+    wbs_util = [] #Store the project WBS
+    use_util = [] #Store the use for each project
+    risk = [] #Store the risk
+    impact_util = [] #Store the use for each project
+    def add_row3(row):
+        # -- Project Name
+        with grid3[0]:
+            while len(proj_util) < row+1:
+                proj_util.append(None)
+            if row == 0:
+                proj_util[row]=st.text_input('Mission/Project Name', key=f'input_colp{row}')
+            else:
+                proj_util[row]=st.text_input('', key=f'input_colp{row}')
+        # -- WBS Number
+        with grid3[1]:
+            while len(wbs_util) < row+1:
+                wbs_util.append(None)
+            if row == 0:
+                wbs_util[row]=st.text_input('WBS Number', help = 'Enter the 6 Digit WBS Number', key=f'input_colq{row}')
+            else:
+                wbs_util[row]=st.text_input('', key=f'input_colq{row}')
+        # -- Project Use
+        with grid3[2]:
+            while len(use_util) < row+1:
+                use_util.append(None)
+            if row == 0:
+                use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
+            else:
+                use_util[row]=st.number_input('', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
+        # -- Risk to Project
+        with grid3[3]:
+            while len(risk) < row+1:
+                risk.append(None)
+            if row == 0:
+                risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
+                                                                                           'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time. \n \n \n ' +
+                                                                                           'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_cols{row}')
+            else:
+                risk[row]=st.selectbox('', ('High', 'Moderate', 'Low'),key=f'input_cols{row}')
+        # -- Impact to Project
+        with grid3[4]:
+            while len(impact_util) < row+1:
+                impact_util.append(None)
+            if row == 0:
+                impact_util[row]=st.text_input('Impact if Laboratory/Capability is Lost', key=f'input_colt{row}')
+            else:
+                impact_util[row]=st.text_input('', key=f'input_colt{row}')
+    
+    print('The number of project rows is :' + str(st.session_state['proj_num']))
+    for r in range(int(st.session_state['proj_num'])):
+        add_row3(r)
+        print('Adding row #' + str(r))
+update_proj()
 
 #Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
