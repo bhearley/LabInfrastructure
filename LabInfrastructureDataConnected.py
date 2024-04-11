@@ -101,12 +101,14 @@ def load_data():
                 st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                 st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
             st.session_state['proj_num'] = result['Number of Projects']
+                    
             for m in range(int(result['Number of Projects'])):
                 st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
                 st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
                 st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
                 st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
                 st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
+                print(' Writing Project Row')
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
