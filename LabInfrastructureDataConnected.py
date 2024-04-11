@@ -112,13 +112,13 @@ def load_data():
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
             st.session_state['dt_num'] = result['Number of Failures']
             for m in range(int(result['Number of Failures'])):
-                st.session_state[f'input_colu{m}'] = results['T5-Asset'][m]
+                st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
                 date1 = results['T5-Start Date'][m].split('-')
                 st.session_state[f'input_colv{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-                st.session_state[f'input_colw{k}'] = results['T5-Time Down'][m]
-                st.session_state[f'input_colx{k}'] = results['T5-Unit'][m]
-                st.session_state[f'input_coly{k}'] = results['T5-Additional Notes'][m]
-                st.session_state[f'input_colyy{k}'] = results['T5-Impact'][m]
+                st.session_state[f'input_colw{k}'] = result['T5-Time Down'][m]
+                st.session_state[f'input_colx{k}'] = result['T5-Unit'][m]
+                st.session_state[f'input_coly{k}'] = result['T5-Additional Notes'][m]
+                st.session_state[f'input_colyy{k}'] = result['T5-Impact'][m]
 
     else:
         st.session_state['name'] = ''
