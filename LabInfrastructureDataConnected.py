@@ -639,7 +639,7 @@ def add_row5(row):
 for r in range(int(labor_rows)):
     add_row5(r)
 
-grid_db = st.columns([0.15,0.15,0.7])
+grid_db = st.columns([0.125,0.125,0.75])
 with grid_db[0]:
     if st.button('Save To Database'):
         # Create New Document
