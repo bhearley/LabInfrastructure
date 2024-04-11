@@ -180,9 +180,16 @@ def load_data():
         st.session_state['cost_inc'] = 0
         st.session_state['labor_num'] = 0
 
-if st.button('Load Previous'):
-    # Create Drop Down to select an existing lab record
-    selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
+grid_start = st.columns([0.2,0.2,0.6])
+with grid_start[0]:
+    if st.button('Load Previous'):
+        # Create Drop Down to select an existing lab record
+        selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
+with grid_start[1]:
+    if st.button('Clear'):
+        # Create Drop Down to select an existing lab record
+        st.sessions_state['selection_lab'] = ''
+        load_data()
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
