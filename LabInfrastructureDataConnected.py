@@ -71,7 +71,7 @@ def load_data():
             st.session_state['link'] = result['Laboratory/Capability Website']
             st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
             st.session_state['lab_age'] = result['Age (yrs)']
-            st.session_state['cond'] = result['Condition']
+            st.session_state['cond'] = 'Good' #result['Condition']
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
