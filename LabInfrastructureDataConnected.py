@@ -116,6 +116,120 @@ lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,help="The age 
 cond_opts = ['Excellent','Good','Fair','Poor']
 lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
+# Create Input for Assets
+asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
+grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
+asset_name = [] #Store the asset name
+asset_loc = []  #Store the asset location
+asset_age = [] #Store the asset age
+asset_date_in = [] #Store the asset date of entry
+asset_date_out = [] #Store the asset date of obsolescence
+asset_cond = [] #Store the asset condition
+asset_cost = [] #Store the asset cost of replacement
+asset_imp = [] #Store the asset impact description
+asset_software = [] #Store the asset associated software
+asset_itrep = [] #Store if an IT/Hardware replacement is needed
+asset_repdesc = [] #Store the description on IT/Hardware replacement
+
+def add_row_asset(row):
+    # -- Asset Name
+    with grid[0]:
+        while len(asset_name) < row+1:
+            asset_name.append(None)
+        if row == 0:
+            asset_name[row]=st.text_input('Asset \n \n Name', key=f'input_cola{row}')
+        else:
+            asset_name[row]=st.text_input('', key=f'input_cola{row}')
+    # -- Asset Location    
+    with grid[1]:
+        while len(asset_loc) < row+1:
+            asset_loc.append(None)
+        if row == 0:
+            asset_loc[row]=st.text_input('Location  \n \n (Bldg/Rm)', key=f'input_colb{row}')
+        else:
+            asset_loc[row]=st.text_input('', key=f'input_colb{row}')
+    # -- Asset Age
+    with grid[2]:
+        while len(asset_age) < row+1:
+            asset_age.append(None)
+        if row == 0:
+            asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, key=f'input_colc{row}')
+        else:
+            asset_age[row]=st.number_input('', step=0.5, key=f'input_colc{row}')
+    # -- Asset Date of Entry
+    with grid[3]:
+        while len(asset_date_in) < row+1:
+            asset_date_in.append(None)
+        if row == 0:
+            #asset_date_in[row]=st.date_input('Acquistion  \n \n Year', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'The date the asset was acquired.', key=f'input_cold{row}')
+            asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 0, max_value = 3000, help = 'The year the asset was acquired.', key=f'input_cold{row}')
+        else:
+            #asset_date_in[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cold{row}')
+            asset_date_in[row]=st.number_input('', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}')
+    # -- Asset Date of Obsolescence
+    with grid[4]:
+        while len(asset_date_out) < row+1:
+            asset_date_out.append(None)
+        if row == 0:
+            #asset_date_out[row]=st.date_input('Expected Year of Obsolescence', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
+            asset_date_out[row]=st.number_input('Expected Year of Obsolescence', step = 1, min_value = 0, max_value = 3000, help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
+        else:
+            #asset_date_out[row]=st.date_input('', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", key=f'input_cole{row}')
+            asset_date_out[row]=st.number_input('', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}')
+    # -- Asset Condition
+    with grid[5]:
+        while len(asset_cond) < row+1:
+            asset_cond.append(None)
+        if row == 0:
+            asset_cond[row]=st.selectbox('Asset  \n \n  Condition',  ('Excellent', 'Good', 'Fair', 'Poor'), help="Excellent - No current issues with the asset. \n \n \n " +
+                                                                                       "Good - Only minor issues with the asset that can be easily fixed. \n \n \n " +
+                                                                                       "Fair - Asset is still in a working condition, but is near end of life. \n \n \n " +
+                                                                                       "Poor - Asset has many issues/doesn't operate properly ", key=f'input_colf{row}')
+        else:
+            asset_cond[row]=st.selectbox('', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}')
+    # -- Asset Cost of Replacement
+    with grid[6]:
+        while len(asset_cost) < row+1:
+            asset_cost.append(None)
+        if row == 0:
+            asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, key=f'input_colg{row}')
+        else:
+            asset_cost[row]=st.number_input('', step=1000, key=f'input_colg{row}')
+    # -- Asset Impact if Lost
+    with grid[7]:
+        while len(asset_imp) < row+1:
+            asset_imp.append(None)
+        if row == 0:
+            asset_imp[row]=st.text_input('Impact to Capability \n \n  if Lost', key=f'input_colh{row}')
+        else:
+            asset_imp[row]=st.text_input('', key=f'input_colh{row}')
+    # -- Associated Software
+    with grid[8]:
+        while len(asset_software) < row+1:
+            asset_software.append(None)
+        if row == 0:
+            asset_software[row]=st.text_input('Associated Software / \n \n  Required OS', help = "List any assoicated software or required operating systems, separated by commas, necessary for the asset to operate", key=f'input_coli{row}')
+        else:
+            asset_software[row]=st.text_input('', key=f'input_coli{row}')
+    # -- IT/computer hardware repalcement
+    with grid[9]:
+        while len(asset_itrep) < row+1:
+            asset_itrep.append(None)
+        if row == 0:
+            asset_itrep[row]=st.selectbox('Inlcudes IT \n \n  Hardware?', ('Yes','No'), help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
+        else:
+            asset_itrep[row]=st.selectbox('', ('Yes','No'),key=f'input_colj{row}')
+    with grid[10]:
+        while len(asset_repdesc) < row+1:
+            asset_repdesc.append(None)
+        if row == 0:
+            asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
+        else:
+            asset_repdesc[row]=st.text_input('', key=f'input_colk{row}')
+
+for r in range(asset_rows):
+    add_row_asset(r)
+
 test_text = st.text_area("For Testing",value = '', key='test_area')
 
 
