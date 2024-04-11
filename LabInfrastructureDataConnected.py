@@ -639,104 +639,112 @@ def add_row5(row):
 for r in range(int(labor_rows)):
     add_row5(r)
 
-
-if st.button('Save Data'):
-    # Create New Document
-    new_data = {}
-            
-    # Write New Data
-    new_data['Laboratory/Capability Name'] = st.session_state['name']
-    new_data['Point of Contact'] = st.session_state['poc']
-    new_data['Branch'] = st.session_state['branch']
-    new_data['Laboratory/Capability Description'] = st.session_state['desc']
-    new_data['Laboratory/Capability Website'] = st.session_state['link']
-    new_data['Challenges in sustaining this laboratory/capability'] = st.session_state['chal']
-    new_data['Age (yrs)'] = st.session_state['lab_age']
-    new_data['Condition'] = st.session_state['cond']
-    new_data['Number of Assets'] = st.session_state['asset_num']
-    new_data['T1-Asset Name'] = []
-    new_data['T1-Location (Bldg/Rm)'] = []
-    new_data['T1-Age (yrs)'] = []
-    new_data['T1-Acquisition Year'] = []
-    new_data['T1-Expected Year of Obsolescence'] = []
-    new_data['T1-Asset Condition'] = []
-    new_data['T1-Replacement Cost ($)'] = []
-    new_data['T1-Impact to Capability if Lost'] = []
-    new_data['T1-Associated Software'] = []
-    new_data['T1-Inlcudes IT Hardware?'] = []
-    new_data['T1-Replacement'] = []
-    for m in range(int(st.session_state['asset_num'])):
-        new_data['T1-Asset Name'].append(st.session_state[f'input_cola{m}']) 
-        new_data['T1-Location (Bldg/Rm)'].append(st.session_state[f'input_colb{m}'])
-        new_data['T1-Age (yrs)'].append(st.session_state[f'input_colc{m}'])
-        new_data['T1-Acquisition Year'].append(st.session_state[f'input_cold{m}'])
-        new_data['T1-Expected Year of Obsolescence'].append(st.session_state[f'input_cole{m}'])
-        new_data['T1-Asset Condition'].append(st.session_state[f'input_colf{m}'])
-        new_data['T1-Replacement Cost ($)'].append(st.session_state[f'input_colg{m}'])
-        new_data['T1-Impact to Capability if Lost'].append(st.session_state[f'input_colh{m}'])
-        new_data['T1-Associated Software'].append(st.session_state[f'input_coli{m}'])
-        new_data['T1-Inlcudes IT Hardware?'].append(st.session_state[f'input_colj{m}'])
-        new_data['T1-Replacement'].append(st.session_state[f'input_colk{m}'])
-    new_data['Number of Asset Images'] = st.session_state['asset_img']
-    for m in range(int(st.session_state['asset_img'])):
-        new_data['T2-Asset'].append(st.session_state[f'input_colimg1{m}'])
-        new_data['T2-Image'].append(st.session_state[f'input_colimg2{m}'])
-    new_data['Sustainment Funding Source'] = st.session_state['sust']
-    new_data['Number of Funding Sources'] = st.session_state['fund_num'] 
-    new_data['T3-Funding Source'] = []
-    new_data['T3-T3-Funding Start Date'] = []
-    new_data['T3-T3-Funding End Date'] = []
-    new_data['T3-Funding Amount per Year ($)'] = []
-    for m in range(int(st.session_state['fund_num'] )):
-        new_data['T3-Funding Source'].append(st.session_state[f'input_coll{m}'])
-        new_data['T3-Funding Start Date'].append(str(st.session_state[f'input_colm{m}']))
-        new_data['T3-Funding End Date'].append(str(st.session_state[f'input_coln{m}']))
-        new_data['T3-Funding Amount per Year ($)'].append(st.session_state[f'input_colo{m}'])
-    new_data['Number of Projects'] = st.session_state['proj_num']
-    new_data['T4-Mission/Project Name'] = []
-    new_data['T4-WBS Number'] = []
-    new_data['T4-Project Use (%)'] = []
-    new_data['T4-Risk to Project'] = []
-    new_data['T4-Impact if Laboratory/Capability is Lost'] = []
-    for m in range(int(st.session_state['proj_num'])):
-        new_data['T4-Mission/Project Name'].append(st.session_state[f'input_colp{m}'])
-        new_data['T4-WBS Number'].append(st.session_state[f'input_colq{m}'])
-        new_data['T4-Project Use (%)'].append(st.session_state[f'input_colr{m}'])
-        new_data['T4-Risk to Project'].append(st.session_state[f'input_cols{m}'])
-        new_data['T4-Impact if Laboratory/Capability is Lost'].append(st.session_state[f'input_colt{m}'])
-    new_data['History of capability utilization'] = st.session_state['hist'] 
-    new_data['Major impact and contributions this capability has made possible'] = st.session_state['impact']
-    new_data['Overall impact of laboratory/capability is lost'] = st.session_state['tot_imp']
-    new_data['Number of Failures'] = st.session_state['dt_num']
-    new_data['T5-Asset'] = []
-    new_data['T5-Start Date'] = []
-    new_data['T5-Time Down'] = []
-    new_data['T5-Unit'] = []
-    new_data['T5-Additional Notes'] = []
-    new_data['T5-Impact'] = []
-    for m in range(int(st.session_state['dt_num'])):
-        new_data['T5-Asset'].append(st.session_state[f'input_colu{m}'])
-        new_data['T5-Start Date'].append(str(st.session_state[f'input_colv{m}']))
-        new_data['T5-Time Down'].append(st.session_state[f'input_colw{m}'])
-        new_data['T5-Unit'].append(st.session_state[f'input_colx{m}'])
-        new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{m}'])
-        new_data['T5-Impact'].append(st.session_state[f'input_colyy{m}'])
-    new_data['Estimated Cost to Replace Entire Laboratory/Capability ($)']= st.session_state['cost_rep']
-    new_data['Cost of Service Contracts ($)'] = st.session_state['cost_serv']
-    new_data['Annual Cost to Operate and Sustain the Lab ($/yr)'] = st.session_state['cost_ann']
-    new_data['Incurred Cost For Downtime ($/yr)'] = st.session_state['cost_inc']
-    new_data['Number of Divisions (Labor Costs)'] = st.session_state['labor_num']
-    new_data['T6-Directorate'] = []
-    new_data['T6-Labor Cost (%)'] = []
-    for m in range(int(st.session_state['labor_num'])):
-        new_data['T6-Directorate'].append(st.session_state[f'input_colz{m}'])
-        new_data['T6-Labor Cost (%)'].append(st.session_state[f'input_colaa{m}'])
-
-    # Delete the existing entry if it exists
-    db = client['LabData']
-    collection = db['LabData']
-    myquery = { "Laboratory/Capability Name": st.session_state["name"]}
-    collection.delete_one(myquery)
-
-    # Write the Data the the Mongo DB
-    new_entry = collection.insert_one(new_data)
+grid_db = st.columns(2)
+with grid_db[0]:
+    if st.button('Save To Database'):
+        # Create New Document
+        new_data = {}
+                
+        # Write New Data
+        new_data['Laboratory/Capability Name'] = st.session_state['name']
+        new_data['Point of Contact'] = st.session_state['poc']
+        new_data['Branch'] = st.session_state['branch']
+        new_data['Laboratory/Capability Description'] = st.session_state['desc']
+        new_data['Laboratory/Capability Website'] = st.session_state['link']
+        new_data['Challenges in sustaining this laboratory/capability'] = st.session_state['chal']
+        new_data['Age (yrs)'] = st.session_state['lab_age']
+        new_data['Condition'] = st.session_state['cond']
+        new_data['Number of Assets'] = st.session_state['asset_num']
+        new_data['T1-Asset Name'] = []
+        new_data['T1-Location (Bldg/Rm)'] = []
+        new_data['T1-Age (yrs)'] = []
+        new_data['T1-Acquisition Year'] = []
+        new_data['T1-Expected Year of Obsolescence'] = []
+        new_data['T1-Asset Condition'] = []
+        new_data['T1-Replacement Cost ($)'] = []
+        new_data['T1-Impact to Capability if Lost'] = []
+        new_data['T1-Associated Software'] = []
+        new_data['T1-Inlcudes IT Hardware?'] = []
+        new_data['T1-Replacement'] = []
+        for m in range(int(st.session_state['asset_num'])):
+            new_data['T1-Asset Name'].append(st.session_state[f'input_cola{m}']) 
+            new_data['T1-Location (Bldg/Rm)'].append(st.session_state[f'input_colb{m}'])
+            new_data['T1-Age (yrs)'].append(st.session_state[f'input_colc{m}'])
+            new_data['T1-Acquisition Year'].append(st.session_state[f'input_cold{m}'])
+            new_data['T1-Expected Year of Obsolescence'].append(st.session_state[f'input_cole{m}'])
+            new_data['T1-Asset Condition'].append(st.session_state[f'input_colf{m}'])
+            new_data['T1-Replacement Cost ($)'].append(st.session_state[f'input_colg{m}'])
+            new_data['T1-Impact to Capability if Lost'].append(st.session_state[f'input_colh{m}'])
+            new_data['T1-Associated Software'].append(st.session_state[f'input_coli{m}'])
+            new_data['T1-Inlcudes IT Hardware?'].append(st.session_state[f'input_colj{m}'])
+            new_data['T1-Replacement'].append(st.session_state[f'input_colk{m}'])
+        new_data['Number of Asset Images'] = st.session_state['asset_img']
+        for m in range(int(st.session_state['asset_img'])):
+            new_data['T2-Asset'].append(st.session_state[f'input_colimg1{m}'])
+            new_data['T2-Image'].append(st.session_state[f'input_colimg2{m}'])
+        new_data['Sustainment Funding Source'] = st.session_state['sust']
+        new_data['Number of Funding Sources'] = st.session_state['fund_num'] 
+        new_data['T3-Funding Source'] = []
+        new_data['T3-T3-Funding Start Date'] = []
+        new_data['T3-T3-Funding End Date'] = []
+        new_data['T3-Funding Amount per Year ($)'] = []
+        for m in range(int(st.session_state['fund_num'] )):
+            new_data['T3-Funding Source'].append(st.session_state[f'input_coll{m}'])
+            new_data['T3-Funding Start Date'].append(str(st.session_state[f'input_colm{m}']))
+            new_data['T3-Funding End Date'].append(str(st.session_state[f'input_coln{m}']))
+            new_data['T3-Funding Amount per Year ($)'].append(st.session_state[f'input_colo{m}'])
+        new_data['Number of Projects'] = st.session_state['proj_num']
+        new_data['T4-Mission/Project Name'] = []
+        new_data['T4-WBS Number'] = []
+        new_data['T4-Project Use (%)'] = []
+        new_data['T4-Risk to Project'] = []
+        new_data['T4-Impact if Laboratory/Capability is Lost'] = []
+        for m in range(int(st.session_state['proj_num'])):
+            new_data['T4-Mission/Project Name'].append(st.session_state[f'input_colp{m}'])
+            new_data['T4-WBS Number'].append(st.session_state[f'input_colq{m}'])
+            new_data['T4-Project Use (%)'].append(st.session_state[f'input_colr{m}'])
+            new_data['T4-Risk to Project'].append(st.session_state[f'input_cols{m}'])
+            new_data['T4-Impact if Laboratory/Capability is Lost'].append(st.session_state[f'input_colt{m}'])
+        new_data['History of capability utilization'] = st.session_state['hist'] 
+        new_data['Major impact and contributions this capability has made possible'] = st.session_state['impact']
+        new_data['Overall impact of laboratory/capability is lost'] = st.session_state['tot_imp']
+        new_data['Number of Failures'] = st.session_state['dt_num']
+        new_data['T5-Asset'] = []
+        new_data['T5-Start Date'] = []
+        new_data['T5-Time Down'] = []
+        new_data['T5-Unit'] = []
+        new_data['T5-Additional Notes'] = []
+        new_data['T5-Impact'] = []
+        for m in range(int(st.session_state['dt_num'])):
+            new_data['T5-Asset'].append(st.session_state[f'input_colu{m}'])
+            new_data['T5-Start Date'].append(str(st.session_state[f'input_colv{m}']))
+            new_data['T5-Time Down'].append(st.session_state[f'input_colw{m}'])
+            new_data['T5-Unit'].append(st.session_state[f'input_colx{m}'])
+            new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{m}'])
+            new_data['T5-Impact'].append(st.session_state[f'input_colyy{m}'])
+        new_data['Estimated Cost to Replace Entire Laboratory/Capability ($)']= st.session_state['cost_rep']
+        new_data['Cost of Service Contracts ($)'] = st.session_state['cost_serv']
+        new_data['Annual Cost to Operate and Sustain the Lab ($/yr)'] = st.session_state['cost_ann']
+        new_data['Incurred Cost For Downtime ($/yr)'] = st.session_state['cost_inc']
+        new_data['Number of Divisions (Labor Costs)'] = st.session_state['labor_num']
+        new_data['T6-Directorate'] = []
+        new_data['T6-Labor Cost (%)'] = []
+        for m in range(int(st.session_state['labor_num'])):
+            new_data['T6-Directorate'].append(st.session_state[f'input_colz{m}'])
+            new_data['T6-Labor Cost (%)'].append(st.session_state[f'input_colaa{m}'])
+    
+        # Delete the existing entry if it exists
+        db = client['LabData']
+        collection = db['LabData']
+        myquery = { "Laboratory/Capability Name": st.session_state["name"]}
+        collection.delete_one(myquery)
+    
+        # Write the Data the the Mongo DB
+        new_entry = collection.insert_one(new_data)
+        
+    if st.button('Delete From Database'):
+        # Delete the existing entry if it exists
+        db = client['LabData']
+        collection = db['LabData']
+        myquery = { "Laboratory/Capability Name": st.session_state["name"]}
+        collection.delete_one(myquery)
