@@ -551,7 +551,7 @@ for r in range(int(down_rows)):
 st.subheader('Cost')
 
 # Create Input for Cost of Replacement
-cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_rep')
+cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=None,key='cost_rep')
 
 # Create Input for Cost of Service Contracts
 cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_serv')
@@ -560,7 +560,7 @@ cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_val
 cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_ann')
 
 # Create Input for Incurred Cost Due to Downtown
-cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_inc')
+cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_inc')
 
 # Create Input for Labor Division
 labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
