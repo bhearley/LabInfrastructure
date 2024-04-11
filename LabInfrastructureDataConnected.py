@@ -71,6 +71,14 @@ def load_data():
             st.session_state['link'] = result['Laboratory/Capability Website']
             st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
             st.session_state['lab_age_k'] = result['Age (yrs)']
+    else:
+        st.session_state['name'] = ''
+        st.session_state['poc'] = ''
+        st.session_state['branch'] = ''
+        st.session_state['desc'] = ''
+        st.session_state['link'] = ''
+        st.session_state['chal'] = ''
+        st.session_state['lab_age_k'] = None
 
 # Select Lab
 selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
