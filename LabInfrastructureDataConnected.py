@@ -131,7 +131,6 @@ def load_data():
                 st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
                 st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
                 st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
-                print(' Writing Project Row')
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
@@ -510,11 +509,8 @@ def add_row3(row):
         else:
             impact_util[row]=st.text_input('Temp', key=f'input_colt{row}',label_visibility = "collapsed")
 
-print('The number of project rows is :' + str(st.session_state['proj_num']))
 for r in range(int(st.session_state['proj_num'])):
     add_row3(r)
-    print('Adding row #' + str(r))
-
 
 #Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
