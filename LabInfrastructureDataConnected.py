@@ -4,7 +4,6 @@ from pymongo.mongo_client import MongoClient
 import dns
 import certifi
 
-
 # Set the page configuration
 st.set_page_config(layout="wide")
 
@@ -24,9 +23,6 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
 # Connect to the Database
-# uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
-# client = MongoClient(uri, tlsCAFile=certifi.where())
-
 def init_connection():
     uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
     return MongoClient(uri, tlsCAFile=certifi.where())
@@ -71,8 +67,9 @@ def load_data():
             st.session_state['link'] = result['Laboratory/Capability Website'].strip()
             st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability'].strip()
             st.session_state['lab_age'] = result['Age (yrs)']
-                    
             st.session_state['cond'] = result['Condition'].strip()
+
+            
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
     else:
         st.session_state['name'] = ''
@@ -83,6 +80,10 @@ def load_data():
         st.session_state['chal'] = ''
         st.session_state['lab_age'] = None
         st.session_state['cond'] = 'Excellent'
+
+#--------------------------------------------------------------------------------------------------------------------------------
+# Create Data Entries
+#
 
 # Select Lab
 selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
@@ -119,36 +120,24 @@ test_text = st.text_area("For Testing",value = '', key='test_area')
 
 
 if st.button('Save Data'):
-    # Write the New Data
+    # Get a copy of the data structure 
     new_data = all_data[0]
-    new_data['Age (yrs)'] = st.session_state['lab_age']
 
+    # Write New Data
+    new_data['Laboratory/Capability Name'] = st.session_state['name']
+    new_data['Point of Contact'] = st.session_state['poc']
+    new_data['Branch'] = st.session_state['branch']
+    new_data['Laboratory/Capability Description'] = st.session_state['desc']
+    new_data['Laboratory/Capability Website'] = st.session_state['link']
+    new_data['Challenges in sustaining this laboratory/capability'] = st.session_state['chal']
+    new_data['Age (yrs)'] = st.session_state['lab_age']
+    new_data['Condition'] = st.session_state['cond']
+
+    # Delete the existing entry if it exists
     db = client['LabData']
     collection = db['LabData']
     myquery = { "Laboratory/Capability Name": ' ' + st.session_state["name"]}
     collection.delete_one(myquery)
 
+    # Write the Data the the Mongo DB
     new_entry = collection.insert_one(new_data)
-
-
-if st.button('Add Data'):
-    db = client['testdb']
-    # Access the 'example_collection' collection
-    collection = db['example_collection']
-
-    new_doc = {
-    'name': name,
-    'age': age,
-    'email': email
-    }
-
-    new_entry = collection.insert_one(new_doc)
-
-if st.button('Delete Data'):
-    db = client['testdb']
-    # Access the 'example_collection' collection
-    collection = db['example_collection']
-    myquery = { "name": name }
-
-    collection.delete_one(myquery)
-
