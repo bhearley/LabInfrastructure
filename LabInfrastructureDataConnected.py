@@ -83,6 +83,7 @@ def load_data():
                 st.session_state[f'input_coli{m}'] = result['T1-Associated Software'][m]
                 st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
                 st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
+            st.session_state['asset_img'] = result['Number of Asset Images']
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
@@ -96,6 +97,7 @@ def load_data():
         st.session_state['lab_age'] = None
         st.session_state['cond'] = 'Excellent'
         st.session_state['asset_num'] = 0
+        st.session_state['asset_img'] = 0
 
 #--------------------------------------------------------------------------------------------------------------------------------
 # Create Data Entries
@@ -245,6 +247,13 @@ def add_row_asset(row):
 
 for r in range(asset_rows):
     add_row_asset(r)
+
+# Create Input for Asset Images
+asset_imgs_lab = [] #Store the asset images label
+asset_imgs = [] #Store the asset images
+
+asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
+grid_img = st.columns(2)
 
 test_text = st.text_area("For Testing",value = '', key='test_area')
 
