@@ -46,9 +46,6 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 # DATA POPULATION
 # Set up the database connection and define functions to populate data fields in the web app
 
-if st.button('Start'):
-   temp=1
-
 # Connect to the Database
 @st.cache_resource
 def init_connection():
@@ -182,9 +179,10 @@ def load_data():
         st.session_state['cost_ann'] = 0
         st.session_state['cost_inc'] = 0
         st.session_state['labor_num'] = 0
-        
-# Create Drop Down to select an existing lab record
-selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
+
+if st.button('Load Previous'):
+    # Create Drop Down to select an existing lab record
+    selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
