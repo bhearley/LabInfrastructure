@@ -100,6 +100,9 @@ def load_data():
                 date2 = result['T3-Funding End Date'][m].split('-')
                 st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                 st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
+            st.session_state['hist'] = result['History of capability utilization']
+            st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
+            st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
@@ -116,6 +119,9 @@ def load_data():
         st.session_state['asset_img'] = 0
         st.session_state['sust'] = ''
         st.session_state['fund_num'] = 0
+        st.session_state['hist'] = ''
+        st.session_state['impact'] = ''
+        st.session_state['tot_imp'] = ''
 
 #--------------------------------------------------------------------------------------------------------------------------------
 # Create Data Entries
@@ -372,6 +378,18 @@ for r in range(fund_rows):
 # Create File Uploader
 uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
 
+#Create Divider for Name and Description
+st.subheader('Utilization History and Impact')
+
+# Create Input for History of Capability Utilization
+hist = st.text_area("History of capability utilization:",value='',key='hist')
+
+# Create Input for Major Impact and Contributions
+impact = st.text_area("Major impact and contributions this capability has made possible:",value='',key='impact')
+
+# Create Input for Impact if total Capability is Lost
+tot_imp = st.text_area("Overall impact of laboratory/capability is lost:",value='',key='tot_imp')
+
 test_text = st.text_area("For Testing",value = '', key='test_area')
 
 
@@ -430,6 +448,12 @@ if st.button('Save Data'):
         new_data['T3-Funding Start Date'].append(str(st.session_state[f'input_colm{m}']))
         new_data['T3-Funding End Date'].append(str(st.session_state[f'input_coln{m}']))
         new_data['T3-Funding Amount per Year ($)'].append(st.session_state[f'input_colo{m}'])
+
+
+            
+    new_data['History of capability utilization'] = st.session_state['hist'] 
+    new_data['Major impact and contributions this capability has made possible'] = st.session_state['impact']
+    new_data['Overall impact of laboratory/capability is lost'] = st.session_state['tot_imp']
 
     # Delete the existing entry if it exists
     db = client['LabData']
