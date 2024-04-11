@@ -677,10 +677,10 @@ if st.button('Save Data'):
     for m in range(int(st.session_state['dt_num'])):
         new_data['T5-Asset'].append(st.session_state[f'input_colu{m}'])
         new_data['T5-Start Date'].append(str(st.session_state[f'input_colv{m}']))
-        new_data['T5-Time Down'].append(st.session_state[f'input_colw{k}'])
-        new_data['T5-Unit'].append(st.session_state[f'input_colx{k}'])
-        new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{k}'])
-        new_data['T5-Impact'].append(st.session_state[f'input_colyy{k}'])
+        new_data['T5-Time Down'].append(st.session_state[f'input_colw{m}'])
+        new_data['T5-Unit'].append(st.session_state[f'input_colx{m}'])
+        new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{m}'])
+        new_data['T5-Impact'].append(st.session_state[f'input_colyy{m}'])
     new_data['Estimated Cost to Replace Entire Laboratory/Capability ($)']= st.session_state['cost_rep']
     new_data['Cost of Service Contracts ($)'] = st.session_state['cost_serv']
     new_data['Annual Cost to Operate and Sustain the Lab ($/yr)'] = st.session_state['cost_ann']
