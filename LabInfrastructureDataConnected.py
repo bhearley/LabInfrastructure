@@ -107,15 +107,19 @@ def load_data():
                 st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
                 st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
                 st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
-
-
-            
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
+            st.session_state['dt_num'] = result['Number of Failures']
+            for m in range(int(result['Number of Failures'])):
+                st.session_state[f'input_colu{m}'] = results['T5-Asset'][m]
+                date1 = results['T5-Start Date'][m].split('-')
+                st.session_state[f'input_colv{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+                st.session_state[f'input_colw{k}'] = results['T5-Time Down'][m]
+                st.session_state[f'input_colx{k}'] = results['T5-Unit'][m]
+                st.session_state[f'input_coly{k}'] = results['T5-Additional Notes'][m]
+                st.session_state[f'input_colyy{k}'] = results['T5-Impact'][m]
 
-            
-            st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
@@ -133,6 +137,7 @@ def load_data():
         st.session_state['hist'] = ''
         st.session_state['impact'] = ''
         st.session_state['tot_imp'] = ''
+        st.session_state['dt_num'] = 0
         
 
 #--------------------------------------------------------------------------------------------------------------------------------
@@ -459,7 +464,74 @@ impact = st.text_area("Major impact and contributions this capability has made p
 # Create Input for Impact if total Capability is Lost
 tot_imp = st.text_area("Overall impact of laboratory/capability is lost:",value='',key='tot_imp')
 
-test_text = st.text_area("For Testing",value = '', key='test_area')
+#Create Divider for Down Time History
+st.subheader('History of Down Time Due to Maintenance or Failure')
+
+# Create Input for Downtime History
+down_rows = st.number_input('Number of Rows:', min_value=0, max_value=None, help='Enter the down time history for the entire lab or individual assets relevant to the failure of the lab infrastructure. Consider only failures in the last 5 years.', key = 'dt_num')
+grid4 = st.columns(6)
+asset_dt = [] #Store the associated Asset
+date_dt = [] #Store date the asset went down
+time_dt = [] #Store the time down
+unit_dt = [] #Store the unit for time down
+imp_dt = [] #Store a description for the time down
+desc_dt = [] #Store a description for the time down
+
+def add_row4(row):
+    # -- Set the Options
+    options_dt = ['Entire Lab/Capability']
+    for k in range(len(asset_name)):
+        options_dt.append(asset_name[k])
+        
+    # -- Asset that went down
+    with grid4[0]:
+        while len(asset_dt) < row+1:
+            asset_dt.append(None)
+        if row == 0:
+            asset_dt[row]=st.selectbox('Asset', options_dt, key=f'input_colu{row}')
+        else:
+            asset_dt[row]=st.selectbox('', options_dt, key=f'input_colu{row}')
+    # -- Start Date for Time Down
+    with grid4[1]:
+        while len(date_dt) < row+1:
+            date_dt.append(None)
+        if row == 0:
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(2019, 1, 1),  format="MM/DD/YYYY",  key=f'input_colv{row}')
+        else:
+            date_dt[row]=st.date_input('', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}')
+    # -- Time Down
+    with grid4[2]:
+        while len(time_dt) < row+1:
+            time_dt.append(None)
+        if row == 0:
+            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_colw{row}')
+        else:
+            time_dt[row]=st.number_input('', step=0.5, key=f'input_colw{row}')
+    # -- Unit of Time Down
+    with grid4[3]:
+        while len(unit_dt) < row+1:
+            unit_dt.append(None)
+        if row == 0:
+            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
+        else:
+            unit_dt[row]=st.selectbox('', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
+    # -- Additonal Notes for Time Down
+    with grid4[4]:
+        while len(imp_dt) < row+1:
+            imp_dt.append(None)
+        if row == 0:
+            imp_dt[row]=st.text_input('Impact on Mission/Project', value='',key=f'input_colyy{row}')
+        else:
+            imp_dt[row]=st.text_input('', value='',key=f'input_colyy{row}')
+    with grid4[5]:
+        while len(desc_dt) < row+1:
+            desc_dt.append(None)
+        if row == 0:
+            desc_dt[row]=st.text_input('Additional Notes', value='',key=f'input_coly{row}')
+        else:
+            desc_dt[row]=st.text_input('', value='',key=f'input_coly{row}')
+for r in range(down_rows):
+    add_row4(r)
 
 
 if st.button('Save Data'):
@@ -532,6 +604,20 @@ if st.button('Save Data'):
     new_data['History of capability utilization'] = st.session_state['hist'] 
     new_data['Major impact and contributions this capability has made possible'] = st.session_state['impact']
     new_data['Overall impact of laboratory/capability is lost'] = st.session_state['tot_imp']
+    new_data['Number of Failures'] = st.session_state['dt_num']
+    new_data['T5-Asset'] = []
+    new_data['T5-Start Date'] = []
+    new_data['T5-Time Down'] = []
+    new_data['T5-Unit'] = []
+    new_data['T5-Additional Notes'] = []
+    new_data['T5-Impact'] = []
+    for m in range(int(result['Number of Failures'])):
+        new_data['T5-Asset'].append(st.session_state[f'input_colu{m}'])
+        new_data['T5-Start Date'].apepnd(str(st.session_state[f'input_colv{m}']))
+        new_data['T5-Time Down'].append(st.session_state[f'input_colw{k}'])
+        new_data['T5-Unit'].append(st.session_state[f'input_colx{k}'])
+        new_data['T5-Additional Notes'].append(st.session_state[f'input_coly{k}'])
+        new_data['T5-Impact'].append(st.session_state[f'input_colyy{k}'])
 
     # Delete the existing entry if it exists
     db = client['LabData']
