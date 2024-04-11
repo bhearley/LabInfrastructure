@@ -153,7 +153,8 @@ def load_data():
             for m in range(int(result['Number of Divisions (Labor Costs)'])):
                 st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
                 st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
-                
+
+            st.experimental_rerun()
     # Populate blank entries in the web app if no lab is selected
     else:
         st.session_state['name'] = ''
