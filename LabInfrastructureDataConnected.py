@@ -125,6 +125,7 @@ def load_data():
                 date2 = result['T3-Funding End Date'][m].split('-')
                 st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                 st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
+                        
             st.session_state['proj_num'] = result['Number of Projects']
             for m in range(int(result['Number of Projects'])):
                 st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
@@ -154,7 +155,6 @@ def load_data():
                 st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
                 st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
 
-            st.experimental_rerun()
     # Populate blank entries in the web app if no lab is selected
     else:
         st.session_state['name'] = ''
