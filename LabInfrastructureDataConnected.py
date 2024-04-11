@@ -46,6 +46,9 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 # DATA POPULATION
 # Set up the database connection and define functions to populate data fields in the web app
 
+if st.button('Start'):
+   temp=1
+
 # Connect to the Database
 @st.cache_resource
 def init_connection():
