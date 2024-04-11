@@ -741,7 +741,8 @@ with grid_db[0]:
     
         # Write the Data the the Mongo DB
         new_entry = collection.insert_one(new_data)
-        
+
+with grid_db[1]:
     if st.button('Delete From Database'):
         # Delete the existing entry if it exists
         db = client['LabData']
