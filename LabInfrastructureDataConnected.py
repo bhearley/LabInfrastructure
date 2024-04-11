@@ -188,8 +188,28 @@ with grid_start[0]:
 with grid_start[1]:
     if st.button('Clear'):
         # Create Drop Down to select an existing lab record
-        st.sessions_state['selection_lab'] = ''
-        load_data()
+        st.session_state['name'] = ''
+        st.session_state['poc'] = ''
+        st.session_state['branch'] = ''
+        st.session_state['desc'] = ''
+        st.session_state['link'] = ''
+        st.session_state['chal'] = ''
+        st.session_state['lab_age'] = None
+        st.session_state['cond'] = 'Excellent'
+        st.session_state['asset_num'] = 0
+        st.session_state['asset_img'] = 0
+        st.session_state['sust'] = ''
+        st.session_state['fund_num'] = 0
+        st.session_state['proj_num'] = 0
+        st.session_state['hist'] = ''
+        st.session_state['impact'] = ''
+        st.session_state['tot_imp'] = ''
+        st.session_state['dt_num'] = 0
+        st.session_state['cost_rep'] = 0
+        st.session_state['cost_serv'] = 0
+        st.session_state['cost_ann'] = 0
+        st.session_state['cost_inc'] = 0
+        st.session_state['labor_num'] = 0
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
