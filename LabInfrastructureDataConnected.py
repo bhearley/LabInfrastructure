@@ -124,6 +124,48 @@ def load_data():
                 st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                 st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
             st.session_state['proj_num'] = result['Number of Projects']
+
+            fund_src = [] #Store funding source
+            start_fund = [] #Store the start date of funding
+            end_fund = [] #Store the end date of funding
+            fund_amt = [] #Store the funding amount
+            def add_row2(row):
+                # -- Funding Source
+                with grid2[0]:
+                    while len(fund_src) < row+1:
+                        fund_src.append(None)
+                    if row == 0:
+                        fund_src[row]=st.text_input('Funding Source', value='',key=f'input_coll{row}')
+                    else:
+                        fund_src[row]=st.text_input('', value='',key=f'input_coll{row}')
+                # -- Start Date of Funding
+                with grid2[1]:
+                    while len(start_fund) < row+1:
+                        start_fund.append(None)
+                    if row == 0:
+                        start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
+                    else:
+                        start_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}')
+                # -- End Date of Funding
+                with grid2[2]:
+                    while len(end_fund) < row+1:
+                        end_fund.append(None)
+                    if row == 0:
+                        end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
+                    else:
+                        end_fund[row]=st.date_input('', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}')
+                # -- Funding Amount
+                with grid2[3]:
+                    while len(fund_amt) < row+1:
+                        fund_amt.append(None)
+                    if row == 0:
+                        fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
+                    else:
+                        fund_amt[row]=st.number_input("",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
+            for r in range(st.session_state['proj_num']):
+                add_row2(r)
+
+                    
             for m in range(int(result['Number of Projects'])):
                 st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
                 st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
