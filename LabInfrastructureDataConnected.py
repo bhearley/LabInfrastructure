@@ -238,7 +238,7 @@ def add_row_asset(row):
         if row == 0:
             asset_name[row]=st.text_input('Asset \n \n Name', key=f'input_cola{row}')
         else:
-            asset_name[row]=st.text_input('', key=f'input_cola{row}')
+            asset_name[row]=st.text_input('Temp', key=f'input_cola{row}',label_visibility = "collapsed")
     # -- Asset Location    
     with grid[1]:
         while len(asset_loc) < row+1:
@@ -246,7 +246,7 @@ def add_row_asset(row):
         if row == 0:
             asset_loc[row]=st.text_input('Location  \n \n (Bldg/Rm)', key=f'input_colb{row}')
         else:
-            asset_loc[row]=st.text_input('', key=f'input_colb{row}')
+            asset_loc[row]=st.text_input('Temp', key=f'input_colb{row}',label_visibility = "collapsed")
     # -- Asset Age
     with grid[2]:
         while len(asset_age) < row+1:
@@ -254,7 +254,7 @@ def add_row_asset(row):
         if row == 0:
             asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, key=f'input_colc{row}')
         else:
-            asset_age[row]=st.number_input('', step=0.5, key=f'input_colc{row}')
+            asset_age[row]=st.number_input('Temp', step=0.5, key=f'input_colc{row}',label_visibility = "collapsed")
     # -- Asset Date of Entry
     with grid[3]:
         while len(asset_date_in) < row+1:
