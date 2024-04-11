@@ -136,7 +136,7 @@ if st.button('Save Data'):
     # Delete the existing entry if it exists
     db = client['LabData']
     collection = db['LabData']
-    myquery = { "Laboratory/Capability Name": ' ' + st.session_state["name"]}
+    myquery = { "Laboratory/Capability Name": st.session_state["name"]}
     collection.delete_one(myquery)
 
     # Write the Data the the Mongo DB
