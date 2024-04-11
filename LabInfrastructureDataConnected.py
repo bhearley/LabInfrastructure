@@ -110,6 +110,7 @@ def load_data():
             st.session_state['hist'] = result['History of capability utilization']
             st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
             st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
+                    
             st.session_state['dt_num'] = result['Number of Failures']
             for m in range(int(result['Number of Failures'])):
                 st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
