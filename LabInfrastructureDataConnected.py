@@ -62,17 +62,27 @@ def load_data():
         # Write Data
         for result in results:
             #st.write(result)
-            st.session_state['name'] = result['Laboratory/Capability Name'].strip()
-            st.session_state['poc'] = result['Point of Contact'].strip()
-            st.session_state['branch'] = result['Branch'].strip()
-            st.session_state['desc'] = result['Laboratory/Capability Description'].strip()
-            st.session_state['link'] = result['Laboratory/Capability Website'].strip()
-            st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability'].strip()
+            st.session_state['name'] = result['Laboratory/Capability Name']
+            st.session_state['poc'] = result['Point of Contact']
+            st.session_state['branch'] = result['Branch']
+            st.session_state['desc'] = result['Laboratory/Capability Description']
+            st.session_state['link'] = result['Laboratory/Capability Website']
+            st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
             st.session_state['lab_age'] = result['Age (yrs)']
-            st.session_state['cond'] = result['Condition'].strip()
+            st.session_state['cond'] = result['Condition']
             st.session_state['asset_num'] = result['Number of Assets']
             for m in range(int(result['Number of Assets'])):
                 st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
+                st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
+                st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
+                st.session_state[f'input_cold{m}'] = result['T1-Asset Condition'][m]
+                st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
+                st.session_state[f'input_colf{m}'] = result['T1-Asset Condition'][m]
+                st.session_state[f'input_colg{m}'] = result['T1-Replacement Cost ($)'][m]
+                st.session_state[f'input_colh{m}'] = result['T1-Impact to Capability if Lost'][m]
+                st.session_state[f'input_coli{m}'] = result['T1-Associated Software'][m]
+                st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
+                st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
