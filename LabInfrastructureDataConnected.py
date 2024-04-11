@@ -87,173 +87,73 @@ def load_data():
         # Query the database for the record and get results
         query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
         results = db['LabData'].find(query)
-        # for result in results:
-        #     st.session_state['name'] = result['Laboratory/Capability Name']
-        #     st.session_state['poc'] = result['Point of Contact']
-    #         st.session_state['branch'] = result['Branch']
-    #         st.session_state['desc'] = result['Laboratory/Capability Description']
-    #         st.session_state['link'] = result['Laboratory/Capability Website']
-    #         st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
-    #         st.session_state['lab_age'] = result['Age (yrs)']
-    #         st.session_state['cond'] = result['Condition']
-    #         st.session_state['asset_num'] = result['Number of Assets']
-    #         for m in range(int(result['Number of Assets'])):
-    #             st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
-    #             st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
-    #             st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
-    #             st.session_state[f'input_cold{m}'] = result['T1-Acquisition Year'][m]
-    #             st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
-    #             st.session_state[f'input_colf{m}'] = result['T1-Asset Condition'][m]
-    #             st.session_state[f'input_colg{m}'] = result['T1-Replacement Cost ($)'][m]
-    #             st.session_state[f'input_colh{m}'] = result['T1-Impact to Capability if Lost'][m]
-    #             st.session_state[f'input_coli{m}'] = result['T1-Associated Software'][m]
-    #             st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
-    #             st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
+        for result in results:
+            st.session_state['name'] = result['Laboratory/Capability Name']
+            st.session_state['poc'] = result['Point of Contact']
+            st.session_state['branch'] = result['Branch']
+            st.session_state['desc'] = result['Laboratory/Capability Description']
+            st.session_state['link'] = result['Laboratory/Capability Website']
+            st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
+            st.session_state['lab_age'] = result['Age (yrs)']
+            st.session_state['cond'] = result['Condition']
+            st.session_state['asset_num'] = result['Number of Assets']
+            for m in range(int(result['Number of Assets'])):
+                st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
+                st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
+                st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
+                st.session_state[f'input_cold{m}'] = result['T1-Acquisition Year'][m]
+                st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
+                st.session_state[f'input_colf{m}'] = result['T1-Asset Condition'][m]
+                st.session_state[f'input_colg{m}'] = result['T1-Replacement Cost ($)'][m]
+                st.session_state[f'input_colh{m}'] = result['T1-Impact to Capability if Lost'][m]
+                st.session_state[f'input_coli{m}'] = result['T1-Associated Software'][m]
+                st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
+                st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
 
-    #         # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
-    #         #st.session_state['asset_img'] = result['Number of Asset Images']
-    #         #for m in range(int(result['Number of Asset Images'])):
-    #         #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
-    #         st.session_state['asset_img'] = 0
+            # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
+            #st.session_state['asset_img'] = result['Number of Asset Images']
+            #for m in range(int(result['Number of Asset Images'])):
+            #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
+            st.session_state['asset_img'] = 0
             
-    #         st.session_state['sust'] = result['Sustainment Funding Source']
-    #         st.session_state['fund_num'] = result['Number of Funding Sources']
-    #         for m in range(int(result['Number of Funding Sources'])):
-    #             st.session_state[f'input_coll{m}'] = result['T3-Funding Source'][m]
-    #             date1 = result['T3-Funding Start Date'][m].split('-')
-    #             st.session_state[f'input_colm{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-    #             date2 = result['T3-Funding End Date'][m].split('-')
-    #             st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
-    #             st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
+            st.session_state['sust'] = result['Sustainment Funding Source']
+            st.session_state['fund_num'] = result['Number of Funding Sources']
+            for m in range(int(result['Number of Funding Sources'])):
+                st.session_state[f'input_coll{m}'] = result['T3-Funding Source'][m]
+                date1 = result['T3-Funding Start Date'][m].split('-')
+                st.session_state[f'input_colm{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+                date2 = result['T3-Funding End Date'][m].split('-')
+                st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+                st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
                         
-    #         st.session_state['proj_num'] = result['Number of Projects']
-    #         for m in range(int(result['Number of Projects'])):
-    #             st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
-    #             st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
-    #             st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
-    #             st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
-    #             st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
-    #             print(' Writing Project Row')
-    #         st.session_state['hist'] = result['History of capability utilization']
-    #         st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
-    #         st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
-    #         st.session_state['dt_num'] = result['Number of Failures']
-    #         for m in range(int(result['Number of Failures'])):
-    #             st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
-    #             date1 = result['T5-Start Date'][m].split('-')
-    #             st.session_state[f'input_colv{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-    #             st.session_state[f'input_colw{m}'] = result['T5-Time Down'][m]
-    #             st.session_state[f'input_colx{m}'] = result['T5-Unit'][m]
-    #             st.session_state[f'input_coly{m}'] = result['T5-Additional Notes'][m]
-    #             st.session_state[f'input_colyy{m}'] = result['T5-Impact'][m]
-    #         st.session_state['cost_rep'] = result['Estimated Cost to Replace Entire Laboratory/Capability ($)']
-    #         st.session_state['cost_serv'] = result['Cost of Service Contracts ($)']
-    #         st.session_state['cost_ann'] = result['Annual Cost to Operate and Sustain the Lab ($/yr)']
-    #         st.session_state['cost_inc'] = result['Incurred Cost For Downtime ($/yr)']
-    #         st.session_state['labor_num'] = result['Number of Divisions (Labor Costs)']
-    #         for m in range(int(result['Number of Divisions (Labor Costs)'])):
-    #             st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
-    #             st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
-
-    # # Populate blank entries in the web app if no lab is selected
-    # else:
-    #     st.session_state['name'] = ''
-    #     st.session_state['poc'] = ''
-    #     st.session_state['branch'] = ''
-    #     st.session_state['desc'] = ''
-    #     st.session_state['link'] = ''
-    #     st.session_state['chal'] = ''
-    #     st.session_state['lab_age'] = None
-    #     st.session_state['cond'] = 'Excellent'
-    #     st.session_state['asset_num'] = 0
-    #     st.session_state['asset_img'] = 0
-    #     st.session_state['sust'] = ''
-    #     st.session_state['fund_num'] = 0
-    #     st.session_state['proj_num'] = 0
-    #     st.session_state['hist'] = ''
-    #     st.session_state['impact'] = ''
-    #     st.session_state['tot_imp'] = ''
-    #     st.session_state['dt_num'] = 0
-    #     st.session_state['cost_rep'] = 0
-    #     st.session_state['cost_serv'] = 0
-    #     st.session_state['cost_ann'] = 0
-    #     st.session_state['cost_inc'] = 0
-    #     st.session_state['labor_num'] = 0
-        
-# Create Drop Down to select an existing lab record
-selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
-
-if st.button('Load Data'):
-    if st.session_state['selection_lab'] != '':
-        for k in range(len(all_data)):
-            if all_data[k]['Laboratory/Capability Name'] == st.session_state['selection_lab']:
-                result = all_data[k]
-                st.session_state['name'] = result['Laboratory/Capability Name']
-                st.session_state['poc'] = result['Point of Contact']
-                st.session_state['branch'] = result['Branch']
-                st.session_state['desc'] = result['Laboratory/Capability Description']
-                st.session_state['link'] = result['Laboratory/Capability Website']
-                st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
-                st.session_state['lab_age'] = result['Age (yrs)']
-                st.session_state['cond'] = result['Condition']
-                st.session_state['asset_num'] = result['Number of Assets']
-                for m in range(int(result['Number of Assets'])):
-                    st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
-                    st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
-                    st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
-                    st.session_state[f'input_cold{m}'] = result['T1-Acquisition Year'][m]
-                    st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
-                    st.session_state[f'input_colf{m}'] = result['T1-Asset Condition'][m]
-                    st.session_state[f'input_colg{m}'] = result['T1-Replacement Cost ($)'][m]
-                    st.session_state[f'input_colh{m}'] = result['T1-Impact to Capability if Lost'][m]
-                    st.session_state[f'input_coli{m}'] = result['T1-Associated Software'][m]
-                    st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
-                    st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
-    
-                # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
-                #st.session_state['asset_img'] = result['Number of Asset Images']
-                #for m in range(int(result['Number of Asset Images'])):
-                #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
-                st.session_state['asset_img'] = 0
-                
-                st.session_state['sust'] = result['Sustainment Funding Source']
-                st.session_state['fund_num'] = result['Number of Funding Sources']
-                for m in range(int(result['Number of Funding Sources'])):
-                    st.session_state[f'input_coll{m}'] = result['T3-Funding Source'][m]
-                    date1 = result['T3-Funding Start Date'][m].split('-')
-                    st.session_state[f'input_colm{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-                    date2 = result['T3-Funding End Date'][m].split('-')
-                    st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
-                    st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
-                            
-                st.session_state['proj_num'] = result['Number of Projects']
-                for m in range(int(result['Number of Projects'])):
-                    st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
-                    st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
-                    st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
-                    st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
-                    st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
-                    print(' Writing Project Row')
-                st.session_state['hist'] = result['History of capability utilization']
-                st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
-                st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
-                st.session_state['dt_num'] = result['Number of Failures']
-                for m in range(int(result['Number of Failures'])):
-                    st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
-                    date1 = result['T5-Start Date'][m].split('-')
-                    st.session_state[f'input_colv{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-                    st.session_state[f'input_colw{m}'] = result['T5-Time Down'][m]
-                    st.session_state[f'input_colx{m}'] = result['T5-Unit'][m]
-                    st.session_state[f'input_coly{m}'] = result['T5-Additional Notes'][m]
-                    st.session_state[f'input_colyy{m}'] = result['T5-Impact'][m]
-                st.session_state['cost_rep'] = result['Estimated Cost to Replace Entire Laboratory/Capability ($)']
-                st.session_state['cost_serv'] = result['Cost of Service Contracts ($)']
-                st.session_state['cost_ann'] = result['Annual Cost to Operate and Sustain the Lab ($/yr)']
-                st.session_state['cost_inc'] = result['Incurred Cost For Downtime ($/yr)']
-                st.session_state['labor_num'] = result['Number of Divisions (Labor Costs)']
-                for m in range(int(result['Number of Divisions (Labor Costs)'])):
-                    st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
-                    st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
+            st.session_state['proj_num'] = result['Number of Projects']
+            for m in range(int(result['Number of Projects'])):
+                st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
+                st.session_state[f'input_colq{m}'] = result['T4-WBS Number'][m]
+                st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
+                st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
+                st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
+                print(' Writing Project Row')
+            st.session_state['hist'] = result['History of capability utilization']
+            st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
+            st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
+            st.session_state['dt_num'] = result['Number of Failures']
+            for m in range(int(result['Number of Failures'])):
+                st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
+                date1 = result['T5-Start Date'][m].split('-')
+                st.session_state[f'input_colv{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+                st.session_state[f'input_colw{m}'] = result['T5-Time Down'][m]
+                st.session_state[f'input_colx{m}'] = result['T5-Unit'][m]
+                st.session_state[f'input_coly{m}'] = result['T5-Additional Notes'][m]
+                st.session_state[f'input_colyy{m}'] = result['T5-Impact'][m]
+            st.session_state['cost_rep'] = result['Estimated Cost to Replace Entire Laboratory/Capability ($)']
+            st.session_state['cost_serv'] = result['Cost of Service Contracts ($)']
+            st.session_state['cost_ann'] = result['Annual Cost to Operate and Sustain the Lab ($/yr)']
+            st.session_state['cost_inc'] = result['Incurred Cost For Downtime ($/yr)']
+            st.session_state['labor_num'] = result['Number of Divisions (Labor Costs)']
+            for m in range(int(result['Number of Divisions (Labor Costs)'])):
+                st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
+                st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
 
     # Populate blank entries in the web app if no lab is selected
     else:
@@ -279,7 +179,9 @@ if st.button('Load Data'):
         st.session_state['cost_ann'] = 0
         st.session_state['cost_inc'] = 0
         st.session_state['labor_num'] = 0
-
+        
+# Create Drop Down to select an existing lab record
+selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
