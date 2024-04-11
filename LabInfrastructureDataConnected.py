@@ -153,6 +153,7 @@ def load_data():
                 st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
             st.session_state['status'] = result['Status']
 
+# Clear all fields
 if st.button('Clear All Fields'):
     # Clear Data
     st.session_state['name'] = ''
@@ -179,10 +180,10 @@ if st.button('Clear All Fields'):
     st.session_state['labor_num'] = 0
     st.session_state['status'] = 'Draft'
 
-if st.button('Load Previous'):
+# Load Data from Database
+if st.button('Load From Database'):
     # Create Drop Down to select an existing lab record
     selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
-
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
@@ -218,7 +219,7 @@ lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 # Create Input for Assets
 asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
-grid = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
+grid_asset = st.columns([0.125,0.075,0.05,0.08,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
 asset_name = [] #Store the asset name
 asset_loc = []  #Store the asset location
 asset_age = [] #Store the asset age
@@ -231,9 +232,10 @@ asset_software = [] #Store the asset associated software
 asset_itrep = [] #Store if an IT/Hardware replacement is needed
 asset_repdesc = [] #Store the description on IT/Hardware replacement
 
+# Add rows to asset table
 def add_row_asset(row):
     # -- Asset Name
-    with grid[0]:
+    with grid_asset[0]:
         while len(asset_name) < row+1:
             asset_name.append(None)
         if row == 0:
@@ -241,7 +243,7 @@ def add_row_asset(row):
         else:
             asset_name[row]=st.text_input('Temp', key=f'input_cola{row}',label_visibility = "collapsed")
     # -- Asset Location    
-    with grid[1]:
+    with grid_asset[1]:
         while len(asset_loc) < row+1:
             asset_loc.append(None)
         if row == 0:
@@ -249,7 +251,7 @@ def add_row_asset(row):
         else:
             asset_loc[row]=st.text_input('Temp', key=f'input_colb{row}',label_visibility = "collapsed")
     # -- Asset Age
-    with grid[2]:
+    with grid_asset[2]:
         while len(asset_age) < row+1:
             asset_age.append(None)
         if row == 0:
@@ -257,7 +259,7 @@ def add_row_asset(row):
         else:
             asset_age[row]=st.number_input('Temp', step=0.5, key=f'input_colc{row}',label_visibility = "collapsed")
     # -- Asset Date of Entry
-    with grid[3]:
+    with grid_asset[3]:
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
@@ -265,7 +267,7 @@ def add_row_asset(row):
         else:
             asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}',label_visibility = "collapsed")
     # -- Asset Date of Obsolescence
-    with grid[4]:
+    with grid_asset[4]:
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
@@ -273,7 +275,7 @@ def add_row_asset(row):
         else:
             asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}',label_visibility = "collapsed")
     # -- Asset Condition
-    with grid[5]:
+    with grid_asset[5]:
         while len(asset_cond) < row+1:
             asset_cond.append(None)
         if row == 0:
@@ -284,7 +286,7 @@ def add_row_asset(row):
         else:
             asset_cond[row]=st.selectbox('Temp', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}',label_visibility = "collapsed")
     # -- Asset Cost of Replacement
-    with grid[6]:
+    with grid_asset[6]:
         while len(asset_cost) < row+1:
             asset_cost.append(None)
         if row == 0:
@@ -292,7 +294,7 @@ def add_row_asset(row):
         else:
             asset_cost[row]=st.number_input('Temp', step=1000, key=f'input_colg{row}',label_visibility = "collapsed")
     # -- Asset Impact if Lost
-    with grid[7]:
+    with grid_asset[7]:
         while len(asset_imp) < row+1:
             asset_imp.append(None)
         if row == 0:
@@ -300,7 +302,7 @@ def add_row_asset(row):
         else:
             asset_imp[row]=st.text_input('Temp', key=f'input_colh{row}',label_visibility = "collapsed")
     # -- Associated Software
-    with grid[8]:
+    with grid_asset[8]:
         while len(asset_software) < row+1:
             asset_software.append(None)
         if row == 0:
@@ -308,14 +310,15 @@ def add_row_asset(row):
         else:
             asset_software[row]=st.text_input('Temp', key=f'input_coli{row}',label_visibility = "collapsed")
     # -- IT/computer hardware repalcement
-    with grid[9]:
+    with grid_asset[9]:
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
             asset_itrep[row]=st.selectbox('Inlcudes IT \n \n  Hardware?', ('Yes','No'), help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
         else:
             asset_itrep[row]=st.selectbox('Temp', ('Yes','No'),key=f'input_colj{row}',label_visibility = "collapsed")
-    with grid[10]:
+    # -- Parts vs Full Replacement
+    with grid_asset[10]:
         while len(asset_repdesc) < row+1:
             asset_repdesc.append(None)
         if row == 0:
@@ -323,16 +326,17 @@ def add_row_asset(row):
         else:
             asset_repdesc[row]=st.text_input('Temp', key=f'input_colk{row}',label_visibility = "collapsed")
 
-for r in range(int(asset_rows)):
+# Add rows for each asset
+for r in range(int(st.session_state['asset_num'])):
     add_row_asset(r)
 
 # Create Input for Asset Images
 asset_imgs_lab = [] #Store the asset images label
 asset_imgs = [] #Store the asset images
-
 asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
 grid_img = st.columns(2)
 
+# Add row to asset image table
 def add_row_img(row):
      # -- Set the Options
     options_dt = []
@@ -360,8 +364,10 @@ def add_row_img(row):
         else:
             asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
 
-for r in range(int(asset_imgs_num)):
+# Add rows for number of images
+for r in range(int(st.session_state['asset_img'])):
     add_row_img(r)
+# Set CSS Formatting
 css = '''
 <style>
     [data-testid='stFileUploader'] {
@@ -388,14 +394,16 @@ sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
 
 # Additional Information on Funding
 fund_rows = st.number_input('Number of Funding Sources:', min_value=0, max_value=None,key='fund_num')
-grid2 = st.columns(4)
+grid_fund = st.columns(4)
 fund_src = [] #Store funding source
 start_fund = [] #Store the start date of funding
 end_fund = [] #Store the end date of funding
 fund_amt = [] #Store the funding amount
-def add_row2(row):
+
+# Add row to funding table
+def add_row_fund(row):
     # -- Funding Source
-    with grid2[0]:
+    with grid_fund[0]:
         while len(fund_src) < row+1:
             fund_src.append(None)
         if row == 0:
@@ -403,7 +411,7 @@ def add_row2(row):
         else:
             fund_src[row]=st.text_input('Temp', value='',key=f'input_coll{row}',label_visibility = "collapsed")
     # -- Start Date of Funding
-    with grid2[1]:
+    with grid_fund[1]:
         while len(start_fund) < row+1:
             start_fund.append(None)
         if row == 0:
@@ -411,7 +419,7 @@ def add_row2(row):
         else:
             start_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
     # -- End Date of Funding
-    with grid2[2]:
+    with grid_fund[2]:
         while len(end_fund) < row+1:
             end_fund.append(None)
         if row == 0:
@@ -419,15 +427,17 @@ def add_row2(row):
         else:
             end_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = "collapsed")
     # -- Funding Amount
-    with grid2[3]:
+    with grid_fund[3]:
         while len(fund_amt) < row+1:
             fund_amt.append(None)
         if row == 0:
             fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
         else:
             fund_amt[row]=st.number_input('Temp',min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = "collapsed")
-for r in range(int(fund_rows)):
-    add_row2(r)
+
+# Add rows for number of funding sources
+for r in range(int(st.session_state['fund_num'])):
+    add_row_fund(r)
 
 # Create File Uploader
 uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
@@ -436,15 +446,17 @@ uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_fi
 st.subheader('Current Mission/Project Utilization')
 # Create Input for Project Utilization and Risk
 proj_rows = st.number_input('Number of Projects', min_value=0, max_value=None, key = 'proj_num')
-grid3 = st.columns(5)
+grid_proj = st.columns(5)
 proj_util = [] #Store the projects
 wbs_util = [] #Store the project WBS
 use_util = [] #Store the use for each project
 risk = [] #Store the risk
 impact_util = [] #Store the use for each project
-def add_row3(row):
+
+# Add row to project table
+def add_row_proj(row):
     # -- Project Name
-    with grid3[0]:
+    with grid_proj[0]:
         while len(proj_util) < row+1:
             proj_util.append(None)
         if row == 0:
@@ -452,7 +464,7 @@ def add_row3(row):
         else:
             proj_util[row]=st.text_input('Temp', key=f'input_colp{row}',label_visibility = "collapsed")
     # -- WBS Number
-    with grid3[1]:
+    with grid_proj[1]:
         while len(wbs_util) < row+1:
             wbs_util.append(None)
         if row == 0:
@@ -460,7 +472,7 @@ def add_row3(row):
         else:
             wbs_util[row]=st.text_input('Temp', key=f'input_colq{row}',label_visibility = "collapsed")
     # -- Project Use
-    with grid3[2]:
+    with grid_proj[2]:
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
@@ -468,7 +480,7 @@ def add_row3(row):
         else:
             use_util[row]=st.number_input('Tmp', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}',label_visibility = "collapsed")
     # -- Risk to Project
-    with grid3[3]:
+    with grid_proj[3]:
         while len(risk) < row+1:
             risk.append(None)
         if row == 0:
@@ -478,7 +490,7 @@ def add_row3(row):
         else:
             risk[row]=st.selectbox('Temp', ('High', 'Moderate', 'Low'),key=f'input_cols{row}',label_visibility = "collapsed")
     # -- Impact to Project
-    with grid3[4]:
+    with grid_proj[4]:
         while len(impact_util) < row+1:
             impact_util.append(None)
         if row == 0:
@@ -486,10 +498,11 @@ def add_row3(row):
         else:
             impact_util[row]=st.text_input('Temp', key=f'input_colt{row}',label_visibility = "collapsed")
 
+# Add rows for each project
 for r in range(int(st.session_state['proj_num'])):
-    add_row3(r)
+    add_row_proj(r)
 
-#Create Divider for Name and Description
+# Create Divider for Name and Description
 st.subheader('Utilization History and Impact')
 
 # Create Input for History of Capability Utilization
@@ -506,7 +519,7 @@ st.subheader('History of Down Time Due to Maintenance or Failure')
 
 # Create Input for Downtime History
 down_rows = st.number_input('Number of Rows:', min_value=0, max_value=None, help='Enter the down time history for the entire lab or individual assets relevant to the failure of the lab infrastructure. Consider only failures in the last 5 years.', key = 'dt_num')
-grid4 = st.columns(6)
+grid_down = st.columns(6)
 asset_dt = [] #Store the associated Asset
 date_dt = [] #Store date the asset went down
 time_dt = [] #Store the time down
@@ -514,14 +527,15 @@ unit_dt = [] #Store the unit for time down
 imp_dt = [] #Store a description for the time down
 desc_dt = [] #Store a description for the time down
 
-def add_row4(row):
+# Add row to down time table
+def add_row_down(row):
     # -- Set the Options
     options_dt = ['Entire Lab/Capability']
     for k in range(len(asset_name)):
         options_dt.append(asset_name[k])
         
     # -- Asset that went down
-    with grid4[0]:
+    with grid_down[0]:
         while len(asset_dt) < row+1:
             asset_dt.append(None)
         if row == 0:
@@ -529,7 +543,7 @@ def add_row4(row):
         else:
             asset_dt[row]=st.selectbox('Temp', options_dt, key=f'input_colu{row}',label_visibility = "collapsed")
     # -- Start Date for Time Down
-    with grid4[1]:
+    with grid_down[1]:
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
@@ -537,7 +551,7 @@ def add_row4(row):
         else:
             date_dt[row]=st.date_input('Tepm', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}',label_visibility = "collapsed")
     # -- Time Down
-    with grid4[2]:
+    with grid_down[2]:
         while len(time_dt) < row+1:
             time_dt.append(None)
         if row == 0:
@@ -545,22 +559,23 @@ def add_row4(row):
         else:
             time_dt[row]=st.number_input('Temp', step=0.5, key=f'input_colw{row}',label_visibility = "collapsed")
     # -- Unit of Time Down
-    with grid4[3]:
+    with grid_down[3]:
         while len(unit_dt) < row+1:
             unit_dt.append(None)
         if row == 0:
             unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
         else:
             unit_dt[row]=st.selectbox('Temp', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}',label_visibility = "collapsed")
-    # -- Additonal Notes for Time Down
-    with grid4[4]:
+    # -- Impact due to down time
+    with grid_down[4]:
         while len(imp_dt) < row+1:
             imp_dt.append(None)
         if row == 0:
             imp_dt[row]=st.text_input('Impact on Mission/Project', value='',key=f'input_colyy{row}')
         else:
             imp_dt[row]=st.text_input('Temp', value='',key=f'input_colyy{row}',label_visibility = "collapsed")
-    with grid4[5]:
+    # -- Additonal Notes for Time Down
+    with grid_down[5]:
         while len(desc_dt) < row+1:
             desc_dt.append(None)
         if row == 0:
@@ -568,8 +583,8 @@ def add_row4(row):
         else:
             desc_dt[row]=st.text_input('Temp', value='',key=f'input_coly{row}',label_visibility = "collapsed")
                     
-for r in range(int(down_rows)):
-    add_row4(r)
+for r in range(int(st.session_state['dt_num'])):
+    add_row_down(r)
 
 #Create Divider for Down Time History
 st.subheader('Cost')
@@ -588,13 +603,14 @@ cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_
 
 # Create Input for Labor Division
 labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
-grid5 = st.columns([0.3,0.3,0.4])
+grid_labor = st.columns([0.3,0.3,0.4])
 division = [] #Store division
 labor_pct = [] #Store the labor percentrate
 
-def add_row5(row):
+# Add row to labor cost table
+def add_row_labor(row):
     # -- Start Date for Time Down
-    with grid5[0]:
+    with grid_labor[0]:
         while len(division) < row+1:
             division.append(None)
         if row == 0:
@@ -602,21 +618,25 @@ def add_row5(row):
         else:
             division[row]=st.selectbox('Temp', ('Code F','Code L'), key=f'input_colz{row}',label_visibility = "collapsed")
     # -- Time Down
-    with grid5[1]:
+    with grid_labor[1]:
         while len(labor_pct) < row+1:
             labor_pct.append(None)
         if row == 0:
             labor_pct[row]=st.number_input('Labor Cost (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}')
         else:
             labor_pct[row]=st.number_input('Temp', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colaa{row}',label_visibility = "collapsed")
-for r in range(int(labor_rows)):
-    add_row5(r)
+
+# Add row for each labor cost
+for r in range(int(st.session_state['labor_num'])):
+    add_row_labor(r)
 
 # Add Drop Down for Status
 status = st.selectbox('Completion Status', ('Draft','Final'),key='status')
 
+# Create buttons to interact with database
 grid_db = st.columns([0.115,0.135,0.75])
 with grid_db[0]:
+    # Save Data to Database
     if st.button('Save To Database'):
         # Create New Document
         new_data = {}
@@ -720,6 +740,7 @@ with grid_db[0]:
         new_entry = collection.insert_one(new_data)
 
 with grid_db[1]:
+    # Delete Entry from Database
     if st.button('Delete From Database'):
         # Delete the existing entry if it exists
         db = client['LabData']
