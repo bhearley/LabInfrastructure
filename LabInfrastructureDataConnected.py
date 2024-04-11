@@ -69,6 +69,8 @@ def load_data():
             st.session_state['lab_age'] = result['Age (yrs)']
             st.session_state['cond'] = result['Condition'].strip()
             st.session_state['asset_num'] = result['Number of Assets']
+            for m in range(int(result['Number of Assets'])):
+                st.session_state[f'input_cola{k}'] = result['Asset Name'][m]
 
             
             st.session_state['test_area'] = '--' + result['Condition'].strip() + '--'
