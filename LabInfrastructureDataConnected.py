@@ -70,7 +70,8 @@ def load_data():
             st.session_state['desc'] = result['Laboratory/Capability Description']
             st.session_state['link'] = result['Laboratory/Capability Website']
             st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
-            st.session_state['lab_age_k'] = result['Age (yrs)']
+            st.session_state['lab_age'] = result['Age (yrs)']
+            st.session_state['cond'] = result['Condition']
     else:
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
@@ -78,7 +79,8 @@ def load_data():
         st.session_state['desc'] = ''
         st.session_state['link'] = ''
         st.session_state['chal'] = ''
-        st.session_state['lab_age_k'] = None
+        st.session_state['lab_age'] = None
+        st.session_state['cond'] = 'Excellent'
 
 # Select Lab
 selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
@@ -105,7 +107,7 @@ lab_link = st.text_input("Laboratory/Capability Website:",value='',key='link')
 lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value='',key='chal')
 
 # Create Input for Age
-lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,help="The age of the laboratory/capability (i.e., how long we've had this capability at NASA GRC)",key='lab_age_k')
+lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,help="The age of the laboratory/capability (i.e., how long we've had this capability at NASA GRC)",key='lab_age')
 
 # Create Input for Condition
 cond_opts = ['Excellent','Good','Fair','Poor']
