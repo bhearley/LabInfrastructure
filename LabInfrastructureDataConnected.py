@@ -47,7 +47,6 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 # Set up the database connection and define functions to populate data fields in the web app
 
 # Connect to the Database
-@st.cache_resource
 def init_connection():
     uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
     return MongoClient(uri, tlsCAFile=certifi.where())
@@ -63,7 +62,6 @@ except Exception as e:
     print(e)
 
 # Read the Database
-@st.cache_data(ttl=600)
 def get_data():
     db = client['LabData']
     items = db['LabData'].find()
