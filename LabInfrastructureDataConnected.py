@@ -298,6 +298,7 @@ if st.button('Save Data'):
         new_data['T1-Associated Software'].append(st.session_state[f'input_coli{m}'])
         new_data['T1-Inlcudes IT Hardware?'].append(st.session_state[f'input_colj{m}'])
         new_data['T1-Replacement'].append(st.session_state[f'input_colk{m}'])
+    new_data['Number of Asset Images'] = st.session_state['asset_img']
 
     # Delete the existing entry if it exists
     db = client['LabData']
