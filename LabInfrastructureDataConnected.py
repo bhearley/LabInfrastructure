@@ -151,31 +151,7 @@ def load_data():
             for m in range(int(result['Number of Divisions (Labor Costs)'])):
                 st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
                 st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
-
-    # Populate blank entries in the web app if no lab is selected
-    # else:
-    #     st.session_state['name'] = ''
-    #     st.session_state['poc'] = ''
-    #     st.session_state['branch'] = ''
-    #     st.session_state['desc'] = ''
-    #     st.session_state['link'] = ''
-    #     st.session_state['chal'] = ''
-    #     st.session_state['lab_age'] = None
-    #     st.session_state['cond'] = 'Excellent'
-    #     st.session_state['asset_num'] = 0
-    #     st.session_state['asset_img'] = 0
-    #     st.session_state['sust'] = ''
-    #     st.session_state['fund_num'] = 0
-    #     st.session_state['proj_num'] = 0
-    #     st.session_state['hist'] = ''
-    #     st.session_state['impact'] = ''
-    #     st.session_state['tot_imp'] = ''
-    #     st.session_state['dt_num'] = 0
-    #     st.session_state['cost_rep'] = 0
-    #     st.session_state['cost_serv'] = 0
-    #     st.session_state['cost_ann'] = 0
-    #     st.session_state['cost_inc'] = 0
-    #     st.session_state['labor_num'] = 0
+            st.session_state['status'] = result['Status']
 
 if st.button('Clear All Fields'):
     # Clear Data
@@ -201,6 +177,7 @@ if st.button('Clear All Fields'):
     st.session_state['cost_ann'] = 0
     st.session_state['cost_inc'] = 0
     st.session_state['labor_num'] = 0
+    st.session_state['status'] = 'Draft'
 
 if st.button('Load Previous'):
     # Create Drop Down to select an existing lab record
@@ -635,6 +612,9 @@ def add_row5(row):
 for r in range(int(labor_rows)):
     add_row5(r)
 
+# Add Drop Down for Status
+status = st.selectbox('Completion Status', ('Draft','Final'),key='status')
+
 grid_db = st.columns([0.115,0.135,0.75])
 with grid_db[0]:
     if st.button('Save To Database'):
@@ -728,6 +708,7 @@ with grid_db[0]:
         for m in range(int(st.session_state['labor_num'])):
             new_data['T6-Directorate'].append(st.session_state[f'input_colz{m}'])
             new_data['T6-Labor Cost (%)'].append(st.session_state[f'input_colaa{m}'])
+        new_data['Status'] = st.session_state['status']
     
         # Delete the existing entry if it exists
         db = client['LabData']
