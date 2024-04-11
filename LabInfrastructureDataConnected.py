@@ -185,7 +185,9 @@ selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, 
 
 if st.button('Load Data'):
     if st.session_state['selection_lab'] != '':
-        for result in results:
+        for k in range(len(all_data)):
+            if all_data[k]['name'] == st.session_state['selection_lab']:
+                result = all_data[k]
                 st.session_state['name'] = result['Laboratory/Capability Name']
                 st.session_state['poc'] = result['Point of Contact']
                 st.session_state['branch'] = result['Branch']
