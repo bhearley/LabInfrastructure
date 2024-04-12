@@ -633,14 +633,16 @@ for r in range(int(st.session_state['labor_num'])):
 # Add Drop Down for Status
 status = st.selectbox('Completion Status', ('Draft','Final'),key='status')
 
+# Initialize Data Validation
+err_flag = 0  # Flag to check errors - 0 = no errors, 1 = errors (messages will show in app)
+err_msgs = [] # Store list of error messages 
+
 # Create buttons to interact with database
 grid_db = st.columns([0.115,0.135,0.75])
 with grid_db[0]:
     # Save Data to Database
     if st.button('Save To Database'):
         # Data Validation - Check specific attributes are properly added before writing
-        err_flag = 0  # Flag to check errors - 0 = no errors, 1 = errors (messages will show in app)
-        err_msgs = [] # Store list of error messages      
         # -- Laboratory/Capability Name Must Be Populated
         if st.session_state['name'] == '':
             err_msgs.append(['Laboratory/Capability Name Must Be Populated'])
