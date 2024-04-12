@@ -639,10 +639,11 @@ with grid_db[0]:
     # Save Data to Database
     if st.button('Save To Database'):
         # Data Validation - Check specific attributes are properly added before writing
-        err_flag = 0 # Flag to check errors - 0 = no errors, 1 = errors (messages will show in app)
+        err_flag = 0  # Flag to check errors - 0 = no errors, 1 = errors (messages will show in app)
+        err_msgs = [] # Store list of error messages      
         # -- Laboratory/Capability Name Must Be Populated
         if st.session_state['name'] == '':
-            st.error('Laboratory/Capability Name Must Be Populated')
+            err_msgs.append(['Laboratory/Capability Name Must Be Populated'])
             err_flag = 1
 
         # Write To Database If No Errors
@@ -756,3 +757,8 @@ with grid_db[1]:
         collection = db['LabData']
         myquery = { "Laboratory/Capability Name": st.session_state["name"]}
         collection.delete_one(myquery)
+
+# Write Error Messages
+if err_flag == 1:
+    for k in range(len(err_msgs)):
+        st.error(err_msgs[k])
