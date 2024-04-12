@@ -653,7 +653,7 @@ with grid_db[0]:
             err_msgs.append('Branch Must Be Populated')
             err_flag = 1
         elif len(st.session_state['branch']) != 3:
-            err_msgs.append('Enter the 3 letter code for the branch (e.g., LMS)')
+            err_msgs.append('Enter the 3 letter code for the Branch (e.g., LMS)')
             err_flag = 1
             
         # Write To Database If No Errors
