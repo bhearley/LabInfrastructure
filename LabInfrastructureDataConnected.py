@@ -645,15 +645,15 @@ with grid_db[0]:
         # Data Validation - Check specific attributes are properly added before writing
         # -- Laboratory/Capability Name Must Be Populated
         if st.session_state['name'] == '':
-            err_msgs.append(['Laboratory/Capability Name Must Be Populated'])
+            err_msgs.append('Laboratory/Capability Name Must Be Populated')
             err_flag = 1
 
         # -- Branch must be 3 letters
         if st.session_state['branch'] == '':
-            err_msgs.append(['Branch Must Be Populated'])
+            err_msgs.append('Branch Must Be Populated')
             err_flag = 1
         elif len(st.session_state['branch']) != 3:
-            err_msgs.append(['Enter the 3 letter code for the branch (e.g., LMS)'])
+            err_msgs.append('Enter the 3 letter code for the branch (e.g., LMS)')
             err_flag = 1
             
         # Write To Database If No Errors
