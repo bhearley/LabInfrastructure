@@ -648,6 +648,14 @@ with grid_db[0]:
             err_msgs.append(['Laboratory/Capability Name Must Be Populated'])
             err_flag = 1
 
+        # -- Branch must be 3 letters
+        if st.session_state['branch'] == '':
+            err_msgs.append(['Branch Must Be Populated'])
+            err_flag = 1
+        elif len(st.session_state['branch']) != 3:
+            err_msgs.append(['Enter the 3 letter code for the branch (e.g., LMS)'])
+            err_flag = 1
+            
         # Write To Database If No Errors
         if err_flag == 0:
             # Create New Document
