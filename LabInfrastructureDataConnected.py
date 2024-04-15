@@ -184,8 +184,8 @@ def load_data():
         st.session_state['status'] = 'Draft'
 
 # Load Data from Database
-#if st.button('Load From Database'):
-selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
+if st.button('Load From Database'):
+    selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
