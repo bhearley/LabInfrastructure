@@ -192,7 +192,7 @@ if st.button('Filter Data'):
     if st.session_state['status_opt1'] == 'All Entries (Draft and Final)':
         status_choice = ['Draft','Final']
     else:
-        statis_choice = ['Final']
+        status_choice = ['Final']
 
     # Create Criteria Dictionary
     criteria= {
