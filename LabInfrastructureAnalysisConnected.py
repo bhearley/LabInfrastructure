@@ -3,11 +3,38 @@ import streamlit as st
 import os
 import glob
 import numpy as np
+import streamlit as st
+from pymongo.mongo_client import MongoClient
+import dns
+import certifi
 
-# Set Paths
-home = os.getcwd()
-data_path = "/mount/src/labinfrastructure/NewFiles/"
 
+# Connect to the Database
+@st.cache_resource
+def init_connection():
+    uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+    return MongoClient(uri, tlsCAFile=certifi.where())
+
+# Create the Database Client
+client = init_connection()
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+# Read the Database
+@st.cache_data(ttl=6000)
+def get_data():
+    db = client['LabData']
+    items = db['LabData'].find()
+    items = list(items)  # make hashable for st.cache_data
+    return items
+
+# Get All Data in Database
+all_data = get_data()
 # Set the page configuration
 st.set_page_config(layout="wide")
 
@@ -26,23 +53,14 @@ files_all = glob.glob('*.txt')
 Div = []
 Branch = []
 
-for q in range(len(files_all)):
-    # Read the Text File
-    with open(os.path.join(data_path,files_all[q])) as f:
-        lines = f.readlines()
-
-    # Get the Branch Name
-    key = 'Branch:'
-    for i in range(len(lines)):
-        if key in lines[i]:
-            val  = lines[i][len(key)+1:len(lines[i])-1]
-
-    if len(val) == 3:
-        Direc = val[0]
-        if val[0:2] not in Div:
-            Div.append(val[0:2])
-        if val[0:3] not in Branch:
-            Branch.append(val[0:3])
+for q in range(len(all_data)):
+    branch_q = all_data['Branch']
+    div_q = val[0:2]
+    
+    if div not in Div:
+        Div.append(div_q)
+    if branch_q not in Branch:
+        Branch.append(branch_q)
     
 Div.sort()
 Branch.sort()
