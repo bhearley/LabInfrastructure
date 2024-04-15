@@ -48,10 +48,6 @@ st.markdown('Set the filter criteria and generate a Word Document report summari
 st.subheader('Select Divisions or Branches')
 st.markdown('Only select labs from specific divisions or branches. Use the drop down menu to filter by either division or branch, then check all options you would like in the report.')
 
-# Get List of Divisions and Branches
-os.chdir(data_path)
-files_all = glob.glob('*.txt')
-
 Div = []
 Branch = []
 
