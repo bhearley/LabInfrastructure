@@ -63,6 +63,7 @@ except Exception as e:
     print(e)
 
 # Read the Database
+@st.cache_data(ttl=6000)
 def get_data():
     db = client['LabData']
     items = db['LabData'].find()
