@@ -81,7 +81,7 @@ start_flag = 0
 if st.button('Start'):
     start_flag = 1
 
-if start_flag = 1:
+if start_flag == 1:
     # Load Data Function
     # -- Set the values in the web app from the database when an existing lab is chosen
     @st.cache_data(ttl=6000)
