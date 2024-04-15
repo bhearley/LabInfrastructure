@@ -391,6 +391,8 @@ if st.button('Filter Data'):
                     for j in range(num_assets):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
+                            print(record[col_keys[k]])
+                            st.write(record[col_keys[k]])
                             row[k].text = record[col_keys[k]][j]
                     table.style = 'Light Grid Accent 4'
 
