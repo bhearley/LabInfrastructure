@@ -701,8 +701,8 @@ with grid_db[0]:
             new_data['Sustainment Funding Source'] = st.session_state['sust']
             new_data['Number of Funding Sources'] = st.session_state['fund_num'] 
             new_data['T3-Funding Source'] = []
-            new_data['T3-T3-Funding Start Date'] = []
-            new_data['T3-T3-Funding End Date'] = []
+            new_data['T3-Funding Start Date'] = []
+            new_data['T3-Funding End Date'] = []
             new_data['T3-Funding Amount per Year ($)'] = []
             for m in range(int(st.session_state['fund_num'] )):
                 new_data['T3-Funding Source'].append(st.session_state[f'input_coll{m}'])
