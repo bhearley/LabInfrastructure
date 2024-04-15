@@ -183,10 +183,8 @@ if st.button('Clear All Fields'):
     st.session_state['status'] = 'Draft'
 
 # Load Data from Database
-#time.sleep(3)
 if st.button('Load From Database'):
-    print('Button Press')
-            
+    time.sleep(3)     
     # Create Drop Down to select an existing lab record
     selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
 
