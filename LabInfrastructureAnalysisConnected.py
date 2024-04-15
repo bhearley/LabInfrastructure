@@ -8,6 +8,8 @@ from pymongo.mongo_client import MongoClient
 import dns
 import certifi
 
+# Set the page configuration
+st.set_page_config(layout="wide")
 
 # Connect to the Database
 @st.cache_resource
@@ -36,8 +38,7 @@ def get_data():
 # Get All Data in Database
 all_data = get_data()
 
-# Set the page configuration
-st.set_page_config(layout="wide")
+
 
 # Create the Title
 st.title("NASA GRC Laboratory Infrastructure Data Collection Analysis")
