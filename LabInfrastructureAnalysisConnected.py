@@ -99,8 +99,11 @@ def convert_num(key):
             try:
                 float(test_val)
             except ValueError:
-                flag = 1
-                st.error('Not a valid number')
+                if test_val == '':
+                    st.session_state[key] = None
+                else:
+                    flag = 1
+                    st.error('Not a valid number')
             if flag == 0:
                 if len(test_val)>3:
                     num = ''
