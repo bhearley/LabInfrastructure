@@ -698,7 +698,7 @@ if st.button('Filter Data'):
                     row[0].text = 'Directorate'
                     row[1].text = 'Labor Division (%)'
                     
-                    col_keys = {'T6-Directorate':"string",
+                    col_dict = {'T6-Directorate':"string",
                   'T6-Labor Cost (%)':"string"
                                }
 
