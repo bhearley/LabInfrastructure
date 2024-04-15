@@ -663,7 +663,7 @@ if st.button('Filter Data'):
                     labels = []
                     vals = []
                     for j in range(num_div):
-                        labels.appendrecord[col_keys[k0][j])
+                        labels.append(record[col_keys[0]][j])
                         vals.append(float(record[col_keys[1]][j]))
 
                     run_lab1 = doc.add_paragraph().add_run('')
