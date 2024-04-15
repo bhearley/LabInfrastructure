@@ -168,6 +168,26 @@ if st.button('Filter Data'):
     if asset_chk4 == True:
         Asset_Cond_List.append('Excellent')
 
+    # Get Asset Value Limits
+    if st.session_state['min_asset_cost_key'] != None:
+        min_asset_cost = float(st.session_state['min_asset_cost_key'].replace(',',''))
+    else:
+        min_asset_cost = None
+    if st.session_state['max_asset_cost_key'] != None:
+        max_asset_cost = float(st.session_state['max_asset_cost_key'].replace(',',''))
+    else:
+        max_asset_cost = None
+
+    # Get Replacement Value Limits
+    if st.session_state['min_tot_cost_key'] != None:
+        min_tot_cost = float(st.session_state['min_tot_cost_key'].replace(',',''))
+    else:
+        min_tot_cost = None
+    if st.session_state['max_tot_cost_key'] != None:
+        max_tot_cost = float(st.session_state['max_tot_cost_key'].replace(',',''))
+    else:
+        max_tot_cost = None
+
     # Get Status Criteria
     if st.session_state['status_opt1'] == 'All Entries (Draft and Final)':
         status_choice = ['Draft','Final']
@@ -179,8 +199,8 @@ if st.button('Filter Data'):
              'Div':Div_List,
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
-             'AssetVal':[float(min_asset_cost.replace(',','')), float(max_asset_cost.replace(',',''))],
-             'RepCost':[float(min_tot_cost.replace(',','')), float(max_tot_cost.replace(',',''))],
+             'AssetVal':[min_asset_cost, max_asset_cost],
+             'RepCost':[min_tot_cost, max_tot_cost],
             'Status':status_choice}
 
     FilesOut = {}
