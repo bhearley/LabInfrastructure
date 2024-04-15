@@ -392,8 +392,8 @@ if st.button('Filter Data'):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
                             print(record[col_keys[k]][j])
-                            st.write(record[col_keys[k]][j])
-                            row[k].text = record[col_keys[k]][j]
+                            st.write(str(record[col_keys[k]][j]))
+                            row[k].text = str(record[col_keys[k]][j])
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
