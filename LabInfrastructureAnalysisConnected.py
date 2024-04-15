@@ -575,6 +575,7 @@ if st.button('Filter Data'):
                     row[2].text = 'Time Down'
                     row[3].text = 'Time Down Unit'
                     row[4].text = 'Additional Notes'
+                    row[6].text = 'Impact on Mission/Project'
 
                     col_keys = [ 'T5-Asset',
                   'T5-Start Date',
