@@ -355,7 +355,6 @@ if st.button('Filter Data'):
         run_lab1 = doc.add_paragraph().add_run(div_out)
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
-        run_lab1.bold = True
 
     # -- Write Branches
     if st.session_state['filt_opt1'] == 'Branch':
@@ -379,10 +378,9 @@ if st.button('Filter Data'):
         run_lab1 = doc.add_paragraph().add_run(branch_out)
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
-        run_lab1.bold = True
 
     # -- Write Asset Costs
-    if criteria['AssetVal'][0] != None or criteria['AssetVal'][0]!= None:
+    if criteria['AssetVal'][0] != None or criteria['AssetVal'][1]!= None:
         # Write Filter header if it doesn't exist
         if filt_flag == 0:
             run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
