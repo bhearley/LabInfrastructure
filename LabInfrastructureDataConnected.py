@@ -79,7 +79,6 @@ all_labs.sort() #Sort the list of labs alphabetically
 
 # Load Data Function
 # -- Set the values in the web app from the database when an existing lab is chosen
-@st.cache_data(ttl=6000)
 def load_data():
     # Populate the data fields in the web app if an lab is selected
     if st.session_state['selection_lab'] != '':
