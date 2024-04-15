@@ -618,7 +618,8 @@ if st.button('Filter Data'):
                     row[4].text = 'Additional Notes'
                     row[5].text = 'Impact on Mission/Project'
 
-                    col_keys = { 'T5-Asset':"string",
+                    col_dict = { 
+                  'T5-Asset':"string",
                   'T5-Start Date':"string",
                   'T5-Time Down':"string",
                   'T5-Unit':"string",
