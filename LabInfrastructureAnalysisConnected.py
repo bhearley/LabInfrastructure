@@ -329,6 +329,18 @@ if st.button('Filter Data'):
     run1.font.name = 'Times New Roman'
     run1.font.size = Pt(12)
 
+    # Write Filter Criteria
+    run1 = para.add_run('Filter Criteria:')
+    run1.font.name = 'Times New Roman'
+    run1.font.size = Pt(12)
+
+    # -- Write Divisions
+    run_lab1 = doc.add_paragraph().add_run('Divisions Selected:')
+    run_lab1 = doc.add_paragraph().add_run(criteria['Div'])
+    run_lab1.font.name = 'Times New Roman'
+    run_lab1.font.size = Pt(18)
+    run_lab1.bold = True
+
     # Loop Through Divisions
     divisions = list(FilesOut.keys())
     divisions.sort()
