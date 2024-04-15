@@ -7,6 +7,7 @@ import streamlit as st
 from pymongo.mongo_client import MongoClient
 import dns
 import certifi
+from datetime import date
 
 # Set Path
 data_path = "/mount/src/labinfrastructure/"
@@ -272,6 +273,12 @@ if st.button('Filter Data'):
     run1.font.name = 'Times New Roman'
     run1.font.size = Pt(18)
     run1.bold = True
+
+    # Create Date Time Stamp
+    today = date.today()
+    run2 = doc.add_paragraph().add_run('Created on: ' + today)
+    run2.font.name = 'Times New Roman'
+    run2.font.size = Pt(12)
 
     # Loop Through Divisions
     divisions = list(FilesOut.keys())
