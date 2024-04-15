@@ -184,6 +184,8 @@ if st.button('Clear All Fields'):
 
 # Load Data from Database
 if st.button('Load From Database'):
+    print('Button Press')
+            
     # Create Drop Down to select an existing lab record
     selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
 
