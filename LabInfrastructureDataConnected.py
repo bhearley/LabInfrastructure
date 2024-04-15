@@ -175,10 +175,10 @@ if st.button('Clear All Fields'):
     st.session_state['impact'] = ''
     st.session_state['tot_imp'] = ''
     st.session_state['dt_num'] = 0
-    st.session_state['cost_rep'] = 0
-    st.session_state['cost_serv'] = 0
-    st.session_state['cost_ann'] = 0
-    st.session_state['cost_inc'] = 0
+    st.session_state['cost_rep'] = None
+    st.session_state['cost_serv'] = None
+    st.session_state['cost_ann'] = None
+    st.session_state['cost_inc'] = None
     st.session_state['labor_num'] = 0
     st.session_state['status'] = 'Draft'
 
@@ -593,7 +593,7 @@ st.subheader('Cost')
 cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capability ($):",min_value=0,max_value=None,step=1000,value=None,key='cost_rep')
 
 # Create Input for Cost of Service Contracts
-cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=0,key='cost_serv')
+cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=None,key='cost_serv')
 
 # Create Input for Annual Expenses to operate and sustain the lab
 cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_ann')
