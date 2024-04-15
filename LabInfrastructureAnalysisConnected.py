@@ -276,9 +276,11 @@ if st.button('Filter Data'):
 
     # Create Date Time Stamp
     today = date.today()
-    run2 = doc.add_paragraph().add_run('Created on: ' + str(today))
-    run2.font.name = 'Times New Roman'
-    run2.font.size = Pt(12)
+    para = doc.add_paragraph()
+    para.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run1 = para.add_run('Created on: ' + str(today))
+    run1.font.name = 'Times New Roman'
+    run1.font.size = Pt(12)
 
     # Loop Through Divisions
     divisions = list(FilesOut.keys())
