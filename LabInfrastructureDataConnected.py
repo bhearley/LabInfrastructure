@@ -156,32 +156,31 @@ def load_data():
             st.session_state['status'] = result['Status']
 
 # Clear all fields
-# if st.button('Clear All Fields'):
-    else:
-        # Clear Data
-        st.session_state['name'] = ''
-        st.session_state['poc'] = ''
-        st.session_state['branch'] = ''
-        st.session_state['desc'] = ''
-        st.session_state['link'] = ''
-        st.session_state['chal'] = ''
-        st.session_state['lab_age'] = None
-        st.session_state['cond'] = 'Excellent'
-        st.session_state['asset_num'] = 0
-        st.session_state['asset_img'] = 0
-        st.session_state['sust'] = ''
-        st.session_state['fund_num'] = 0
-        st.session_state['proj_num'] = 0
-        st.session_state['hist'] = ''
-        st.session_state['impact'] = ''
-        st.session_state['tot_imp'] = ''
-        st.session_state['dt_num'] = 0
-        st.session_state['cost_rep'] = 0
-        st.session_state['cost_serv'] = 0
-        st.session_state['cost_ann'] = 0
-        st.session_state['cost_inc'] = 0
-        st.session_state['labor_num'] = 0
-        st.session_state['status'] = 'Draft'
+if st.button('Clear All Fields'):
+    # Clear Data
+    st.session_state['name'] = ''
+    st.session_state['poc'] = ''
+    st.session_state['branch'] = ''
+    st.session_state['desc'] = ''
+    st.session_state['link'] = ''
+    st.session_state['chal'] = ''
+    st.session_state['lab_age'] = None
+    st.session_state['cond'] = 'Excellent'
+    st.session_state['asset_num'] = 0
+    st.session_state['asset_img'] = 0
+    st.session_state['sust'] = ''
+    st.session_state['fund_num'] = 0
+    st.session_state['proj_num'] = 0
+    st.session_state['hist'] = ''
+    st.session_state['impact'] = ''
+    st.session_state['tot_imp'] = ''
+    st.session_state['dt_num'] = 0
+    st.session_state['cost_rep'] = 0
+    st.session_state['cost_serv'] = 0
+    st.session_state['cost_ann'] = 0
+    st.session_state['cost_inc'] = 0
+    st.session_state['labor_num'] = 0
+    st.session_state['status'] = 'Draft'
 
 # Load Data from Database
 if st.button('Load From Database'):
