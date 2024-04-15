@@ -35,6 +35,7 @@ def get_data():
 
 # Get All Data in Database
 all_data = get_data()
+
 # Set the page configuration
 st.set_page_config(layout="wide")
 
