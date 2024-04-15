@@ -330,9 +330,9 @@ if st.button('Filter Data'):
     run1.font.size = Pt(12)
 
     # Write Filter Criteria
-    run1 = para.add_run('Filter Criteria:')
-    run1.font.name = 'Times New Roman'
-    run1.font.size = Pt(12)
+    run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
+    run_lab1.font.name = 'Times New Roman'
+    run_lab1.font.size = Pt(12)
 
     # -- Write Divisions
     if st.session_state['filt_opt1'] == 'Division':
