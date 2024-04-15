@@ -18,7 +18,6 @@ import dns
 import certifi
 import datetime
 import time
-from streamlit_modal import Modal
 
 #==================================================================================================================================================================
 # GENERAL INFORMATION
@@ -764,9 +763,7 @@ with grid_db[0]:
             st.cache_data.clear()
 
             # Create Popup for Save
-            modal = Modal(key="save_modal",title="Save")
-            with modal.container():
-                st.markdown('Saved!')
+            st.makrdown('Saved to Database!')
 
 with grid_db[1]:
     # Delete Entry from Database
