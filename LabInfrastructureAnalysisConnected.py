@@ -332,17 +332,12 @@ if st.button('Filter Data'):
     
 
     # Write Filter Criteria
-    filt_flag = 0  
+    run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
+    run_lab1.font.name = 'Times New Roman'
+    run_lab1.font.size = Pt(14)
+
     # -- Write Divisions
     if st.session_state['filt_opt1'] == 'Division':
-        # Write Filter header if it doesn't exist
-        if filt_flag == 0:
-            run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
-            run_lab1.font.name = 'Times New Roman'
-            run_lab1.font.size = Pt(14)
-
-            fit_flag = 1
-        
         run_lab1 = doc.add_paragraph().add_run('Divisions Selected:')
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
@@ -358,14 +353,6 @@ if st.button('Filter Data'):
 
     # -- Write Branches
     if st.session_state['filt_opt1'] == 'Branch':
-        # Write Filter header if it doesn't exist
-        if filt_flag == 0:
-            run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
-            run_lab1.font.name = 'Times New Roman'
-            run_lab1.font.size = Pt(14)
-
-            fit_flag = 1
-        
         run_lab1 = doc.add_paragraph().add_run('Branches Selected:')
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
@@ -381,13 +368,6 @@ if st.button('Filter Data'):
 
     # -- Write Asset Costs
     if criteria['AssetVal'][0] != None or criteria['AssetVal'][1]!= None:
-        # Write Filter header if it doesn't exist
-        if filt_flag == 0:
-            run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
-            run_lab1.font.name = 'Times New Roman'
-            run_lab1.font.size = Pt(14)
-
-            fit_flag = 1
         
         run_lab1 = doc.add_paragraph().add_run('Total Asset Value Range:')
         run_lab1.font.name = 'Times New Roman'
@@ -416,7 +396,32 @@ if st.button('Filter Data'):
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
 
-        
+    # -- Write Total Costs
+    if criteria['RepCost'][0] != None or criteria['RepCost'][1]!= None:
+
+        run_lab1 = doc.add_paragraph().add_run('Total Relacement Cost Range:')
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+
+        val_frmt = format_values(criteria['RepCost'][0] , "money")
+        if val_frmt != '':
+            val_Frmt = '$' + val_frmt
+        run_lab1 = doc.add_paragraph().add_run('    Minimum Total Replacement Cost: ' + val_frmt)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+
+        val_frmt = format_values(criteria['RepCost'][1] , "money")
+        if val_frmt != '':
+            val_Frmt = '$' + val_frmt
+        run_lab1 = doc.add_paragraph().add_run('    Maximum Total Replacement Cost: ' + val_frmt)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+
+    # -- Status
+    # Write Filter header if it doesn't exist
+    run_lab1 = doc.add_paragraph().add_run('Entry Status: ' + st.session_state['status_opt1'])
+    run_lab1.font.name = 'Times New Roman'
+    run_lab1.font.size = Pt(12)
 
     # Loop Through Divisions
     divisions = list(FilesOut.keys())
