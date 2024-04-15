@@ -252,7 +252,7 @@ if st.button('Filter Data'):
     import matplotlib.pyplot as plt
     from docx.shared import Inches
 
-    # Utility Function
+    # Utility Functions
     def change_orientation():
         current_section = doc.sections[-1]
         new_width, new_height = current_section.page_height, current_section.page_width
@@ -262,6 +262,21 @@ if st.button('Filter Data'):
         new_section.page_height = new_height
 
         return new_section
+
+    # Format Entires
+    def format_values(test_val, key):
+        if key == "string":
+            val = str(test_val)
+        if key == "money":
+            if isinstance(test_val,str) == False:
+                test_val = str(test_val)
+            val = ''
+            for k in range(len(test_val)):
+                val = test_val[len(test_val)-1-k] + val
+                chk = k+1
+                if chk%3 == 0 and k!= len(test_val)-1:
+                    val = ',' + val
+        return val
 
     # Create the Document
     doc = docx.Document() 
@@ -329,7 +344,7 @@ if st.button('Filter Data'):
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
-                # -- Point of Contact
+                # -- Branch
                 key = 'Branch'
                 run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
@@ -389,20 +404,25 @@ if st.button('Filter Data'):
                     row[9].text = 'IT Hardware Repalcement?'
                     row[10].text = 'Part or Full Replacement?'
 
-                    col_keys = ['T1-Asset Name',
-                  'T1-Location (Bldg/Rm)',
-                  'T1-Age (yrs)',
-                  'T1-Acquisition Year',
-                  'T1-Expected Year of Obsolescence',
-                  'T1-Asset Condition',
-                  'T1-Replacement Cost ($)',
-                  'T1-Impact to Capability if Lost',
-                  'T1-Associated Software',
-                  'T1-Inlcudes IT Hardware?',
-                  'T1-Replacement']
+                    col_dict = {'T1-Asset Name':"string",
+                  'T1-Location (Bldg/Rm)':"string",
+                  'T1-Age (yrs)':"string",
+                  'T1-Acquisition Year':"string",
+                  'T1-Expected Year of Obsolescence':"string",
+                  'T1-Asset Condition':"string",
+                  'T1-Replacement Cost ($)':"money",
+                  'T1-Impact to Capability if Lost':"string",
+                  'T1-Associated Software':"string",
+                  'T1-Inlcudes IT Hardware?':"string",
+                  'T1-Replacement':"string"}
+
+                    col_keys = list(col_dcit.keys())
+                    
                     for j in range(num_assets):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
+                            val = record[col_keys[k]][j]
+                            val_frm = format_values(val, col_dict[col_keys[k]])
                             row[k].text = str(record[col_keys[k]][j])
                     table.style = 'Light Grid Accent 4'
 
