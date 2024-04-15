@@ -52,7 +52,7 @@ Div = []
 Branch = []
 
 for q in range(len(all_data)):
-    branch_q = all_data['Branch']
+    branch_q = all_data[q]['Branch']
     div_q = val[0:2]
     
     if div not in Div:
