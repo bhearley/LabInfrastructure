@@ -343,7 +343,7 @@ if st.button('Filter Data'):
 
                 # -- Age (yrs):
                 key = 'Age (yrs)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
@@ -606,26 +606,26 @@ if st.button('Filter Data'):
 
                 # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
                 key = 'Estimated Cost to Replace Entire Laboratory/Capability ($)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
     
         
                 # -- Cost of Service Contracts ($):
                 key = 'Cost of Service Contracts ($)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
         
                 # -- Annual Cost to Operate and Sustain the Lab ($/yr):
                 key = 'Annual Cost to Operate and Sustain the Lab ($/yr)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
         
                 # -- Cost of Service Contracts ($):
                 key = 'Incurred Cost For Downtime ($/yr)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
