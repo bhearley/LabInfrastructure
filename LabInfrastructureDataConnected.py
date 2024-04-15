@@ -183,7 +183,7 @@ if st.button('Clear All Fields'):
     st.session_state['status'] = 'Draft'
 
 # Load Data from Database
-time.sleep(3)
+#time.sleep(3)
 if st.button('Load From Database'):
     print('Button Press')
             
