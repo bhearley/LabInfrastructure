@@ -327,29 +327,101 @@ if st.button('Filter Data'):
     para.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run1 = para.add_run('Created on: ' + str(today))
     run1.font.name = 'Times New Roman'
-    run1.font.size = Pt(12)
+    run1.font.size = Pt(14)
+
+    
 
     # Write Filter Criteria
-    run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
-    run_lab1.font.name = 'Times New Roman'
-    run_lab1.font.size = Pt(12)
-
+    filt_flag = 0  
     # -- Write Divisions
     if st.session_state['filt_opt1'] == 'Division':
+        # Write Filter header if it doesn't exist
+        if filt_flag == 0:
+            run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
+            run_lab1.font.name = 'Times New Roman'
+            run_lab1.font.size = Pt(14)
+
+            fit_flag = 1
+        
         run_lab1 = doc.add_paragraph().add_run('Divisions Selected:')
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
-        run_lab1.bold = True
 
         div_out = ''
         for k in range(len(criteria['Div'])):
-            div_out = div_out + criteria['Div'][k] + ','
-        div_out = div_out[:len(div_out)-1]
+            div_out = div_out + criteria['Div'][k] + ', '
+        div_out = div_out[:len(div_out)-2]
 
         run_lab1 = doc.add_paragraph().add_run(div_out)
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
         run_lab1.bold = True
+
+    # -- Write Branches
+    if st.session_state['filt_opt1'] == 'Branch':
+        # Write Filter header if it doesn't exist
+        if filt_flag == 0:
+            run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
+            run_lab1.font.name = 'Times New Roman'
+            run_lab1.font.size = Pt(14)
+
+            fit_flag = 1
+        
+        run_lab1 = doc.add_paragraph().add_run('Branches Selected:')
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+
+        branch_out = ''
+        for k in range(len(criteria['Branches'])):
+            branch_out = branch_out + criteria['Branches'][k] + ', '
+        branch_out = branch_out[:len(branch_out)-2]
+
+        run_lab1 = doc.add_paragraph().add_run(branch_out)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+        run_lab1.bold = True
+
+    # -- Write Asset Costs
+    if criteria['AssetVal'][0] != None or criteria['AssetVal'][0]!= None:
+        # Write Filter header if it doesn't exist
+        if filt_flag == 0:
+            run_lab1 = doc.add_paragraph().add_run('Filer Criteria:')
+            run_lab1.font.name = 'Times New Roman'
+            run_lab1.font.size = Pt(14)
+
+            fit_flag = 1
+        
+        run_lab1 = doc.add_paragraph().add_run('Total Asset Value Range:')
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+
+        cond_out = '    Asset Conditions:'
+        for k in range(len(criteria['AssetValCond'])):
+            cond_out = cond_out + criteria['AssetValCond'][k] + ', '
+        cond_out = cond_out[:len(cond_out)-2]
+
+        run_lab1 = doc.add_paragraph().add_run(cond_out)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+        run_lab1.bold = True
+
+        val_frmt = format_values(criteria['AssetVal'][0] , "money")
+        if val_frmt != '':
+            val_Frmt = '$' + val_frmt
+        run_lab1 = doc.add_paragraph().add_run('    Minimum Total Asset Value: ' + val_frmt)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+        run_lab1.bold = True
+
+        val_frmt = format_values(criteria['AssetVal'][1] , "money")
+        if val_frmt != '':
+            val_Frmt = '$' + val_frmt
+        run_lab1 = doc.add_paragraph().add_run('    Maximum Total Asset Value: ' + val_frmt)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+        run_lab1.bold = True
+
+        
 
     # Loop Through Divisions
     divisions = list(FilesOut.keys())
