@@ -391,8 +391,6 @@ if st.button('Filter Data'):
                     for j in range(num_assets):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
-                            print(record[col_keys[k]][j])
-                            st.write(str(record[col_keys[k]][j]))
                             row[k].text = str(record[col_keys[k]][j])
                     table.style = 'Light Grid Accent 4'
 
@@ -449,7 +447,7 @@ if st.button('Filter Data'):
                     for j in range(num_fund):
                         row = table2.add_row().cells
                         for k in range(len(col_keys)):
-                            row[k].text = record[col_keys[k]][j]
+                            row[k].text = str(record[col_keys[k]][j])
                     table2.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -498,9 +496,9 @@ if st.button('Filter Data'):
                         row = table3.add_row().cells
                         for k in range(len(col_keys)):
                             if k == 1:
-                                row[k].text = record[col_keys[k]][j][0:6]
+                                row[k].text = str(record[col_keys[k]][j][0:6])
                             else:
-                                row[k].text = record[col_keys[k]][j]
+                                row[k].text = str(record[col_keys[k]][j])
                     table3.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -586,7 +584,7 @@ if st.button('Filter Data'):
                     for j in range(num_dt):
                         row = table4.add_row().cells
                         for k in range(len(col_keys)):
-                            row[k].text = record[col_keys[k]][j]
+                            row[k].text = str(record[col_keys[k]][j])
                     table4.style = 'Light Grid Accent 4'
                     
                     # Set Font Fize
@@ -648,7 +646,7 @@ if st.button('Filter Data'):
                     for j in range(num_div):
                         row = table.add_row().cells
                         for k in range(2):
-                            row[k].text = record[col_keys[k]][j]
+                            row[k].text = str(record[col_keys[k]][j])
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
