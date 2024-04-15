@@ -55,7 +55,7 @@ for q in range(len(all_data)):
     branch_q = all_data[q]['Branch']
     div_q = branch_q[0:2]
     
-    if div not in Div:
+    if div_q not in Div:
         Div.append(div_q)
     if branch_q not in Branch:
         Branch.append(branch_q)
