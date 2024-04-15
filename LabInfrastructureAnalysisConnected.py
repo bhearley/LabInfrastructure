@@ -416,7 +416,7 @@ if st.button('Filter Data'):
                   'T1-Inlcudes IT Hardware?':"string",
                   'T1-Replacement':"string"}
 
-                    col_keys = list(col_dcit.keys())
+                    col_keys = list(col_dict.keys())
                     
                     for j in range(num_assets):
                         row = table.add_row().cells
