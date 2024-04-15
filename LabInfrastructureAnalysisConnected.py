@@ -276,6 +276,11 @@ if st.button('Filter Data'):
                 chk = k+1
                 if chk%3 == 0 and k!= len(test_val)-1:
                     val = ',' + val
+        if key == "WBS":
+            if len(test_val) > 6:
+                val = test_val[0:6]
+            else:
+                val = test_val
         return val
 
     # Create the Document
@@ -469,17 +474,20 @@ if st.button('Filter Data'):
                     row[2].text = 'Funding End Date'
                     row[3].text = 'Funding Amount per Year ($)'
 
-                    col_keys = ['T3-Funding Source',
-                  'T3-Funding Start Date',
-                  'T3-Funding End Date',
-                  'T3-Funding Amount per Year ($)'
-                    ]
+                    col_dict = {'T3-Funding Source':"string",
+                  'T3-Funding Start Date':"string",
+                  'T3-Funding End Date':"string",
+                  'T3-Funding Amount per Year ($):"money"'
+                               }
 
+                    col_keys = list(col_dict.keys())
 
                     for j in range(num_fund):
                         row = table2.add_row().cells
                         for k in range(len(col_keys)):
-                            row[k].text = str(record[col_keys[k]][j])
+                            val = record[col_keys[k]][j]
+                            val_frmt = format_values(val, col_dict[col_keys[k]])
+                            row[k].text = val_frmt
                     table2.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -515,22 +523,23 @@ if st.button('Filter Data'):
                     row[3].text = 'Risk to Project'
                     row[4].text = 'Impact if Laboratory/Capability is Lost'
 
-                    col_keys = [
-                        'T4-Mission/Project Name',
-                  'T4-WBS Number',
-                  'T4-Project Use (%)',
-                  'T4-Risk to Project',
-                  'T4-Impact if Laboratory/Capability is Lost'
-                ]
+                    col_dict = {
+                        'T4-Mission/Project Name':"string",
+                  'T4-WBS Number':"WBS",
+                  'T4-Project Use (%)':"string",
+                  'T4-Risk to Project':"string",
+                  'T4-Impact if Laboratory/Capability is Lost':"string"
+                    }
+
+                    col_keys = list(col_dict.keys())
 
 
                     for j in range(num_proj):
                         row = table3.add_row().cells
                         for k in range(len(col_keys)):
-                            if k == 1:
-                                row[k].text = str(record[col_keys[k]][j][0:6])
-                            else:
-                                row[k].text = str(record[col_keys[k]][j])
+                            val = record[col_keys[k]][j]
+                            val_frmt = format_values(val, col_dict[col_keys[k]])
+                            row[k].text = val_frmt
                     table3.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -606,18 +615,22 @@ if st.button('Filter Data'):
                     row[4].text = 'Additional Notes'
                     row[5].text = 'Impact on Mission/Project'
 
-                    col_keys = [ 'T5-Asset',
-                  'T5-Start Date',
-                  'T5-Time Down',
-                  'T5-Unit',
-                  'T5-Additional Notes',
-                  'T5-Impact'
-                    ]
+                    col_keys = { 'T5-Asset':"string",
+                  'T5-Start Date':"string",
+                  'T5-Time Down':"string",
+                  'T5-Unit':"string",
+                  'T5-Additional Notes':"string",
+                  'T5-Impact':"string"
+                               }
+
+                    col_keys = list(col_dict.keys())
 
                     for j in range(num_dt):
                         row = table4.add_row().cells
                         for k in range(len(col_keys)):
-                            row[k].text = str(record[col_keys[k]][j])
+                            val = record[col_keys[k]][j]
+                            val_frmt = format_values(val, col_dict[col_keys[k]])
+                            row[k].text = val_frmt
                     table4.style = 'Light Grid Accent 4'
                     
                     # Set Font Fize
@@ -639,26 +652,34 @@ if st.button('Filter Data'):
 
                 # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
                 key = 'Estimated Cost to Replace Entire Laboratory/Capability ($)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
+                val = record[key]
+                val_frmt = format_values(val, "money")
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + val_frmt)
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
     
         
                 # -- Cost of Service Contracts ($):
                 key = 'Cost of Service Contracts ($)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
+                val = record[key]
+                val_frmt = format_values(val, "money")
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + val_frmt)
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
         
                 # -- Annual Cost to Operate and Sustain the Lab ($/yr):
                 key = 'Annual Cost to Operate and Sustain the Lab ($/yr)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
+                val = record[key]
+                val_frmt = format_values(val, "money")
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + val_frmt)
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
         
                 # -- Cost of Service Contracts ($):
                 key = 'Incurred Cost For Downtime ($/yr)'
-                run_lab1 = doc.add_paragraph().add_run(key + ': ' + str(record[key]))
+                val = record[key]
+                val_frmt = format_values(val, "money")
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + val_frmt)
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
@@ -672,14 +693,19 @@ if st.button('Filter Data'):
                     row = table.rows[0].cells 
                     row[0].text = 'Directorate'
                     row[1].text = 'Labor Division (%)'
-                    col_keys = ['T6-Directorate',
-                  'T6-Labor Cost (%)'
-                    ]
+                    
+                    col_keys = {'T6-Directorate':"string",
+                  'T6-Labor Cost (%)':"string"
+                               }
+
+                    col_keys = list(col_dict.keys())
                     
                     for j in range(num_div):
                         row = table.add_row().cells
-                        for k in range(2):
-                            row[k].text = str(record[col_keys[k]][j])
+                        for k in range(len(col_keys)):
+                            val = record[col_keys[k]][j]
+                            val_frmt = format_values(val, col_dict[col_keys[k]])
+                            row[k].text = val_frmt
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
