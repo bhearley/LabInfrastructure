@@ -211,7 +211,7 @@ lab_link = st.text_input("Laboratory/Capability Website:",value='',key='link')
 lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",value='',key='chal')
 
 # Create Input for Age
-lab_age = st.number_input("Age (yrs):",min_value=0,max_value=None,help="The age of the laboratory/capability (i.e., how long we've had this capability at NASA GRC)",key='lab_age')
+lab_age = st.number_input("Age (yrs):", min_value=0, max_value=None, value=None, help="The age of the laboratory/capability (i.e., how long we've had this capability at NASA GRC)",key='lab_age')
 
 # Create Input for Condition
 cond_opts = ['Excellent','Good','Fair','Poor']
