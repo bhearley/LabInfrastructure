@@ -422,8 +422,8 @@ if st.button('Filter Data'):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
                             val = record[col_keys[k]][j]
-                            val_frm = format_values(val, col_dict[col_keys[k]])
-                            row[k].text = str(record[col_keys[k]][j])
+                            val_frmt = format_values(val, col_dict[col_keys[k]])
+                            row[k].text = val_frmt
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
