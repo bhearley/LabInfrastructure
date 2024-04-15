@@ -185,9 +185,6 @@ if st.button('Clear All Fields'):
 # Load Data from Database
 if st.button('Load From Database'):
     selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
-
-if 'selection_lab' in st.session_state:
-    load_data()
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
 # Create inputs to collect general lab information
