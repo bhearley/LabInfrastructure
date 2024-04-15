@@ -642,6 +642,9 @@ grid_db = st.columns([0.115,0.135,0.75])
 with grid_db[0]:
     # Save Data to Database
     if st.button('Save To Database'):
+        if 'save_msg' not in st.session_state:
+            st.markdown('',key='save_msg')
+                
         # Data Validation - Check specific attributes are properly added before writing
         # -- Laboratory/Capability Name Must Be Populated
         if st.session_state['name'] == '':
@@ -763,7 +766,11 @@ with grid_db[0]:
             st.cache_data.clear()
 
             # Create Popup for Save
-            st.markdown('Saved to Database!')
+            st.session_state['save_msg'] = 'Saved to Database!'
+
+            time.sleep(3)
+
+            st.session_state['save_msg'] = ''
 
 with grid_db[1]:
     # Delete Entry from Database
