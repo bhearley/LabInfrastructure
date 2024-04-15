@@ -568,7 +568,7 @@ if st.button('Filter Data'):
                     run_lab1 = doc.add_paragraph().add_run('Previous Laboratory/Asset Failures:')
                     run_lab1.font.name = 'Times New Roman'
                     run_lab1.font.size = Pt(11)
-                    table4 = doc.add_table(rows=1, cols=5) 
+                    table4 = doc.add_table(rows=1, cols=6) 
                     row = table4.rows[0].cells 
                     row[0].text = 'Asset'
                     row[1].text = 'Start Date'
