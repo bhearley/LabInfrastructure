@@ -342,7 +342,7 @@ if st.button('Filter Data'):
         run_lab1.bold = True
 
         div_out = ''
-        for k in range(len(criteria['Div']))):
+        for k in range(len(criteria['Div'])):
             div_out = div_out + criteria['Div'][k] + ','
         div_out = div_out[:len(div_out)-1]
 
