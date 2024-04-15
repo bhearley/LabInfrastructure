@@ -183,12 +183,8 @@ if st.button('Clear All Fields'):
     st.session_state['status'] = 'Draft'
 
 # Load Data from Database
-def create_dropdown():
-            # Create Drop Down to select an existing lab record
+if st.button('Load From Database'):
     selection_lab = st.selectbox('Select the Lab:',all_labs, on_change = load_data, key = 'selection_lab')
-st.button('Load From Database', on_click = create_dropdown)
-#if st.button('Load From Database'):
-    
 
 #==================================================================================================================================================================
 # GENERAL LAB INFORMATION
