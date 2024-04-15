@@ -269,7 +269,7 @@ if st.button('Filter Data'):
             val = str(test_val)
         if key == "money":
             if isinstance(test_val,str) == False:
-                test_val = str(test_val)
+                test_val = str(int(test_val))
             val = ''
             for k in range(len(test_val)):
                 val = test_val[len(test_val)-1-k] + val
