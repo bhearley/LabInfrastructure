@@ -205,7 +205,7 @@ if st.button('Filter Data'):
         tot_asset_cost = 0
         
         for k in range(num_assets):
-            if record['T1-Asset Condition'][k] in criteria['AssetValCond']:
+            if record['T1-Asset Condition'][k] in criteria['AssetValCond'] and record['T1-Replacement Cost ($)'][k] != None:
                 tot_asset_cost = tot_asset_cost + float(record['T1-Replacement Cost ($)'][k])
 
         if criteria['AssetVal'][0] != None or criteria['AssetVal'][1] != None:
@@ -216,9 +216,11 @@ if st.button('Filter Data'):
         
         # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
         if criteria['RepCost'][0] != None or criteria['RepCost'][1] != None:
-            if criteria['RepCost'][0] != None and record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] < criteria['RepCost'][0]:
+            if record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] == None:
                 crit_flag = 0
-            if criteria['RepCost'][1] != None and record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] > criteria['RepCost'][1]:
+            elif criteria['RepCost'][0] != None and record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] < criteria['RepCost'][0]:
+                crit_flag = 0
+            elif criteria['RepCost'][1] != None and record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] > criteria['RepCost'][1]:
                 crit_flag = 0
 
         # -- Check Status
