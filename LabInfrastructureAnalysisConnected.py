@@ -266,7 +266,7 @@ if st.button('Filter Data'):
     # Format Entires
     def format_values(test_val, key):
         if test_val == None:
-            val = None
+            val = ''
         else:
             if key == "string":
                 val = str(test_val)
