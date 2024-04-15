@@ -477,7 +477,7 @@ if st.button('Filter Data'):
                     col_dict = {'T3-Funding Source':"string",
                   'T3-Funding Start Date':"string",
                   'T3-Funding End Date':"string",
-                  'T3-Funding Amount per Year ($):"money"'
+                  'T3-Funding Amount per Year ($):"money"
                                }
 
                     col_keys = list(col_dict.keys())
