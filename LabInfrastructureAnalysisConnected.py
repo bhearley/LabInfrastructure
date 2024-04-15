@@ -39,7 +39,6 @@ def get_data():
 all_data = get_data()
 
 
-
 # Create the Title
 st.title("NASA GRC Laboratory Infrastructure Data Collection Analysis")
 st.markdown('Set the filter criteria and generate a Word Document report summarizing the information collected on the GRC Lab Infrastructure. \n\n For all questions, please email brandon.l.hearley@nasa.gov')
@@ -132,6 +131,9 @@ with grid_vals2[0]:
 with grid_vals2[1]:
     max_tot_cost = st.text_input('Max. Value of Total Replacement Cost', value="1,000,000,000", key='max_tot_cost_key', on_change=convert_num('max_tot_cost_key'))
 
+status_opts = ['All Entries (Draft and Final)','Final Only']
+status_opt1 = st.selectbox('Select Status of Data Entries:',status_opts,key='status_opt1')
+
 st.markdown(' ')
 st.markdown('Filter all data in the database for the above criteria and write to a report. Once filtered, select the "Download Report" button to download the Word Document.')
 if st.button('Filter Data'):
@@ -158,32 +160,32 @@ if st.button('Filter Data'):
     if asset_chk4 == True:
         Asset_Cond_List.append('Excellent')
 
+    # Get Status Criteria
+    if st.session_state['status_opt1'] == 'All Entries (Draft and Final)':
+        status_choice = ['Draft','Final']
+    else:
+        statis_choice = 'Final']
+
     # Create Criteria Dictionary
     criteria= {
              'Div':Div_List,
              'Branches':Branch_List,
              'AssetValCond':Asset_Cond_List,
              'AssetVal':[float(min_asset_cost.replace(',','')), float(max_asset_cost.replace(',',''))],
-             'RepCost':[float(min_tot_cost.replace(',','')), float(max_tot_cost.replace(',',''))]}
+             'RepCost':[float(min_tot_cost.replace(',','')), float(max_tot_cost.replace(',',''))],
+            'Status':status_choice}
 
     FilesOut = {}
     
     # Get Organized List of Records
-    for q in range(len(files_all)):
-        # Read the Text File
-        with open(os.path.join(data_path,files_all[q])) as f:
-            lines = f.readlines()
+    for q in range(len(all_data)):
+        # Get the individual record
+        record = all_data[q]
 
-        # Get the Branch Name
-        key = 'Branch:'
-        for i in range(len(lines)):
-            if key in lines[i]:
-                val  = lines[i][len(key)+1:len(lines[i])-1]
-
-        if len(val) == 3:
-            Direc = val[0]
-            Div = val[0:2]
-            Branch = val[0:3]
+        # Get the Directorate, Division, and Branch
+        Branch = record['Branch']
+        Div = Branch[0:2]
+        Direc = Branch[0]
 
         # Set Flag
         crit_flag = 1
@@ -199,44 +201,29 @@ if st.button('Filter Data'):
                 crit_flag = 0
 
         # Get Total Asset Cost and Filter
-
-        key = 'Number of Assets:'
-        for i in range(len(lines)):
-            if key in lines[i]:
-                val  = lines[i][len(key)+1:len(lines[i])-1]
-                line_num = i
-        num_assets  = int(val)
-        
-        data = ''
-        for k in range(line_num+2,line_num+2+num_assets):
-            data = data + lines[k]
-        data= data.split('\n')
-        data_all = []
-        for k in range(num_assets):
-            data_line = data[k]
-            data_line = data_line.split('\t')
-            data_all.append(data_line)
+        num_assets  = int(record['Number of Assets'])
         tot_asset_cost = 0
+        
         for k in range(num_assets):
-            if data_all[k][5] in criteria['AssetValCond']:
-                tot_asset_cost = tot_asset_cost + float(data_all[k][6])
+            if record['T1-Asset Condition'][k] in criteria['AssetValCond']:
+                tot_asset_cost = tot_asset_cost + float(record['T1-Replacement Cost ($)'][k])
 
-        if criteria['AssetVal'][0] != None or criteria['AssetVal'][0] != None:
+        if criteria['AssetVal'][0] != None or criteria['AssetVal'][1] != None:
             if criteria['AssetVal'][0] != None and tot_asset_cost < criteria['AssetVal'][0]:
                 crit_flag = 0
             if criteria['AssetVal'][1] != None and tot_asset_cost > criteria['AssetVal'][1]:
                 crit_flag = 0
         
         # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
-        key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
-        for i in range(len(lines)):
-            if key in lines[i]:
-                val  = lines[i][len(key)+1:len(lines[i])-1]
-        if criteria['RepCost'][0] != None or criteria['RepCost'][0] != None:
-            if criteria['RepCost'][0] != None and tot_asset_cost < criteria['RepCost'][0]:
+        if criteria['RepCost'][0] != None or criteria['RepCost'][1] != None:
+            if criteria['RepCost'][0] != None and record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] < criteria['RepCost'][0]:
                 crit_flag = 0
-            if criteria['RepCost'][1] != None and tot_asset_cost > criteria['RepCost'][1]:
+            if criteria['RepCost'][1] != None and record['Estimated Cost to Replace Entire Laboratory/Capability ($)'] > criteria['RepCost'][1]:
                 crit_flag = 0
+
+        # -- Check Status
+        if record['Status'] not in criteria['Status']:
+            crit_flag= 0
 
 
         if crit_flag == 1:
@@ -248,7 +235,7 @@ if st.button('Filter Data'):
             if Branch not in branch_keys:
                 FilesOut[Div][Branch] = []
 
-            FilesOut[Div][Branch].append(files_all[q])
+            FilesOut[Div][Branch].append(q)
 
     # Write the Report
     import docx
@@ -306,22 +293,12 @@ if st.button('Filter Data'):
 
             # Get List of files
             files = FilesOut[divisions[d]][branches[b]]
-            files.sort()
 
             for q in range(len(files)):
-                
-                # Read the Text File
-                with open(os.path.join(data_path,files[q])) as f:
-                    lines = f.readlines()
+                # Get the data
+                record = all_data[files[q]]
 
-                
-                # -- Laboratory/Capability Name
-                key = 'Laboratory/Capability Name:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-
-                run_lab1 = doc.add_paragraph().add_run(val)
+                run_lab1 = doc.add_paragraph().add_run(record['Laboratory/Capability Name'])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(12)
                 run_lab1.bold = True
@@ -333,87 +310,50 @@ if st.button('Filter Data'):
                 run_lab1.bold = True
 
                 # -- Point of Contact
-                key = 'Point of Contact:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Point of Contact'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Point of Contact
-                key = 'Branch:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Branch'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Laboratory/Capability Description
-                key = 'Laboratory/Capability Description:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Laboratory/Capability Description'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Laboratory/Capability Website
-                key = 'Laboratory/Capability Website:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Laboratory/Capability Website'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Challenges in sustaining this laboratory/capability
-                key = 'Challenges in sustaining this laboratory/capability:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Challenges in sustaining this laboratory/capability'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Age (yrs):
-                key = 'Age (yrs):'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Age (yrs)'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Condition:
-                key = 'Condition:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Condition'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
     
                 # -- Asset Table
-                key = 'Number of Assets:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                        line_num = i
-                num_assets  = int(val)
-        
-                data = ''
-                for k in range(line_num+2,line_num+2+num_assets):
-                    data = data + lines[k]
-                data= data.split('\n')
-                data_all = []
-                for k in range(num_assets):
-                    data_line = data[k]
-                    data_line = data_line.split('\t')
-                    data_all.append(data_line)
-
+                num_assets = record['Number of Assets']
                 if num_assets > 0:
                     change_orientation()
 
@@ -435,10 +375,21 @@ if st.button('Filter Data'):
                     row[9].text = 'IT Hardware Repalcement?'
                     row[10].text = 'Part or Full Replacement?'
 
-                    for j in range(len(data_all)):
+                    col_keys = ['T1-Asset Name',
+                  'T1-Location (Bldg/Rm)',
+                  'T1-Age (yrs)',
+                  'T1-Acquisition Year',
+                  'T1-Expected Year of Obsolescence',
+                  'T1-Asset Condition',
+                  'T1-Replacement Cost ($)'},
+                  'T1-Impact to Capability if Lost',
+                  'T1-Associated Software',
+                  'T1-Inlcudes IT Hardware?',
+                  'T1-Replacement']
+                    for j in range(num_assets):
                         row = table.add_row().cells
-                        for k in range(11):
-                            row[k].text = data_all[j][k]
+                        for k in range(len(col_keys)):
+                            row[k].text = record[col_keys[k]][j]
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -456,9 +407,9 @@ if st.button('Filter Data'):
                     table.allow_autofit =False
                     col_widths =  [0.85,0.79,0.44,0.63,0.94,0.75,0.94,1.19,0.81,1,0.94]
                     for row in table.rows:
-                        for k in range(11):
+                        for k in range(len(col_keys)):
                             row.cells[k].width = Inches(col_widths[k])
-                    for k in range(11):
+                    for k in range(len(col_keys)):
                         table.columns[k].width = Inches(col_widths[k])
                     
                     run_lab1 = doc.add_paragraph().add_run('')
@@ -466,32 +417,13 @@ if st.button('Filter Data'):
                     change_orientation()
 
                 # -- Sustainment Funding Source:
-                key = 'Sustainment Funding Source:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Sustainment Funding Source'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Funding Table
-                key = 'Number of Funding Sources:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                        line_num = i
-                num_fund  = int(val)
-
-                data = ''
-                for k in range(line_num+2,line_num+2+num_fund):
-                    data = data + lines[k]
-                data= data.split('\n')
-                data_all = []
-                for k in range(num_fund):
-                    data_line = data[k]
-                    data_line = data_line.split('\t')
-                    data_all.append(data_line)
-    
+                num_fund = record['Number of Funding Sources']
                 if num_fund > 0:
                     run_lab1 = doc.add_paragraph().add_run('Funding Sources:')
                     run_lab1.font.name = 'Times New Roman'
@@ -503,11 +435,17 @@ if st.button('Filter Data'):
                     row[2].text = 'Funding End Date'
                     row[3].text = 'Funding Amount per Year ($)'
 
+                    col_keys = ['T3-Funding Source',
+                  'T3-Funding Start Date',
+                  'T3-Funding End Date',
+                  'T3-Funding Amount per Year ($)'
+                    ]
 
-                    for j in range(len(data_all)):
+
+                    for j in range(num_fund):
                         row = table2.add_row().cells
-                        for k in range(4):
-                            row[k].text = data_all[j][k]
+                        for k in range(len(col_keys)):
+                            row[k].text = record[col_keys[k]][j]
                     table2.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -529,22 +467,7 @@ if st.button('Filter Data'):
                 run_lab1.bold = True
 
                 # Project Table
-                key = 'Number of Projects:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                        line_num = i
-                num_proj  = int(val)
-
-                data = ''
-                for k in range(line_num+2,line_num+2+num_proj):
-                    data = data + lines[k]
-                data= data.split('\n')
-                data_all = []
-                for k in range(num_proj):
-                    data_line = data[k]
-                    data_line = data_line.split('\t')
-                    data_all.append(data_line)
+                num_proj = record['Number of Projects']
 
                 if num_proj > 0:
                     run_lab1 = doc.add_paragraph().add_run('Projects:')
@@ -558,14 +481,22 @@ if st.button('Filter Data'):
                     row[3].text = 'Risk to Project'
                     row[4].text = 'Impact if Laboratory/Capability is Lost'
 
+                    col_keys = [
+                        'T4-Mission/Project Name',
+                  'T4-WBS Number',
+                  'T4-Project Use (%)',
+                  'T4-Risk to Project',
+                  'T4-Impact if Laboratory/Capability is Lost'
+                ]
 
-                    for j in range(len(data_all)):
+
+                    for j in range(num_proj):
                         row = table3.add_row().cells
-                        for k in range(5):
+                        for k in range(len(col_keys)):
                             if k == 1:
-                                row[k].text = data_all[j][k][0:6]
+                                row[k].text = record[col_keys[k]][j][0:6]
                             else:
-                                row[k].text = data_all[j][k]
+                                row[k].text = record[col_keys[k]][j]
                     table3.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -581,11 +512,11 @@ if st.button('Filter Data'):
                     # Create Pie Chart
                     labels = []
                     vals = []
-                    for j in range(len(data_all)):
+                    for j in range(len(num_proj)):
                         try: 
-                            float(data_all[j][2])
-                            labels.append(data_all[j][0])
-                            vals.append(float(data_all[j][2]))
+                            float(record[col_keys[2]][j])
+                            labels.append(record[col_keys[0]][j])
+                            vals.append(float(record[col_keys[2]][j]))
                         except:
                             temp=1
 
@@ -603,22 +534,20 @@ if st.button('Filter Data'):
                 run_lab1.bold = True
 
                 # -- History of capability utilization
-                key = 'History of capability utilization:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'History of capability utilization'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Major impact and contributions this capability has made possible:
-                key = 'Major impact and contributions this capability has made possible:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
+                key = 'Major impact and contributions this capability has made possible'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
+                run_lab1.font.name = 'Times New Roman'
+                run_lab1.font.size = Pt(11)
 
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                # -- Overall impact of laboratory/capability is lost:
+                key = 'Overall impact of laboratory/capability is lost'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
@@ -629,23 +558,7 @@ if st.button('Filter Data'):
                 run_lab1.bold = True
 
                 # -- Read Down Time Table
-                key = 'Number of Failures:'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                        line_num = i
-                num_dt  = int(val)
-        
-                data = ''
-                for k in range(line_num+2,line_num+2+num_dt):
-                    data = data + lines[k]
-                data= data.split('\n')
-                data_all = []
-                for k in range(num_dt):
-                    data_line = data[k]
-                    data_line = data_line.split('\t')
-                    data_all.append(data_line)
-
+                num_dt = record[Number of Failures']
                 if num_dt > 0:
                     run_lab1 = doc.add_paragraph().add_run('Previous Laboratory/Asset Failures:')
                     run_lab1.font.name = 'Times New Roman'
@@ -658,10 +571,18 @@ if st.button('Filter Data'):
                     row[3].text = 'Time Down Unit'
                     row[4].text = 'Additional Notes'
 
-                    for j in range(len(data_all)):
+                    col_keys = [ 'T5-Asset',
+                  'T5-Start Date',
+                  'T5-Time Down',
+                  'T5-Unit',
+                  'T5-Additional Notes',
+                  'T5-Impact'
+                    ]
+
+                    for j in range(num_dt):
                         row = table4.add_row().cells
-                        for k in range(5):
-                            row[k].text = data_all[j][k]
+                        for k in range(len(col_keys)):
+                            row[k].text = record[col_keys[k]][j]
                     table4.style = 'Light Grid Accent 4'
                     
                     # Set Font Fize
@@ -682,61 +603,32 @@ if st.button('Filter Data'):
                 run_lab1.bold = True
 
                 # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
-                key = 'Estimated Cost to Replace Entire Laboratory/Capability ($):'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Estimated Cost to Replace Entire Laboratory/Capability ($)'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
     
         
                 # -- Cost of Service Contracts ($):
-                key = 'Cost of Service Contracts ($):'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Cost of Service Contracts ($)'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
         
                 # -- Annual Cost to Operate and Sustain the Lab ($/yr):
-                key = 'Annual Cost to Operate and Sustain the Lab ($/yr):'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Annual Cost to Operate and Sustain the Lab ($/yr)'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
         
                 # -- Cost of Service Contracts ($):
-                key = 'Incurred Cost For Downtime ($/yr):'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                run_lab1 = doc.add_paragraph().add_run(key + ' ' + val)
+                key = 'Incurred Cost For Downtime ($/yr)'
+                run_lab1 = doc.add_paragraph().add_run(key + ': ' + record[key])
                 run_lab1.font.name = 'Times New Roman'
                 run_lab1.font.size = Pt(11)
 
                 # -- Read Divisons Table
-                key = 'Number of Divisions (Labor Costs):'
-                for i in range(len(lines)):
-                    if key in lines[i]:
-                        val  = lines[i][len(key)+1:len(lines[i])-1]
-                        line_num = i
-                num_div  = int(val)
-
-        
-                data = ''
-                for k in range(line_num+2,line_num+2+num_div):
-                    data = data + lines[k]
-                data= data.split('\n')
-                data_all = []
-                for k in range(num_div):
-                    data_line = data[k]
-                    data_line = data_line.split('\t')
-                    data_all.append(data_line)
-
+                num_div  = record['Number of Divisions (Labor Costs)']
                 if num_div > 0:
                     run_lab1 = doc.add_paragraph().add_run('Directorate Labor Division:')
                     run_lab1.font.name = 'Times New Roman'
@@ -745,10 +637,14 @@ if st.button('Filter Data'):
                     row = table.rows[0].cells 
                     row[0].text = 'Directorate'
                     row[1].text = 'Labor Division (%)'
-                    for j in range(len(data_all)):
+                    col_keys = ['T6-Directorate',
+                  'T6-Labor Cost (%)'
+                    ]
+                    
+                    for j in range(num_div):
                         row = table.add_row().cells
                         for k in range(2):
-                            row[k].text = data_all[j][k]
+                            row[k].text = record[col_keys[k]][j]
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
@@ -766,9 +662,9 @@ if st.button('Filter Data'):
                     # Create Pie Chart
                     labels = []
                     vals = []
-                    for j in range(len(data_all)):
-                        labels.append(data_all[j][0])
-                        vals.append(float(data_all[j][1]))
+                    for j in range(num_div):
+                        labels.appendrecord[col_keys[k0][j])
+                        vals.append(float(record[col_keys[1]][j]))
 
                     run_lab1 = doc.add_paragraph().add_run('')
                     fig, ax = plt.subplots()
