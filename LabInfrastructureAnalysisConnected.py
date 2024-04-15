@@ -265,22 +265,25 @@ if st.button('Filter Data'):
 
     # Format Entires
     def format_values(test_val, key):
-        if key == "string":
-            val = str(test_val)
-        if key == "money":
-            if isinstance(test_val,str) == False:
-                test_val = str(int(test_val))
-            val = ''
-            for k in range(len(test_val)):
-                val = test_val[len(test_val)-1-k] + val
-                chk = k+1
-                if chk%3 == 0 and k!= len(test_val)-1:
-                    val = ',' + val
-        if key == "WBS":
-            if len(test_val) > 6:
-                val = test_val[0:6]
-            else:
-                val = test_val
+        if test_val == None:
+            val = None
+        else:
+            if key == "string":
+                val = str(test_val)
+            if key == "money":
+                if isinstance(test_val,str) == False:
+                    test_val = str(int(test_val))
+                val = ''
+                for k in range(len(test_val)):
+                    val = test_val[len(test_val)-1-k] + val
+                    chk = k+1
+                    if chk%3 == 0 and k!= len(test_val)-1:
+                        val = ',' + val
+            if key == "WBS":
+                if len(test_val) > 6:
+                    val = test_val[0:6]
+                else:
+                    val = test_val
         return val
 
     # Create the Document
