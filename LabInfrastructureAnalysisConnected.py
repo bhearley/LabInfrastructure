@@ -558,7 +558,7 @@ if st.button('Filter Data'):
                 run_lab1.bold = True
 
                 # -- Read Down Time Table
-                num_dt = record[Number of Failures']
+                num_dt = record['Number of Failures']
                 if num_dt > 0:
                     run_lab1 = doc.add_paragraph().add_run('Previous Laboratory/Asset Failures:')
                     run_lab1.font.name = 'Times New Roman'
