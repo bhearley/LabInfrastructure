@@ -401,7 +401,6 @@ if st.button('Filter Data'):
         run_lab1 = doc.add_paragraph().add_run(cond_out)
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
-        run_lab1.bold = True
 
         val_frmt = format_values(criteria['AssetVal'][0] , "money")
         if val_frmt != '':
@@ -409,7 +408,6 @@ if st.button('Filter Data'):
         run_lab1 = doc.add_paragraph().add_run('    Minimum Total Asset Value: ' + val_frmt)
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
-        run_lab1.bold = True
 
         val_frmt = format_values(criteria['AssetVal'][1] , "money")
         if val_frmt != '':
@@ -417,7 +415,6 @@ if st.button('Filter Data'):
         run_lab1 = doc.add_paragraph().add_run('    Maximum Total Asset Value: ' + val_frmt)
         run_lab1.font.name = 'Times New Roman'
         run_lab1.font.size = Pt(12)
-        run_lab1.bold = True
 
         
 
