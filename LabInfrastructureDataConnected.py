@@ -165,7 +165,7 @@ if st.button('Clear All Fields'):
     st.session_state['link'] = ''
     st.session_state['chal'] = ''
     st.session_state['lab_age'] = None
-    st.session_state['cond'] = 'Excellent'
+    st.session_state['cond'] = ''
     st.session_state['asset_num'] = 0
     st.session_state['asset_img'] = 0
     st.session_state['sust'] = ''
@@ -214,7 +214,7 @@ lab_chal = st.text_area("Challenges in sustaining this laboratory/capability:",v
 lab_age = st.number_input("Age (yrs):", min_value=0, max_value=None, value=None, help="The age of the laboratory/capability (i.e., how long we've had this capability at NASA GRC)",key='lab_age')
 
 # Create Input for Condition
-cond_opts = ['Excellent','Good','Fair','Poor']
+cond_opts = ['','Excellent','Good','Fair','Poor']
 lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
 # Create Input for Assets
@@ -255,44 +255,44 @@ def add_row_asset(row):
         while len(asset_age) < row+1:
             asset_age.append(None)
         if row == 0:
-            asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, key=f'input_colc{row}')
+            asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, value = None, key=f'input_colc{row}')
         else:
-            asset_age[row]=st.number_input('Temp', step=0.5, key=f'input_colc{row}',label_visibility = "collapsed")
-    # -- Asset Date of Entry
+            asset_age[row]=st.number_input('Temp', step=0.5, value = None, key=f'input_colc{row}',label_visibility = "collapsed")
+    # -- Asset Year of Entry
     with grid_asset[3]:
         while len(asset_date_in) < row+1:
             asset_date_in.append(None)
         if row == 0:
-            asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 0, max_value = 3000, help = 'The year the asset was acquired.', key=f'input_cold{row}')
+            asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 0, max_value = 3000, value = None, help = 'The year the asset was acquired.', key=f'input_cold{row}')
         else:
-            asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000,  key=f'input_cold{row}',label_visibility = "collapsed")
+            asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, value = None, key=f'input_cold{row}',label_visibility = "collapsed")
     # -- Asset Date of Obsolescence
     with grid_asset[4]:
         while len(asset_date_out) < row+1:
             asset_date_out.append(None)
         if row == 0:
-            asset_date_out[row]=st.number_input('Expected Year of Obsolescence', step = 1, min_value = 0, max_value = 3000, help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
+            asset_date_out[row]=st.number_input('Expected Year of Obsolescence', step = 1, min_value = 0, max_value = 3000, value = None, help = 'Expected year of obsolescence includes both the asset itself becoming obsolete and the inability to obtain a service contract for the asset.', key=f'input_cole{row}')
         else:
-            asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}',label_visibility = "collapsed")
+            asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}', value = None, label_visibility = "collapsed")
     # -- Asset Condition
     with grid_asset[5]:
         while len(asset_cond) < row+1:
             asset_cond.append(None)
         if row == 0:
-            asset_cond[row]=st.selectbox('Asset  \n \n  Condition',  ('Excellent', 'Good', 'Fair', 'Poor'), help="Excellent - No current issues with the asset. \n \n \n " +
+            asset_cond[row]=st.selectbox('Asset  \n \n  Condition',  ('','Excellent', 'Good', 'Fair', 'Poor'), help="Excellent - No current issues with the asset. \n \n \n " +
                                                                                        "Good - Only minor issues with the asset that can be easily fixed. \n \n \n " +
                                                                                        "Fair - Asset is still in a working condition, but is near end of life. \n \n \n " +
                                                                                        "Poor - Asset has many issues/doesn't operate properly ", key=f'input_colf{row}')
         else:
-            asset_cond[row]=st.selectbox('Temp', ('Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}',label_visibility = "collapsed")
+            asset_cond[row]=st.selectbox('Temp', ('','Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}',label_visibility = "collapsed")
     # -- Asset Cost of Replacement
     with grid_asset[6]:
         while len(asset_cost) < row+1:
             asset_cost.append(None)
         if row == 0:
-            asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, key=f'input_colg{row}')
+            asset_cost[row]=st.number_input('Replacement \n \n  Cost ($)', step=1000, value= None, key=f'input_colg{row}')
         else:
-            asset_cost[row]=st.number_input('Temp', step=1000, key=f'input_colg{row}',label_visibility = "collapsed")
+            asset_cost[row]=st.number_input('Temp', step=1000, key=f'input_colg{row}', value = None, label_visibility = "collapsed")
     # -- Asset Impact if Lost
     with grid_asset[7]:
         while len(asset_imp) < row+1:
@@ -314,9 +314,9 @@ def add_row_asset(row):
         while len(asset_itrep) < row+1:
             asset_itrep.append(None)
         if row == 0:
-            asset_itrep[row]=st.selectbox('Inlcudes IT \n \n  Hardware?', ('Yes','No'), help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
+            asset_itrep[row]=st.selectbox('Inlcudes IT \n \n  Hardware?', ('','Yes','No'), help = 'Does the replacement of this asset require and IT Hardware replacement as well?', key=f'input_colj{row}')
         else:
-            asset_itrep[row]=st.selectbox('Temp', ('Yes','No'),key=f'input_colj{row}',label_visibility = "collapsed")
+            asset_itrep[row]=st.selectbox('Temp', ('','Yes','No'),key=f'input_colj{row}',label_visibility = "collapsed")
     # -- Parts vs Full Replacement
     with grid_asset[10]:
         while len(asset_repdesc) < row+1:
@@ -415,25 +415,25 @@ def add_row_fund(row):
         while len(start_fund) < row+1:
             start_fund.append(None)
         if row == 0:
-            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_colm{row}')
+            start_fund[row]=st.date_input('Funding Start Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",value = None, key=f'input_colm{row}')
         else:
-            start_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_colm{row}',label_visibility = "collapsed")
+            start_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  value = None, key=f'input_colm{row}',label_visibility = "collapsed")
     # -- End Date of Funding
     with grid_fund[2]:
         while len(end_fund) < row+1:
             end_fund.append(None)
         if row == 0:
-            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY",  key=f'input_coln{row}')
+            end_fund[row]=st.date_input('Funding End Date', min_value=datetime.date(1950, 1, 1), format="MM/DD/YYYY", value = None,  key=f'input_coln{row}')
         else:
-            end_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY",  key=f'input_coln{row}',label_visibility = "collapsed")
+            end_fund[row]=st.date_input('Temp', min_value = datetime.date(1950, 1, 1),  format="MM/DD/YYYY", value = None, key=f'input_coln{row}',label_visibility = "collapsed")
     # -- Funding Amount
     with grid_fund[3]:
         while len(fund_amt) < row+1:
             fund_amt.append(None)
         if row == 0:
-            fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}')
+            fund_amt[row]=st.number_input("Funding Amount per Year ($)",min_value=0,max_value=None,step=1000,value=None, key=f'input_colo{row}')
         else:
-            fund_amt[row]=st.number_input('Temp',min_value=0,max_value=None,step=1000,value=0, key=f'input_colo{row}',label_visibility = "collapsed")
+            fund_amt[row]=st.number_input('Temp',min_value=0,max_value=None,step=1000,value=None, key=f'input_colo{row}',label_visibility = "collapsed")
 
 # Add rows for number of funding sources
 for r in range(int(st.session_state['fund_num'])):
@@ -476,19 +476,19 @@ def add_row_proj(row):
         while len(use_util) < row+1:
             use_util.append(None)
         if row == 0:
-            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}')
+            use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, value = None, key=f'input_colr{row}')
         else:
-            use_util[row]=st.number_input('Tmp', min_value=0.0, max_value=100.0, step=0.5, key=f'input_colr{row}',label_visibility = "collapsed")
+            use_util[row]=st.number_input('Tmp', min_value=0.0, max_value=100.0, step=0.5, value = None, key=f'input_colr{row}',label_visibility = "collapsed")
     # -- Risk to Project
     with grid_proj[3]:
         while len(risk) < row+1:
             risk.append(None)
         if row == 0:
-            risk[row]=st.selectbox('Risk to Project', ('High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
+            risk[row]=st.selectbox('Risk to Project', ('','High', 'Moderate', 'Low'),help='High -  Capability cannot be replicated elsewhere and replacement has high cost/lead time. \n \n \n ' +
                                                                                        'Moderate - Capability cannot be replicated elsewhere and replacement has low cost/lead time. \n \n \n ' +
                                                                                        'Low - Capability can be replicated elsewhere for low cost/lead time.',key=f'input_cols{row}')
         else:
-            risk[row]=st.selectbox('Temp', ('High', 'Moderate', 'Low'),key=f'input_cols{row}',label_visibility = "collapsed")
+            risk[row]=st.selectbox('Temp', ('','High', 'Moderate', 'Low'),key=f'input_cols{row}',label_visibility = "collapsed")
     # -- Impact to Project
     with grid_proj[4]:
         while len(impact_util) < row+1:
@@ -547,25 +547,25 @@ def add_row_down(row):
         while len(date_dt) < row+1:
             date_dt.append(None)
         if row == 0:
-            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(2019, 1, 1),  format="MM/DD/YYYY",  key=f'input_colv{row}')
+            date_dt[row]=st.date_input('Start Date', min_value=datetime.date(2019, 1, 1),  format="MM/DD/YYYY", value = None,  key=f'input_colv{row}')
         else:
-            date_dt[row]=st.date_input('Tepm', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY",  key=f'input_colv{row}',label_visibility = "collapsed")
+            date_dt[row]=st.date_input('Tepm', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY", value = None,  key=f'input_colv{row}',label_visibility = "collapsed")
     # -- Time Down
     with grid_down[2]:
         while len(time_dt) < row+1:
             time_dt.append(None)
         if row == 0:
-            time_dt[row]=st.number_input('Time Down', step=0.5, key=f'input_colw{row}')
+            time_dt[row]=st.number_input('Time Down', step=0.5, value = None, key=f'input_colw{row}')
         else:
-            time_dt[row]=st.number_input('Temp', step=0.5, key=f'input_colw{row}',label_visibility = "collapsed")
+            time_dt[row]=st.number_input('Temp', step=0.5, value = None, key=f'input_colw{row}',label_visibility = "collapsed")
     # -- Unit of Time Down
     with grid_down[3]:
         while len(unit_dt) < row+1:
             unit_dt.append(None)
         if row == 0:
-            unit_dt[row]=st.selectbox('Unit', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
+            unit_dt[row]=st.selectbox('Unit', ('','Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}')
         else:
-            unit_dt[row]=st.selectbox('Temp', ('Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}',label_visibility = "collapsed")
+            unit_dt[row]=st.selectbox('Temp', ('','Days', 'Weeks', 'Months','Years'),key=f'input_colx{row}',label_visibility = "collapsed")
     # -- Impact due to down time
     with grid_down[4]:
         while len(imp_dt) < row+1:
@@ -596,7 +596,7 @@ cost_rep = st.number_input("Estimated Cost to Replace Entire Laboratory/Capabili
 cost_serv = st.number_input("Cost of Service Contracts ($):",min_value=0,max_value=None,step=1000,value=None,key='cost_serv')
 
 # Create Input for Annual Expenses to operate and sustain the lab
-cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=0,key='cost_ann')
+cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_ann')
 
 # Create Input for Incurred Cost Due to Downtown
 cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_inc')
