@@ -514,7 +514,7 @@ if st.button('Filter Data'):
                     # Create Pie Chart
                     labels = []
                     vals = []
-                    for j in range(len(num_proj)):
+                    for j in range(num_proj):
                         try: 
                             float(record[col_keys[2]][j])
                             labels.append(record[col_keys[0]][j])
