@@ -381,7 +381,7 @@ if st.button('Filter Data'):
                   'T1-Acquisition Year',
                   'T1-Expected Year of Obsolescence',
                   'T1-Asset Condition',
-                  'T1-Replacement Cost ($)'},
+                  'T1-Replacement Cost ($)',
                   'T1-Impact to Capability if Lost',
                   'T1-Associated Software',
                   'T1-Inlcudes IT Hardware?',
