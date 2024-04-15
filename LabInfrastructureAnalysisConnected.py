@@ -8,6 +8,9 @@ from pymongo.mongo_client import MongoClient
 import dns
 import certifi
 
+# Set Path
+data_path = "/mount/src/labinfrastructure/"
+
 # Set the page configuration
 st.set_page_config(layout="wide")
 
