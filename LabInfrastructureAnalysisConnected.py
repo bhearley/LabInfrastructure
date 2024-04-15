@@ -93,22 +93,23 @@ st.markdown('Only select labs whose total asset replacement cost for the specifi
 def convert_num(key):
     if key in st.session_state:
         raw_val = st.session_state[key]
-        test_val = raw_val.replace(',','')
-        flag = 0
-        try:
-            float(test_val)
-        except ValueError:
-            flag = 1
-            st.error('Not a valid number')
-        if flag == 0:
-            if len(test_val)>3:
-                num = ''
-                for k in range(len(test_val)):
-                    num = test_val[len(test_val)-1-k] + num
-                    chk = k+1
-                    if chk%3 == 0 and k!= len(test_val)-1:
-                        num = ',' + num
-                st.session_state[key] = num
+        if raw_val != None:
+            test_val = raw_val.replace(',','')
+            flag = 0
+            try:
+                float(test_val)
+            except ValueError:
+                flag = 1
+                st.error('Not a valid number')
+            if flag == 0:
+                if len(test_val)>3:
+                    num = ''
+                    for k in range(len(test_val)):
+                        num = test_val[len(test_val)-1-k] + num
+                        chk = k+1
+                        if chk%3 == 0 and k!= len(test_val)-1:
+                            num = ',' + num
+                    st.session_state[key] = num
 
 grid_vals1 = st.columns(2)
 with grid_vals1[0]:
