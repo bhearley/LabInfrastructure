@@ -335,11 +335,21 @@ if st.button('Filter Data'):
     run1.font.size = Pt(12)
 
     # -- Write Divisions
-    run_lab1 = doc.add_paragraph().add_run('Divisions Selected:')
-    run_lab1 = doc.add_paragraph().add_run(criteria['Div'])
-    run_lab1.font.name = 'Times New Roman'
-    run_lab1.font.size = Pt(18)
-    run_lab1.bold = True
+    if st.session_state['filt_opt1'] == 'Division':
+        run_lab1 = doc.add_paragraph().add_run('Divisions Selected:')
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+        run_lab1.bold = True
+
+        div_out = ''
+        for k in range(len(criteria['Div']))):
+            div_out = div_out + criteria['Div'][k] + ','
+        div_out = div_out[:len(div_out)-1]
+
+        run_lab1 = doc.add_paragraph().add_run(div_out)
+        run_lab1.font.name = 'Times New Roman'
+        run_lab1.font.size = Pt(12)
+        run_lab1.bold = True
 
     # Loop Through Divisions
     divisions = list(FilesOut.keys())
