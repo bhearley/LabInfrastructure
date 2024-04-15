@@ -763,7 +763,7 @@ with grid_db[0]:
             st.cache_data.clear()
 
             # Create Popup for Save
-            st.makrdown('Saved to Database!')
+            st.markdown('Saved to Database!')
 
 with grid_db[1]:
     # Delete Entry from Database
