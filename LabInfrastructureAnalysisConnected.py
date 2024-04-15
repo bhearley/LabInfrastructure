@@ -276,7 +276,7 @@ if st.button('Filter Data'):
 
     # Create Date Time Stamp
     today = date.today()
-    run2 = doc.add_paragraph().add_run('Created on: ' + today)
+    run2 = doc.add_paragraph().add_run('Created on: ' + str(today))
     run2.font.name = 'Times New Roman'
     run2.font.size = Pt(12)
 
