@@ -131,9 +131,9 @@ st.markdown(' ')
 st.markdown('Only select labs whose total replacement cost is within a certain range.  Use the two inputs to set the minimum and maximum total value of assets that meet the condition criteria for a lab.')
 grid_vals2 = st.columns(2)
 with grid_vals2[0]:
-    min_tot_cost = st.text_input('Min. Value of Total Replacement Cost', value="0", key='min_tot_cost_key', on_change=convert_num('min_tot_cost_key'))
+    min_tot_cost = st.text_input('Min. Value of Total Replacement Cost', value=None, key='min_tot_cost_key', on_change=convert_num('min_tot_cost_key'))
 with grid_vals2[1]:
-    max_tot_cost = st.text_input('Max. Value of Total Replacement Cost', value="1,000,000,000", key='max_tot_cost_key', on_change=convert_num('max_tot_cost_key'))
+    max_tot_cost = st.text_input('Max. Value of Total Replacement Cost', value=None, key='max_tot_cost_key', on_change=convert_num('max_tot_cost_key'))
 
 status_opts = ['All Entries (Draft and Final)','Final Only']
 status_opt1 = st.selectbox('Select Status of Data Entries:',status_opts,key='status_opt1')
