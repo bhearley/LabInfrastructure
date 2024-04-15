@@ -112,9 +112,9 @@ def convert_num(key):
 
 grid_vals1 = st.columns(2)
 with grid_vals1[0]:
-    min_asset_cost = st.text_input('Min. Value of Total Assets', value="0", key='min_asset_cost_key', on_change=convert_num('min_asset_cost_key'))
+    min_asset_cost = st.text_input('Min. Value of Total Assets', value=None, key='min_asset_cost_key', on_change=convert_num('min_asset_cost_key'))
 with grid_vals1[1]:
-    max_asset_cost = st.text_input('Max. Value of Total Assets', value="1,000,000,000", key='max_asset_cost_key', on_change=convert_num('max_asset_cost_key'))
+    max_asset_cost = st.text_input('Max. Value of Total Assets', value=None, key='max_asset_cost_key', on_change=convert_num('max_asset_cost_key'))
 
 
 grid = st.columns(4)
