@@ -51,12 +51,13 @@ access = 'No'
 password = ''
 
 # Create input for password
-password = st.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
+pass_place = st.empty()
+password = pass_place.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
 
 if password == "brookpark21000":
     access = 'Yes'
     # Delete Password Widget
-    del st.session_state["pwd_key"]
+    pass_place.epmty()
 
 elif password != "":
     st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
