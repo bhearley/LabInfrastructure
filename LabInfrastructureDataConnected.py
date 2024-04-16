@@ -51,15 +51,13 @@ access = 'No'
 password = ''
 
 # Create input for password
-grid_pwd = st.columns([0.5,0.25,0.25])
-with grid_pwd[0]:
-    password = st.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
+password = st.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
 
 if password == "brookpark21000":
     access = 'Yes'
     # Delete Password Widget
     del st.session_state["pwd_key"]
-    st.experimental_rerun()
+
 elif password != "":
     st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
 
@@ -69,9 +67,6 @@ if access == 'Yes':
     # DATA POPULATION
     # Set up the database connection and define functions to populate data fields in the web app
 
-    
-
-    
     # Connect to the Database
     @st.cache_resource
     def init_connection():
