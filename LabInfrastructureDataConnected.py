@@ -67,7 +67,7 @@ if access == 'Yes':
     # Set up the database connection and define functions to populate data fields in the web app
 
     # Delete Password Widget
-    del st.session_state[pwd_key]
+    del st.session_state["pwd_key"]
     
     # Connect to the Database
     @st.cache_resource
