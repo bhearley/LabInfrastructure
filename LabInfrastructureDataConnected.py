@@ -51,8 +51,10 @@ access = 'No'
 password = ''
 
 # Create input for password
-pass_place = st.empty()
-password = pass_place.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
+grid_pass = st.columns([0.5,0.5])
+with grid_pass[0]:
+    pass_place = st.empty()
+    password = pass_place.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
 
 if password == "brookpark21000":
     access = 'Yes'
