@@ -53,7 +53,7 @@ password = ''
 # Create input for password
 grid_pwd = st.columns([0.5,0.25,0.25])
 with grid_pwd[0]:
-    password = st.text_input('Enter the Access Code',value = '', type="password", key='pwd_key')
+    password = st.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
 
 if password == "brookpark21000":
     access = 'Yes'
