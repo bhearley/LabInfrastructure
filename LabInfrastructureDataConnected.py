@@ -57,7 +57,7 @@ password = pass_place.text_input('Enter the Access Code',value = '', type="passw
 if password == "brookpark21000":
     access = 'Yes'
     # Delete Password Widget
-    pass_place.epmty()
+    pass_place.empty()
 
 elif password != "":
     st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
