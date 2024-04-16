@@ -48,6 +48,7 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 
 # Default access to False
 access = 'No'
+password = ''
 
 # Create input for password
 grid_pwd = st.columns([0.5,0.25,0.25])
@@ -55,11 +56,10 @@ with grid_pwd[0]:
     password = st.text_input('Enter the Access Code',value = '', type="password", key='pwd_key')
 with grid_pwd[2]:
     if st.button('Enter'):
-        if 'pwd_key' in st.session_state:
-            if session_state['pwd_key'] == "brookpark21000":
-                access = 'Yes'
-            elif session_state['pwd_key'] != "":
-                st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
+        if password == "brookpark21000":
+            access = 'Yes'
+        elif password != "":
+            st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
 
 
 if access == 'Yes':
