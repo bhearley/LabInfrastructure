@@ -65,6 +65,9 @@ if access == 'Yes':
     #==================================================================================================================================================================
     # DATA POPULATION
     # Set up the database connection and define functions to populate data fields in the web app
+
+    # Delete Password Widget
+    del st.session_state["widgets"][pwd_key]
     
     # Connect to the Database
     @st.cache_resource
