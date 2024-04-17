@@ -56,7 +56,7 @@ with grid_pass[0]:
     pass_place = st.empty()
     password = pass_place.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
 
-if password == "brookpark21000":
+if password == st.secrets["passcode"]:#"brookpark21000":
     access = 'Yes'
     # Delete Password Widget
     pass_place.empty()
