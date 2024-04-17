@@ -56,7 +56,7 @@ with grid_pass[0]:
     pass_place = st.empty()
     password = pass_place.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
 
-if password == st.secrets["passcode"]:#"brookpark21000":
+if password == st.secrets["passcode"]:
     access = 'Yes'
     # Delete Password Widget
     pass_place.empty()
@@ -73,7 +73,7 @@ if access == 'Yes':
     # Connect to the Database
     @st.cache_resource
     def init_connection():
-        uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+        uri = "mongodb+srv://nasagrc:' + st.secrets['mongo1']['password'] + '@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
         return MongoClient(uri, tlsCAFile=certifi.where())
     
     # Create the Database Client
