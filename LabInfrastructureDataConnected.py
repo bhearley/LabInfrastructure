@@ -471,7 +471,20 @@ if access == 'Yes':
     
     # Create File Uploader
     uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
-    
+    # -- Find list of existing values
+    # Load the Current Database
+    db = client['LabData']
+    collection = db['LabData']
+    query = {'Laboratory/Capability Name': st.session_state['name']}
+    results = collection.find(query)
+    for result in results:
+        if 'Lab Images' in list(result.keys()):
+            curr_imgs = result['Lab Images']
+        else:
+            curr_imgs = []
+    if len(curr_imgs) != 0:
+        st.image(curr_imgs)
+
     #Create Divider for Name and Description
     st.subheader('Current Mission/Project Utilization')
     # Create Input for Project Utilization and Risk
