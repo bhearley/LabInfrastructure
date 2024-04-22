@@ -778,11 +778,7 @@ if access == 'Yes':
 
                 # Check Lab Images
                 for iii in range(len(uploaded_files)):
-                    fname = uploaded_files[iii]['name']
-                    ext = fname[len(fname)-4:]
-                    st.write(ext)    
-                    if 'png' in ext:
-                        new_data['Image'].append(uploaded_files[iii].getvalue())
+                    new_data['Image'].append(uploaded_files[iii].getvalue())
             
                 # Delete the existing entry if it exists
                 db = client['LabData']
