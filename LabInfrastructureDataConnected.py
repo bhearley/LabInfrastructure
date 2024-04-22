@@ -137,6 +137,7 @@ if access == 'Yes':
                     st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
     
                 # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
+                lab_images_old = result['Lab Images']
                 #st.session_state['asset_img'] = result['Number of Asset Images']
                 #for m in range(int(result['Number of Asset Images'])):
                 #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
@@ -777,6 +778,7 @@ if access == 'Yes':
                 new_data['Status'] = st.session_state['status']
 
                 # Check Lab Images
+                new_data['Lab Images'] = lab_images_old # Set the old image vector
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
             
