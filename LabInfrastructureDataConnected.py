@@ -782,6 +782,9 @@ if access == 'Yes':
 
                 # Check Lab Images
                 # -- Find list of existing values
+                # Load the Current Database
+                db = client['LabData']
+                collection = db['LabData']
                 query = {'Laboratory/Capability Name': st.session_state['name']}
                 results = collection.find(query)
                 for result in results:
