@@ -817,7 +817,6 @@ if access == 'Yes':
                 for kk in range(len(curr_img_write)):
                     if st.session_state[f'input_colab{kk}'] == 'Keep':
                         new_data['Lab Images'].append(curr_img_write[kk])
-                        st.write('Kept image #' + str(kk))
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
             
