@@ -781,6 +781,7 @@ if access == 'Yes':
                 new_data['Status'] = st.session_state['status']
 
                 # Check Lab Images
+                lab_images_old = []
                 new_data['Lab Images'] = lab_images_old # Set the old image vector
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
