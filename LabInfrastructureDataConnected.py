@@ -814,10 +814,10 @@ if access == 'Yes':
                         curr_img_write = []
 
                 # -- Populate List of Existing Images
-                for kk in range(len(new_data['Lab Images'])):
+                for kk in range(len(curr_img_write)):
                     if st.session_state[f'input_colab{kk}'] == 'Keep':
-                        new_data['Lab Images'].append(curr_imgs[kk])
-                    
+                        new_data['Lab Images'].append(curr_img_write[kk])
+                        st.write('Kept image #' + str(kk))
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
             
