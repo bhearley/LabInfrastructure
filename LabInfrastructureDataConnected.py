@@ -487,6 +487,9 @@ if access == 'Yes':
         with grid_curr_imgs[0]:
             for k in range(len(curr_imgs)):
                 st.image(curr_imgs[k])
+        with grid_curr_imgs[1]:
+            for k in range(len(curr_imgs)):
+                st.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
 
     #Create Divider for Name and Description
     st.subheader('Current Mission/Project Utilization')
