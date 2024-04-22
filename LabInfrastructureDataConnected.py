@@ -18,6 +18,8 @@ import dns
 import certifi
 import datetime
 import time
+from PIL import Image
+import io
 
 #==================================================================================================================================================================
 # GENERAL INFORMATION
@@ -788,6 +790,10 @@ if access == 'Yes':
     
                 # Create Popup for Save
                 st.markdown( 'Saved to Database!')
+
+
+                # Check Lab Images
+                st.write(uploaded_files)
                         
     with grid_db[1]:
         # Delete Entry from Database
