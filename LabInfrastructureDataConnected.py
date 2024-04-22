@@ -470,7 +470,7 @@ if access == 'Yes':
         add_row_fund(r)
     
     # Create File Uploader
-    uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True)
+    uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
     
     #Create Divider for Name and Description
     st.subheader('Current Mission/Project Utilization')
@@ -781,8 +781,14 @@ if access == 'Yes':
                 new_data['Status'] = st.session_state['status']
 
                 # Check Lab Images
-                lab_images_old = []
-                new_data['Lab Images'] = lab_images_old # Set the old image vector
+                # -- Find list of existing values
+                query = {'Laboratory/Capability Name': st.session_state['Laboratory/Capability Name']}
+                results = collection.find(query)
+                for result in results:
+                    if 'Lab Images' in list(result.keys()):
+                        new_data['Lab Images'] = result['Lab Images']
+                    else:
+                        new_data['Lab Images'] = []
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
             
