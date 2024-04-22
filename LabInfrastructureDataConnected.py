@@ -486,7 +486,7 @@ if access == 'Yes':
     # -- Create Grid for Current Images
     if len(curr_imgs) != 0:
         for k in range(len(curr_imgs)):
-            col1_img, col2_img, col2_img = st.columns(3)
+            col1_img, col2_img, col3_img = st.columns(3)
             col1_img.image(curr_imgs[k])
             col2_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
 
