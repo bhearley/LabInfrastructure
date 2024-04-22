@@ -775,6 +775,14 @@ if access == 'Yes':
                     new_data['T6-Directorate'].append(st.session_state[f'input_colz{m}'])
                     new_data['T6-Labor Cost (%)'].append(st.session_state[f'input_colaa{m}'])
                 new_data['Status'] = st.session_state['status']
+
+                # Check Lab Images
+                for iii in range(len(uploaded_files)):
+                    fname = uploaded_files[iii]['name']
+                    ext = fname[len(fname)-4:]
+                    st.write(ext)    
+                    if 'png' in ext:
+                        new_data['Image'].append(uploaded_files[iii].getvalue())
             
                 # Delete the existing entry if it exists
                 db = client['LabData']
@@ -792,13 +800,7 @@ if access == 'Yes':
                 st.markdown( 'Saved to Database!')
 
 
-                # Check Lab Images
-                for iii in range(len(uploaded_files)):
-                    fname = uploaded_files[iii]['name']
-                    ext = fname[len(fname)-4:]
-                    st.write(ext)    
-                    if 'png' in ext:
-                        new_data['Image'].append(uploaded_files[iii].getvalue())
+                
                         
     with grid_db[1]:
         # Delete Entry from Database
