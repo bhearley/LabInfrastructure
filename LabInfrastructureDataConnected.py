@@ -778,7 +778,7 @@ if access == 'Yes':
 
                 # Check Lab Images
                 for iii in range(len(uploaded_files)):
-                    new_data['Image'].append(uploaded_files[iii].getvalue())
+                    new_data['Lab Images'].append(uploaded_files[iii].getvalue())
             
                 # Delete the existing entry if it exists
                 db = client['LabData']
