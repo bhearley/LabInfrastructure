@@ -794,6 +794,14 @@ if access == 'Yes':
 
                 # Check Lab Images
                 st.write(uploaded_files)
+                for iii in range(len(uploaded_files)):
+                    fname = uploaded_files[iii]['name']
+                    ext = fname[len(fname)-4:]
+                    if 'png' in ext':
+                        im = Image.open(fname)
+                        image_bytes = io.BytesIO()
+                        im.save(image_bytes,format='PNG')
+                        new_data['Image'].append(image_bytes.getvalue())
                         
     with grid_db[1]:
         # Delete Entry from Database
