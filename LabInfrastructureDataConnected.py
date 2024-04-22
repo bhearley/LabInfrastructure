@@ -782,7 +782,7 @@ if access == 'Yes':
 
                 # Check Lab Images
                 # -- Find list of existing values
-                query = {'Laboratory/Capability Name': st.session_state['Laboratory/Capability Name']}
+                query = {'Laboratory/Capability Name': st.session_state['name']}
                 results = collection.find(query)
                 for result in results:
                     if 'Lab Images' in list(result.keys()):
