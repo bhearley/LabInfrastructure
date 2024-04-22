@@ -797,7 +797,7 @@ if access == 'Yes':
                 for iii in range(len(uploaded_files)):
                     fname = uploaded_files[iii]['name']
                     ext = fname[len(fname)-4:]
-                    if 'png' in ext':
+                    if 'png' in ext:
                         im = Image.open(fname)
                         image_bytes = io.BytesIO()
                         im.save(image_bytes,format='PNG')
