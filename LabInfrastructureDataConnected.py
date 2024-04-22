@@ -137,7 +137,10 @@ if access == 'Yes':
                     st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
     
                 # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
-                lab_images_old = result['Lab Images']
+                if 'Lab Images' in list(result.keys()):
+                    lab_images_old = result['Lab Images']
+                else:
+                    lab_images_old = []
                 #st.session_state['asset_img'] = result['Number of Asset Images']
                 #for m in range(int(result['Number of Asset Images'])):
                 #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
