@@ -487,8 +487,8 @@ if access == 'Yes':
     if len(curr_imgs) != 0:
         for k in range(len(curr_imgs)):
             col1_img, col2_img, col2_img = st.columns(3)
-            col1.image(curr_imgs[k])
-            col2.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
+            col1_img.image(curr_imgs[k])
+            col2_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
 
 
     #Create Divider for Name and Description
