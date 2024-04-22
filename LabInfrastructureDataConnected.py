@@ -483,7 +483,10 @@ if access == 'Yes':
         else:
             curr_imgs = []
     if len(curr_imgs) != 0:
-        st.image(curr_imgs)
+        grid_curr_imgs = st.columns(2):
+            with grid_curr_imgs[0]:
+                for k in range(len(curr_imgs)):
+                    st.image(curr_imgs[k])
 
     #Create Divider for Name and Description
     st.subheader('Current Mission/Project Utilization')
