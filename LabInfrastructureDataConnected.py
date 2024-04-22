@@ -470,7 +470,7 @@ if access == 'Yes':
         add_row_fund(r)
     
     # Create File Uploader
-    uploaded_files = st.file_uploader("Upload Documents/Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
+    uploaded_files = st.file_uploader("Upload New Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
 
     # Diaply Existing Files for this record
     # -- Find list of existing values
