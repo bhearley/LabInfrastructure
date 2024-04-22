@@ -800,6 +800,7 @@ if access == 'Yes':
                 new_data['Status'] = st.session_state['status']
 
                 # Check Lab Images
+                new_data['Lab Images'] = []
                 # -- Find list of existing values
                 # Load the Current Database
                 db = client['LabData']
@@ -808,9 +809,15 @@ if access == 'Yes':
                 results = collection.find(query)
                 for result in results:
                     if 'Lab Images' in list(result.keys()):
-                        new_data['Lab Images'] = result['Lab Images']
+                        curr_img_write = result['Lab Images']
                     else:
-                        new_data['Lab Images'] = []
+                        curr_img_write = []
+
+                # -- Populate List of Existing Images
+                for kk in range(len(new_data['Lab Images'])):
+                    if st.session_state[f'input_colab{kk}'] == 'Keep':
+                        new_data['Lab Images'].append(curr_imgs[kk])
+                    
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
             
