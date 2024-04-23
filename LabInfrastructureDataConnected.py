@@ -389,18 +389,18 @@ if access == 'Yes':
             while len(asset_imgs) < row+1:
                 asset_imgs.append(None)
             if row == 0:
-                asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=True, key=f'input_colimg2{row}')
+                asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=False, key=f'input_colimg2{row}')
     
             else:
-                asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
+                asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=False, key=f'input_colimg2{row}',label_visibility = "collapsed")
         # -- Asset
         with grid_img[2]:
             while len(asset_imgs_notes) < row+1:
                 asset_imgs_notes.append(None)
             if row == 0:
-                asset_imgs_notes[row]=st.text_input('Notes', val='', key=f'input_colimg3{row}')  
+                asset_imgs_notes[row]=st.text_input('Notes', value='', key=f'input_colimg3{row}')  
             else:
-                asset_imgs_notes[row]=st.text_input('Temp', asset_imgs_notes, key=f'input_colimg3{row}',label_visibility = "collapsed")
+                asset_imgs_notes[row]=st.text_input('Temp', value='', key=f'input_colimg3{row}',label_visibility = "collapsed")
     
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
