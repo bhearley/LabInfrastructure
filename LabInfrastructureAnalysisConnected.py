@@ -652,8 +652,8 @@ if st.button('Filter Data'):
 
                             for j in range(len(record['T7-Asset Image'])):
                                 row = table.add_row().cells
-                                row[0].text = record['T7-Asset Image Label']
-                                row[2].text = record['T7-Asset Image Notes']
+                                row[0].text = record['T7-Asset Image Label'][j]
+                                row[2].text = record['T7-Asset Image Notes'][j]
 
                                 pil_img = Image.open(io.BytesIO(record['T7-Asset Image'][j]))
                                 plt.imshow(pil_img)
