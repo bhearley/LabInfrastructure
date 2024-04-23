@@ -364,12 +364,13 @@ if access == 'Yes':
     asset_imgs_lab = [] #Store the asset images label
     asset_imgs = [] #Store the asset images
     asset_imgs_notes = [] #Store the asset image notes
+    asset_imgs_keep = [] #Store the asset image status
     asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
 
     # Add row to asset image table
     def add_row_img(row):
         # -- Create the grid for each row
-        grid_img = st.columns(3)
+        grid_img = st.columns([0.25,0.3,0.3,0.15])
          # -- Set the Options
         options_dt = []
         for k in range(len(asset_name)):
@@ -393,7 +394,7 @@ if access == 'Yes':
     
             else:
                 asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=False, key=f'input_colimg2{row}',label_visibility = "collapsed")
-        # -- Asset
+        # -- Asset Notes
         with grid_img[2]:
             while len(asset_imgs_notes) < row+1:
                 asset_imgs_notes.append(None)
@@ -401,6 +402,14 @@ if access == 'Yes':
                 asset_imgs_notes[row]=st.text_area('Notes', value='', key=f'input_colimg3{row}')  
             else:
                 asset_imgs_notes[row]=st.text_area('Temp', value='', key=f'input_colimg3{row}',label_visibility = "collapsed")
+        # -- Keep/Remove
+        with grid_img[3]:
+            while len(asset_imgs_keep) < row+1:
+                asset_imgs_keep.append(None)
+            if row == 0:
+                asset_imgs_keep[row]=st.selectbox('Keep/Remove', ('Keep','Remove'), key=f'input_colimg4{row}')  
+            else:
+                asset_imgs_keep[row]=st.selectbox('Temp', ('Keep','Remove'), key=f'input_colimg4{row}',label_visibility = "collapsed")
     
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
