@@ -113,6 +113,8 @@ new_access_code = st.empty()
 sign_up_btn2 = st.empty()
 
 grid_user = st.columns([0.2,0.2,0.2,0.4])
+with grid_user[0]:
+   login_btn.button('Login', key='login_btn') 
 with grid_user[1]:
    sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
 
