@@ -423,7 +423,7 @@ if access == 'Yes':
             curr_asset_notes = []
     # -- Create Grid for Current Images
     if len(curr_asset_imgs) != 0:
-        for k in range(len(curr_imgs)):
+        for k in range(len(curr_asset_imgs)):
             # Create The Grid
             col1_asset_img, col2_asset_img, col3_asset_img, col4_asset_img = st.columns([0.25,0.3,0.3,0.15])
 
@@ -434,6 +434,9 @@ if access == 'Yes':
                 options_dt.append(asset_name[kk])
                 if asset_name[kk] == cur_asset_labels[k]:
                     idx = kk
+
+            
+            # Populate Existing Asset Images
             col1_asset_img.selectbox('Temp', options_dt, index = idx, key=f'input_colba{k}',label_visibility = "collapsed")
             col2_asset_img.image(curr_asset_imgs[k])
             col3_asset_img.text_area('Temp',value = curr_asset_notes[k], key=f'input_colbb{k}',label_visibility = "collapsed")
