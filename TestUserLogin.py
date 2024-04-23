@@ -136,7 +136,9 @@ if username != '':
             pass_place.empty()
             pass_place2.empty()
             access_place.empty()
+            st.markdown(""---"")
             st.markdown('New User added to the database. Refresh the page and login to access the data collection tool.')
+            st.cache_data.clear()
     else:
         if password != "":
             if password == real_pass:
@@ -178,7 +180,9 @@ if username != '':
                     pass_place.empty()
                     pass_place2.empty()
                     access_place.empty()
-                    st.markdown('New User added to the database. Refresh the page and login to access the data collection tool.')
+                    st.markdown(""---"")
+                    st.markdown('Password Updated. Refresh the page and login to access the data collection tool.')
+                    st.cache_data.clear()
 
                 
 if access == 'Yes':
