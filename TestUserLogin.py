@@ -77,6 +77,9 @@ all_users = get_user_data()
 access = 'No'
 password = ''
 
+# Initialize Variables
+sign_up_btn2 = st.empty()
+
 # Set Home Screen Options
 home_screen = 1
 def create_home_screen(home_screen):
@@ -130,64 +133,31 @@ def create_home_screen(home_screen):
         new_pass1 = st.empty()
         new_pass2 = st.empty()
         new_access_code = st.empty()
-        sign_up_btn2 = st.empty()
+        #sign_up_btn2 = st.empty()
         
         new_user.text_input('Enter Your Username',value='',key='new_user')
         new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
         new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
         new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
     
-        # if sign_up_btn2.button('Sign Up'):
-        #     st.write(st.session_state['new_user'])
-        #     # Check Username
-        #     if st.session_state['new_user'] == '':
-        #         st.error('Username cannot by empty')
-        #         print('Username cannot by empty')
-        #     else:
-        #         user_flag = 0
-        #         for k in range(len(all_users)):
-        #             if all_users[k]['Username'] == st.session_state['new_user']:
-        #                 user_flag = 1
-        #         if user_flag == 1:
-        #             st.error('Username is unavailable. If you have an account, please enter your password.')
-
-        formbtn = st.button("Form")
-        
-        if "formbtn_state" not in st.session_state:
-            st.session_state.formbtn_state = False
-        
-        if formbtn or st.session_state.formbtn_state:
-            st.session_state.formbtn_state = True
-            
-            st.subheader("User Info Form")
-            # name = st.text_input("Name")
-            with st.form(key = 'user_info'):
-                st.write('User Information')
-            
-                name = st.text_input(label="Name 📛")
-                age = st.number_input(label="Age 🔢", value=0)
-                email = st.text_input(label="Email 📧")
-                phone = st.text_input(label="Phone 📱")
-                gender = st.radio("Gender 🧑", ("Male", "Female", "Prefer Not To Say"))
-            
-                submit_form = st.form_submit_button(label="Register", help="Click to register!")
-            
-                # Checking if all the fields are non empty
-                if submit_form:
-                    st.write(submit_form)
-            
-                    if name and age and email and phone and gender:
-                        # add_user_info(id, name, age, email, phone, gender)
-                        st.success(
-                                    f"ID:  \n Name: {name}  \n Age: {age}  \n Email: {email}  \n Phone: {phone}  \n Gender: {gender}"
-                                )
-                    else:
-                        st.warning("Please fill all the fields")
+        if sign_up_btn2.button('Sign Up'):
+            st.write(st.session_state['new_user'])
+            # Check Username
+            if st.session_state['new_user'] == '':
+                st.error('Username cannot by empty')
+                print('Username cannot by empty')
+            else:
+                user_flag = 0
+                for k in range(len(all_users)):
+                    if all_users[k]['Username'] == st.session_state['new_user']:
+                        user_flag = 1
+                if user_flag == 1:
+                    st.error('Username is unavailable. If you have an account, please enter your password.')
 
   
-if "user_key" not in st.session_state:
-    if 'sign_up_btn_2'  in st.session_state:
-        st.write('Test')    
+#if "user_key" not in st.session_state:
+if 'sign_up_btn_2' not in st.session_state:
+    st.write('Test')    
     create_home_screen(1)
 else:
     if st.session_state['sign_up_btn_1'] == True:
