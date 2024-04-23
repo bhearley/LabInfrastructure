@@ -414,15 +414,15 @@ if access == 'Yes':
         collection = db['LabData']
         query = {'Laboratory/Capability Name': st.session_state['name']}
         results = collection.find(query)
+        curr_asset_imgs = []
+        curr_asset_labels = []
+        curr_asset_notes = []
         for result in results:
             if 'T7-Asset Image' in list(result.keys()):
                 curr_asset_imgs = result['T7-Asset Image']
                 curr_asset_labels = result['T7-Asset Image Label']
                 curr_asset_notes = result['T7-Asset Image Notes']
-            else:
-                curr_asset_imgs = []
-                curr_asset_labels = []
-                curr_asset_notes = []
+
         # -- Create Grid for Current Images
         if len(curr_asset_imgs) != 0:
             for k in range(len(curr_asset_imgs)):
