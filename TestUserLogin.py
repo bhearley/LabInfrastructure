@@ -116,7 +116,7 @@ grid_user = st.columns([0.2,0.2,0.2,0.4])
 with grid_user[1]:
    sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
 
-if st.session_state['sign_up_btn_1'].clicked == True:
+if st.session_state['sign_up_btn_1']:
     user_place.empty()
     pass_place.empty()
     sign_up_btn.empty()
