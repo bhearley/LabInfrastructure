@@ -363,15 +363,13 @@ if access == 'Yes':
     # Create Input for Asset Images
     asset_imgs_lab = [] #Store the asset images label
     asset_imgs = [] #Store the asset images
+    asset_imgs_notes = [] #Store the asset image notes
     asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
-    #grid_img = st.columns(2)
-    
+
     # Add row to asset image table
     def add_row_img(row):
-        grid_img = st.columns(2)
-
-
-                
+        # -- Create the grid for each row
+        grid_img = st.columns(3)
          # -- Set the Options
         options_dt = []
         for k in range(len(asset_name)):
@@ -383,8 +381,6 @@ if access == 'Yes':
                 asset_imgs_lab.append(None)
             if row == 0:
                 asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')  
-                #s = f"<p style='font-size:.01px;'>{'test'}</p>"
-                #st.markdown(s, unsafe_allow_html=True) 
             else:
                 asset_imgs_lab[row]=st.selectbox('Temp', options_dt, key=f'input_colimg1{row}',label_visibility = "collapsed")
     
@@ -397,31 +393,18 @@ if access == 'Yes':
     
             else:
                 asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=True, key=f'input_colimg2{row}',label_visibility = "collapsed")
+        # -- Asset
+        with grid_img[2]:
+            while len(asset_imgs_notes) < row+1:
+                asset_imgs_notes.append(None)
+            if row == 0:
+                asset_imgs_notes[row]=st.text_input('Notes', val='', key=f'input_colimg3{row}')  
+            else:
+                asset_imgs_notes[row]=st.text_input('Temp', asset_imgs_notes, key=f'input_colimg3{row}',label_visibility = "collapsed")
     
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
         add_row_img(r)
-    # Set CSS Formatting
-    css = '''
-    <style>
-        [data-testid='stFileUploader'] {
-            width: max-content;
-        }
-        [data-testid='stFileUploader'] section {
-            padding: 0;
-            float: left;
-        }
-        [data-testid='stFileUploader'] section > input + div {
-            display: none;
-        }
-        [data-testid='stFileUploader'] section + div {
-            float: right;
-            padding-top: 0;
-        }
-    
-    </style>
-    '''
-    #st.markdown(css, unsafe_allow_html=True)
     
     # Create Input for Sustainment Funding Source
     sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
