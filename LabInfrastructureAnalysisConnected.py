@@ -635,6 +635,50 @@ if st.button('Filter Data'):
                     
                     run_lab1 = doc.add_paragraph().add_run('')
 
+                    # Write Asset Images
+                    if 'T7-Asset Image' in list(record.keys()):
+                        if len(record['T7-Asset Image']) > 0:
+                             # Write the Asset Table
+                            run_lab1 = doc.add_paragraph().add_run('Assets Images:')
+                            run_lab1.font.name = 'Times New Roman'
+                            run_lab1.font.size = Pt(11)
+        
+                            # Create the first row with headers
+                            table = doc.add_table(rows=1, cols=3) 
+                            row = table.rows[0].cells 
+                            row[0].text = 'Asset Name'
+                            row[1].text = 'Image'
+                            row[2].text = 'Notes'
+
+                            for j in range(len(record['T7-Asset Image'])):
+                                row = table.add_row().cells
+                                row[0].text = record['T7-Asset Image Label']
+                                row[2].text = record['T7-Asset Image Notes']
+
+                                pil_img = Image.open(io.BytesIO(record['T7-Asset Image'][j]))
+                                plt.imshow(pil_img)
+                                plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
+                                for pos in ['right', 'top', 'bottom', 'left']: 
+                                    plt.gca().spines[pos].set_visible(False) 
+                                plt.savefig(os.path.join(data_path,'Asset_Img_' + str(j)+'.png'))
+                                pic = os.path.join(data_path,'Asset_Img_' + str(j)+'.png')  # path image
+                                cell = table.rows[j+1].cells[1]  # position specific of image count=row and 3=column
+                                paragraph = cell.paragraphs[0]
+                                run = paragraph.add_run()
+                                run.add_picture(pic, width=Inches(3), height=Inches(2))  # size image
+
+                        table.style = 'Light Grid Accent 4'
+    
+                        # Set Font Fize
+                        for row in table.rows:
+                            for cell in row.cells:
+                                paragraphs = cell.paragraphs
+                                for paragraph in paragraphs:
+                                    for run in paragraph.runs:
+                                        font = run.font
+                                        font.size= Pt(10)
+                                        font.name = 'Times New Roman'
+
                     # Change page orientation back
                     change_orientation()
 
