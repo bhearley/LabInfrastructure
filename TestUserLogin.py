@@ -155,8 +155,7 @@ if "user_key" not in st.session_state:
     create_home_screen(1)
 else:
     if st.session_state['sign_up_btn_1'] == True:
-        st.session_state['sign_up_btn_1'] = False
-        create_home_screen(1)
+        create_home_screen(2)
                 
 if access == 'Yes':
     #==================================================================================================================================================================
