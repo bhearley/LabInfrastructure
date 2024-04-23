@@ -948,7 +948,7 @@ if st.button('Filter Data'):
                         plt.imshow(pil_img)
                         plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
                         plt.savefig(os.path.join(data_path,'Lab_Img_' + str(imcnt)+'.png'))
-                        doc.add_picture(os.path.join(data_path,'Labor_chart_' + str(q)+'.png'), width=Inches(4), height=Inches(3))
+                        doc.add_picture(os.path.join(data_path,'Lab_Img_' + str(imcnt)+'.png'), width=Inches(4), height=Inches(3))
 
                 # Start on New Page
                 doc.add_page_break()
