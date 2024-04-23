@@ -152,6 +152,7 @@ def create_home_screen(home_screen):
                     st.error('Username is unavailable. If you have an accout, please enter your password.')
 
 if "user_key" not in st.session_state:
+    st.write('test')
     create_home_screen(1)
 
 if access == 'Yes':
