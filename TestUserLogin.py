@@ -133,6 +133,7 @@ if st.session_state['sign_up_btn_1']:
     new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
 
     if sign_up_btn2.button('Sign Up'):
+        st.write(st.session_state['new_user'])
         # Check Username
         if st.session_state['new_user'] == '':
             st.error('Username cannot by empty')
