@@ -132,7 +132,7 @@ if username != '':
             db = client['LabData']
             collection = db['UserInfo']
             new_entry = collection.insert_one(new_user)
-            access = 'Yes'
+            st.rerun()
     else:
         if password != "":
             if password == real_pass:
@@ -170,7 +170,7 @@ if username != '':
                     myquery = { "Username": st.session_state["user_key"]}
                     collection.delete_one(myquery)
                     new_entry = collection.insert_one(new_user)
-                    access = 'Yes'
+                    st.rerun()
 
                 
 if access == 'Yes':
