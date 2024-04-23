@@ -822,7 +822,7 @@ if access == 'Yes':
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
 
                 # -- Populate List of Existing Asset Images
-                for kk in range(len(asset_img_write)):
+                #for kk in range(len(asset_img_write)):
                     #if st.session_state[f'input_colab{kk}'] == 'Keep':
                     #    new_data['Lab Images'].append(curr_img_write[kk])
                 for iii in range(len(uploaded_files)):
