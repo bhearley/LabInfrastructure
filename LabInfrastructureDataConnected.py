@@ -364,10 +364,14 @@ if access == 'Yes':
     asset_imgs_lab = [] #Store the asset images label
     asset_imgs = [] #Store the asset images
     asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
-    grid_img = st.columns(2)
+    #grid_img = st.columns(2)
     
     # Add row to asset image table
     def add_row_img(row):
+        grid_img = st.columns(2)
+
+
+                
          # -- Set the Options
         options_dt = []
         for k in range(len(asset_name)):
@@ -417,7 +421,7 @@ if access == 'Yes':
     
     </style>
     '''
-    st.markdown(css, unsafe_allow_html=True)
+    #st.markdown(css, unsafe_allow_html=True)
     
     # Create Input for Sustainment Funding Source
     sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
