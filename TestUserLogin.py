@@ -91,7 +91,7 @@ if username != '':
     user_flag = 0
     for k in range(len(all_users)):
         if all_users[k]['Username'] == username:
-            real_pass = all_users['Password']
+            real_pass = all_users[k]['Password']
             user_flag = 1
     if user_flag == 0:
         st.error('Username not found.')
