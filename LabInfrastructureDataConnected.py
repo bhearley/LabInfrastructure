@@ -143,7 +143,7 @@ if access == 'Yes':
                     lab_images_old = []
                 #st.session_state['asset_img'] = result['Number of Asset Images']
                 #for m in range(int(result['Number of Asset Images'])):
-                #    st.session_state[f'input_colimg1{m}'] = result['T2-Asset'][m]
+                #    st.session_state[f'input_colimga{m}'] = result['T2-Asset'][m]
                 st.session_state['asset_img'] = 0
                 
                 st.session_state['sust'] = result['Sustainment Funding Source']
@@ -381,26 +381,26 @@ if access == 'Yes':
             while len(asset_imgs_lab) < row+1:
                 asset_imgs_lab.append(None)
             if row == 0:
-                asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimg1{row}')  
+                asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimga{row}')  
             else:
-                asset_imgs_lab[row]=st.selectbox('Temp', options_dt, key=f'input_colimg1{row}',label_visibility = "collapsed")
+                asset_imgs_lab[row]=st.selectbox('Temp', options_dt, key=f'input_colimga{row}',label_visibility = "collapsed")
     
         # -- Asset image   
         with grid_img[1]:
             while len(asset_imgs) < row+1:
                 asset_imgs.append(None)
             if row == 0:
-                asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=False, key=f'input_colimg2{row}')
+                asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=False, key=f'input_colimgb{row}')
             else:
-                asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=False, key=f'input_colimg2{row}',label_visibility = "collapsed")
+                asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=False, key=f'input_colimgb{row}',label_visibility = "collapsed")
         # -- Asset Notes
         with grid_img[2]:
             while len(asset_imgs_notes) < row+1:
                 asset_imgs_notes.append(None)
             if row == 0:
-                asset_imgs_notes[row]=st.text_area('Notes', value='', key=f'input_colimg3{row}')  
+                asset_imgs_notes[row]=st.text_area('Notes', value='', key=f'input_colimgc{row}')  
             else:
-                asset_imgs_notes[row]=st.text_area('Temp', value='', key=f'input_colimg3{row}',label_visibility = "collapsed")
+                asset_imgs_notes[row]=st.text_area('Temp', value='', key=f'input_colimgc{row}',label_visibility = "collapsed")
     
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
@@ -823,9 +823,9 @@ if access == 'Yes':
                     #if st.session_state[f'input_colab{kk}'] == 'Keep':
                     #    new_data['Lab Images'].append(curr_img_write[kk])
                 for iii in range(st.session_state['asset_num']):
-                    new_data['T7-Asset Image'].append(st.session_state[f'input_colimg2{iii}'].getvalue())
-                    new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimg1{iii}'])
-                    new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimg3{iii}'])
+                    new_data['T7-Asset Image'].append(st.session_state[f'input_colimgb{iii}'].getvalue())
+                    new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimga{iii}'])
+                    new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimgc{iii}'])
             
                 # Delete the existing entry if it exists
                 db = client['LabData']
