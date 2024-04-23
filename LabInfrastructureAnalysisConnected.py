@@ -27,6 +27,8 @@ from docx.enum.section import WD_ORIENT, WD_SECTION
 import matplotlib.pyplot as plt
 from docx.shared import Inches
 import io
+from bson.binary import Binary
+from PIL import Image
 
 # Set Home Directory
 data_path = "/mount/src/labinfrastructure/"
@@ -936,13 +938,13 @@ if st.button('Filter Data'):
                     doc.add_picture(os.path.join(data_path,'Labor_chart_' + str(q)+'.png'), width=Inches(4), height=Inches(3))
 
                 # Check for Lab Images and write
-                if 'Lab Images' in list(result.keys()):
+                if 'Lab Images' in list(record.keys()):
                     run_lab1 = doc.add_paragraph().add_run('Laboratory Images')
                     run_lab1.font.name = 'Times New Roman'
                     run_lab1.font.size = Pt(12)
                     run_lab1.bold = True
-                    for imcnt in range(len(result['Lab Images'])):
-                        pil_img = Image.open(io.BytesIO(result['Lab Images'][imcnt]))
+                    for imcnt in range(len(record['Lab Images'])):
+                        pil_img = Image.open(io.BytesIO(record['Lab Images'][imcnt]))
                         plt.imshow(pil_img)
                         plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
                         plt.savefig(os.path.join(data_path,'Lab_Img_' + str(imcnt)+'.png'))
