@@ -661,6 +661,7 @@ if st.button('Filter Data'):
                                 for pos in ['right', 'top', 'bottom', 'left']: 
                                     plt.gca().spines[pos].set_visible(False) 
                                 plt.savefig(os.path.join(data_path,'Asset_Img_' + str(j)+'.png'))
+                                plt.close()
                                 pic = os.path.join(data_path,'Asset_Img_' + str(j)+'.png')  # path image
                                 cell = table.rows[j+1].cells[1]  # position specific of image count=row and 3=column
                                 paragraph = cell.paragraphs[0]
@@ -805,6 +806,7 @@ if st.button('Filter Data'):
                         fig, ax = plt.subplots()
                         ax.pie(vals, labels=labels, autopct='%1.0f%%')
                         plt.savefig(os.path.join(data_path,'Project_chart_' + str(q)+'.png'))
+                        plt.close()
                         doc.add_picture(os.path.join(data_path,'Project_chart_' + str(q)+'.png'), width=Inches(4), height=Inches(3))
 
                 # HEADER: Utilization History/Impact
@@ -979,6 +981,7 @@ if st.button('Filter Data'):
                     fig, ax = plt.subplots()
                     ax.pie(vals, labels=labels, autopct='%1.0f%%')
                     plt.savefig(os.path.join(data_path,'Labor_chart_' + str(q)+'.png'))
+                    plt.close()
                     doc.add_picture(os.path.join(data_path,'Labor_chart_' + str(q)+'.png'), width=Inches(4), height=Inches(3))
 
                 # Check for Lab Images and write
@@ -994,6 +997,7 @@ if st.button('Filter Data'):
                         for pos in ['right', 'top', 'bottom', 'left']: 
                             plt.gca().spines[pos].set_visible(False) 
                         plt.savefig(os.path.join(data_path,'Lab_Img_' + str(imcnt)+'.png'))
+                        plt.close()
                         doc.add_picture(os.path.join(data_path,'Lab_Img_' + str(imcnt)+'.png'), width=Inches(4), height=Inches(3))
 
                 # Start on New Page
