@@ -142,17 +142,17 @@ def create_home_screen(home_screen):
     
         if sign_up_btn2.button('Sign Up'):
             st.write(st.session_state['new_user'])
-            # Check Username
-            if st.session_state['new_user'] == '':
-                st.error('Username cannot by empty')
-                print('Username cannot by empty')
-            else:
-                user_flag = 0
-                for k in range(len(all_users)):
-                    if all_users[k]['Username'] == st.session_state['new_user']:
-                        user_flag = 1
-                if user_flag == 1:
-                    st.error('Username is unavailable. If you have an account, please enter your password.')
+            # # Check Username
+            # if st.session_state['new_user'] == '':
+            #     st.error('Username cannot by empty')
+            #     print('Username cannot by empty')
+            # else:
+            #     user_flag = 0
+            #     for k in range(len(all_users)):
+            #         if all_users[k]['Username'] == st.session_state['new_user']:
+            #             user_flag = 1
+            #     if user_flag == 1:
+            #         st.error('Username is unavailable. If you have an account, please enter your password.')
 
   
 if "user_key" not in st.session_state:
