@@ -117,7 +117,7 @@ if username != '':
         # Check access code
         new_access_check = 0
         if access_code != '' :
-            if access_code = st.secrets["passcode"]:
+            if access_code == st.secrets["passcode"]:
                 new_access_check = 1
             else:
                 st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
