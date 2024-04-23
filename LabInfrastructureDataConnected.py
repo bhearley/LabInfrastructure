@@ -408,6 +408,7 @@ if access == 'Yes':
 
     # Dispaly Existing Files for this record
     st.markdown(' ')
+    st.markdown("""---""")
     st.markdown('Existing Asset Images in the Database')
     # -- Find list of existing values
     db = client['LabData']
