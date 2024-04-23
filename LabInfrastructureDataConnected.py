@@ -408,9 +408,7 @@ if access == 'Yes':
 
     # Dispaly Existing Files for this record
     st.markdown(' ')
-    st.markdown("""---""")
-    with st.expander("Existing Asset Images in the Database"):
-        #st.markdown('Existing Asset Images in the Database')
+    with st.expander("View/Edit Existing Asset Images in the Database"):
         # -- Find list of existing values
         db = client['LabData']
         collection = db['LabData']
