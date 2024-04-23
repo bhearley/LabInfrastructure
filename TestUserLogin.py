@@ -105,19 +105,21 @@ if username != '':
             else:
                 st.error('The password entered is incorrect.')
 
-login_btn = st.empty()
-sign_up_btn = st.empty()
+grid_user = st.columns([0.2,0.2,0.2,0.4])
+with grid_user[0]:
+    login_btn = st.empty()
+with grid_user[1]:
+    sign_up_btn = st.empty()
+
 new_user = st.empty()
 new_pass1 = st.empty()
 new_pass2 = st.empty()
 new_access_code = st.empty()
 sign_up_btn2 = st.empty()
 
-grid_user = st.columns([0.2,0.2,0.2,0.4])
-with grid_user[0]:
-    login_btn.button('Login', key='login_btn') 
-with grid_user[1]:
-    sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
+
+login_btn.button('Login', key='login_btn') 
+sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
 
 if st.session_state['sign_up_btn_1']:
     user_place.empty()
