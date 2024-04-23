@@ -81,7 +81,7 @@ password = ''
 grid_pass = st.columns([0.5,0.5])
 with grid_pass[0]:
     user_place = st.empty()
-    username = pass_place.text_input('Username',value = '', key="user_key")
+    username = user_place.text_input('Username',value = '', key="user_key")
             
     pass_place = st.empty()
     password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
