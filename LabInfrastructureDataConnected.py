@@ -422,7 +422,7 @@ if access == 'Yes':
             curr_asset_labels = []
             curr_asset_notes = []
     # -- Create Grid for Current Images
-    if len(curr_imgs) != 0:
+    if len(curr_asset_imgs) != 0:
         for k in range(len(curr_imgs)):
             # Create The Grid
             col1_asset_img, col2_asset_img, col3_asset_img, col4_asset_img = st.columns([0.25,0.3,0.3,0.15])
