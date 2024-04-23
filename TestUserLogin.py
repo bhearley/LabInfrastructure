@@ -130,7 +130,7 @@ def create_home_screen(home_screen):
             pass_place.empty()
             login_btn.empty()
             sign_up_btn.empty()
-            create_home_screen(2)
+
     
     elif homescreen == 2:
         new_user.text_input('Enter Your Username',value='',key='new_user')
@@ -155,7 +155,7 @@ if "user_key" not in st.session_state:
     st.write('test')
     create_home_screen(1)
 else:
-    st.write('test 2')
+    st.write(st.session_state['sign_up_btn_1'])
 
 if access == 'Yes':
     #==================================================================================================================================================================
