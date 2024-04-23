@@ -102,9 +102,11 @@ if username != '':
             real_pass = all_users[k]['Password']
             user_flag = 1
     if user_flag == 0:
-        st.warning('Username not found. Verify the username is correct, or register an account with an access code.')
+        
         password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
         access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
+        if st.session_state['pwd2_key'] == "":
+            st.warning('Username not found. Verify the username is correct, or register an account with an access code.')                
 
         # Check new password
         new_pass_check = 0
@@ -137,9 +139,11 @@ if username != '':
                 access = 'Yes'
             
             else:
-                st.error('The password entered is incorrect. Check the password is correct, or reset with the access code')
                 password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
                 access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
+
+                if st.session_state['pwd2_key'] == "":
+                    st.error('The password entered is incorrect. Check the password is correct, or reset with the access code')
         
                 # Check new password
                 new_pass_check = 0
