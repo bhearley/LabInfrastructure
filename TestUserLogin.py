@@ -115,13 +115,6 @@ def create_home_screen(home_screen):
         with grid_user[1]:
             sign_up_btn = st.empty()
         
-        new_user = st.empty()
-        new_pass1 = st.empty()
-        new_pass2 = st.empty()
-        new_access_code = st.empty()
-        sign_up_btn2 = st.empty()
-        
-        
         login_btn.button('Login', key='login_btn') 
         sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
         
@@ -133,6 +126,12 @@ def create_home_screen(home_screen):
 
     
     elif home_screen == 2:
+        new_user = st.empty()
+        new_pass1 = st.empty()
+        new_pass2 = st.empty()
+        new_access_code = st.empty()
+        sign_up_btn2 = st.empty()
+        
         new_user.text_input('Enter Your Username',value='',key='new_user')
         new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
         new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
