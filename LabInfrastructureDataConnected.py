@@ -405,6 +405,39 @@ if access == 'Yes':
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
         add_row_img(r)
+
+    # Dispaly Existing Files for this record
+    # -- Find list of existing values
+    db = client['LabData']
+    collection = db['LabData']
+    query = {'Laboratory/Capability Name': st.session_state['name']}
+    results = collection.find(query)
+    for result in results:
+        if 'T7-Asset Image' in list(result.keys()):
+            curr_asset_imgs = result['T7-Asset Image']
+            curr_asset_labels = result['T7-Asset Images Label']
+            curr_asset_notes = result['T7-Asset Images Notes']
+        else:
+            curr_asset_imgs = []
+            curr_asset_labels = []
+            curr_asset_notes = []
+    # -- Create Grid for Current Images
+    if len(curr_imgs) != 0:
+        for k in range(len(curr_imgs)):
+            # Create The Grid
+            col1_asset_img, col2_asset_img, col3_asset_img, col4_asset_img = st.columns([0.25,0.3,0.3,0.15])
+
+            # Get the list of assets and the index
+            options_dt = []
+            idx = None
+            for kk in range(len(asset_name)):
+                options_dt.append(asset_name[kk])
+                if asset_name[kk] == cur_asset_labels[k]:
+                    idx = kk
+            col1_asset_img.selectbox('Temp', options_dt, index = idx, key=f'input_colba{k}',label_visibility = "collapsed")
+            col2_asset_img.image(curr_asset_imgs[k])
+            col3_asset_img.text_area('Temp',value = curr_asset_notes[k], key=f'input_colbb{k}',label_visibility = "collapsed")
+            col4_asset_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colbc{k}',label_visibility = "collapsed")
     
     # Create Input for Sustainment Funding Source
     sust_funding = st.text_area("Sustainment Funding Source:",value='',key='sust')
@@ -459,7 +492,7 @@ if access == 'Yes':
     # Create File Uploader
     uploaded_files = st.file_uploader("Upload New Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
 
-    # Diaply Existing Files for this record
+    # Dispaly Existing Files for this record
     # -- Find list of existing values
     db = client['LabData']
     collection = db['LabData']
