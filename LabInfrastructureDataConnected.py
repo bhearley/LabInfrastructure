@@ -495,25 +495,26 @@ if access == 'Yes':
         add_row_fund(r)
     
     # Create File Uploader
-    uploaded_files = st.file_uploader("Upload New Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
+    uploaded_files = st.file_uploader("Upload New Laboratory Images:", accept_multiple_files=True, type =  ['png', 'jpg'], key='lab_imgs')
 
     # Dispaly Existing Files for this record
-    # -- Find list of existing values
-    db = client['LabData']
-    collection = db['LabData']
-    query = {'Laboratory/Capability Name': st.session_state['name']}
-    results = collection.find(query)
-    for result in results:
-        if 'Lab Images' in list(result.keys()):
-            curr_imgs = result['Lab Images']
-        else:
-            curr_imgs = []
-    # -- Create Grid for Current Images
-    if len(curr_imgs) != 0:
-        for k in range(len(curr_imgs)):
-            col1_img, col2_img, col3_img = st.columns(3)
-            col1_img.image(curr_imgs[k])
-            col2_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
+    with st.expander("View/Edit Existing Laboratory Images"):      
+        # -- Find list of existing values
+        db = client['LabData']
+        collection = db['LabData']
+        query = {'Laboratory/Capability Name': st.session_state['name']}
+        results = collection.find(query)
+        for result in results:
+            if 'Lab Images' in list(result.keys()):
+                curr_imgs = result['Lab Images']
+            else:
+                curr_imgs = []
+        # -- Create Grid for Current Images
+        if len(curr_imgs) != 0:
+            for k in range(len(curr_imgs)):
+                col1_img, col2_img, col3_img = st.columns(3)
+                col1_img.image(curr_imgs[k])
+                col2_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
 
 
     #Create Divider for Name and Description
