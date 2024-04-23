@@ -156,8 +156,9 @@ def create_home_screen(home_screen):
 
   
 if "user_key" not in st.session_state:
-    if 'sign_up_btn_2' not in st.session_state:
-        st.write('Test')    
+    if 'sign_up_btn_2' in st.session_state:
+        if st.session_state['sign_up_btn_2'] == True:      
+            st.write('Test')    
     create_home_screen(1)
 else:
     if st.session_state['sign_up_btn_1'] == True:
