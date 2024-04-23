@@ -370,7 +370,7 @@ if access == 'Yes':
     # Add row to asset image table
     def add_row_img(row):
         # -- Create the grid for each row
-        grid_img = st.columns([0.25,0.3,0.3,0.15])
+        grid_img = st.columns(3)
          # -- Set the Options
         options_dt = []
         for k in range(len(asset_name)):
@@ -402,14 +402,6 @@ if access == 'Yes':
                 asset_imgs_notes[row]=st.text_area('Notes', value='', key=f'input_colimg3{row}')  
             else:
                 asset_imgs_notes[row]=st.text_area('Temp', value='', key=f'input_colimg3{row}',label_visibility = "collapsed")
-        # -- Keep/Remove
-        with grid_img[3]:
-            while len(asset_imgs_keep) < row+1:
-                asset_imgs_keep.append(None)
-            if row == 0:
-                asset_imgs_keep[row]=st.selectbox('Keep/Remove', ('Keep','Remove'), key=f'input_colimg4{row}')  
-            else:
-                asset_imgs_keep[row]=st.selectbox('Temp', ('Keep','Remove'), key=f'input_colimg4{row}',label_visibility = "collapsed")
     
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
