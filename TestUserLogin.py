@@ -132,7 +132,11 @@ if username != '':
             db = client['LabData']
             collection = db['UserInfo']
             new_entry = collection.insert_one(new_user)
-            st.rerun()
+            user_place.empty()
+            pass_place.empty()
+            pass_place2.empty()
+            access_place.empty()
+            st.markdown('New User added to the database. Refresh the page and login to access the data collection tool.')
     else:
         if password != "":
             if password == real_pass:
@@ -170,7 +174,11 @@ if username != '':
                     myquery = { "Username": st.session_state["user_key"]}
                     collection.delete_one(myquery)
                     new_entry = collection.insert_one(new_user)
-                    st.rerun()
+                    user_place.empty()
+                    pass_place.empty()
+                    pass_place2.empty()
+                    access_place.empty()
+                    st.markdown('New User added to the database. Refresh the page and login to access the data collection tool.')
 
                 
 if access == 'Yes':
