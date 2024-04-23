@@ -391,7 +391,6 @@ if access == 'Yes':
                 asset_imgs.append(None)
             if row == 0:
                 asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=False, key=f'input_colimg2{row}')
-    
             else:
                 asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=False, key=f'input_colimg2{row}',label_visibility = "collapsed")
         # -- Asset Notes
@@ -789,6 +788,9 @@ if access == 'Yes':
 
                 # Check Lab Images
                 new_data['Lab Images'] = []
+                new_data['T7-Asset Image'] = []
+                new_data['T7-Asset Image Label'] = []
+                new_data['T7-Asset Image Notes'] = []
                 # -- Find list of existing values
                 # Load the Current Database
                 db = client['LabData']
@@ -796,10 +798,21 @@ if access == 'Yes':
                 query = {'Laboratory/Capability Name': st.session_state['name']}
                 results = collection.find(query)
                 for result in results:
+                    # -- Overall Lab Images
                     if 'Lab Images' in list(result.keys()):
                         curr_img_write = result['Lab Images']
                     else:
                         curr_img_write = []
+
+                    # -- Asset Images
+                    if 'T7-Asset Image' in list(result.keys()):
+                        asset_img_write = result['T7-Asset Image']
+                        asset_img_label_write = result['T7-Asset Image Label']
+                        asset_img_notes_write = result['T7-Asset Image Notes']
+                    else:
+                        asset_img_write = []
+                        asset_img_label_write = []
+                        asset_img_notes_write = []
 
                 # -- Populate List of Existing Images
                 for kk in range(len(curr_img_write)):
@@ -807,6 +820,15 @@ if access == 'Yes':
                         new_data['Lab Images'].append(curr_img_write[kk])
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
+
+                # -- Populate List of Existing Asset Images
+                for kk in range(len(asset_img_write)):
+                    #if st.session_state[f'input_colab{kk}'] == 'Keep':
+                    #    new_data['Lab Images'].append(curr_img_write[kk])
+                for iii in range(len(uploaded_files)):
+                    new_data['T7-Asset Image'].append(st.session_state[f'input_colimg2{iii}].getvalue())
+                    new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimg1{iii}]
+                    new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimg3{iii}]
             
                 # Delete the existing entry if it exists
                 db = client['LabData']
