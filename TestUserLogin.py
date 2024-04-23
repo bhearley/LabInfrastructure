@@ -91,6 +91,8 @@ with grid_pass[0]:
     pass_place = st.empty()
     password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
 
+    access_place = st.empty()
+
 # Check if Username Exists
 if username != '':
     user_flag = 0
@@ -99,7 +101,8 @@ if username != '':
             real_pass = all_users[k]['Password']
             user_flag = 1
     if user_flag == 0:
-        st.error('Username not found.')
+        st.error('Username not found. Verify the username is correct, or register an account with an access code.')
+        access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
     else:
         if password != "":
             if password == real_pass:
@@ -109,38 +112,6 @@ if username != '':
                 pass_place.empty()
             else:
                 st.error('The password entered is incorrect.')
-
-grid_user = st.columns([0.1,0.2,0.2,0.5])
-with grid_user[0]:
-    login_btn = st.empty()
-with grid_user[1]:
-    sign_up_btn = st.empty()
-
-login_btn.button('Login', key='login_btn') 
-sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
-
-new_user = st.empty()
-new_pass1 = st.empty()
-new_pass2 = st.empty()
-new_access_code = st.empty()
-#sign_up_btn2 = st.empty()
-
-if st.session_state['sign_up_btn_1']:
-    user_place.empty()
-    pass_place.empty()
-    login_btn.empty()
-    sign_up_btn.empty()
-
-
-    new_user.text_input('Enter Your Username',value='',key='new_user')
-    new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
-    new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
-    new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
-
-    # Error Checking
-    if st.session_state['new_user'] == '':
-        st.error('Username cannot be empty')
-  
 
                 
 if access == 'Yes':
