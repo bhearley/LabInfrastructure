@@ -504,11 +504,11 @@ if access == 'Yes':
         collection = db['LabData']
         query = {'Laboratory/Capability Name': st.session_state['name']}
         results = collection.find(query)
+        curr_imgs = []
         for result in results:
             if 'Lab Images' in list(result.keys()):
                 curr_imgs = result['Lab Images']
-            else:
-                curr_imgs = []
+
         # -- Create Grid for Current Images
         if len(curr_imgs) != 0:
             for k in range(len(curr_imgs)):
