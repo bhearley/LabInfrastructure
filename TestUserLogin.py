@@ -99,6 +99,9 @@ if username != '':
         if password != "":
             if password == real_pass:
                 access = 'Yes'
+                # Delete Widgets
+                user_place.empty()
+                pass_place.empty()
             else:
                 st.error('The password entered is incorrect.')
 
@@ -128,7 +131,9 @@ if access == 'Yes':
     @st.cache_data(ttl=6000)
     def get_data():
         db = client['LabData']
-        items = db['LabData'].find()
+        collection = db['LabData']
+        query = {'Username': st.session_state["user_key"]}
+        items = collection.find(query)
         items = list(items)  # make hashable for st.cache_data
         return items
     
