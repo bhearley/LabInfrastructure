@@ -79,77 +79,80 @@ password = ''
 
 # Set Home Screen Options
 home_screen = 1
-if home_screen == 1:
-    # Create input for password
-    grid_pass = st.columns([0.5,0.5])
-    with grid_pass[0]:
-        user_place = st.empty()
-        username = user_place.text_input('Username',value = '', key="user_key")
-                
-        pass_place = st.empty()
-        password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
-    
-    # Check if Username Exists
-    if username != '':
-        user_flag = 0
-        for k in range(len(all_users)):
-            if all_users[k]['Username'] == username:
-                real_pass = all_users[k]['Password']
-                user_flag = 1
-        if user_flag == 0:
-            st.error('Username not found.')
-        else:
-            if password != "":
-                if password == real_pass:
-                    access = 'Yes'
-                    # Delete Widgets
-                    user_place.empty()
-                    pass_place.empty()
-                else:
-                    st.error('The password entered is incorrect.')
-    
-    grid_user = st.columns([0.1,0.2,0.2,0.5])
-    with grid_user[0]:
-        login_btn = st.empty()
-    with grid_user[1]:
-        sign_up_btn = st.empty()
-    
-    new_user = st.empty()
-    new_pass1 = st.empty()
-    new_pass2 = st.empty()
-    new_access_code = st.empty()
-    sign_up_btn2 = st.empty()
-    
-    
-    login_btn.button('Login', key='login_btn') 
-    sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
-    
-    if st.session_state['sign_up_btn_1']:
-        user_place.empty()
-        pass_place.empty()
-        login_btn.empty()
-        sign_up_btn.empty()
-
-elif homescreen == 2:
-    new_user.text_input('Enter Your Username',value='',key='new_user')
-    new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
-    new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
-    new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
-
-    if sign_up_btn2.button('Sign Up'):
-        st.write(st.session_state['new_user'])
-        # Check Username
-        if st.session_state['new_user'] == '':
-            st.error('Username cannot by empty')
-        else:
+def create_home_screen(home_screen):
+    if home_screen == 1:
+        # Create input for password
+        grid_pass = st.columns([0.5,0.5])
+        with grid_pass[0]:
+            user_place = st.empty()
+            username = user_place.text_input('Username',value = '', key="user_key")
+                    
+            pass_place = st.empty()
+            password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
+        
+        # Check if Username Exists
+        if username != '':
             user_flag = 0
             for k in range(len(all_users)):
-                if all_users[k]['Username'] == st.session_state['new_user']:
+                if all_users[k]['Username'] == username:
+                    real_pass = all_users[k]['Password']
                     user_flag = 1
-            if user_flag == 1:
-                st.error('Username is unavailable. If you have an accout, please enter your password.')
+            if user_flag == 0:
+                st.error('Username not found.')
+            else:
+                if password != "":
+                    if password == real_pass:
+                        access = 'Yes'
+                        # Delete Widgets
+                        user_place.empty()
+                        pass_place.empty()
+                    else:
+                        st.error('The password entered is incorrect.')
         
+        grid_user = st.columns([0.1,0.2,0.2,0.5])
+        with grid_user[0]:
+            login_btn = st.empty()
+        with grid_user[1]:
+            sign_up_btn = st.empty()
+        
+        new_user = st.empty()
+        new_pass1 = st.empty()
+        new_pass2 = st.empty()
+        new_access_code = st.empty()
+        sign_up_btn2 = st.empty()
+        
+        
+        login_btn.button('Login', key='login_btn') 
+        sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1') 
+        
+        if st.session_state['sign_up_btn_1']:
+            user_place.empty()
+            pass_place.empty()
+            login_btn.empty()
+            sign_up_btn.empty()
+            create_home_screen(2)
+    
+    elif homescreen == 2:
+        new_user.text_input('Enter Your Username',value='',key='new_user')
+        new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
+        new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
+        new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
+    
+        if sign_up_btn2.button('Sign Up'):
+            st.write(st.session_state['new_user'])
+            # Check Username
+            if st.session_state['new_user'] == '':
+                st.error('Username cannot by empty')
+            else:
+                user_flag = 0
+                for k in range(len(all_users)):
+                    if all_users[k]['Username'] == st.session_state['new_user']:
+                        user_flag = 1
+                if user_flag == 1:
+                    st.error('Username is unavailable. If you have an accout, please enter your password.')
 
+if "user_key" not in st.session_state:
+    create_home_screen(1)
 
 if access == 'Yes':
     #==================================================================================================================================================================
