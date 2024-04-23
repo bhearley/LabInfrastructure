@@ -432,7 +432,7 @@ if access == 'Yes':
             idx = None
             for kk in range(len(asset_name)):
                 options_dt.append(asset_name[kk])
-                if asset_name[kk] == cur_asset_labels[k]:
+                if asset_name[kk] == curr_asset_labels[k]:
                     idx = kk
 
             
