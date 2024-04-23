@@ -154,6 +154,8 @@ def create_home_screen(home_screen):
 if "user_key" not in st.session_state:
     st.write('test')
     create_home_screen(1)
+else:
+    st.write('test 2')
 
 if access == 'Yes':
     #==================================================================================================================================================================
