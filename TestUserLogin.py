@@ -105,6 +105,40 @@ if username != '':
             else:
                 st.error('The password entered is incorrect.')
 
+sign_up_btn = st.empty()
+new_user = st.empty()
+new_pass1 = st.empty()
+new_pass2 = st.empty()
+new_access_code = st.empty()
+sign_up_btn2 = st.empty()
+
+grid_user = st.columns([0.2,0.2,0.2,0.4])
+with grid_user[1]:
+   sign_up_btn.button('Sign Up with Access Code') 
+
+if sign_up_btn.button('Sign Up with Access Code'):
+    user_place.empty()
+    pass_place.empty()
+    sign_up_btn.empty()
+    
+    new_user.text_input('Enter Your Username',value='',key='new_user')
+    new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
+    new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass1')
+    new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
+
+    if sign_up_btn2('Sign Up'):
+        # Check Username
+        if st.session_state['new_user'] == '':
+            st.error('Username cannot by empty')
+        else:
+            user_flag = 0
+            for k in range(len(all_users)):
+                if all_users[k]['Username'] == st.session_state['new_user']:
+                    user_flag = 1
+            if user_flag == 1:
+                st.error('Username is unavailable. If you have an accout, please enter your password.')
+        
+
 
 if access == 'Yes':
     #==================================================================================================================================================================
