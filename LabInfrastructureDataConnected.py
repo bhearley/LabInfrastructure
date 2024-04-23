@@ -398,9 +398,9 @@ if access == 'Yes':
             while len(asset_imgs_notes) < row+1:
                 asset_imgs_notes.append(None)
             if row == 0:
-                asset_imgs_notes[row]=st.text_input('Notes', value='', key=f'input_colimg3{row}')  
+                asset_imgs_notes[row]=st.text_area('Notes', value='', key=f'input_colimg3{row}')  
             else:
-                asset_imgs_notes[row]=st.text_input('Temp', value='', key=f'input_colimg3{row}',label_visibility = "collapsed")
+                asset_imgs_notes[row]=st.text_area('Temp', value='', key=f'input_colimg3{row}',label_visibility = "collapsed")
     
     # Add rows for number of images
     for r in range(int(st.session_state['asset_img'])):
