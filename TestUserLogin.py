@@ -105,7 +105,7 @@ if username != '':
             else:
                 st.error('The password entered is incorrect.')
 
-grid_user = st.columns([0.2,0.2,0.2,0.4])
+grid_user = st.columns([0.1,0.2,0.2,0.5])
 with grid_user[0]:
     login_btn = st.empty()
 with grid_user[1]:
@@ -124,6 +124,7 @@ sign_up_btn.button('Sign Up with Access Code', key='sign_up_btn_1')
 if st.session_state['sign_up_btn_1']:
     user_place.empty()
     pass_place.empty()
+    login_btn.empty()
     sign_up_btn.empty()
     
     new_user.text_input('Enter Your Username',value='',key='new_user')
