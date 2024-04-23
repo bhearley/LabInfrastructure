@@ -71,7 +71,7 @@ def get_user_data():
     return items
 
 # Get All Data in Database
-all_users = get_data()
+all_users = get_user_data()
 
 # Default access to False
 access = 'No'
