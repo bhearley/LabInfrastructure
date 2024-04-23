@@ -123,7 +123,7 @@ if sign_up_btn.button('Sign Up with Access Code'):
     
     new_user.text_input('Enter Your Username',value='',key='new_user')
     new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
-    new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass1')
+    new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
     new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
 
     if sign_up_btn2('Sign Up'):
