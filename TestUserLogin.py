@@ -45,8 +45,33 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
 #==================================================================================================================================================================
-# DATA ACCESS
-# Check Access Code
+# LOGIN
+# Access Username/Login Info in Database
+@st.cache_resource
+def init_connection():
+    uri = "mongodb+srv://nasagrc:" + st.secrets['mongo1']['password'] + "@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+    return MongoClient(uri, tlsCAFile=certifi.where())
+
+# Create the Database Client
+client = init_connection()
+
+# Send a ping to confirm a successful connection
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+# Read the Database
+@st.cache_data(ttl=6000)
+def get_user_data():
+    db = client['LabData']
+    items = db['UserInfo'].find()
+    items = list(items)  # make hashable for st.cache_data
+    return items
+
+# Get All Data in Database
+all_users = get_data()
 
 # Default access to False
 access = 'No'
@@ -55,16 +80,27 @@ password = ''
 # Create input for password
 grid_pass = st.columns([0.5,0.5])
 with grid_pass[0]:
+    user_place = st.empty()
+    username = pass_place.text_input('Username',value = '', key="user_key")
+            
     pass_place = st.empty()
-    password = pass_place.text_input('Enter the Access Code',value = '', type="password", key="pwd_key")
+    password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
 
-if password == st.secrets["passcode"]:
-    access = 'Yes'
-    # Delete Password Widget
-    pass_place.empty()
-
-elif password != "":
-    st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
+# Check if Username Exists
+if username != '':
+    user_flag = 0
+    for k in range(len(all_users)):
+        if all_users[k]['Username'] == username:
+            real_pass = all_users['Password']
+            user_flag = 1
+    if user_flag == 0:
+        st.error('Username not found.')
+    else:
+        if password != "":
+            if password == real_pass:
+                access = 'Yes'
+            else:
+                st.error('The password entered is incorrect.')
 
 
 if access == 'Yes':
