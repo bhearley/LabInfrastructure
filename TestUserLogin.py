@@ -91,6 +91,7 @@ with grid_pass[0]:
     pass_place = st.empty()
     password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
 
+    pass_place2 = st.empty()
     access_place = st.empty()
 
 # Check if Username Exists
@@ -102,7 +103,34 @@ if username != '':
             user_flag = 1
     if user_flag == 0:
         st.error('Username not found. Verify the username is correct, or register an account with an access code.')
+        password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
         access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
+
+        # Check new password
+        new_pass_check = 0
+        if password != "" and password2 != "":
+            if password != password2:
+                st.error('Passwords do not match')
+            else:
+                new_pass_check = 1
+
+        # Check access code
+        new_access_check = 0
+        if access_code != '' :
+            if access_code = st.secrets["passcode"]:
+                new_access_check = 1
+            else:
+                st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
+
+        # Write Username to Database
+        if new_pass_check == 1 and new_access_check == 1:
+            new_user = {}
+            new_user['Username'] = st.session_state["user_key"]
+            new_user['Password'] = st.session_state["pwd_key"]
+            db = client['LabData']
+            collection = db['UserInfo']
+            new_entry = collection.insert_one(new_user)
+            access = 'Yes'
     else:
         if password != "":
             if password == real_pass:
