@@ -993,7 +993,9 @@ if access == 'Yes':
                     new_data['T7-Asset Image'].append(st.session_state[f'input_colimgb{iii}'].getvalue())
                     new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimga{iii}'])
                     new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimgc{iii}'])
-            
+
+                new_data['Username'] = st.session_state['user_key']
+                        
                 # Delete the existing entry if it exists
                 db = client['LabData']
                 collection = db['LabData']
