@@ -370,7 +370,7 @@ if access == 'Yes':
     # Add row to asset image table
     def add_row_img(row):
         # -- Create the grid for each row
-        grid_img = st.columns(3)
+        grid_img = st.columns([0.25,0.3,0.3,0.15])
          # -- Set the Options
         options_dt = []
         for k in range(len(asset_name)):
