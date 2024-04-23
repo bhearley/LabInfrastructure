@@ -136,23 +136,10 @@ if st.session_state['sign_up_btn_1']:
     new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
     new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
     new_access_code.text_input('Enter The Access Code',value='',key='new_access_code')
-    sign_up_btn2.button('Sign Up', key = 'sign_up_btn_2')
 
-if 'sign_up_btn_2' in st.session_state:
-    if st.session_state['sign_up_btn_2']:
-        st.write(st.session_state['new_user'])
-    # # Check Username
-    # if st.session_state['new_user'] == '':
-    #     st.error('Username cannot by empty')
-    #     print('Username cannot by empty')
-    # else:
-    #     user_flag = 0
-    #     for k in range(len(all_users)):
-    #         if all_users[k]['Username'] == st.session_state['new_user']:
-    #             user_flag = 1
-    #     if user_flag == 1:
-    #         st.error('Username is unavailable. If you have an account, please enter your password.')
-
+    # Error Checking
+    if st.session_state['new_user'] == '':
+        st.error('Username cannot be empty')
   
 
                 
