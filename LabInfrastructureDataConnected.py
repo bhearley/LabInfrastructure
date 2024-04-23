@@ -826,9 +826,9 @@ if access == 'Yes':
                     #if st.session_state[f'input_colab{kk}'] == 'Keep':
                     #    new_data['Lab Images'].append(curr_img_write[kk])
                 for iii in range(len(uploaded_files)):
-                    new_data['T7-Asset Image'].append(st.session_state[f'input_colimg2{iii}].getvalue())
-                    new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimg1{iii}]
-                    new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimg3{iii}]
+                    new_data['T7-Asset Image'].append(st.session_state[f'input_colimg2{iii}'].getvalue())
+                    new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimg1{iii}']
+                    new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimg3{iii}']
             
                 # Delete the existing entry if it exists
                 db = client['LabData']
