@@ -136,7 +136,7 @@ if username != '':
             pass_place.empty()
             pass_place2.empty()
             access_place.empty()
-            st.markdown(""---"")
+            st.markdown("""---""")
             st.markdown('New User added to the database. Refresh the page and login to access the data collection tool.')
             st.cache_data.clear()
     else:
@@ -180,7 +180,7 @@ if username != '':
                     pass_place.empty()
                     pass_place2.empty()
                     access_place.empty()
-                    st.markdown(""---"")
+                    st.markdown("""---""")
                     st.markdown('Password Updated. Refresh the page and login to access the data collection tool.')
                     st.cache_data.clear()
 
