@@ -415,8 +415,8 @@ if access == 'Yes':
     for result in results:
         if 'T7-Asset Image' in list(result.keys()):
             curr_asset_imgs = result['T7-Asset Image']
-            curr_asset_labels = result['T7-Asset Images Label']
-            curr_asset_notes = result['T7-Asset Images Notes']
+            curr_asset_labels = result['T7-Asset Image Label']
+            curr_asset_notes = result['T7-Asset Image Notes']
         else:
             curr_asset_imgs = []
             curr_asset_labels = []
