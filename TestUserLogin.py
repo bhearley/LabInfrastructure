@@ -135,17 +135,50 @@ if username != '':
         if password != "":
             if password == real_pass:
                 access = 'Yes'
-                # Delete Widgets
-                user_place.empty()
-                pass_place.empty()
+            
             else:
-                st.error('The password entered is incorrect.')
+                st.error('The password entered is incorrect. Check the password is correct, or reset with the access code')
+                password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
+                access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
+        
+                # Check new password
+                new_pass_check = 0
+                if password != "" and password2 != "":
+                    if password != password2:
+                        st.error('Passwords do not match')
+                    else:
+                        new_pass_check = 1
+        
+                # Check access code
+                new_access_check = 0
+                if access_code != '' :
+                    if access_code == st.secrets["passcode"]:
+                        new_access_check = 1
+                    else:
+                        st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
+
+                if new_pass_check == 1 and new_access_check == 1:
+                    new_user = {}
+                    new_user['Username'] = st.session_state["user_key"]
+                    new_user['Password'] = st.session_state["pwd_key"]
+                    db = client['LabData']
+                    collection = db['UserInfo']
+                    myquery = { "Username": st.session_state["user_key"]}
+                    collection.delete_one(myquery)
+                    new_entry = collection.insert_one(new_user)
+                    access = 'Yes'
 
                 
 if access == 'Yes':
     #==================================================================================================================================================================
     # DATA POPULATION
     # Set up the database connection and define functions to populate data fields in the web app
+
+    # Delete Widgets
+    user_place.empty()
+    pass_place.empty()
+    pass_place2.empty()
+    access_place.empty()
 
     # Connect to the Database
     @st.cache_resource
