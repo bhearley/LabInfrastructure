@@ -132,7 +132,7 @@ def create_home_screen(home_screen):
             sign_up_btn.empty()
 
     
-    elif homescreen == 2:
+    elif home_screen == 2:
         new_user.text_input('Enter Your Username',value='',key='new_user')
         new_pass1.text_input('Enter Your Pasword',value='', type='password',key='new_pass1')
         new_pass2.text_input('Re-enter Your Pasword',value='', type='password', key='new_pass2')
