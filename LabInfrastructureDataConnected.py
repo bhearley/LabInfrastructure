@@ -365,7 +365,7 @@ if access == 'Yes':
     asset_imgs = [] #Store the asset images
     asset_imgs_notes = [] #Store the asset image notes
     asset_imgs_keep = [] #Store the asset image status
-    asset_imgs_num = st.number_input('Number of Asset Images:', min_value=0, max_value=None, key='asset_img')
+    asset_imgs_num = st.number_input('Number of NEW Asset Images:', min_value=0, max_value=None, key='asset_img')
 
     # Add row to asset image table
     def add_row_img(row):
@@ -407,6 +407,8 @@ if access == 'Yes':
         add_row_img(r)
 
     # Dispaly Existing Files for this record
+    st.markdown(' ')
+    st.markdown('Existing Asset Images in the Database')
     # -- Find list of existing values
     db = client['LabData']
     collection = db['LabData']
