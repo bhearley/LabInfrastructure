@@ -731,9 +731,6 @@ if access == 'Yes':
                     new_data['T1-Inlcudes IT Hardware?'].append(st.session_state[f'input_colj{m}'])
                     new_data['T1-Replacement'].append(st.session_state[f'input_colk{m}'])
                 new_data['Number of Asset Images'] = st.session_state['asset_img']
-                for m in range(int(st.session_state['asset_img'])):
-                    new_data['T2-Asset'].append(st.session_state[f'input_colimg1{m}'])
-                    new_data['T2-Image'].append(st.session_state[f'input_colimg2{m}'])
                 new_data['Sustainment Funding Source'] = st.session_state['sust']
                 new_data['Number of Funding Sources'] = st.session_state['fund_num'] 
                 new_data['T3-Funding Source'] = []
