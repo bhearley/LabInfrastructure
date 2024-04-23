@@ -102,7 +102,7 @@ if username != '':
             real_pass = all_users[k]['Password']
             user_flag = 1
     if user_flag == 0:
-        st.error('Username not found. Verify the username is correct, or register an account with an access code.')
+        st.warning('Username not found. Verify the username is correct, or register an account with an access code.')
         password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
         access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
 
