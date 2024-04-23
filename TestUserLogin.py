@@ -105,6 +105,7 @@ if username != '':
             else:
                 st.error('The password entered is incorrect.')
 
+login_btn = st.empty()
 sign_up_btn = st.empty()
 new_user = st.empty()
 new_pass1 = st.empty()
