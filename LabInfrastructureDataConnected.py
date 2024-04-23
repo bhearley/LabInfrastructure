@@ -822,7 +822,7 @@ if access == 'Yes':
                 #for kk in range(len(asset_img_write)):
                     #if st.session_state[f'input_colab{kk}'] == 'Keep':
                     #    new_data['Lab Images'].append(curr_img_write[kk])
-                for iii in range(st.session_state['asset_num']):
+                for iii in range(st.session_state['asset_img']):
                     new_data['T7-Asset Image'].append(st.session_state[f'input_colimgb{iii}'].getvalue())
                     new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimga{iii}'])
                     new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimgc{iii}'])
