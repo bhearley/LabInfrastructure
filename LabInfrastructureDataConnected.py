@@ -20,6 +20,7 @@ import datetime
 import time
 from PIL import Image
 import io
+import os
 
 #==================================================================================================================================================================
 # GENERAL INFORMATION
@@ -43,6 +44,10 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             '(i.e. a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
             '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or difficult to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
+
+# Set Home Directory
+data_path = "/mount/src/labinfrastructure/"
+st.download_button("Download The User's Manual", os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx"))
 
 #==================================================================================================================================================================
 # DATA ACCESS
