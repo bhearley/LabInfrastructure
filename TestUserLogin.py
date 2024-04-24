@@ -94,34 +94,39 @@ all_users = get_user_data()
 access = 'No'
 password = ''
 
-# Create input for password
+# Create input for username and password
 grid_pass = st.columns([0.5,0.5])
 with grid_pass[0]:
-    user_place = st.empty()
+    # Text input for username
+    user_place = st.empty() # Initialize as empty so it can be deleted later
     username = user_place.text_input('Username',value = '', key="user_key")
-            
+
+    # Text input for password
     pass_place = st.empty()
     password = pass_place.text_input('Password',value = '', type="password", key="pwd_key")
 
-    pass_place2 = st.empty()
-    access_place = st.empty()
+    # Create placeholders for password re-entry and acces code entry
+    pass_place2 = st.empty()  # Initialize as empty so it can be deleted later
+    access_place = st.empty() # Initialize as empty so it can be deleted later
 
 # Check if Username Exists
 if username != '':
-    user_flag = 0
+    user_flag = 0 # Set flag to check if username exists. 0 = doesn't exist, 1 = does exist
     for k in range(len(all_users)):
         if all_users[k]['Username'] == username:
             real_pass = all_users[k]['Password']
             user_flag = 1
+
+    # -- Username DOES NOT exist in the database
     if user_flag == 0:
-        
+        # Create new account - ask for password re-entry and the access code
         password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
         access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
         if st.session_state['pwd2_key'] == "":
             st.warning('Username not found. Verify the username is correct, or register an account with an access code.')                
 
         # Check new password
-        new_pass_check = 0
+        new_pass_check = 0 # Set flag to see if passwords match. 0 = do not match, 1 = do match
         if password != "" and password2 != "":
             if password != password2:
                 st.error('Passwords do not match')
@@ -129,42 +134,56 @@ if username != '':
                 new_pass_check = 1
 
         # Check access code
-        new_access_check = 0
+        new_access_check = 0 # Set flag to check access code. 0 = correct code, 1 = incorrect code
         if access_code != '' :
             if access_code == st.secrets["passcode"]:
                 new_access_check = 1
             else:
                 st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
 
-        # Write Username to Database
+        # Write New Username and Password to Database
         if new_pass_check == 1 and new_access_check == 1:
+            # Create the new record
             new_user = {}
             new_user['Username'] = st.session_state["user_key"]
             new_user['Password'] = st.session_state["pwd_key"]
+
+            # Add to the database
             db = client['LabData']
             collection = db['UserInfo']
             new_entry = collection.insert_one(new_user)
+
+            # Delete login entry fields
             user_place.empty()
             pass_place.empty()
             pass_place2.empty()
             access_place.empty()
+
+            # Display message to user to refresh and login
             st.markdown("""---""")
             st.markdown('New User added to the database. Refresh the page and login to access the data collection tool.')
             st.cache_data.clear()
+
+    # Username DOES exit in database
     else:
+        # Check if the password is correct
         if password != "":
+            # Grant access if password is correct
             if password == real_pass:
                 access = 'Yes'
-            
+
+            # Have user reset password if incorrect
             else:
+                # Password Reset - ask for password re-entry and the access code
                 password2 = pass_place2.text_input('Re-Enter Password',value = '', type="password", key="pwd2_key")
                 access_code = access_place.text_input('Access Code',value = '', type="password", key="access_key")
 
+                # Display error message to the user
                 if st.session_state['pwd2_key'] == "":
                     st.error('The password entered is incorrect. Check the password is correct, or reset with the access code')
         
                 # Check new password
-                new_pass_check = 0
+                new_pass_check = 0 # Set flag to see if passwords match. 0 = do not match, 1 = do match
                 if password != "" and password2 != "":
                     if password != password2:
                         st.error('Passwords do not match')
@@ -172,31 +191,41 @@ if username != '':
                         new_pass_check = 1
         
                 # Check access code
-                new_access_check = 0
+                new_access_check = 0 # Set flag to check access code. 0 = correct code, 1 = incorrect code
                 if access_code != '' :
                     if access_code == st.secrets["passcode"]:
                         new_access_check = 1
                     else:
                         st.error('Access code entered is incorrect. If you do not have an access code, please email brandon.l.hearley@nasa.gov')
 
+                # Reset Password
                 if new_pass_check == 1 and new_access_check == 1:
+                    # Create new record
                     new_user = {}
                     new_user['Username'] = st.session_state["user_key"]
                     new_user['Password'] = st.session_state["pwd_key"]
+
+                    # Get the database
                     db = client['LabData']
                     collection = db['UserInfo']
+                    # -- Delete old username password pair
                     myquery = { "Username": st.session_state["user_key"]}
                     collection.delete_one(myquery)
+                    # -- Write new username password pair
                     new_entry = collection.insert_one(new_user)
+
+                    # Delete login entry fields
                     user_place.empty()
                     pass_place.empty()
                     pass_place2.empty()
                     access_place.empty()
+
+                    # Display message to user to refresh and login
                     st.markdown("""---""")
                     st.markdown('Password Updated. Refresh the page and login to access the data collection tool.')
                     st.cache_data.clear()
 
-                
+# Continue when access has been granted                
 if access == 'Yes':
     #==================================================================================================================================================================
     # DATA POPULATION
