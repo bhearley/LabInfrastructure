@@ -46,7 +46,8 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or difficult to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
-# Set Home Directory
+# Create Button to Download Manual
+data_path =  "/mount/src/labinfrastructure/"
 doc_download = os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx")
 bio = io.BytesIO()
 doc_download.save(bio)
