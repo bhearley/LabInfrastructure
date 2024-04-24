@@ -41,7 +41,7 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
             '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. ' + 
             '(i.e. a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
-            '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or different to replace. \n\n \n'+
+            '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or difficult to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
 #==================================================================================================================================================================
@@ -587,7 +587,7 @@ if access == 'Yes':
     impact = st.text_area("Major impact and contributions this capability has made possible:",value='',key='impact')
     
     # Create Input for Impact if total Capability is Lost
-    tot_imp = st.text_area("Overall impact of laboratory/capability is lost:",value='',key='tot_imp')
+    tot_imp = st.text_area("Overall impact if laboratory/capability is lost:",value='',key='tot_imp')
     
     #Create Divider for Down Time History
     st.subheader('History of Down Time Due to Maintenance or Failure')
