@@ -33,15 +33,15 @@ st.set_page_config(layout="wide")
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
 # Create the instructions
-st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will capture the current state of GRC capabilities. ' +
+st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool is used to capture the current state of GRC lab capabilities and their infrastructure. ' +
             'This information is necessary to assess the overall state of our infrastructure and assets and will be used to develop ' +
             'strategic plans for laboratory investment. \n \n \n' 
-            'Please complete each of the fields below for Laboratory assets.  \n\n' +
+            'Please complete each of the fields below for a laboratory and its associated assets.  \n\n' +
             '  - A Laboratory is defined as a dedicated facility, or dedicated infrastructure, for performing a specific type of testing, ' +
             'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
-            'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
+            'test or analytical equipment (e.g., The Structural Dynamics Laboratory). \n\n' 
             '  - An asset is defined as a unique equipment that is segregable from the facility. An asset may be composed of multiple components. ' + 
-            '(i.e. a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
+            '(e.g., a Scanning Electron Microscope). Consider only assets associated with the infrastructure of the lab and not the facility. \n\n' + 
             '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or difficult to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
@@ -231,7 +231,7 @@ if access == 'Yes':
     # DATA POPULATION
     # Set up the database connection and define functions to populate data fields in the web app
 
-    # Delete Widgets
+    # Delete User Login Widgets
     user_place.empty()
     pass_place.empty()
     pass_place2.empty()
@@ -256,19 +256,19 @@ if access == 'Yes':
     # Read the Database
     @st.cache_data(ttl=6000)
     def get_data():
-        db = client['LabData']
-        collection = db['LabData']
-        query = {'Username': st.session_state["user_key"]}
-        items = collection.find(query)
-        items = list(items)  # make hashable for st.cache_data
+        db = client['LabData']  # Access the database
+        collection = db['LabData'] # Access the Lab Data Collection
+        query = {'Username': st.session_state["user_key"]} # Load only data associated with the user
+        items = collection.find(query) # Find all records that match the search criteria
+        items = list(items)  # Make hashable for st.cache_data
         return items
     
     # Get All Data in Database
     all_data = get_data()
-    all_labs = [''] #Initialize list of labs to display to user
+    all_labs = [''] # Initialize list of labs to display to user
     for k in range(len(all_data)):
         all_labs.append(all_data[k]["Laboratory/Capability Name"])
-    all_labs.sort() #Sort the list of labs alphabetically
+    all_labs.sort() # Sort the list of labs alphabetically
     
     # Load Data Function
     # -- Set the values in the web app from the database when an existing lab is chosen
@@ -281,6 +281,8 @@ if access == 'Yes':
             query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
             results = db['LabData'].find(query)
             for result in results:
+                # Laboratory Information
+                # -- General Information
                 st.session_state['name'] = result['Laboratory/Capability Name']
                 st.session_state['poc'] = result['Point of Contact']
                 st.session_state['branch'] = result['Branch']
@@ -289,6 +291,7 @@ if access == 'Yes':
                 st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
                 st.session_state['lab_age'] = result['Age (yrs)']
                 st.session_state['cond'] = result['Condition']
+                # -- Assets
                 st.session_state['asset_num'] = result['Number of Assets']
                 for m in range(int(result['Number of Assets'])):
                     st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
@@ -303,16 +306,11 @@ if access == 'Yes':
                     st.session_state[f'input_colj{m}'] = result['T1-Inlcudes IT Hardware?'][m]
                     st.session_state[f'input_colk{m}'] = result['T1-Replacement'][m]
     
-                # -- Never Replace Images (until I figure out loading/unloading images in streamlit/mongo)
-                if 'Lab Images' in list(result.keys()):
-                    lab_images_old = result['Lab Images']
-                else:
-                    lab_images_old = []
-                #st.session_state['asset_img'] = result['Number of Asset Images']
-                #for m in range(int(result['Number of Asset Images'])):
-                #    st.session_state[f'input_colimga{m}'] = result['T2-Asset'][m]
+                # -- Asset Images (New Only)
+                #    Previous asset images are loaded later, the new number of images should always default to 0
                 st.session_state['asset_img'] = 0
-                
+
+                # -- Funding Information
                 st.session_state['sust'] = result['Sustainment Funding Source']
                 st.session_state['fund_num'] = result['Number of Funding Sources']
                 for m in range(int(result['Number of Funding Sources'])):
@@ -322,7 +320,8 @@ if access == 'Yes':
                     date2 = result['T3-Funding End Date'][m].split('-')
                     st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
                     st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
-                            
+
+                # Current Mission/Project Utilization
                 st.session_state['proj_num'] = result['Number of Projects']
                 for m in range(int(result['Number of Projects'])):
                     st.session_state[f'input_colp{m}'] = result['T4-Mission/Project Name'][m]
@@ -330,9 +329,13 @@ if access == 'Yes':
                     st.session_state[f'input_colr{m}'] = result['T4-Project Use (%)'][m]
                     st.session_state[f'input_cols{m}'] = result['T4-Risk to Project'][m]
                     st.session_state[f'input_colt{m}'] = result['T4-Impact if Laboratory/Capability is Lost'][m]
+
+                # Utilization History and Impact
                 st.session_state['hist'] = result['History of capability utilization']
                 st.session_state['impact'] = result['Major impact and contributions this capability has made possible']
                 st.session_state['tot_imp'] = result['Overall impact of laboratory/capability is lost']
+                
+                # History of Down Time Due to Maintenance or Failure
                 st.session_state['dt_num'] = result['Number of Failures']
                 for m in range(int(result['Number of Failures'])):
                     st.session_state[f'input_colu{m}'] = result['T5-Asset'][m]
@@ -342,6 +345,8 @@ if access == 'Yes':
                     st.session_state[f'input_colx{m}'] = result['T5-Unit'][m]
                     st.session_state[f'input_coly{m}'] = result['T5-Additional Notes'][m]
                     st.session_state[f'input_colyy{m}'] = result['T5-Impact'][m]
+
+                # Cost
                 st.session_state['cost_rep'] = result['Estimated Cost to Replace Entire Laboratory/Capability ($)']
                 st.session_state['cost_serv'] = result['Cost of Service Contracts ($)']
                 st.session_state['cost_ann'] = result['Annual Cost to Operate and Sustain the Lab ($/yr)']
@@ -350,11 +355,13 @@ if access == 'Yes':
                 for m in range(int(result['Number of Divisions (Labor Costs)'])):
                     st.session_state[f'input_colz{m}'] = result['T6-Directorate'][m]
                     st.session_state[f'input_colaa{m}'] = result['T6-Labor Cost (%)'][m]
+                
+                # Status
                 st.session_state['status'] = result['Status']
     
     # Clear all fields
     if st.button('Clear All Fields'):
-        # Clear Data
+        # Clear Data and set to default values
         st.session_state['name'] = ''
         st.session_state['poc'] = ''
         st.session_state['branch'] = ''
@@ -389,7 +396,7 @@ if access == 'Yes':
     #Create Divider for Name and Description
     st.subheader('Laboratory Information')
     
-    # Create Input for Asset Name
+    # Create Input for Laboratory Name
     lab_name = st.text_input("Laboratory Name:",value='',key='name')
     
     # Create Input for Point of Contact
@@ -455,15 +462,15 @@ if access == 'Yes':
                 asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, value = None, key=f'input_colc{row}')
             else:
                 asset_age[row]=st.number_input('Temp', step=0.5, value = None, key=f'input_colc{row}',label_visibility = "collapsed")
-        # -- Asset Year of Entry
+        # -- Asset Acquisition Year
         with grid_asset[3]:
             while len(asset_date_in) < row+1:
                 asset_date_in.append(None)
             if row == 0:
-                asset_date_in[row]=st.number_input('Acquistion  \n \n Year', step = 1, min_value = 0, max_value = 3000, value = None, help = 'The year the asset was acquired.', key=f'input_cold{row}')
+                asset_date_in[row]=st.number_input('Acquisition  \n \n Year', step = 1, min_value = 0, max_value = 3000, value = None, help = 'The year the asset was acquired.', key=f'input_cold{row}')
             else:
                 asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, value = None, key=f'input_cold{row}',label_visibility = "collapsed")
-        # -- Asset Date of Obsolescence
+        # -- Asset Year of Obsolescence
         with grid_asset[4]:
             while len(asset_date_out) < row+1:
                 asset_date_out.append(None)
@@ -532,7 +539,7 @@ if access == 'Yes':
     asset_imgs = [] #Store the asset images
     asset_imgs_notes = [] #Store the asset image notes
     asset_imgs_keep = [] #Store the asset image status
-    asset_imgs_num = st.number_input('Number of NEW Asset Images:', min_value=0, max_value=None, key='asset_img')
+    asset_imgs_num = st.number_input('Number of New Asset Images:', min_value=0, max_value=None, key='asset_img')
 
     # Add row to asset image table
     def add_row_img(row):
@@ -542,7 +549,6 @@ if access == 'Yes':
         options_dt = []
         for k in range(len(asset_name)):
             options_dt.append(asset_name[k])
-            
         # -- Asset
         with grid_img[0]:
             while len(asset_imgs_lab) < row+1:
@@ -551,13 +557,12 @@ if access == 'Yes':
                 asset_imgs_lab[row]=st.selectbox('Asset', options_dt, key=f'input_colimga{row}')  
             else:
                 asset_imgs_lab[row]=st.selectbox('Temp', options_dt, key=f'input_colimga{row}',label_visibility = "collapsed")
-    
         # -- Asset image   
         with grid_img[1]:
             while len(asset_imgs) < row+1:
                 asset_imgs.append(None)
             if row == 0:
-                asset_imgs[row]=st.file_uploader('Images', accept_multiple_files=False, key=f'input_colimgb{row}')
+                asset_imgs[row]=st.file_uploader('Image', accept_multiple_files=False, key=f'input_colimgb{row}')
             else:
                 asset_imgs[row]=st.file_uploader('Temp', accept_multiple_files=False, key=f'input_colimgb{row}',label_visibility = "collapsed")
         # -- Asset Notes
@@ -576,27 +581,27 @@ if access == 'Yes':
     # Dispaly Existing Files for this record
     st.markdown(' ')
     with st.expander("View/Edit Existing Asset Images in the Database"):
-        # -- Find list of existing values
+        # -- Find list of existing images
         db = client['LabData']
         collection = db['LabData']
         query = {'Laboratory/Capability Name': st.session_state['name']}
         results = collection.find(query)
-        curr_asset_imgs = []
-        curr_asset_labels = []
-        curr_asset_notes = []
+        curr_asset_imgs = [] # Preallocate list of images
+        curr_asset_labels = [] # Preallocate list of assets associated with an image
+        curr_asset_notes = [] # Preallocate list of notes associated with an image
         for result in results:
             if 'T7-Asset Image' in list(result.keys()):
                 curr_asset_imgs = result['T7-Asset Image']
                 curr_asset_labels = result['T7-Asset Image Label']
                 curr_asset_notes = result['T7-Asset Image Notes']
 
-        # -- Create Grid for Current Images
+        # -- Create Grid for Current Asset Images
         if len(curr_asset_imgs) != 0:
             for k in range(len(curr_asset_imgs)):
                 # Create The Grid
                 col1_asset_img, col2_asset_img, col3_asset_img, col4_asset_img = st.columns([0.25,0.3,0.3,0.15])
     
-                # Get the list of assets and the index
+                # Get the list of assets and the index for the drop down menu
                 options_dt = []
                 idx = None
                 for kk in range(len(asset_name)):
@@ -604,7 +609,6 @@ if access == 'Yes':
                     if asset_name[kk] == curr_asset_labels[k]:
                         idx = kk
     
-                
                 # Populate Existing Asset Images
                 col1_asset_img.selectbox('Temp', options_dt, index = idx, key=f'input_colba{k}',label_visibility = "collapsed")
                 col2_asset_img.image(curr_asset_imgs[k])
@@ -666,12 +670,12 @@ if access == 'Yes':
 
     # Dispaly Existing Files for this record
     with st.expander("View/Edit Existing Laboratory Images"):      
-        # -- Find list of existing values
+        # -- Find list of existing images
         db = client['LabData']
         collection = db['LabData']
         query = {'Laboratory/Capability Name': st.session_state['name']}
         results = collection.find(query)
-        curr_imgs = []
+        curr_imgs = [] # Preallocate list of existing images
         for result in results:
             if 'Lab Images' in list(result.keys()):
                 curr_imgs = result['Lab Images']
@@ -683,11 +687,10 @@ if access == 'Yes':
                 col1_img.image(curr_imgs[k])
                 col2_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
 
-
     #Create Divider for Name and Description
     st.subheader('Current Mission/Project Utilization')
     # Create Input for Project Utilization and Risk
-    proj_rows = st.number_input('Number of Projects', min_value=0, max_value=None, key = 'proj_num')
+    proj_rows = st.number_input('Number of Projects:', min_value=0, max_value=None, key = 'proj_num')
     grid_proj = st.columns(5)
     proj_util = [] #Store the projects
     wbs_util = [] #Store the project WBS
@@ -720,7 +723,7 @@ if access == 'Yes':
             if row == 0:
                 use_util[row]=st.number_input('Project Use (%)', min_value=0.0, max_value=100.0, step=0.5, value = None, key=f'input_colr{row}')
             else:
-                use_util[row]=st.number_input('Tmp', min_value=0.0, max_value=100.0, step=0.5, value = None, key=f'input_colr{row}',label_visibility = "collapsed")
+                use_util[row]=st.number_input('Temp', min_value=0.0, max_value=100.0, step=0.5, value = None, key=f'input_colr{row}',label_visibility = "collapsed")
         # -- Risk to Project
         with grid_proj[3]:
             while len(risk) < row+1:
@@ -775,7 +778,6 @@ if access == 'Yes':
         options_dt = ['Entire Lab/Capability']
         for k in range(len(asset_name)):
             options_dt.append(asset_name[k])
-            
         # -- Asset that went down
         with grid_down[0]:
             while len(asset_dt) < row+1:
@@ -791,7 +793,7 @@ if access == 'Yes':
             if row == 0:
                 date_dt[row]=st.date_input('Start Date', min_value=datetime.date(2019, 1, 1),  format="MM/DD/YYYY", value = None,  key=f'input_colv{row}')
             else:
-                date_dt[row]=st.date_input('Tepm', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY", value = None,  key=f'input_colv{row}',label_visibility = "collapsed")
+                date_dt[row]=st.date_input('Temp', min_value = datetime.date(2019, 1, 1), format="MM/DD/YYYY", value = None,  key=f'input_colv{row}',label_visibility = "collapsed")
         # -- Time Down
         with grid_down[2]:
             while len(time_dt) < row+1:
@@ -841,17 +843,17 @@ if access == 'Yes':
     cost_ann = st.number_input("Annual Cost to Operate and Sustain the Lab ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_ann')
     
     # Create Input for Incurred Cost Due to Downtown
-    cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_inc')
+    cost_inc = st.number_input("Incurred Cost For Down Time ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_inc')
     
     # Create Input for Labor Division
-    labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
+    labor_rows = st.number_input('Number of Directorates (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
     grid_labor = st.columns([0.3,0.3,0.4])
     division = [] #Store division
     labor_pct = [] #Store the labor percentrate
     
     # Add row to labor cost table
     def add_row_labor(row):
-        # -- Start Date for Time Down
+        # -- Directorate
         with grid_labor[0]:
             while len(division) < row+1:
                 division.append(None)
@@ -859,7 +861,7 @@ if access == 'Yes':
                 division[row]=st.selectbox('Directorate', ('Code F','Code L'), key=f'input_colz{row}')
             else:
                 division[row]=st.selectbox('Temp', ('Code F','Code L'), key=f'input_colz{row}',label_visibility = "collapsed")
-        # -- Time Down
+        # -- Labor Percentage
         with grid_labor[1]:
             while len(labor_pct) < row+1:
                 labor_pct.append(None)
@@ -989,25 +991,24 @@ if access == 'Yes':
                     new_data['T6-Labor Cost (%)'].append(st.session_state[f'input_colaa{m}'])
                 new_data['Status'] = st.session_state['status']
 
-                # Check Lab Images
+                # Write All Images
                 new_data['Lab Images'] = []
                 new_data['T7-Asset Image'] = []
                 new_data['T7-Asset Image Label'] = []
                 new_data['T7-Asset Image Notes'] = []
-                # -- Find list of existing values
-                # Load the Current Database
+                # -- Load the record from the database
                 db = client['LabData']
                 collection = db['LabData']
                 query = {'Laboratory/Capability Name': st.session_state['name']}
                 results = collection.find(query)
                 for result in results:
-                    # -- Overall Lab Images
+                    # -- List of all existing Lab Images
                     if 'Lab Images' in list(result.keys()):
                         curr_img_write = result['Lab Images']
                     else:
                         curr_img_write = []
 
-                    # -- Asset Images
+                    # -- List of all existing Asset Images and associated data
                     if 'T7-Asset Image' in list(result.keys()):
                         asset_img_write = result['T7-Asset Image']
                         asset_img_label_write = result['T7-Asset Image Label']
@@ -1017,10 +1018,11 @@ if access == 'Yes':
                         asset_img_label_write = []
                         asset_img_notes_write = []
 
-                # -- Populate List of Existing Images
+                # -- Populate List of Existing Lab Images
                 for kk in range(len(curr_img_write)):
                     if st.session_state[f'input_colab{kk}'] == 'Keep':
                         new_data['Lab Images'].append(curr_img_write[kk])
+                # -- Populate New Lab Images
                 for iii in range(len(uploaded_files)):
                     new_data['Lab Images'].append(uploaded_files[iii].getvalue())
 
@@ -1030,11 +1032,13 @@ if access == 'Yes':
                         new_data['T7-Asset Image'].append(asset_img_write[kk])
                         new_data['T7-Asset Image Label'].append(st.session_state[f'input_colba{kk}'])
                         new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colbb{kk}'])
+                # -- Populate New Asset Images
                 for iii in range(st.session_state['asset_img']):
                     new_data['T7-Asset Image'].append(st.session_state[f'input_colimgb{iii}'].getvalue())
                     new_data['T7-Asset Image Label'].append(st.session_state[f'input_colimga{iii}'])
                     new_data['T7-Asset Image Notes'].append(st.session_state[f'input_colimgc{iii}'])
 
+                # Associate username with the newly created record
                 new_data['Username'] = st.session_state['user_key']
                         
                 # Delete the existing entry if it exists
@@ -1049,12 +1053,9 @@ if access == 'Yes':
                 # Refetch Data
                 st.cache_data.clear()
     
-                # Create Popup for Save
+                # Create message indicating the save is complete
                 st.markdown( 'Saved to Database!')
-
-
-                
-                        
+   
     with grid_db[1]:
         # Delete Entry from Database
         if st.button('Delete From Database'):
@@ -1066,8 +1067,7 @@ if access == 'Yes':
     
             # Refetch Data
             st.cache_data.clear()
-    
-    
+
     # Write Error Messages
     if err_flag == 1:
         for k in range(len(err_msgs)):
