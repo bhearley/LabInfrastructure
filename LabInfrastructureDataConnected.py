@@ -21,6 +21,7 @@ import time
 from PIL import Image
 import io
 import os
+import docx
 
 #==================================================================================================================================================================
 # GENERAL INFORMATION
@@ -46,8 +47,15 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
 # Set Home Directory
-data_path = "/mount/src/labinfrastructure/"
-st.download_button("Download The User's Manual", os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx"))
+doc_download = os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx")
+bio = io.BytesIO()
+doc_download.save(bio)
+st.download_button(
+            label="Download the User's Manual",
+            data=bio.getvalue(),
+            file_name="Lab Data Collection Mannual.docx",
+            mime="docx"
+        )
 
 #==================================================================================================================================================================
 # DATA ACCESS
