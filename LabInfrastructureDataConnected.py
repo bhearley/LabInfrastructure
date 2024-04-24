@@ -48,7 +48,7 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
 
 # Create Button to Download Manual
 data_path =  "/mount/src/labinfrastructure/"
-doc_download = Document(os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx"))
+doc_download = docx.Document(os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx"))
 bio = io.BytesIO()
 doc_download.save(bio)
 st.download_button(
