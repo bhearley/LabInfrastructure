@@ -1,10 +1,11 @@
 #==================================================================================================================================================================
 #   NASA GRC Lab Infrastructure Data Collection Tool
 #   Brandon Hearley - LMS
+#   brandon.l.hearley@nasa.gov        
 #   4/11/2024
 #
 #   PURPOSE: Create a web app (using streamlit) to collect data on the GRC Lab Infrastructure. The data collected is 
-#            stored in a Mongo Database.
+#            stored in a Mongo Database. The web app can be accessed at https://nasagrclabdatabase.streamlit.app/
 #
 #==================================================================================================================================================================
 # SETUP
@@ -28,10 +29,10 @@ import io
 # Set the page configuration
 st.set_page_config(layout="wide")
 
-# Create the Title
+# Create the title
 st.title("NASA GRC Laboratory Infrastructure Data Collection")
 
-# Create Instructions
+# Create the instructions
 st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will capture the current state of GRC capabilities. ' +
             'This information is necessary to assess the overall state of our infrastructure and assets and will be used to develop ' +
             'strategic plans for laboratory investment. \n \n \n' 
@@ -44,20 +45,24 @@ st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will ca
             '  - For each laboratory enter assets with a value over $50K or assets at lower values that are extremely critical or difficult to replace. \n\n \n'+
            'For questions regarding the data collection tool, please contact Brandon Hearley (LMS) at brandon.l.hearley@nasa.gov')
 
-# Create Button to Download Manual
+# Create the button to download the user's manual
+# -- Set the path
 data_path =  "/mount/src/labinfrastructure/"
+# -- Open file using python docx and convert to Byets
 doc_download = docx.Document(os.path.join(data_path,"NASA GRC Laboratory Infrastructure Data Collection User Manual.docx"))
 bio = io.BytesIO()
 doc_download.save(bio)
+# -- Create the download button
 st.download_button(
             label="Download the User's Manual",
             data=bio.getvalue(),
             file_name="Lab Data Collection Mannual.docx",
             mime="docx"
         )
-
 #==================================================================================================================================================================
 # LOGIN
+# Allow users to log into the web app, create a new account, or reset their password
+
 # Access Username/Login Info in Database
 @st.cache_resource
 def init_connection():
@@ -77,22 +82,17 @@ except Exception as e:
 # Read the Database
 @st.cache_data(ttl=6000)
 def get_user_data():
-    db = client['LabData']
-    items = db['UserInfo'].find()
-    items = list(items)  # make hashable for st.cache_data
+    db = client['LabData']         # Get the database name
+    items = db['UserInfo'].find()  # Get the User Infor collection
+    items = list(items)            # Make hashable for st.cache_data
     return items
 
-# Get All Data in Database
+# Get All Users in Database
 all_users = get_user_data()
 
-# Default access to False
+# Default access to 'No' and initialize password as empty
 access = 'No'
 password = ''
-
-# Initialize Variables
-sign_up_btn2 = st.empty()
-
-# Set Home Screen Options
 
 # Create input for password
 grid_pass = st.columns([0.5,0.5])
