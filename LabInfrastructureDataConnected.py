@@ -915,6 +915,9 @@ if access == 'Yes':
     
             # Refetch Data
             st.cache_data.clear()
+
+            # Create Popup for Delete
+            st.markdown( 'Delete ' + st.session_state['name'] + ' from Database!')
     
     
     # Write Error Messages
