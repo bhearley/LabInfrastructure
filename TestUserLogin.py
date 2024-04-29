@@ -1070,6 +1070,9 @@ if access == 'Yes':
             collection = db['LabData']
             myquery = { "Laboratory/Capability Name": st.session_state["name"]}
             collection.delete_one(myquery)
+
+             # Create Popup for Delete
+            st.markdown( 'Delete ' + st.session_state['name'] + ' from Database!')
     
             # Refetch Data
             st.cache_data.clear()
