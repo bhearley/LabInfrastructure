@@ -998,6 +998,10 @@ if access == 'Yes':
                 new_data['T7-Asset Image'] = []
                 new_data['T7-Asset Image Label'] = []
                 new_data['T7-Asset Image Notes'] = []
+                curr_img_write = []
+                asset_img_write = []
+                asset_img_label_write = []
+                asset_img_notes_write = []
                 # -- Load the record from the database
                 db = client['LabData']
                 collection = db['LabData']
