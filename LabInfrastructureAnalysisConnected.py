@@ -51,7 +51,7 @@ st.markdown('Set the filter criteria and generate a Word Document report summari
 # Connect to the Database
 @st.cache_resource
 def init_connection():
-    uri = "mongodb+srv://nasagrc:brookpark21000@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+    uri = "mongodb+srv://nasagrc:" + st.secrets['mongo1']['password'] + "@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
     return MongoClient(uri, tlsCAFile=certifi.where())
 
 # Create the Database Client
