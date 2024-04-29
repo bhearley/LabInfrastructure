@@ -841,6 +841,10 @@ if access == 'Yes':
                 new_data['T7-Asset Image'] = []
                 new_data['T7-Asset Image Label'] = []
                 new_data['T7-Asset Image Notes'] = []
+                curr_img_write = []
+                asset_img_write = []
+                asset_img_label_write = []
+                asset_img_notes_write = []
                 # -- Find list of existing values
                 # Load the Current Database
                 db = client['LabData']
