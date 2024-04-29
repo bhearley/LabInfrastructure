@@ -461,9 +461,9 @@ if access == 'Yes':
             while len(asset_age) < row+1:
                 asset_age.append(None)
             if row == 0:
-                asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=0.5, value = None, key=f'input_colc{row}')
+                asset_age[row]=st.number_input('Age  \n \n  (yrs)', step=1, value = None, key=f'input_colc{row}')
             else:
-                asset_age[row]=st.number_input('Temp', step=0.5, value = None, key=f'input_colc{row}',label_visibility = "collapsed")
+                asset_age[row]=st.number_input('Temp', step=1, value = None, key=f'input_colc{row}',label_visibility = "collapsed")
         # -- Asset Acquisition Year
         with grid_asset[3]:
             while len(asset_date_in) < row+1:
