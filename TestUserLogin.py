@@ -21,6 +21,7 @@ import datetime
 import time
 from PIL import Image
 import io
+import docx
 
 #==================================================================================================================================================================
 # GENERAL INFORMATION
