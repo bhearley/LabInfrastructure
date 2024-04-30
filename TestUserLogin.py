@@ -61,6 +61,7 @@ st.download_button(
             file_name="Lab Data Collection Mannual.docx",
             mime="docx"
         )
+st.markdown("""---""")
 #==================================================================================================================================================================
 # LOGIN
 # Allow users to log into the web app, create a new account, or reset their password
