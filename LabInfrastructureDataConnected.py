@@ -54,7 +54,7 @@ doc_download.save(bio)
 st.download_button(
             label="Download the User's Manual",
             data=bio.getvalue(),
-            file_name="Lab Data Collection Mannual.docx",
+            file_name="Lab Data Collection Manual.docx",
             mime="docx"
         )
 st.markdown("""---""")
