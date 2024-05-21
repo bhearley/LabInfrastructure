@@ -62,6 +62,7 @@ st.markdown("""---""")
 
 # Data Validation - Check specific attributes are properly added before writing
 def save_to_database():
+    err_flag = 0
     # -- Laboratory/Capability Name Must Be Populated
     if st.session_state['name'] == '':
         err_msgs.append('Laboratory/Capability Name Must Be Populated')
