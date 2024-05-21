@@ -541,7 +541,7 @@ if access == 'Yes':
             while len(asset_repdesc) < row+1:
                 asset_repdesc.append(None)
             if row == 0:
-                asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost?', key=f'input_colk{row}')
+                asset_repdesc[row]=st.text_input('Replacement Parts \n \n Available?', help = 'Are replacement components available or would a full replacement be needed if asset is lost? Add any additional notes on the asset in this field.', key=f'input_colk{row}')
             else:
                 asset_repdesc[row]=st.text_input('Temp', key=f'input_colk{row}',label_visibility = "collapsed")
     
@@ -889,7 +889,7 @@ if access == 'Yes':
     cost_inc = st.number_input("Incurred Cost For Downtime ($/yr):",min_value=0,max_value=None,step=1000,value=None,key='cost_inc')
     
     # Create Input for Labor Division
-    labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None,key = 'labor_num')
+    labor_rows = st.number_input('Number of Divisions (Labor Costs):', min_value=0, max_value=None, help='Select the number of divisions that share the labor cost for this lab and enter their relative percentages.',key = 'labor_num')
     grid_labor = st.columns([0.3,0.3,0.4])
     division = [] #Store division
     labor_pct = [] #Store the labor percentrate
