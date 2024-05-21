@@ -792,7 +792,7 @@ if access == 'Yes':
     grid_save3 = st.columns([0.115,0.135,0.75])
     with grid_save3[0]:
         # Save Data to Database
-        if st.button('Save To Database', type="primary", key='save_btn_2'):      
+        if st.button('Save To Database', type="primary", key='save_btn_3'):      
             save_to_database()
     
     #Create Divider for Down Time History
