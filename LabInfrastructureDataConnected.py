@@ -708,7 +708,7 @@ if access == 'Yes':
     grid_save1 = st.columns([0.115,0.135,0.75])
     with grid_save1[0]:
         # Save Data to Database
-        if st.button('Save To Database', type="primary"):      
+        if st.button('Save To Database', type="primary", key='save_btn_1'):      
             save_to_database()
             
     #Create Divider for Name and Description
@@ -774,7 +774,7 @@ if access == 'Yes':
     grid_save2 = st.columns([0.115,0.135,0.75])
     with grid_save2[0]:
         # Save Data to Database
-        if st.button('Save To Database', type="primary"):      
+        if st.button('Save To Database', type="primary", key='save_btn_2'):      
             save_to_database()
     
     # Create Divider for Name and Description
@@ -792,7 +792,7 @@ if access == 'Yes':
     grid_save3 = st.columns([0.115,0.135,0.75])
     with grid_save3[0]:
         # Save Data to Database
-        if st.button('Save To Database', type="primary"):      
+        if st.button('Save To Database', type="primary", key='save_btn_2'):      
             save_to_database()
     
     #Create Divider for Down Time History
@@ -870,7 +870,7 @@ if access == 'Yes':
     grid_save4 = st.columns([0.115,0.135,0.75])
     with grid_save4[0]:
         # Save Data to Database
-        if st.button('Save To Database', type="primary"):      
+        if st.button('Save To Database', type="primary", key='save_btn_4'):      
             save_to_database()
     
     #Create Divider for Down Time History
@@ -928,7 +928,7 @@ if access == 'Yes':
     grid_db = st.columns([0.115,0.135,0.75])
     with grid_db[0]:
         # Save Data to Database
-        if st.button('Save To Database', type="primary"):      
+        if st.button('Save To Database', type="primary", key='save_btn_5'):      
             save_to_database()
 
                         
