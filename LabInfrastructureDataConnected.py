@@ -938,20 +938,20 @@ if access == 'Yes':
             save_to_database()
 
                         
-    with grid_db[1]:
-        # Delete Entry from Database
-        if st.button('Delete From Database'):
-            # Delete the existing entry if it exists
-            db = client['LabData']
-            collection = db['LabData']
-            myquery = { "Laboratory/Capability Name": st.session_state["name"]}
-            collection.delete_one(myquery)
-    
-            # Refetch Data
-            st.cache_data.clear()
 
-            # Create Popup for Delete
-            st.markdown( 'Delete ' + st.session_state['name'] + ' from Database!')
+    # Delete Entry from Database
+    if st.button('Delete From Database'):
+        # Delete the existing entry if it exists
+        db = client['LabData']
+        collection = db['LabData']
+        myquery = { "Laboratory/Capability Name": st.session_state["name"]}
+        collection.delete_one(myquery)
+
+        # Refetch Data
+        st.cache_data.clear()
+
+        # Create Popup for Delete
+        st.markdown( 'Delete ' + st.session_state['name'] + ' from Database!')
     
     
     
