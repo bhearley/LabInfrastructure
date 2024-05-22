@@ -711,7 +711,7 @@ if access == 'Yes':
                 col1_img.image(curr_imgs[k])
                 col2_img.selectbox('Temp', ('Keep','Remove'),key=f'input_colab{k}',label_visibility = "collapsed")
 
-    grid_save1 = st.columns([0.115,0.135,0.75])
+    grid_save1 = st.columns([0.265,0.135,0.6])
     with grid_save1[0]:
         # Save Data to Database
         if st.button('Save To Database', type="primary", key='save_btn_1'):      
@@ -777,7 +777,7 @@ if access == 'Yes':
     for r in range(int(st.session_state['proj_num'])):
         add_row_proj(r)
 
-    grid_save2 = st.columns([0.115,0.135,0.75])
+    grid_save2 = st.columns([0.265,0.135,0.6])
     with grid_save2[0]:
         # Save Data to Database
         if st.button('Save To Database', type="primary", key='save_btn_2'):      
@@ -795,7 +795,7 @@ if access == 'Yes':
     # Create Input for Impact if total Capability is Lost
     tot_imp = st.text_area("Overall impact if laboratory/capability is lost:",value='',key='tot_imp')
 
-    grid_save3 = st.columns([0.115,0.135,0.75])
+    grid_save3 = st.columns([0.265,0.135,0.6])
     with grid_save3[0]:
         # Save Data to Database
         if st.button('Save To Database', type="primary", key='save_btn_3'):      
@@ -873,7 +873,7 @@ if access == 'Yes':
     for r in range(int(st.session_state['dt_num'])):
         add_row_down(r)
         
-    grid_save4 = st.columns([0.115,0.135,0.75])
+    grid_save4 = st.columns([0.265,0.135,0.6])
     with grid_save4[0]:
         # Save Data to Database
         if st.button('Save To Database', type="primary", key='save_btn_4'):      
@@ -931,7 +931,7 @@ if access == 'Yes':
     err_msgs = [] # Store list of error messages 
     
     # Create buttons to interact with database
-    grid_db = st.columns([0.115,0.135,0.75])
+    grid_db = = st.columns([0.265,0.135,0.6])
     with grid_db[0]:
         # Save Data to Database
         if st.button('Save To Database', type="primary", key='save_btn_5'):      
