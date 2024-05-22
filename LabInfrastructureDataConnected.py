@@ -63,6 +63,7 @@ st.markdown("""---""")
 # Data Validation - Check specific attributes are properly added before writing
 def save_to_database():
     err_flag = 0
+    err_msgs = []
     # -- Laboratory/Capability Name Must Be Populated
     if st.session_state['name'] == '':
         err_msgs.append('Laboratory/Capability Name Must Be Populated')
@@ -231,6 +232,11 @@ def save_to_database():
 
         # Create Popup for Save
         st.markdown( 'Saved to Database!')
+
+    # Write Error Messages
+    if err_flag == 1:
+        for k in range(len(err_msgs)):
+            st.error(err_msgs[k])
 
 
 #==================================================================================================================================================================
@@ -948,7 +954,4 @@ if access == 'Yes':
             st.markdown( 'Delete ' + st.session_state['name'] + ' from Database!')
     
     
-    # Write Error Messages
-    if err_flag == 1:
-        for k in range(len(err_msgs)):
-            st.error(err_msgs[k])
+    
