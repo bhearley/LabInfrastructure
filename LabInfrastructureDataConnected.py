@@ -939,6 +939,10 @@ if access == 'Yes':
 
                         
 
+    st.markdown("""---""")
+    st.markdown(" ")
+    st.markdown(" ")
+            
     # Delete Entry from Database
     if st.button('Delete From Database'):
         # Delete the existing entry if it exists
