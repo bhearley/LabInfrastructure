@@ -931,7 +931,7 @@ if access == 'Yes':
     err_msgs = [] # Store list of error messages 
     
     # Create buttons to interact with database
-    grid_db = = st.columns([0.265,0.135,0.6])
+    grid_db = st.columns([0.265,0.135,0.6])
     with grid_db[0]:
         # Save Data to Database
         if st.button('Save To Database', type="primary", key='save_btn_5'):      
