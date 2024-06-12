@@ -344,12 +344,16 @@ if access == 'Yes':
                 st.session_state['sust'] = result['Sustainment Funding Source']
                 st.session_state['fund_num'] = result['Number of Funding Sources']
                 for m in range(int(result['Number of Funding Sources'])):
-                    st.session_state[f'input_coll{m}'] = result['T3-Funding Source'][m]
-                    date1 = result['T3-Funding Start Date'][m].split('-')
-                    st.session_state[f'input_colm{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
-                    date2 = result['T3-Funding End Date'][m].split('-')
-                    st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
-                    st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
+                    if result['T3-Funding Source'][m] != None:
+                        st.session_state[f'input_coll{m}'] = result['T3-Funding Source'][m]
+                    if result['T3-Funding Start Date'][m] != None:
+                        date1 = result['T3-Funding Start Date'][m].split('-')
+                        st.session_state[f'input_colm{m}'] = datetime.date(int(date1[0]),int(date1[1]),int(date1[2]))
+                    if result['T3-Funding End Date'][m] != None:
+                        date2 = result['T3-Funding End Date'][m].split('-')
+                        st.session_state[f'input_coln{m}'] = datetime.date(int(date2[0]),int(date2[1]),int(date2[2]))
+                    if result['T3-Funding Amount per Year ($)'][m] != None:
+                        st.session_state[f'input_colo{m}'] = result['T3-Funding Amount per Year ($)'][m]
                             
                 st.session_state['proj_num'] = result['Number of Projects']
                 for m in range(int(result['Number of Projects'])):
