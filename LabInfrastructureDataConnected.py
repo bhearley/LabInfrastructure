@@ -31,12 +31,17 @@ import docx
 st.set_page_config(layout="wide")
 
 # Create the Title
-st.title("NASA GRC Laboratory Infrastructure Data Collection")
+st.title("Code L Laboratory Test Equipment & Special Test Equipment Assessment")
 
 # Create Instructions
-st.markdown('The NASA GRC Laboratory Infrastructure Data Collection Tool will capture the current state of GRC capabilities. ' +
-            'This information is necessary to assess the overall state of our infrastructure and assets and will be used to develop ' +
-            'strategic plans for laboratory investment. \n \n \n' 
+st.markdown('This Code L Laboratory Test Equipment & Special Test Equipment Assessment is being utilized to collect information the status of test/special equipment that support
+             the research and engineering laboratories within Glenn’s Research and Engineering Directorate. This data will help inform center and agency management about the 
+             need for consistent and targeted investments in laboratory equipment capability. The proposed dollar threshold for equipment to be included in this assessment is 
+             $50,000 and up in this initial request for data. If there is a specific equipment item that falls below this threshold that is critically important to capture, please include 
+             only equipment and the reason for its importance. Do not include real property infrastructure in this assessment such as buildings, building services (high pressure 
+             air systems, electrical systems, water systems, natural gas or other gas systems, central air conditioning or heating systems, etc.). Thank you in advance for completing 
+             this assessment. \n \n' +
+
             'Please complete each of the fields below for Laboratory assets.  \n\n' +
             '  - A Laboratory is defined as a dedicated facility, or dedicated infrastructure, for performing a specific type of testing, ' +
             'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
