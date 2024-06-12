@@ -40,9 +40,11 @@ st.markdown('This Code L Laboratory Test Equipment & Special Test Equipment Asse
              '$50,000 and up in this initial request for data. If there is a specific equipment item that falls below this threshold that is critically important to capture, please include ' + 
              'only equipment and the reason for its importance. Do not include real property infrastructure in this assessment such as buildings, building services (high pressure ' +
              'air systems, electrical systems, water systems, natural gas or other gas systems, central air conditioning or heating systems, etc.). Thank you in advance for completing ' + 
-             'this assessment. \n \n' +
+             'this assessment. \n \n')
 
-            'Please complete each of the fields below for Laboratory assets.  \n\n' +
+st.markdown('''---''')
+
+st.markdown('Please complete each of the fields below for Laboratory assets.  \n\n' +
             '  - A Laboratory is defined as a dedicated facility, or dedicated infrastructure, for performing a specific type of testing, ' +
             'research, or development. A laboratory may encompass a unique capability, and may include multiple high values assets such as ' +
             'test or analytical equipment. (i.e. The Structural Dynamics Laboratory) \n\n' 
