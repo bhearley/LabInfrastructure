@@ -297,7 +297,7 @@ if access == 'Yes':
     def get_data():
         db = client['LabData']
         items = db['LabData'].find()
-        items = list(items)  # make hashable for st.cache_data
+        #items = list(items)  # make hashable for st.cache_data
         # st.write('Loaded Data')
         return items
     
