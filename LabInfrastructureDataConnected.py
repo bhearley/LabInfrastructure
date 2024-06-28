@@ -298,7 +298,7 @@ if access == 'Yes':
     @st.cache_data(ttl=6000)
     def get_data():
         db = client['LabData']
-        items = db['LabData'].find({"Branch":"LMC"})
+        items = db['LabData'].find({"Branch":"LMA"})
         #st.write(list(items))
         items = list(items)  # make hashable for st.cache_data
         # st.write('Loaded Data')
