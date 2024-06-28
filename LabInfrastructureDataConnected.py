@@ -293,9 +293,11 @@ if access == 'Yes':
     # Read the Database
     @st.cache_data(ttl=600)
     def get_data():
+        st.write('Loading Data')
         db = client['LabData']
         items = db['LabData'].find()
         items = list(items)  # make hashable for st.cache_data
+        st.write('Loaded Data')
         return items
     
     # Get All Data in Database
