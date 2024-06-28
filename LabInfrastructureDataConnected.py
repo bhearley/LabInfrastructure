@@ -289,7 +289,7 @@ if access == 'Yes':
         st.write("Pinged your deployment. You successfully connected to MongoDB!")
         print("Pinged your deployment. You successfully connected to MongoDB!")
     except Exception as e:
-        st.write("Pinged your deployment. You successfully connected to MongoDB!")
+        st.write(e)
         print(e)
     
     # Read the Database
