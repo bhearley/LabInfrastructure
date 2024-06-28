@@ -254,6 +254,8 @@ def save_to_database():
 access = 'No'
 password = ''
 
+st.markdown('NOTE - PLEASE READ - THE DATA COLLECTION TOOL SITE IS CURRENTLY EXPERIENCING ERRORS WITH CONNECTING TO THE DATABASE. I AM WORKING ON FIXING IT, AND WILL SEND OUT A MESSAGE TO ALL WHO CONTACTED ME WHEN IT IS RESOLVED -BRANDON HEARLEY (LMS)')
+
 # Create input for password
 grid_pass = st.columns([0.5,0.5])
 with grid_pass[0]:
