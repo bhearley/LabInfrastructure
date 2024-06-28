@@ -301,7 +301,9 @@ if access == 'Yes':
         return items
     
     # Get All Data in Database
+    st.write('Loading data 1')
     all_data = get_data()
+    st.write('Loading data 1')
     all_labs = [''] #Initialize list of labs to display to user
     for k in range(len(all_data)):
         all_labs.append(all_data[k]["Laboratory/Capability Name"])
