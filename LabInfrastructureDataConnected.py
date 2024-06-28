@@ -286,8 +286,10 @@ if access == 'Yes':
     # Send a ping to confirm a successful connection
     try:
         client.admin.command('ping')
+        st.write("Pinged your deployment. You successfully connected to MongoDB!")
         print("Pinged your deployment. You successfully connected to MongoDB!")
     except Exception as e:
+        st.write("Pinged your deployment. You successfully connected to MongoDB!")
         print(e)
     
     # Read the Database
@@ -301,7 +303,6 @@ if access == 'Yes':
         return items
     
     # Get All Data in Database
-    st.write('Loading data 1')
     all_data = get_data()
     st.write('Loading data 1')
     all_labs = [''] #Initialize list of labs to display to user
