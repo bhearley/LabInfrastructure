@@ -291,7 +291,7 @@ if access == 'Yes':
         print(e)
     
     # Read the Database
-    @st.cache_data(ttl=6000)
+    @st.cache_data(ttl=600)
     def get_data():
         db = client['LabData']
         items = db['LabData'].find()
