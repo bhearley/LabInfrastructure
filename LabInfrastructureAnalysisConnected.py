@@ -655,7 +655,7 @@ if st.button('Filter Data'):
                                 row[0].text = record['T7-Asset Image Label'][j]
                                 row[2].text = record['T7-Asset Image Notes'][j]
 
-                                if record['T7-Asset Image'][j] != None:
+                                try:
                                     pil_img = Image.open(io.BytesIO(record['T7-Asset Image'][j]))
                                     plt.imshow(pil_img)
                                     plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
@@ -668,6 +668,8 @@ if st.button('Filter Data'):
                                     paragraph = cell.paragraphs[0]
                                     run = paragraph.add_run()
                                     run.add_picture(pic, width=Inches(3), height=Inches(2))  # size image
+                                except:
+                                    temp=1 # Do Nothing
 
                         table.style = 'Light Grid Accent 4'
     
