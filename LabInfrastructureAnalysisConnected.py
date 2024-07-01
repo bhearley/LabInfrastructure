@@ -655,18 +655,19 @@ if st.button('Filter Data'):
                                 row[0].text = record['T7-Asset Image Label'][j]
                                 row[2].text = record['T7-Asset Image Notes'][j]
 
-                                pil_img = Image.open(io.BytesIO(record['T7-Asset Image'][j]))
-                                plt.imshow(pil_img)
-                                plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
-                                for pos in ['right', 'top', 'bottom', 'left']: 
-                                    plt.gca().spines[pos].set_visible(False) 
-                                plt.savefig(os.path.join(data_path,'Asset_Img_' + str(j)+'.png'))
-                                plt.close()
-                                pic = os.path.join(data_path,'Asset_Img_' + str(j)+'.png')  # path image
-                                cell = table.rows[j+1].cells[1]  # position specific of image count=row and 3=column
-                                paragraph = cell.paragraphs[0]
-                                run = paragraph.add_run()
-                                run.add_picture(pic, width=Inches(3), height=Inches(2))  # size image
+                                if record['T7-Asset Image'][j] != None:
+                                    pil_img = Image.open(io.BytesIO(record['T7-Asset Image'][j]))
+                                    plt.imshow(pil_img)
+                                    plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
+                                    for pos in ['right', 'top', 'bottom', 'left']: 
+                                        plt.gca().spines[pos].set_visible(False) 
+                                    plt.savefig(os.path.join(data_path,'Asset_Img_' + str(j)+'.png'))
+                                    plt.close()
+                                    pic = os.path.join(data_path,'Asset_Img_' + str(j)+'.png')  # path image
+                                    cell = table.rows[j+1].cells[1]  # position specific of image count=row and 3=column
+                                    paragraph = cell.paragraphs[0]
+                                    run = paragraph.add_run()
+                                    run.add_picture(pic, width=Inches(3), height=Inches(2))  # size image
 
                         table.style = 'Light Grid Accent 4'
     
