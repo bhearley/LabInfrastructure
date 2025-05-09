@@ -507,7 +507,7 @@ if access == 'Yes':
     
     # Create Input for Assets
     asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
-    grid_asset = st.columns([0.115,0.06,0.06,0.06,0.07,0.09,0.08,0.07,0.11,0.11,0.07,0.15])
+    grid_asset = st.columns([0.11,0.06,0.06,0.06,0.08,0.1,0.08,0.07,0.1,0.11,0.07,0.125])
     asset_name = [] #Store the asset name
     asset_loc = []  #Store the asset location
     asset_rm = []  #Store the asset location
