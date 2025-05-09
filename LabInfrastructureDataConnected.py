@@ -100,7 +100,7 @@ def save_to_database():
         new_data['Building'] = st.session_state['lab_bldg']
         new_data['Room'] = st.session_state['lab_room']
         new_data['Occupancy (%)'] = st.session_state['lab_occ']
-        new_data['Estimated Area (sq. ft)'] = st.session_state['lab_sqft']
+        new_data['Estimated Area (sq ft)'] = st.session_state['lab_sqft']
         new_data['Number of Assets'] = st.session_state['asset_num']
         new_data['T1-Asset Name'] = []
         new_data['T1-Location (Bldg/Rm)'] = []
@@ -330,7 +330,7 @@ if access == 'Yes':
 
             # Add missing fields
             collection = db['LabData']
-            new_atts = ['Building','Room','Occupancy (%)','Estimated Area (sq. ft)']
+            new_atts = ['Building','Room','Occupancy (%)','Estimated Area (sq ft)']
             for new_att in new_atts:
                 collection.update_many(
                   {new_att: {'$exists': False}},  
@@ -351,7 +351,7 @@ if access == 'Yes':
                 st.session_state['lab_bldg'] = result['Building']
                 st.session_state['lab_room'] = result['Room']
                 st.session_state['lab_occ'] = result['Occupancy (%)']
-                st.session_state['lab_sqft'] = result['Estimated Area (sq. ft)']
+                st.session_state['lab_sqft'] = result['Estimated Area (sq ft)']
                 st.session_state['asset_num'] = result['Number of Assets']
                 for m in range(int(result['Number of Assets'])):
                     st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
@@ -493,7 +493,7 @@ if access == 'Yes':
     lab_occ = st.number_input("Occupancy (%):", min_value=0, max_value=100, value=None, help="Estimate of what percentage of the room the lab occupies",key='lab_occ')
 
     # Create Input for Sq Ft.
-    lab_sqft = st.number_input("Estimated Area (sq. ft):", min_value=0, max_value=None, value=None, help="Estimate of the total room square footage needed for the lab",key='lab_sqft')
+    lab_sqft = st.number_input("Estimated Area (sq ft):", min_value=0, max_value=None, value=None, help="Estimate of the total room square footage needed for the lab",key='lab_sqft')
     
     # Create Input for Assets
     asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
