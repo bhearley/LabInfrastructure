@@ -188,6 +188,16 @@ def save_to_database():
         # Load the Current Database
         db = client['LabData']
         collection = db['LabData']
+
+        # Add missing fields
+        collection.update_many(
+          {'Building': {'$exists': False}},  # Only docs where 'Building' doesn't exist
+          {'$set': {'Building': None}}
+          )  
+
+
+
+      
         query = {'Laboratory/Capability Name': st.session_state['name']}
         results = collection.find(query)
         for result in results:
