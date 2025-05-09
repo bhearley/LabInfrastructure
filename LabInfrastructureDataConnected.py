@@ -115,7 +115,9 @@ def save_to_database():
         new_data['T1-Replacement'] = []
         for m in range(int(st.session_state['asset_num'])):
             new_data['T1-Asset Name'].append(st.session_state[f'input_cola{m}']) 
-            new_data['T1-Location (Bldg/Rm)'].append(st.session_state[f'input_colb{m}'])
+            #new_data['T1-Location (Bldg/Rm)'].append(st.session_state[f'input_colb{m}'])
+            new_data['T1-Building'].append(st.session_state[f'input_colb_a{m}'])
+            new_data['T1-Room'].append(st.session_state[f'input_colb_b{m}'])
             new_data['T1-Age (yrs)'].append(st.session_state[f'input_colc{m}'])
             new_data['T1-Acquisition Year'].append(st.session_state[f'input_cold{m}'])
             new_data['T1-Expected Year of Obsolescence'].append(st.session_state[f'input_cole{m}'])
@@ -330,11 +332,11 @@ if access == 'Yes':
 
             # Add missing fields
             collection = db['LabData']
-            new_atts = ['Building','Room','Occupancy (%)','Estimated Area (sq ft)']
+            new_atts = ['T1-Building','T1-Room']
             for new_att in new_atts:
                 collection.update_many(
                   {new_att: {'$exists': False}},  
-                  {'$set': {new_att: None}}
+                  {'$set': {new_att: []}}
                   )  
             # Query the database for the record and get results
             query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
@@ -355,7 +357,9 @@ if access == 'Yes':
                 st.session_state['asset_num'] = result['Number of Assets']
                 for m in range(int(result['Number of Assets'])):
                     st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
-                    st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
+                    #st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
+                    st.session_state[f'input_colb_a{m}'] = result['T1-Building'][m]
+                    st.session_state[f'input_colb_b{m}'] = result['T1-Room'][m]
                     st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
                     st.session_state[f'input_cold{m}'] = result['T1-Acquisition Year'][m]
                     st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
@@ -525,9 +529,9 @@ if access == 'Yes':
             while len(asset_loc) < row+1:
                 asset_loc.append(None)
             if row == 0:
-                asset_loc[row]=st.text_input('Location  \n \n (Bldg/Rm)', key=f'input_colb{row}')
+                asset_loc[row]=st.text_input('Bldg', key=f'input_colb_a{row}')
             else:
-                asset_loc[row]=st.text_input('Temp', key=f'input_colb{row}',label_visibility = "collapsed")
+                asset_loc[row]=st.text_input('Temp', key=f'input_colb_a{row}',label_visibility = "collapsed")
         # -- Asset Age
         with grid_asset[2]:
             while len(asset_age) < row+1:
