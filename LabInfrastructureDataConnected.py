@@ -358,8 +358,11 @@ if access == 'Yes':
                 for m in range(int(result['Number of Assets'])):
                     st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
                     #st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
-                    st.session_state[f'input_colb_a{m}'] = result['T1-Building'][m]
-                    st.session_state[f'input_colb_b{m}'] = result['T1-Room'][m]
+                    try:
+                      st.session_state[f'input_colb_a{m}'] = result['T1-Building'][m]
+                      st.session_state[f'input_colb_b{m}'] = result['T1-Room'][m]
+                    except:
+                      pass
                     st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
                     st.session_state[f'input_cold{m}'] = result['T1-Acquisition Year'][m]
                     st.session_state[f'input_cole{m}'] = result['T1-Expected Year of Obsolescence'][m]
