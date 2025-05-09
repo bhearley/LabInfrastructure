@@ -546,7 +546,7 @@ if access == 'Yes':
             while len(asset_rm) < row+1:
                 asset_rm.append(None)
             if row == 0:
-                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None,, key=f'input_colb_b{row}', )
+                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', )
             else:
                 asset_rm[row]=st.number_input('Temp', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', label_visibility = "collapsed")
         # -- Asset Age
