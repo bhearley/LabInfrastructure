@@ -359,8 +359,8 @@ if access == 'Yes':
                     st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
                     #st.session_state[f'input_colb{m}'] = result['T1-Location (Bldg/Rm)'][m]
                     try:
-                      st.session_state[f'input_colb_a{m}'] = result['T1-Building'][m]
-                      st.session_state[f'input_colb_b{m}'] = result['T1-Room'][m]
+                      st.session_state[f'input_colb_a{m}'] = int(result['T1-Building'][m])
+                      st.session_state[f'input_colb_b{m}'] = int(result['T1-Room'][m])
                     except:
                       pass
                     st.session_state[f'input_colc{m}'] = result['T1-Age (yrs)'][m]
