@@ -535,7 +535,7 @@ if access == 'Yes':
             if row == 0:
                 asset_loc[row]=st.number_input('Bldg \n No.', value = None, key=f'input_colb_a{row}', )
             else:
-                asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', , label_visibility = "collapsed")
+                asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed")
         # -- Asset Age
         with grid_asset[2]:
             while len(asset_age) < row+1:
