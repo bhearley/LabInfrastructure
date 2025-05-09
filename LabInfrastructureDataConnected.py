@@ -326,7 +326,7 @@ if access == 'Yes':
             db = client['LabData']
 
             # Add missing fields
-          collection = db['LabData']
+            collection = db['LabData']
             collection.update_many(
               {'Building': {'$exists': False}},  # Only docs where 'Building' doesn't exist
               {'$set': {'Building': None}}
