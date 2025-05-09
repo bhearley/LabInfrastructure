@@ -507,7 +507,7 @@ if access == 'Yes':
     
     # Create Input for Assets
     asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
-    grid_asset = st.columns([0.11,0.06,0.06,0.06,0.08,0.1,0.08,0.07,0.1,0.11,0.07,0.125])
+    grid_asset = st.columns([0.11,0.0625,0.0625,0.0625,0.08,0.1,0.08,0.07,0.1,0.11,0.07,0.125])
     asset_name = [] #Store the asset name
     asset_loc = []  #Store the asset location
     asset_rm = []  #Store the asset location
@@ -538,17 +538,17 @@ if access == 'Yes':
             while len(asset_loc) < row+1:
                 asset_loc.append(None)
             if row == 0:
-                asset_loc[row]=st.number_input('Bldg \n \n No.', value = None, key=f'input_colb_a{row}', format='%d' )
+                asset_loc[row]=st.number_input('Bldg \n \n No.', value = None, key=f'input_colb_a{row}', )
             else:
-                asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed", format='%d' )
+                asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed", )
         # -- Asset Location    
         with grid_asset[2]:
             while len(asset_rm) < row+1:
                 asset_rm.append(None)
             if row == 0:
-                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', format='%d' )
+                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}',)
             else:
-                asset_rm[row]=st.number_input('Temp', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', label_visibility = "collapsed", format='%d' )
+                asset_rm[row]=st.number_input('Temp', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', label_visibility = "collapsed", )
         # -- Asset Age
         with grid_asset[3]:
             while len(asset_age) < row+1:
