@@ -538,17 +538,17 @@ if access == 'Yes':
             while len(asset_loc) < row+1:
                 asset_loc.append(None)
             if row == 0:
-                asset_loc[row]=st.number_input('Bldg \n \n No.', value = None, key=f'input_colb_a{row}', )
+                asset_loc[row]=st.number_input('Bldg \n \n No.', value = None, key=f'input_colb_a{row}', format='%d' )
             else:
-                asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed")
+                asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed", format='%d' )
         # -- Asset Location    
         with grid_asset[2]:
             while len(asset_rm) < row+1:
                 asset_rm.append(None)
             if row == 0:
-                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', )
+                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', format='%d' )
             else:
-                asset_rm[row]=st.number_input('Temp', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', label_visibility = "collapsed")
+                asset_rm[row]=st.number_input('Temp', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', label_visibility = "collapsed", format='%d' )
         # -- Asset Age
         with grid_asset[3]:
             while len(asset_age) < row+1:
