@@ -605,7 +605,7 @@ if access == 'Yes':
             while len(asset_software) < row+1:
                 asset_software.append(None)
             if row == 0:
-                asset_software[row]=st.text_input('Associated Software / \n \n  Required OS', help = "List any assoicated software or required operating systems, separated by commas, necessary for the asset to operate", key=f'input_coli{row}')
+                asset_software[row]=st.text_input('Required Software / \n \n   OS', help = "List any assoicated software or required operating systems, separated by commas, necessary for the asset to operate", key=f'input_coli{row}')
             else:
                 asset_software[row]=st.text_input('Temp', key=f'input_coli{row}',label_visibility = "collapsed")
         # -- IT/computer hardware repalcement
