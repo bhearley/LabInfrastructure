@@ -327,10 +327,12 @@ if access == 'Yes':
 
             # Add missing fields
             collection = db['LabData']
-            collection.update_many(
-              {'Building': {'$exists': False}},  # Only docs where 'Building' doesn't exist
-              {'$set': {'Building': None}}
-              )  
+            new_atts = ['Building','Room','Occupancy','EstimatedArea']
+            for new att in new_atts:
+                collection.update_many(
+                  {new_att: {'$exists': False}},  
+                  {'$set': {new_att: None}}
+                  )  
             # Query the database for the record and get results
             query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
             results = db['LabData'].find(query)
