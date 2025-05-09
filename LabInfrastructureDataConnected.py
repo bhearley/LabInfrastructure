@@ -533,7 +533,7 @@ if access == 'Yes':
             while len(asset_loc) < row+1:
                 asset_loc.append(None)
             if row == 0:
-                asset_loc[row]=st.number_input('Bldg \n No.', value = None, key=f'input_colb_a{row}', )
+                asset_loc[row]=st.number_input('Bldg \n \n No.', value = None, key=f'input_colb_a{row}', )
             else:
                 asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed")
         # -- Asset Age
