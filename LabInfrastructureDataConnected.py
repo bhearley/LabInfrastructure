@@ -1,4 +1,3 @@
-#==================================================================================================================================================================
 #   NASA GRC Lab Infrastructure Data Collection Tool
 #   Brandon Hearley - LMS
 #   4/11/2024
@@ -98,6 +97,10 @@ def save_to_database():
         new_data['Challenges in sustaining this laboratory/capability'] = st.session_state['chal']
         new_data['Age (yrs)'] = st.session_state['lab_age']
         new_data['Condition'] = st.session_state['cond']
+        new_data['Building'] = st.session_state['lab_bldg']
+        new_data['Room'] = st.session_state['lab_room']
+        new_data['Occupancy (%)'] = st.session_state['lab_occ']
+        new_data['Estimated Area (sq. ft)'] = st.session_state['lab_bldg']
         new_data['Number of Assets'] = st.session_state['asset_num']
         new_data['T1-Asset Name'] = []
         new_data['T1-Location (Bldg/Rm)'] = []
@@ -327,8 +330,8 @@ if access == 'Yes':
 
             # Add missing fields
             collection = db['LabData']
-            new_atts = ['Building','Room','Occupancy','EstimatedArea']
-            for new att in new_atts:
+            new_atts = ['Building','Room','Occupancy (%)','Estimated Area (sq. ft)']
+            for new_att in new_atts:
                 collection.update_many(
                   {new_att: {'$exists': False}},  
                   {'$set': {new_att: None}}
@@ -345,6 +348,10 @@ if access == 'Yes':
                 st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
                 st.session_state['lab_age'] = result['Age (yrs)']
                 st.session_state['cond'] = result['Condition']
+                st.session_state['lab_bldg'] = result['Building']
+                st.session_state['lab_room'] = result['Room']
+                st.session_state['lab_occ'] = result['Occupancy (%)']
+                st.session_state['lab_sqft'] = result['Estimated Area (sq. ft)']
                 st.session_state['asset_num'] = result['Number of Assets']
                 for m in range(int(result['Number of Assets'])):
                     st.session_state[f'input_cola{m}'] = result['T1-Asset Name'][m]
