@@ -445,11 +445,17 @@ if access == 'Yes':
     
     # Create Input for Branch
     branch = st.text_input("Branch:",value='', key = 'branch')
+
+    # Create Input for Building
+    lab_bldg = st.number_input("Building:", min_value=0, max_value=None, value=None, help="The building number for the lab",key='lab_bldg')
+
+    # Create Input for Room
+    lab_room = st.number_input("Room:", min_value=0, max_value=None, value=None, help="The Room number for the lab",key='lab_room')
     
-    # Create Input for Asset Description
+    # Create Input for Laboratory/Capability Description
     lab_desc = st.text_area("Laboratory/Capability Description:",value='',key='desc')
     
-    # Create Input for Asset Website
+    # Create Input for Laboratory/Capability Website
     lab_link = st.text_input("Laboratory/Capability Website:",value='',key='link')
     
     # Create Input for Describing Challegne in Sustaining
@@ -461,6 +467,12 @@ if access == 'Yes':
     # Create Input for Condition
     cond_opts = ['','Excellent','Good','Fair','Poor']
     lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
+
+    # Create Input for Occupancy
+    lab_occ = st.number_input("Occupancy (%):", min_value=0, max_value=100, value=None, help="Estimate of what percentage of the room the lab occupies",key='lab_occ')
+
+    # Create Input for Sq Ft.
+    lab_sqft = st.number_input("Estimated Area (sq. ft):", min_value=0, max_value=None, value=None, help="Estimate of the total room square footage needed for the lab",key='lab_sqft')
     
     # Create Input for Assets
     asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
