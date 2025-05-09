@@ -189,11 +189,6 @@ def save_to_database():
         db = client['LabData']
         collection = db['LabData']
 
-        # Add missing fields
-        collection.update_many(
-          {'Building': {'$exists': False}},  # Only docs where 'Building' doesn't exist
-          {'$set': {'Building': None}}
-          )  
 
 
 
@@ -329,6 +324,13 @@ if access == 'Yes':
         if st.session_state['selection_lab'] != '':
             # Get the database
             db = client['LabData']
+
+            # Add missing fields
+          collection = db['LabData']
+            collection.update_many(
+              {'Building': {'$exists': False}},  # Only docs where 'Building' doesn't exist
+              {'$set': {'Building': None}}
+              )  
             # Query the database for the record and get results
             query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
             results = db['LabData'].find(query)
