@@ -21,6 +21,10 @@ from PIL import Image
 import io
 import os
 import docx
+import warnings
+
+# Suppress all Streamlit warnings
+warnings.filterwarnings("ignore")
 
 #==================================================================================================================================================================
 # GENERAL INFORMATION
