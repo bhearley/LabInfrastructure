@@ -505,9 +505,10 @@ if access == 'Yes':
     
     # Create Input for Assets
     asset_rows = st.number_input('Number of Assets:', min_value=0, max_value=None, key='asset_num')
-    grid_asset = st.columns([0.125,0.070,0.060,0.065,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
+    grid_asset = st.columns([0.12,0.045,0.045,0.050,0.06,0.09,0.08,0.07,0.11,0.115,0.07,0.1])
     asset_name = [] #Store the asset name
     asset_loc = []  #Store the asset location
+    asset_rm = []  #Store the asset location
     asset_age = [] #Store the asset age
     asset_date_in = [] #Store the asset date of entry
     asset_date_out = [] #Store the asset date of obsolescence
@@ -517,7 +518,9 @@ if access == 'Yes':
     asset_software = [] #Store the asset associated software
     asset_itrep = [] #Store if an IT/Hardware replacement is needed
     asset_repdesc = [] #Store the description on IT/Hardware replacement
-    
+
+    # SKIP--
+  
     # Add rows to asset table
     def add_row_asset(row):
         # -- Asset Name
@@ -536,8 +539,16 @@ if access == 'Yes':
                 asset_loc[row]=st.number_input('Bldg \n \n No.', value = None, key=f'input_colb_a{row}', )
             else:
                 asset_loc[row]=st.number_input('Temp', value = None, key=f'input_colb_a{row}', label_visibility = "collapsed")
-        # -- Asset Age
+        # -- Asset Location    
         with grid_asset[2]:
+            while len(asset_rm) < row+1:
+                asset_rm.append(None)
+            if row == 0:
+                asset_rm[row]=st.number_input('Room \n \n No.', value = None, key=f'input_colb_b{row}', )
+            else:
+                asset_rm[row]=st.number_input('Temp', value = None, key=f'input_colb_b{row}', label_visibility = "collapsed")
+        # -- Asset Age
+        with grid_asset[3]:
             while len(asset_age) < row+1:
                 asset_age.append(None)
             if row == 0:
@@ -545,7 +556,7 @@ if access == 'Yes':
             else:
                 asset_age[row]=st.number_input('Temp', step=0.5, value = None, key=f'input_colc{row}',label_visibility = "collapsed")
         # -- Asset Year of Entry
-        with grid_asset[3]:
+        with grid_asset[4]:
             while len(asset_date_in) < row+1:
                 asset_date_in.append(None)
             if row == 0:
@@ -553,7 +564,7 @@ if access == 'Yes':
             else:
                 asset_date_in[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, value = None, key=f'input_cold{row}',label_visibility = "collapsed")
         # -- Asset Date of Obsolescence
-        with grid_asset[4]:
+        with grid_asset[5]:
             while len(asset_date_out) < row+1:
                 asset_date_out.append(None)
             if row == 0:
@@ -561,7 +572,7 @@ if access == 'Yes':
             else:
                 asset_date_out[row]=st.number_input('Temp', step = 1, min_value = 0, max_value = 3000, key=f'input_cole{row}', value = None, label_visibility = "collapsed")
         # -- Asset Condition
-        with grid_asset[5]:
+        with grid_asset[6]:
             while len(asset_cond) < row+1:
                 asset_cond.append(None)
             if row == 0:
@@ -572,7 +583,7 @@ if access == 'Yes':
             else:
                 asset_cond[row]=st.selectbox('Temp', ('','Excellent', 'Good', 'Fair', 'Poor'),key=f'input_colf{row}',label_visibility = "collapsed")
         # -- Asset Cost of Replacement
-        with grid_asset[6]:
+        with grid_asset[7]:
             while len(asset_cost) < row+1:
                 asset_cost.append(None)
             if row == 0:
@@ -580,7 +591,7 @@ if access == 'Yes':
             else:
                 asset_cost[row]=st.number_input('Temp', step=1000, key=f'input_colg{row}', value = None, label_visibility = "collapsed")
         # -- Asset Impact if Lost
-        with grid_asset[7]:
+        with grid_asset[8]:
             while len(asset_imp) < row+1:
                 asset_imp.append(None)
             if row == 0:
@@ -588,7 +599,7 @@ if access == 'Yes':
             else:
                 asset_imp[row]=st.text_input('Temp', key=f'input_colh{row}',label_visibility = "collapsed")
         # -- Associated Software
-        with grid_asset[8]:
+        with grid_asset[9]:
             while len(asset_software) < row+1:
                 asset_software.append(None)
             if row == 0:
@@ -596,7 +607,7 @@ if access == 'Yes':
             else:
                 asset_software[row]=st.text_input('Temp', key=f'input_coli{row}',label_visibility = "collapsed")
         # -- IT/computer hardware repalcement
-        with grid_asset[9]:
+        with grid_asset[10]:
             while len(asset_itrep) < row+1:
                 asset_itrep.append(None)
             if row == 0:
@@ -604,7 +615,7 @@ if access == 'Yes':
             else:
                 asset_itrep[row]=st.selectbox('Temp', ('','Yes','No'),key=f'input_colj{row}',label_visibility = "collapsed")
         # -- Parts vs Full Replacement
-        with grid_asset[10]:
+        with grid_asset[11]:
             while len(asset_repdesc) < row+1:
                 asset_repdesc.append(None)
             if row == 0:
