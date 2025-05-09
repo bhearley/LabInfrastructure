@@ -100,7 +100,7 @@ def save_to_database():
         new_data['Building'] = st.session_state['lab_bldg']
         new_data['Room'] = st.session_state['lab_room']
         new_data['Occupancy (%)'] = st.session_state['lab_occ']
-        new_data['Estimated Area (sq. ft)'] = st.session_state['lab_bldg']
+        new_data['Estimated Area (sq. ft)'] = st.session_state['lab_sqft']
         new_data['Number of Assets'] = st.session_state['asset_num']
         new_data['T1-Asset Name'] = []
         new_data['T1-Location (Bldg/Rm)'] = []
