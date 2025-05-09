@@ -114,6 +114,8 @@ def save_to_database():
         new_data['T1-Associated Software'] = []
         new_data['T1-Inlcudes IT Hardware?'] = []
         new_data['T1-Replacement'] = []
+        new_data['T1-Building'] = []
+        new_data['T1-Room'] = []
         for m in range(int(st.session_state['asset_num'])):
             new_data['T1-Asset Name'].append(st.session_state[f'input_cola{m}']) 
             #new_data['T1-Location (Bldg/Rm)'].append(st.session_state[f'input_colb{m}'])
@@ -544,9 +546,9 @@ if access == 'Yes':
             while len(asset_rm) < row+1:
                 asset_rm.append(None)
             if row == 0:
-                asset_rm[row]=st.number_input('Room \n \n No.', value = None, key=f'input_colb_b{row}', )
+                asset_rm[row]=st.number_input('Room \n \n No.', min_value=0, max_value=None, value=None,, key=f'input_colb_b{row}', )
             else:
-                asset_rm[row]=st.number_input('Temp', value = None, key=f'input_colb_b{row}', label_visibility = "collapsed")
+                asset_rm[row]=st.number_input('Temp', min_value=0, max_value=None, value=None, key=f'input_colb_b{row}', label_visibility = "collapsed")
         # -- Asset Age
         with grid_asset[3]:
             while len(asset_age) < row+1:
