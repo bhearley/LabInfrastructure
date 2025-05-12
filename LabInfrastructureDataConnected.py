@@ -319,9 +319,10 @@ if access == 'Yes':
     
     # Get All Data in Database
     all_data = get_data()
-    st.write('Loading data 1')
     all_labs = [''] #Initialize list of labs to display to user
     for k in range(len(all_data)):
+        if all_data[k]["Laboratory/Capability Name"] != " DEV":
+          lab_name = all_data[k]["Branch"][0:1] + ' - ' + all_data[k]["Branch"] + ' - ' + all_data[k]["Laboratory/Capability Name"]
         all_labs.append(all_data[k]["Laboratory/Capability Name"])
     all_labs.sort() #Sort the list of labs alphabetically
     
@@ -342,7 +343,8 @@ if access == 'Yes':
                   {'$set': {new_att: []}}
                   )  
             # Query the database for the record and get results
-            query = {'Laboratory/Capability Name': st.session_state['selection_lab']}
+            query_name = st.session_state['selection_lab'].split(' - ')[-1]
+            query = {'Laboratory/Capability Name': query_name}
             results = db['LabData'].find(query)
             for result in results:
                 st.session_state['name'] = result['Laboratory/Capability Name']
