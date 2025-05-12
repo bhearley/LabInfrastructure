@@ -323,7 +323,7 @@ if access == 'Yes':
     for k in range(len(all_data)):
         if all_data[k]["Laboratory/Capability Name"] != " DEV":
           lab_name = all_data[k]["Branch"][0:1] + ' - ' + all_data[k]["Branch"] + ' - ' + all_data[k]["Laboratory/Capability Name"]
-        all_labs.append(all_data[k]["Laboratory/Capability Name"])
+        all_labs.append(lab_name)
     all_labs.sort() #Sort the list of labs alphabetically
     
     # Load Data Function
