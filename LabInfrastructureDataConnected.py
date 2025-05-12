@@ -325,6 +325,7 @@ if access == 'Yes':
           lab_name = all_data[k]["Branch"][0:1] + ' - ' + all_data[k]["Branch"] + ' - ' + all_data[k]["Laboratory/Capability Name"]
         all_labs.append(lab_name)
     all_labs.sort() #Sort the list of labs alphabetically
+    st.write(all_labs)
     
     # Load Data Function
     # -- Set the values in the web app from the database when an existing lab is chosen
