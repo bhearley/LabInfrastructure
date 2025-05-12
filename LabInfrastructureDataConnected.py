@@ -321,8 +321,9 @@ if access == 'Yes':
     all_data = get_data()
     all_labs = [''] #Initialize list of labs to display to user
     for k in range(len(all_data)):
+        lab_name = all_data[k]["Laboratory/Capability Name"]
         if all_data[k]["Laboratory/Capability Name"] != "   DEV   ":
-          lab_name = all_data[k]["Branch"][0:2] + ' - ' + all_data[k]["Branch"] + ' - ' + all_data[k]["Laboratory/Capability Name"]
+          lab_name = all_data[k]["Branch"][0:2] + ' - ' + all_data[k]["Branch"] + ' - ' + all_data[k]["Laboratory/Capability Name"]       
         all_labs.append(lab_name)
     all_labs.sort() #Sort the list of labs alphabetically
     st.write(all_labs)
