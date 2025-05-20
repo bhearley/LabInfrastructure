@@ -348,8 +348,8 @@ if access == 'Yes':
             query_name = st.session_state['selection_lab'].split(' - ')[-1]
             query = {'Laboratory/Capability Name': query_name}
             results = db['LabData'].find(query)
-            st.write("Debug:", query_name)
-            st.write("Debug:", results)
+            print(query_name)
+            print(results)
 
           
             for result in results:
