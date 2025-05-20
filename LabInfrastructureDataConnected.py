@@ -105,7 +105,7 @@ def save_to_database():
         new_data['Condition'] = st.session_state['cond']
         #new_data['Building'] = st.session_state['lab_bldg']
         #new_data['Room'] = st.session_state['lab_room']
-        new_data['Occupancy (%)'] = st.session_state['lab_occ']
+        new_data['Floor Space Utilization (%)'] = st.session_state['lab_occ']
         new_data['Estimated Area (sq ft)'] = st.session_state['lab_sqft']
         new_data['Number of Assets'] = st.session_state['asset_num']
         new_data['T1-Asset Name'] = []
@@ -368,7 +368,7 @@ if access == 'Yes':
                 st.session_state['cond'] = result['Condition']
                 #st.session_state['lab_bldg'] = result['Building']
                 #st.session_state['lab_room'] = result['Room']
-                st.session_state['lab_occ'] = result['Occupancy (%)']
+                st.session_state['lab_occ'] = result['Floor Space Utilization (%)']
                 st.session_state['lab_sqft'] = result['Estimated Area (sq ft)']
                 st.session_state['asset_num'] = result['Number of Assets']
                 for m in range(int(result['Number of Assets'])):
@@ -513,7 +513,7 @@ if access == 'Yes':
     lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
     # Create Input for Occupancy
-    lab_occ = st.number_input("Occupancy (%):", min_value=0, max_value=100, value=None, help="Estimate of what percentage of the room the lab occupies",key='lab_occ')
+    lab_occ = st.number_input("Occupancy (%):", min_value=0, max_value=100, value=None, help="Estimate of what percentage of the room the lab equipment occupies",key='lab_occ')
 
     # Create Input for Sq Ft.
     lab_sqft = st.number_input("Estimated Area (sq ft):", min_value=0, max_value=None, value=None, help="Estimate of the total room square footage needed for the lab",key='lab_sqft')
