@@ -27,7 +27,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO
 )
 
-logging.info("This is an info log message")
+
 #==================================================================================================================================================================
 # GENERAL INFORMATION
 # Set the web app general information not edited by the user
@@ -353,8 +353,8 @@ if access == 'Yes':
             query_name = st.session_state['selection_lab'].split(' - ')[-1]
             query = {'Laboratory/Capability Name': query_name}
             results = db['LabData'].find(query)
-            print(query_name)
-            print(results)
+            logging.info(query_name)
+            logging.info(str(results))
 
           
             for result in results:
