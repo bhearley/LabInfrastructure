@@ -350,7 +350,7 @@ if access == 'Yes':
                   {'$set': {new_att: []}}
                   )  
             # Query the database for the record and get results
-            query_name = st.session_state['selection_lab'].split(' - ')[-1]
+            query_name = st.session_state['selection_lab'].split(' // ')[-1]
             query = {'Laboratory/Capability Name': query_name}
             results = db['LabData'].find(query)
             logging.info(query_name)
