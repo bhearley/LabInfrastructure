@@ -348,6 +348,9 @@ if access == 'Yes':
             query_name = st.session_state['selection_lab'].split(' - ')[-1]
             query = {'Laboratory/Capability Name': query_name}
             results = db['LabData'].find(query)
+            if len(results) < 1:
+                st.write('Didn't find the record')
+          
             for result in results:
                 st.session_state['name'] = result['Laboratory/Capability Name']
                 st.session_state['poc'] = result['Point of Contact']
