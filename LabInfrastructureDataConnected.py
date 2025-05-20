@@ -349,7 +349,7 @@ if access == 'Yes':
             query = {'Laboratory/Capability Name': query_name}
             results = db['LabData'].find(query)
             if len(results) < 1:
-                st.write('Didn't find the record')
+                st.write("Didn't find the record")
           
             for result in results:
                 st.session_state['name'] = result['Laboratory/Capability Name']
