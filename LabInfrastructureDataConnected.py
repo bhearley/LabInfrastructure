@@ -105,7 +105,7 @@ def save_to_database():
         new_data['Condition'] = st.session_state['cond']
         #new_data['Building'] = st.session_state['lab_bldg']
         #new_data['Room'] = st.session_state['lab_room']
-        new_data['Floor Space Utilization (%)'] = st.session_state['lab_occ']
+        new_data['Occupancy (%)'] = st.session_state['lab_occ']
         new_data['Estimated Area (sq ft)'] = st.session_state['lab_sqft']
         new_data['Number of Assets'] = st.session_state['asset_num']
         new_data['T1-Asset Name'] = []
@@ -368,7 +368,7 @@ if access == 'Yes':
                 st.session_state['cond'] = result['Condition']
                 #st.session_state['lab_bldg'] = result['Building']
                 #st.session_state['lab_room'] = result['Room']
-                st.session_state['lab_occ'] = result['Floor Space Utilization (%)']
+                st.session_state['lab_occ'] = result['Occupancy (%)']
                 st.session_state['lab_sqft'] = result['Estimated Area (sq ft)']
                 st.session_state['asset_num'] = result['Number of Assets']
                 for m in range(int(result['Number of Assets'])):
