@@ -513,7 +513,7 @@ if access == 'Yes':
     lab_condition = st.selectbox('Condition:',cond_opts,key='cond')
 
     # Create Input for Occupancy
-    lab_occ = st.number_input("Floot Space Utilized (%):", min_value=0, max_value=100, value=None, help="Estimate of what percentage of the room the lab equipment occupies",key='lab_occ')
+    lab_occ = st.number_input("Floor Space Utilized (%):", min_value=0, max_value=100, value=None, help="Estimate of what percentage of the room the lab equipment occupies",key='lab_occ')
 
     # Create Input for Sq Ft.
     lab_sqft = st.number_input("Estimated Area (sq ft):", min_value=0, max_value=None, value=None, help="Estimate of the total room square footage needed for the lab",key='lab_sqft')
