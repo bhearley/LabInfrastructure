@@ -6,3 +6,4 @@ pymongo==3.10.1
 dnspython
 certifi
 state
+logging
