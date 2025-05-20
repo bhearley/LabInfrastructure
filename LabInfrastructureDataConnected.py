@@ -103,8 +103,8 @@ def save_to_database():
         new_data['Challenges in sustaining this laboratory/capability'] = st.session_state['chal']
         new_data['Age (yrs)'] = st.session_state['lab_age']
         new_data['Condition'] = st.session_state['cond']
-        new_data['Building'] = st.session_state['lab_bldg']
-        new_data['Room'] = st.session_state['lab_room']
+        #new_data['Building'] = st.session_state['lab_bldg']
+        #new_data['Room'] = st.session_state['lab_room']
         new_data['Occupancy (%)'] = st.session_state['lab_occ']
         new_data['Estimated Area (sq ft)'] = st.session_state['lab_sqft']
         new_data['Number of Assets'] = st.session_state['asset_num']
@@ -366,8 +366,8 @@ if access == 'Yes':
                 st.session_state['chal'] = result['Challenges in sustaining this laboratory/capability']
                 st.session_state['lab_age'] = result['Age (yrs)']
                 st.session_state['cond'] = result['Condition']
-                st.session_state['lab_bldg'] = result['Building']
-                st.session_state['lab_room'] = result['Room']
+                #st.session_state['lab_bldg'] = result['Building']
+                #st.session_state['lab_room'] = result['Room']
                 st.session_state['lab_occ'] = result['Occupancy (%)']
                 st.session_state['lab_sqft'] = result['Estimated Area (sq ft)']
                 st.session_state['asset_num'] = result['Number of Assets']
@@ -491,10 +491,10 @@ if access == 'Yes':
     branch = st.text_input("Branch:",value='', key = 'branch')
 
     # Create Input for Building
-    lab_bldg = st.number_input("Building:", min_value=0, max_value=None, value=None, help="The building number for the lab",key='lab_bldg')
+    #lab_bldg = st.number_input("Building:", min_value=0, max_value=None, value=None, help="The building number for the lab",key='lab_bldg')
 
     # Create Input for Room
-    lab_room = st.number_input("Room:", min_value=0, max_value=None, value=None, help="The Room number for the lab",key='lab_room')
+    #lab_room = st.number_input("Room:", min_value=0, max_value=None, value=None, help="The Room number for the lab",key='lab_room')
     
     # Create Input for Laboratory/Capability Description
     lab_desc = st.text_area("Laboratory/Capability Description:",value='',key='desc')
