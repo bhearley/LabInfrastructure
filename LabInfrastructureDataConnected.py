@@ -312,27 +312,21 @@ if access == 'Yes':
         st.write(e)
         print(e)
     
-    # Read the Database
-    # @st.cache_data(ttl=600)
-    # def get_data():
-    #     st.write('step 1')
-    #     db = client['LabData']
-    #     st.write('step 2')
-    #     items = db['LabData'].find()
-    #     #st.write(list(items))
-    #     st.write('step 3')
-    #     items = list(items)  # make hashable for st.cache_data
-    #     # st.write('Loaded Data')
-    #     return items
-
-    #@st.cache_data(ttl=600)
+    Read the Database
+    @st.cache_data(ttl=600)
     def get_data():
-        return list(client['LabData']['LabData'].find().limit(10))
+        db = client['LabData']
+        items = db['LabData'].find()
+        items = list(items)  # make hashable for st.cache_data
+        return items
+
+
     
     # Get All Data in Database
-    st.write('start get data')
-    all_data = get_data()
-    st.write('end get data')
+    db = client['LabData']
+    items = db['LabData'].find()
+    all_data = list(items)  # make hashable for st.cache_data
+    #all_data = get_data()
     all_labs = [''] #Initialize list of labs to display to user
     for k in range(len(all_data)):
         lab_name = all_data[k]["Laboratory/Capability Name"]
