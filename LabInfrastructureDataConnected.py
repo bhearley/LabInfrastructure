@@ -312,7 +312,7 @@ if access == 'Yes':
         st.write(e)
         print(e)
     
-    Read the Database
+    # Read the Database
     @st.cache_data(ttl=600)
     def get_data():
         db = client['LabData']
