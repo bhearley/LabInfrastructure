@@ -313,17 +313,21 @@ if access == 'Yes':
         print(e)
     
     # Read the Database
+    # @st.cache_data(ttl=600)
+    # def get_data():
+    #     st.write('step 1')
+    #     db = client['LabData']
+    #     st.write('step 2')
+    #     items = db['LabData'].find()
+    #     #st.write(list(items))
+    #     st.write('step 3')
+    #     items = list(items)  # make hashable for st.cache_data
+    #     # st.write('Loaded Data')
+    #     return items
+
     @st.cache_data(ttl=600)
-    def get_data():
-        st.write('step 1')
-        db = client['LabData']
-        st.write('step 2')
-        items = db['LabData'].find()
-        #st.write(list(items))
-        st.write('step 3')
-        items = list(items)  # make hashable for st.cache_data
-        # st.write('Loaded Data')
-        return items
+    def get_data_raw():
+        return list(client['LabData']['LabData'].find())
     
     # Get All Data in Database
     st.write('start get data')
