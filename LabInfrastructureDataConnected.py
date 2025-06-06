@@ -297,7 +297,7 @@ if access == 'Yes':
     # Connect to the Database
     @st.cache_resource
     def init_connection():
-        uri = "mongodb+srv://nasagrc:" + st.secrets['mongo1']['password'] + "@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
+        uri = "mongodb://nasagrc:" + st.secrets['mongo1']['password'] + "@nasagrclabdatatest.hnx1ick.mongodb.net/?retryWrites=true&w=majority&appName=NASAGRCLabDataTest"
         return MongoClient(uri, tlsCAFile=certifi.where())
     
     # Create the Database Client
@@ -320,13 +320,8 @@ if access == 'Yes':
         items = list(items)  # make hashable for st.cache_data
         return items
 
-
-    
     # Get All Data in Database
-    db = client['LabData']
-    items = db['LabData'].find()
-    all_data = list(items)  # make hashable for st.cache_data
-    #all_data = get_data()
+    all_data = get_data()
     all_labs = [''] #Initialize list of labs to display to user
     for k in range(len(all_data)):
         lab_name = all_data[k]["Laboratory/Capability Name"]
