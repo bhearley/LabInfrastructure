@@ -325,7 +325,7 @@ if access == 'Yes':
     #     # st.write('Loaded Data')
     #     return items
 
-    @st.cache_data(ttl=600)
+    #@st.cache_data(ttl=600)
     def get_data():
         return list(client['LabData']['LabData'].find().limit(10))
     
