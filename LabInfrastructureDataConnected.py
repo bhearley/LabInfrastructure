@@ -328,7 +328,7 @@ if access == 'Yes':
     # Get All Data in Database
     st.write('start get data')
     all_data = get_data()
-    st.write('end get 'data')
+    st.write('end get data')
     all_labs = [''] #Initialize list of labs to display to user
     for k in range(len(all_data)):
         lab_name = all_data[k]["Laboratory/Capability Name"]
