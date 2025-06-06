@@ -326,7 +326,7 @@ if access == 'Yes':
     #     return items
 
     @st.cache_data(ttl=600)
-    def get_data_raw():
+    def get_data():
         return list(client['LabData']['LabData'].find())
     
     # Get All Data in Database
