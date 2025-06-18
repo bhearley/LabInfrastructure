@@ -520,7 +520,6 @@ if st.button('Filter Data'):
 
                 # Loop through each asset and write to the table
                 for j in range(num_assets):
-                    row = table.add_row().cells
                     for k in range(len(col_keys)):
                         tot_asset_cost_all = tot_asset_cost_all + record['T1-Replacement Cost ($)'][j]
 
