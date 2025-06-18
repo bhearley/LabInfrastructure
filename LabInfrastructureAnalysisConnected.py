@@ -478,6 +478,70 @@ if st.button('Filter Data'):
     divisions = list(FilesOut.keys())
     divisions.sort()
 
+    # Set total asset and estimated cost
+    tot_cost_all = 0
+    tot_asset_cost_all = 0
+
+    # Loop through divisions
+    for d in range(len(divisions)):
+        # Get list of branches
+        branches = list(FilesOut[divisions[d]].keys())
+        branches.sort()
+        # Loop through the branches
+        for b in range(len(branches)):
+
+            # Get List of files
+            files = FilesOut[divisions[d]][branches[b]]
+
+            # Loop through individual labs
+            for q in range(len(files)):
+                # Get the data for the individual record
+                record = all_data[files[q]]
+
+                # -- Asset Table
+                num_assets = record['Number of Assets']
+
+                # Define the array in the database and format types
+                col_dict = {
+                    'T1-Asset Name':"string",
+                    'T1-Location (Bldg/Rm)':"string",
+                    'T1-Age (yrs)':"string",
+                    'T1-Acquisition Year':"string",
+                    'T1-Expected Year of Obsolescence':"string",
+                    'T1-Asset Condition':"string",
+                    'T1-Replacement Cost ($)':"money",
+                    'T1-Impact to Capability if Lost':"string",
+                    'T1-Associated Software':"string",
+                    'T1-Inlcudes IT Hardware?':"string",
+                    'T1-Replacement':"string"}
+
+                # Get list of array names
+                col_keys = list(col_dict.keys())
+
+                # Loop through each asset and write to the table
+                for j in range(num_assets):
+                    row = table.add_row().cells
+                    for k in range(len(col_keys)):
+                        tot_asset_cost_all = tot_asset_cost_all + record['T1-Replacement Cost ($)'][j]
+
+                # Get Total Estimated Cost
+                
+                # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
+                key = 'Estimated Cost to Replace Entire Laboratory/Capability ($)'
+                val = record[key]
+                tot_cost_all = tot_cost_all + val
+
+    # Write Costs
+    val_frmt = format_values(tot_cost_all, "money")
+    run_lab1 = doc.add_paragraph().add_run('Total Estimated Lab Cost' + ': ' + val_frmt)
+    run_lab1.font.name = 'Times New Roman'
+    run_lab1.font.size = Pt(12)
+
+    val_frmt = format_values(tot_cost_asset_all, "money")
+    run_lab1 = doc.add_paragraph().add_run('Total Estimated Asset Cost' + ': ' + val_frmt)
+    run_lab1.font.name = 'Times New Roman'
+    run_lab1.font.size = Pt(12)
+
     for d in range(len(divisions)):
         # Start on New Page
         doc.add_page_break()
