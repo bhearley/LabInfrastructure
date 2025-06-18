@@ -531,14 +531,13 @@ if st.button('Filter Data'):
                 # -- Estimated Cost to Replace Entire Laboratory/Capability ($):
                 key = 'Estimated Cost to Replace Entire Laboratory/Capability ($)'
                 val = record[key]
+
                 try:
-                    tot_cost_all = tot_cost_all + val
+                    if val < asset_cost:
+                        st.write(record['Laboratory/Capability Name'])
+                        val = asset_cost
                 except:
                     pass
-
-                if val < asset_cost:
-                    st.write(record['Laboratory/Capability Name'])
-                    val = asset_cost
 
                 try:
                     tot_asset_cost_all = tot_asset_cost_all + asset_cost
