@@ -119,11 +119,11 @@ for k in range(len(Branch)):
 # -- Division Checkboxes
 if filt_opt1 == 'Division':
     for j in range(len(Div)):
-        Div_Disp[j] = st.checkbox(Div[j], value=True, key='div_' + str(j), label_visibility="visible")
+        Div_Disp[j] = st.checkbox(Div[j], value=False, key='div_' + str(j), label_visibility="visible")
 # -- Branch Checkboxes
 if filt_opt1 == 'Branch':
     for j in range(len(Branch)):
-        Branch_Disp[j] = st.checkbox(Branch[j], value=True, key='div_' + str(j), label_visibility="visible")
+        Branch_Disp[j] = st.checkbox(Branch[j], value=False, key='div_' + str(j), label_visibility="visible")
 st.markdown(' ')
 
 # Utility Function - Convert String Number to Have Comma Separators
