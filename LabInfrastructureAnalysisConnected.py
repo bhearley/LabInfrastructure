@@ -536,6 +536,9 @@ if st.button('Filter Data'):
                 except:
                     pass
 
+                if tot_cost_all < tot_ass_cost_all:
+                    sr.write(record['Laboratory/Capability Name'])
+
     # Write Costs
     val_frmt = format_values(tot_cost_all, "money")
     run_lab1 = doc.add_paragraph().add_run('Total Estimated Lab Cost' + ': ' + val_frmt)
