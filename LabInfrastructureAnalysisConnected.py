@@ -520,11 +520,10 @@ if st.button('Filter Data'):
 
                 # Loop through each asset and write to the table
                 for j in range(num_assets):
-                    for k in range(len(col_keys)):
-                        try:
-                            tot_asset_cost_all = tot_asset_cost_all + record['T1-Replacement Cost ($)'][j]
-                        except:
-                            pass
+                    try:
+                        tot_asset_cost_all = tot_asset_cost_all + record['T1-Replacement Cost ($)'][j]
+                    except:
+                        pass
 
                 # Get Total Estimated Cost
                 
@@ -537,7 +536,7 @@ if st.button('Filter Data'):
                     pass
 
                 if tot_cost_all < tot_asset_cost_all:
-                    sr.write(record['Laboratory/Capability Name'])
+                    st.write(record['Laboratory/Capability Name'])
 
     # Write Costs
     val_frmt = format_values(tot_cost_all, "money")
