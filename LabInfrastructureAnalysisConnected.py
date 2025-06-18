@@ -537,6 +537,7 @@ if st.button('Filter Data'):
                     pass
 
                 if val < asset_cost:
+                    st.write(record['Laboratory/Capability Name'])
                     val = asset_cost
 
                 try:
