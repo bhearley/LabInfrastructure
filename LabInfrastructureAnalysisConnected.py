@@ -536,7 +536,7 @@ if st.button('Filter Data'):
                 except:
                     pass
 
-                if tot_cost_all < tot_ass_cost_all:
+                if tot_cost_all < tot_asset_cost_all:
                     sr.write(record['Laboratory/Capability Name'])
 
     # Write Costs
