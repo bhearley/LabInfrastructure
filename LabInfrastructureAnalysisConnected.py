@@ -542,7 +542,7 @@ if st.button('Filter Data'):
     run_lab1.font.name = 'Times New Roman'
     run_lab1.font.size = Pt(12)
 
-    val_frmt = format_values(tot_cost_asset_all, "money")
+    val_frmt = format_values(tot_asset_cost_all, "money")
     run_lab1 = doc.add_paragraph().add_run('Total Estimated Asset Cost' + ': ' + val_frmt)
     run_lab1.font.name = 'Times New Roman'
     run_lab1.font.size = Pt(12)
