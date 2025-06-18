@@ -519,9 +519,10 @@ if st.button('Filter Data'):
                 col_keys = list(col_dict.keys())
 
                 # Loop through each asset and write to the table
+                asset_cost = 0
                 for j in range(num_assets):
                     try:
-                        tot_asset_cost_all = tot_asset_cost_all + record['T1-Replacement Cost ($)'][j]
+                        asset_cost = asset_cost + record['T1-Replacement Cost ($)'][j]
                     except:
                         pass
 
@@ -535,8 +536,20 @@ if st.button('Filter Data'):
                 except:
                     pass
 
-                if tot_cost_all < tot_asset_cost_all:
-                    st.write(record['Laboratory/Capability Name'])
+                if val < asset_cost:
+                    val = asset_cost
+
+                try:
+                    tot_asset_cost_all = tot_asset_cost_all + asset_cost
+                except:
+                    pass
+
+                try:
+                    tot_cost_all = tot_cost_all + val
+                except:
+                    pass
+
+    
 
     # Write Costs
     val_frmt = format_values(tot_cost_all, "money")
