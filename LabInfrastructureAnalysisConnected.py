@@ -677,9 +677,12 @@ if st.button('Filter Data'):
                     for j in range(num_assets):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
-                            val = record[col_keys[k]][j]
-                            val_frmt = format_values(val, col_dict[col_keys[k]])
-                            row[k].text = val_frmt
+                            try:
+                                val = record[col_keys[k]][j]
+                                val_frmt = format_values(val, col_dict[col_keys[k]])
+                                row[k].text = val_frmt
+                            except:
+                                pass
                     table.style = 'Light Grid Accent 4'
 
                     # Set Font Fize
