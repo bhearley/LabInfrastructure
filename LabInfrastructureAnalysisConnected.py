@@ -707,7 +707,10 @@ if st.button('Filter Data'):
                         for k in range(len(col_keys)):
                             try:
                                 if col_keys[k] == 'T1-Location (Bldg/Rm)' and len(record['T1-Location (Bldg/Rm)']) == 0:
-                                    val = 'Bldg. ' + str(record['T1-Building'][k])  + ' / Rm. ' + str(record['T1-Room'][k])
+                                    if record['T1-Building'][k] is not None and record['T1-Room'][k] is not None:
+                                        val = 'Bldg. ' + str(record['T1-Building'][k])  + ' / Rm. ' + str(record['T1-Room'][k])
+                                    else:
+                                        val = ''
                                 else:
                                     val = record[col_keys[k]][j]
                                     
