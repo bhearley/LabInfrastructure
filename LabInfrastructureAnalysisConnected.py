@@ -744,11 +744,12 @@ if st.button('Filter Data'):
                             row[2].text = 'Notes'
 
                             for j in range(len(record['T7-Asset Image'])):
-                                row = table.add_row().cells
-                                row[0].text = record['T7-Asset Image Label'][j]
-                                row[2].text = record['T7-Asset Image Notes'][j]
-
                                 try:
+                                    row = table.add_row().cells
+                                    row[0].text = record['T7-Asset Image Label'][j]
+                                    row[2].text = record['T7-Asset Image Notes'][j]
+
+                                
                                     pil_img = Image.open(io.BytesIO(record['T7-Asset Image'][j]))
                                     plt.imshow(pil_img)
                                     plt.tick_params(left = False, right = False , labelleft = False , labelbottom = False, bottom = False) 
@@ -762,7 +763,7 @@ if st.button('Filter Data'):
                                     run = paragraph.add_run()
                                     run.add_picture(pic, width=Inches(3), height=Inches(2))  # size image
                                 except:
-                                    temp=1 # Do Nothing
+                                    pass
 
                         table.style = 'Light Grid Accent 4'
     
