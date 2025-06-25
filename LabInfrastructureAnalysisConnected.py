@@ -261,7 +261,13 @@ if st.button('Filter Data'):
 
     # Record Ignore List
     rec_ignore = [
-        "   DEV   "
+        "   DEV   ",
+        "NEW TEST",
+        "LMN - Thermal Characterization",
+        "LMR Vacuum Roller Rig - B5 - CW-14 (this cell contains mor than one rig)",
+        "Vacuum Roller Rig - B5 - CW-14 (this cell contains more than one rig)",
+        "Vacuum Roller Rig - B5 - CW-14 (this cell contains mor than one rig)"
+        
     ]
     
     # Evaluate criteria for each record
