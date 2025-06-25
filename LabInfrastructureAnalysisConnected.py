@@ -692,7 +692,7 @@ if st.button('Filter Data'):
                         row = table.add_row().cells
                         for k in range(len(col_keys)):
                             try:
-                                if col_keys[k] == 'T1-Location (Bldg/Rm)' and len(record['T1-Location (Bldg/Rm)'] == 0):
+                                if col_keys[k] == 'T1-Location (Bldg/Rm)' and len(record['T1-Location (Bldg/Rm)']) == 0:
                                     st.write(record['Laboratory/Capability Name'])
                                     st.write(record['T1-Building'])
                                     st.write(record['T1-Room'])
