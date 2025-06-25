@@ -693,8 +693,9 @@ if st.button('Filter Data'):
                         for k in range(len(col_keys)):
                             try:
                                 if col_keys[k] == 'T1-Location (Bldg/Rm)':
-                                    st.write(record['Laboratory/Capability Description'])
+                                    st.write(record['Laboratory/Capability Name'])
                                     st.write(record['T1-Building'])
+                                    st.write(record[col_keys[k]][j])
                                     
                                 val = record[col_keys[k]][j]
 
