@@ -695,8 +695,9 @@ if st.button('Filter Data'):
                                 val = record[col_keys[k]][j]
 
                                 if col_keys[k] == 'T1-Location (Bldg/Rm)':
+                                    st.write(record['Laboratory/Capability Description'])
                                     st.write(record['T1-Building'])
-                                    st.write(record['T1-Room'])
+                                    
                                 val_frmt = format_values(val, col_dict[col_keys[k]])
 
                                 
