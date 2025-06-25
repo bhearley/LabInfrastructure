@@ -258,11 +258,19 @@ if st.button('Filter Data'):
 
     # Preallocate Dictionary to store records that meet the filtering criteria
     FilesOut = {}
+
+    # Record Ignore List
+    rec_ignore = [
+        "   DEV   "
+    ]
     
     # Evaluate criteria for each record
     for q in range(len(all_data)):
         # Get the individual record
         record = all_data[q]
+
+        if record['Laboratory/Capability Name'] in rec_ignore:
+            continue
 
         # Get the Directorate, Division, and Branch
         Branch = record['Branch']
